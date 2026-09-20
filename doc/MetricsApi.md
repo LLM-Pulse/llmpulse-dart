@@ -9,123 +9,12 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAgentTraffic**](MetricsApi.md#getagenttraffic) | **GET** /metrics/agent_traffic | AI bot crawler traffic (Scale+, Beta)
-[**getAiTraffic**](MetricsApi.md#getaitraffic) | **GET** /metrics/ai_traffic | AI referral traffic (Scale+)
 [**getPromptSummary**](MetricsApi.md#getpromptsummary) | **GET** /metrics/prompt_summary | Per-prompt metrics summary
 [**getShareOfVoice**](MetricsApi.md#getshareofvoice) | **GET** /metrics/sov | Share of Voice
 [**getSummary**](MetricsApi.md#getsummary) | **GET** /metrics/summary | Aggregated metrics summary
 [**getTimeseries**](MetricsApi.md#gettimeseries) | **GET** /metrics/timeseries | Time-series metrics
 [**getTopSources**](MetricsApi.md#gettopsources) | **GET** /metrics/top_sources | Top cited sources
 
-
-# **getAgentTraffic**
-> AgentTrafficResponse getAgentTraffic(projectId, range, from, to, bot, company, groupBy, granularity)
-
-AI bot crawler traffic (Scale+, Beta)
-
-Aggregated AI bot traffic hitting the project's origin server (GPTBot, PerplexityBot, ClaudeBot, OAI-SearchBot, Google-Extended, etc.). Sourced from Cloudflare or CSV uploads. Requires the Scale plan; lower tiers receive ERR_PLAN_REQUIRED.
-
-### Example
-```dart
-import 'package:llmpulse/api.dart';
-
-final api = Llmpulse().getMetricsApi();
-final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
-final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
-final String bot = bot_example; // String | Filter by bot slug (e.g. gptbot, claudebot, perplexitybot)
-final String company = company_example; // String | Filter by company (e.g. openai, anthropic, google)
-final String groupBy = groupBy_example; // String | 
-final String granularity = granularity_example; // String | 
-
-try {
-    final response = api.getAgentTraffic(projectId, range, from, to, bot, company, groupBy, granularity);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling MetricsApi->getAgentTraffic: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
- **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
- **bot** | **String**| Filter by bot slug (e.g. gptbot, claudebot, perplexitybot) | [optional] 
- **company** | **String**| Filter by company (e.g. openai, anthropic, google) | [optional] 
- **groupBy** | **String**|  | [optional] [default to 'bot']
- **granularity** | **String**|  | [optional] 
-
-### Return type
-
-[**AgentTrafficResponse**](AgentTrafficResponse.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getAiTraffic**
-> getAiTraffic(projectId, range, from, to, source_, granularity)
-
-AI referral traffic (Scale+)
-
-AI referral traffic for a project: human visits arriving from AI assistants (ChatGPT, Perplexity, Gemini, Claude, etc.), measured from the connected web analytics provider (Google Analytics 4, Adobe Analytics, PostHog, Plausible or Piano). Returns per-source users, sessions and conversions with totals and a conversion rate. Requires a connected provider and the Scale plan; otherwise returns ERR_AI_TRAFFIC_NOT_CONNECTED or ERR_PLAN_REQUIRED.
-
-### Example
-```dart
-import 'package:llmpulse/api.dart';
-
-final api = Llmpulse().getMetricsApi();
-final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
-final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
-final String source_ = source__example; // String | Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude)
-final String granularity = granularity_example; // String | 
-
-try {
-    api.getAiTraffic(projectId, range, from, to, source_, granularity);
-} on DioException catch (e) {
-    print('Exception when calling MetricsApi->getAiTraffic: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
- **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
- **source_** | **String**| Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude) | [optional] 
- **granularity** | **String**|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getPromptSummary**
 > PromptSummaryResponse getPromptSummary(projectId, range, from, to, breakdown, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, sort, sortDir, page, perPage, output)
@@ -142,14 +31,14 @@ final api = Llmpulse().getMetricsApi();
 final int projectId = 56; // int | Project ID
 final int range = 56; // int | Number of days to look back (alternative to from/to)
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String breakdown = breakdown_example; // String | Add per-(prompt, model) rows to the output
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final int collectionId = 56; // int | 
-final String countryCode = countryCode_example; // String | ISO country code (e.g. US, GB, DE)
-final String languageCode = languageCode_example; // String | ISO language code (e.g. en, es, de)
+final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
-final String promptType = promptType_example; // String | Filter by prompt type (search intent)
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
 final String sort = sort_example; // String | 
 final String sortDir = sortDir_example; // String | 
@@ -172,14 +61,14 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
  **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **breakdown** | **String**| Add per-(prompt, model) rows to the output | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | **int**|  | [optional] 
- **countryCode** | **String**| ISO country code (e.g. US, GB, DE) | [optional] 
- **languageCode** | **String**| ISO language code (e.g. en, es, de) | [optional] 
+ **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
- **promptType** | **String**| Filter by prompt type (search intent) | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
  **sort** | **String**|  | [optional] [default to 'responses']
  **sortDir** | **String**|  | [optional] [default to 'desc']
@@ -217,13 +106,13 @@ final api = Llmpulse().getMetricsApi();
 final int projectId = 56; // int | Project ID
 final int range = 56; // int | Number of days to look back (alternative to from/to)
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String granularity = granularity_example; // String | 
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final int collectionId = 56; // int | 
+final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
 final int prompt = 56; // int | Filter by prompt ID
-final String promptType = promptType_example; // String | Filter by prompt type (search intent)
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 final String view = view_example; // String | Which Share of Voice projection to flatten. Only valid together with 'output'. 'over_time' (default) is one row per date and actor, 'current' the ranked snapshot, 'breakdown' the Top 4 plus Others.
@@ -243,13 +132,13 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
  **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **granularity** | **String**|  | [optional] 
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | **int**|  | [optional] 
+ **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
- **promptType** | **String**| Filter by prompt type (search intent) | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
  **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
  **view** | **String**| Which Share of Voice projection to flatten. Only valid together with 'output'. 'over_time' (default) is one row per date and actor, 'current' the ranked snapshot, 'breakdown' the Top 4 plus Others. | [optional] [default to 'over_time']
@@ -286,12 +175,12 @@ final String metrics = metrics_example; // String | Comma-separated list of metr
 final String granularity = granularity_example; // String | 
 final int range = 56; // int | Number of days to look back (alternative to from/to)
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final int collectionId = 56; // int | 
+final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
 final int prompt = 56; // int | Filter by prompt ID
-final String promptType = promptType_example; // String | Filter by prompt type (search intent)
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
@@ -312,12 +201,12 @@ Name | Type | Description  | Notes
  **granularity** | **String**|  | [optional] 
  **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
  **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | **int**|  | [optional] 
+ **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
- **promptType** | **String**| Filter by prompt type (search intent) | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
  **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
 
@@ -353,14 +242,14 @@ final String metrics = metrics_example; // String | Comma-separated list of metr
 final String granularity = granularity_example; // String | 
 final int range = 56; // int | Number of days to look back (alternative to from/to)
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final int collectionId = 56; // int | 
-final String countryCode = countryCode_example; // String | ISO country code (e.g. US, GB, DE)
-final String languageCode = languageCode_example; // String | ISO language code (e.g. en, es, de)
+final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
-final String promptType = promptType_example; // String | Filter by prompt type (search intent)
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
 final bool includeProject = true; // bool | 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
@@ -382,14 +271,14 @@ Name | Type | Description  | Notes
  **granularity** | **String**|  | [optional] 
  **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
  **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | **int**|  | [optional] 
- **countryCode** | **String**| ISO country code (e.g. US, GB, DE) | [optional] 
- **languageCode** | **String**| ISO language code (e.g. en, es, de) | [optional] 
+ **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
- **promptType** | **String**| Filter by prompt type (search intent) | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
  **includeProject** | **bool**|  | [optional] [default to true]
  **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
@@ -424,13 +313,13 @@ final api = Llmpulse().getMetricsApi();
 final int projectId = 56; // int | Project ID
 final int range = 56; // int | Number of days to look back (alternative to from/to)
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final int collectionId = 56; // int | 
-final String countryCode = countryCode_example; // String | ISO country code (e.g. US, GB, DE)
-final String languageCode = languageCode_example; // String | ISO language code (e.g. en, es, de)
+final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
-final String promptType = promptType_example; // String | Filter by prompt type (search intent)
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
 final String sort = sort_example; // String | 
 final String query = query_example; // String | Filter domains by case-insensitive partial match
@@ -453,13 +342,13 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
  **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | **int**|  | [optional] 
- **countryCode** | **String**| ISO country code (e.g. US, GB, DE) | [optional] 
- **languageCode** | **String**| ISO language code (e.g. en, es, de) | [optional] 
+ **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
- **promptType** | **String**| Filter by prompt type (search intent) | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
  **sort** | **String**|  | [optional] [default to 'total_responses']
  **query** | **String**| Filter domains by case-insensitive partial match | [optional] 

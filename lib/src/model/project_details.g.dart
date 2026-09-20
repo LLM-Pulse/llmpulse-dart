@@ -32,11 +32,15 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final ProjectDetailsAllOfStats? stats;
   @override
+  final String? businessModelOther;
+  @override
   final String? countryCode;
   @override
   final BuiltList<String>? matchingNames;
   @override
-  final String? primaryProducts;
+  final BuiltList<String>? primaryProducts;
+  @override
+  final String? goals;
   @override
   final int? id;
   @override
@@ -60,9 +64,11 @@ class _$ProjectDetails extends ProjectDetails {
       this.googlePlayId,
       this.targetAudience,
       this.stats,
+      this.businessModelOther,
       this.countryCode,
       this.matchingNames,
       this.primaryProducts,
+      this.goals,
       this.id,
       this.name,
       this.brandName})
@@ -90,9 +96,11 @@ class _$ProjectDetails extends ProjectDetails {
         googlePlayId == other.googlePlayId &&
         targetAudience == other.targetAudience &&
         stats == other.stats &&
+        businessModelOther == other.businessModelOther &&
         countryCode == other.countryCode &&
         matchingNames == other.matchingNames &&
         primaryProducts == other.primaryProducts &&
+        goals == other.goals &&
         id == other.id &&
         name == other.name &&
         brandName == other.brandName;
@@ -113,9 +121,11 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, googlePlayId.hashCode);
     _$hash = $jc(_$hash, targetAudience.hashCode);
     _$hash = $jc(_$hash, stats.hashCode);
+    _$hash = $jc(_$hash, businessModelOther.hashCode);
     _$hash = $jc(_$hash, countryCode.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, primaryProducts.hashCode);
+    _$hash = $jc(_$hash, goals.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
@@ -138,9 +148,11 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('googlePlayId', googlePlayId)
           ..add('targetAudience', targetAudience)
           ..add('stats', stats)
+          ..add('businessModelOther', businessModelOther)
           ..add('countryCode', countryCode)
           ..add('matchingNames', matchingNames)
           ..add('primaryProducts', primaryProducts)
+          ..add('goals', goals)
           ..add('id', id)
           ..add('name', name)
           ..add('brandName', brandName))
@@ -209,6 +221,11 @@ class ProjectDetailsBuilder
   set stats(covariant ProjectDetailsAllOfStatsBuilder? stats) =>
       _$this._stats = stats;
 
+  String? _businessModelOther;
+  String? get businessModelOther => _$this._businessModelOther;
+  set businessModelOther(covariant String? businessModelOther) =>
+      _$this._businessModelOther = businessModelOther;
+
   String? _countryCode;
   String? get countryCode => _$this._countryCode;
   set countryCode(covariant String? countryCode) =>
@@ -220,10 +237,15 @@ class ProjectDetailsBuilder
   set matchingNames(covariant ListBuilder<String>? matchingNames) =>
       _$this._matchingNames = matchingNames;
 
-  String? _primaryProducts;
-  String? get primaryProducts => _$this._primaryProducts;
-  set primaryProducts(covariant String? primaryProducts) =>
+  ListBuilder<String>? _primaryProducts;
+  ListBuilder<String> get primaryProducts =>
+      _$this._primaryProducts ??= ListBuilder<String>();
+  set primaryProducts(covariant ListBuilder<String>? primaryProducts) =>
       _$this._primaryProducts = primaryProducts;
+
+  String? _goals;
+  String? get goals => _$this._goals;
+  set goals(covariant String? goals) => _$this._goals = goals;
 
   int? _id;
   int? get id => _$this._id;
@@ -256,9 +278,11 @@ class ProjectDetailsBuilder
       _googlePlayId = $v.googlePlayId;
       _targetAudience = $v.targetAudience;
       _stats = $v.stats?.toBuilder();
+      _businessModelOther = $v.businessModelOther;
       _countryCode = $v.countryCode;
       _matchingNames = $v.matchingNames?.toBuilder();
-      _primaryProducts = $v.primaryProducts;
+      _primaryProducts = $v.primaryProducts?.toBuilder();
+      _goals = $v.goals;
       _id = $v.id;
       _name = $v.name;
       _brandName = $v.brandName;
@@ -297,9 +321,11 @@ class ProjectDetailsBuilder
             googlePlayId: googlePlayId,
             targetAudience: targetAudience,
             stats: _stats?.build(),
+            businessModelOther: businessModelOther,
             countryCode: countryCode,
             matchingNames: _matchingNames?.build(),
-            primaryProducts: primaryProducts,
+            primaryProducts: _primaryProducts?.build(),
+            goals: goals,
             id: id,
             name: name,
             brandName: brandName,
@@ -312,6 +338,8 @@ class ProjectDetailsBuilder
 
         _$failedField = 'matchingNames';
         _matchingNames?.build();
+        _$failedField = 'primaryProducts';
+        _primaryProducts?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'ProjectDetails', _$failedField, e.toString());

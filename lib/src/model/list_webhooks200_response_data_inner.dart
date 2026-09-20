@@ -30,7 +30,7 @@ abstract class ListWebhooks200ResponseDataInner implements Built<ListWebhooks200
 
   @BuiltValueField(wireName: r'event_type')
   ListWebhooks200ResponseDataInnerEventTypeEnum? get eventType;
-  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  };
+  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  };
 
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
@@ -258,6 +258,8 @@ class ListWebhooks200ResponseDataInnerEventTypeEnum extends EnumClass {
   static const ListWebhooks200ResponseDataInnerEventTypeEnum recommendationPeriodCompleted = _$listWebhooks200ResponseDataInnerEventTypeEnum_recommendationPeriodCompleted;
   @BuiltValueEnumConst(wireName: r'intelligence_task.completed')
   static const ListWebhooks200ResponseDataInnerEventTypeEnum intelligenceTaskPeriodCompleted = _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodCompleted;
+  @BuiltValueEnumConst(wireName: r'intelligence_task.updated')
+  static const ListWebhooks200ResponseDataInnerEventTypeEnum intelligenceTaskPeriodUpdated = _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodUpdated;
 
   static Serializer<ListWebhooks200ResponseDataInnerEventTypeEnum> get serializer => _$listWebhooks200ResponseDataInnerEventTypeEnumSerializer;
 

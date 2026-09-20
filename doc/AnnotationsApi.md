@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Create a timeline annotation
 
-Marks a date in the project timeseries with a title + description. Requires the **Growth** plan or above. Requires a `read_write` scope API key.
+Marks a date in the project timeseries with a title + description. Available on every plan. Requires a `read_write` scope API key.
 
 ### Example
 ```dart
@@ -62,7 +62,7 @@ void (empty response body)
 
 Delete a timeline annotation
 
-Deletes an annotation. Same ownership rule as PATCH. Requires the **Growth** plan or above and a `read_write` scope API key.
+Deletes an annotation. Same ownership rule as PATCH. Available on every plan and requires a `read_write` scope API key.
 
 ### Example
 ```dart
@@ -106,7 +106,7 @@ void (empty response body)
 
 List timeline annotations
 
-Lists the project timeline annotations (user-created + system), newest first. The category field tells them apart; editable says whether the requesting user may modify the row. Requires the **Growth** plan or above.
+Lists project timeline annotations, newest first. Rows can come from manual notes, project automations, GEO tests, or platform events. The origin field distinguishes them; editable says whether the requesting user may modify the row. Available on every plan.
 
 ### Example
 ```dart
@@ -158,7 +158,7 @@ void (empty response body)
 
 Update a timeline annotation
 
-Updates title, description, annotation_date, color and/or annotation_category_id. Only user-created annotations belonging to the requesting user can be updated (system annotations never). Requires the **Growth** plan or above and a `read_write` scope API key.
+Updates title, description, annotation_date, color and/or annotation_category_id. Only user-created annotations belonging to the requesting user can be updated (system annotations never). Available on every plan and requires a `read_write` scope API key.
 
 ### Example
 ```dart

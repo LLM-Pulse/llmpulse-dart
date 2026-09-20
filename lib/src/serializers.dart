@@ -14,6 +14,8 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:llmpulse/src/date_serializer.dart';
 import 'package:llmpulse/src/model/date.dart';
 
+import 'package:llmpulse/src/model/account_capacity.dart';
+import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:llmpulse/src/model/actor.dart';
 import 'package:llmpulse/src/model/agent_bot.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
@@ -34,8 +36,15 @@ import 'package:llmpulse/src/model/create_webhook201_response.dart';
 import 'package:llmpulse/src/model/create_webhook_request.dart';
 import 'package:llmpulse/src/model/delete_webhook200_response.dart';
 import 'package:llmpulse/src/model/finalize_project_draft_request.dart';
+import 'package:llmpulse/src/model/get_account200_response.dart';
+import 'package:llmpulse/src/model/get_account200_response_limits.dart';
+import 'package:llmpulse/src/model/get_account200_response_rate_limits.dart';
+import 'package:llmpulse/src/model/get_account200_response_subscription.dart';
+import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 import 'package:llmpulse/src/model/intelligence_task.dart';
 import 'package:llmpulse/src/model/intelligence_task_create_request.dart';
+import 'package:llmpulse/src/model/intelligence_task_update_request.dart';
+import 'package:llmpulse/src/model/intelligence_task_update_response.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
 import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/list_projects200_response.dart';
@@ -60,6 +69,7 @@ import 'package:llmpulse/src/model/prompts_create_response.dart';
 import 'package:llmpulse/src/model/prompts_create_response_data_inner.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_filters_inner.dart';
 import 'package:llmpulse/src/model/sov_response.dart';
 import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/sov_response_current_inner.dart';
@@ -77,10 +87,13 @@ import 'package:llmpulse/src/model/update_annotation_request.dart';
 import 'package:llmpulse/src/model/update_collection_request.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
 import 'package:llmpulse/src/model/update_project_draft_request.dart';
+import 'package:llmpulse/src/model/update_project_request.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
+  AccountCapacity,
+  AccountQuota,
   Actor,
   AgentBot,
   AgentBotsResponse,
@@ -101,8 +114,15 @@ part 'serializers.g.dart';
   CreateWebhookRequest,
   DeleteWebhook200Response,
   FinalizeProjectDraftRequest,
-  IntelligenceTask,
+  GetAccount200Response,
+  GetAccount200ResponseLimits,
+  GetAccount200ResponseRateLimits,
+  GetAccount200ResponseSubscription,
+  GetTimeseriesCollectionIdParameter,
+  IntelligenceTask,$IntelligenceTask,
   IntelligenceTaskCreateRequest,
+  IntelligenceTaskUpdateRequest,
+  IntelligenceTaskUpdateResponse,
   LaunchRecommendationsRequest,
   ListCompetitors200Response,
   ListProjects200Response,
@@ -127,6 +147,7 @@ part 'serializers.g.dart';
   PromptsCreateResponseDataInner,
   SampleWebhookPayloads200Response,
   SampleWebhookPayloads200ResponseDataInner,
+  SearchConsoleFiltersInner,
   SovResponse,
   SovResponseBreakdownInner,
   SovResponseCurrentInner,
@@ -144,8 +165,13 @@ part 'serializers.g.dart';
   UpdateCollectionRequest,
   UpdateCompetitorRequest,
   UpdateProjectDraftRequest,
+  UpdateProjectRequest,
 ])
 Serializers serializers = (_$serializers.toBuilder()
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(String)]),
+        () => MapBuilder<String, String>(),
+      )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCompetitorsInner)]),
         () => ListBuilder<ProjectCreateRequestCompetitorsInner>(),
@@ -238,6 +264,7 @@ Serializers serializers = (_$serializers.toBuilder()
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
         () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
       )
+      ..add(IntelligenceTask.serializer)
       ..add(Project.serializer)
       ..add(TimeseriesResponse.serializer)
       ..add(const OneOfSerializer())

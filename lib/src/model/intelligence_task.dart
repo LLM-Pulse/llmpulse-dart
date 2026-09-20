@@ -30,9 +30,11 @@ part 'intelligence_task.g.dart';
 /// * [estimatedTime] 
 /// * [createdAt] 
 /// * [processedAt] 
+/// * [manuallyEditedAt] - When the content was last edited by hand; null while the output is as generated
+/// * [editedByUserId] - User behind the last manual edit; null for an unedited task or an edit made from an embedded portal
 /// * [requestId] 
-@BuiltValue()
-abstract class IntelligenceTask implements Built<IntelligenceTask, IntelligenceTaskBuilder> {
+@BuiltValue(instantiable: false)
+abstract class IntelligenceTask  {
   @BuiltValueField(wireName: r'id')
   int? get id;
 
@@ -88,15 +90,16 @@ abstract class IntelligenceTask implements Built<IntelligenceTask, IntelligenceT
   @BuiltValueField(wireName: r'processed_at')
   DateTime? get processedAt;
 
+  /// When the content was last edited by hand; null while the output is as generated
+  @BuiltValueField(wireName: r'manually_edited_at')
+  DateTime? get manuallyEditedAt;
+
+  /// User behind the last manual edit; null for an unedited task or an edit made from an embedded portal
+  @BuiltValueField(wireName: r'edited_by_user_id')
+  int? get editedByUserId;
+
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
-
-  IntelligenceTask._();
-
-  factory IntelligenceTask([void updates(IntelligenceTaskBuilder b)]) = _$IntelligenceTask;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(IntelligenceTaskBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<IntelligenceTask> get serializer => _$IntelligenceTaskSerializer();
@@ -104,7 +107,7 @@ abstract class IntelligenceTask implements Built<IntelligenceTask, IntelligenceT
 
 class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTask> {
   @override
-  final Iterable<Type> types = const [IntelligenceTask, _$IntelligenceTask];
+  final Iterable<Type> types = const [IntelligenceTask];
 
   @override
   final String wireName = r'IntelligenceTask';
@@ -240,6 +243,20 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
         specifiedType: const FullType.nullable(DateTime),
       );
     }
+    if (object.manuallyEditedAt != null) {
+      yield r'manually_edited_at';
+      yield serializers.serialize(
+        object.manuallyEditedAt,
+        specifiedType: const FullType.nullable(DateTime),
+      );
+    }
+    if (object.editedByUserId != null) {
+      yield r'edited_by_user_id';
+      yield serializers.serialize(
+        object.editedByUserId,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
     if (object.requestId != null) {
       yield r'request_id';
       yield serializers.serialize(
@@ -256,6 +273,46 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  IntelligenceTask deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($IntelligenceTask)) as $IntelligenceTask;
+  }
+}
+
+/// a concrete implementation of [IntelligenceTask], since [IntelligenceTask] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $IntelligenceTask implements IntelligenceTask, Built<$IntelligenceTask, $IntelligenceTaskBuilder> {
+  $IntelligenceTask._();
+
+  factory $IntelligenceTask([void Function($IntelligenceTaskBuilder)? updates]) = _$$IntelligenceTask;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($IntelligenceTaskBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$IntelligenceTask> get serializer => _$$IntelligenceTaskSerializer();
+}
+
+class _$$IntelligenceTaskSerializer implements PrimitiveSerializer<$IntelligenceTask> {
+  @override
+  final Iterable<Type> types = const [$IntelligenceTask, _$$IntelligenceTask];
+
+  @override
+  final String wireName = r'$IntelligenceTask';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $IntelligenceTask object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(IntelligenceTask))!;
   }
 
   void _deserializeProperties(
@@ -414,6 +471,22 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
           if (valueDes == null) continue;
           result.processedAt = valueDes;
           break;
+        case r'manually_edited_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.manuallyEditedAt = valueDes;
+          break;
+        case r'edited_by_user_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.editedByUserId = valueDes;
+          break;
         case r'request_id':
           final valueDes = serializers.deserialize(
             value,
@@ -431,12 +504,12 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
   }
 
   @override
-  IntelligenceTask deserialize(
+  $IntelligenceTask deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = IntelligenceTaskBuilder();
+    final result = $IntelligenceTaskBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

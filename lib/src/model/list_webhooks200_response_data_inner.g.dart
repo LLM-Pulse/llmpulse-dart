@@ -34,6 +34,10 @@ const ListWebhooks200ResponseDataInnerEventTypeEnum
     _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodCompleted =
     const ListWebhooks200ResponseDataInnerEventTypeEnum._(
         'intelligenceTaskPeriodCompleted');
+const ListWebhooks200ResponseDataInnerEventTypeEnum
+    _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodUpdated =
+    const ListWebhooks200ResponseDataInnerEventTypeEnum._(
+        'intelligenceTaskPeriodUpdated');
 
 ListWebhooks200ResponseDataInnerEventTypeEnum
     _$listWebhooks200ResponseDataInnerEventTypeEnumValueOf(String name) {
@@ -52,6 +56,8 @@ ListWebhooks200ResponseDataInnerEventTypeEnum
       return _$listWebhooks200ResponseDataInnerEventTypeEnum_recommendationPeriodCompleted;
     case 'intelligenceTaskPeriodCompleted':
       return _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodCompleted;
+    case 'intelligenceTaskPeriodUpdated':
+      return _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodUpdated;
     default:
       throw ArgumentError(name);
   }
@@ -67,6 +73,7 @@ final BuiltSet<ListWebhooks200ResponseDataInnerEventTypeEnum>
   _$listWebhooks200ResponseDataInnerEventTypeEnum_sentimentPeriodNegativeDetected,
   _$listWebhooks200ResponseDataInnerEventTypeEnum_recommendationPeriodCompleted,
   _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodCompleted,
+  _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodUpdated,
 ]);
 
 Serializer<ListWebhooks200ResponseDataInnerEventTypeEnum>
@@ -84,6 +91,7 @@ class _$ListWebhooks200ResponseDataInnerEventTypeEnumSerializer
     'sentimentPeriodNegativeDetected': 'sentiment.negative_detected',
     'recommendationPeriodCompleted': 'recommendation.completed',
     'intelligenceTaskPeriodCompleted': 'intelligence_task.completed',
+    'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -93,6 +101,7 @@ class _$ListWebhooks200ResponseDataInnerEventTypeEnumSerializer
     'sentiment.negative_detected': 'sentimentPeriodNegativeDetected',
     'recommendation.completed': 'recommendationPeriodCompleted',
     'intelligence_task.completed': 'intelligenceTaskPeriodCompleted',
+    'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
   };
 
   @override

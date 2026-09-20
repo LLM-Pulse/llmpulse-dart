@@ -21,6 +21,12 @@ part 'project_create_request.g.dart';
 /// * [brandName] 
 /// * [description] 
 /// * [industry] 
+/// * [businessModel] - Business model key (e.g. B2B_SAAS, MARKETPLACE); unknown keys are rejected
+/// * [businessModelOther] - Free-text business model, only accepted when business_model is OTHER; rejected against any other key
+/// * [targetAudience] - Who the brand sells to. Context for Recommendations and GEO Writer (Brand Book)
+/// * [brandVoice] - Tone of voice guidance for generated content (Brand Book)
+/// * [goals] - What the brand wants to achieve. Context for GEO Writer and prompt suggestions
+/// * [primaryProducts] - Main products or services
 /// * [matchingNames] 
 /// * [prompts] 
 /// * [competitors] 
@@ -52,6 +58,30 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
 
   @BuiltValueField(wireName: r'industry')
   BuiltList<String>? get industry;
+
+  /// Business model key (e.g. B2B_SAAS, MARKETPLACE); unknown keys are rejected
+  @BuiltValueField(wireName: r'business_model')
+  String? get businessModel;
+
+  /// Free-text business model, only accepted when business_model is OTHER; rejected against any other key
+  @BuiltValueField(wireName: r'business_model_other')
+  String? get businessModelOther;
+
+  /// Who the brand sells to. Context for Recommendations and GEO Writer (Brand Book)
+  @BuiltValueField(wireName: r'target_audience')
+  String? get targetAudience;
+
+  /// Tone of voice guidance for generated content (Brand Book)
+  @BuiltValueField(wireName: r'brand_voice')
+  String? get brandVoice;
+
+  /// What the brand wants to achieve. Context for GEO Writer and prompt suggestions
+  @BuiltValueField(wireName: r'goals')
+  String? get goals;
+
+  /// Main products or services
+  @BuiltValueField(wireName: r'primary_products')
+  BuiltList<String>? get primaryProducts;
 
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
@@ -142,6 +172,48 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
       yield r'industry';
       yield serializers.serialize(
         object.industry,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.businessModel != null) {
+      yield r'business_model';
+      yield serializers.serialize(
+        object.businessModel,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.businessModelOther != null) {
+      yield r'business_model_other';
+      yield serializers.serialize(
+        object.businessModelOther,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.targetAudience != null) {
+      yield r'target_audience';
+      yield serializers.serialize(
+        object.targetAudience,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brandVoice != null) {
+      yield r'brand_voice';
+      yield serializers.serialize(
+        object.brandVoice,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.goals != null) {
+      yield r'goals';
+      yield serializers.serialize(
+        object.goals,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.primaryProducts != null) {
+      yield r'primary_products';
+      yield serializers.serialize(
+        object.primaryProducts,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
@@ -275,6 +347,54 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
           ) as BuiltList<String>?;
           if (valueDes == null) continue;
           result.industry.replace(valueDes);
+          break;
+        case r'business_model':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.businessModel = valueDes;
+          break;
+        case r'business_model_other':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.businessModelOther = valueDes;
+          break;
+        case r'target_audience':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.targetAudience = valueDes;
+          break;
+        case r'brand_voice':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.brandVoice = valueDes;
+          break;
+        case r'goals':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.goals = valueDes;
+          break;
+        case r'primary_products':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
+          result.primaryProducts.replace(valueDes);
           break;
         case r'matching_names':
           final valueDes = serializers.deserialize(

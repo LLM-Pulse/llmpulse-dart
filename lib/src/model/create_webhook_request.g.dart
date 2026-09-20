@@ -29,6 +29,9 @@ const CreateWebhookRequestEventTypeEnum
     _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodCompleted =
     const CreateWebhookRequestEventTypeEnum._(
         'intelligenceTaskPeriodCompleted');
+const CreateWebhookRequestEventTypeEnum
+    _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated =
+    const CreateWebhookRequestEventTypeEnum._('intelligenceTaskPeriodUpdated');
 
 CreateWebhookRequestEventTypeEnum _$createWebhookRequestEventTypeEnumValueOf(
     String name) {
@@ -47,6 +50,8 @@ CreateWebhookRequestEventTypeEnum _$createWebhookRequestEventTypeEnumValueOf(
       return _$createWebhookRequestEventTypeEnum_recommendationPeriodCompleted;
     case 'intelligenceTaskPeriodCompleted':
       return _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodCompleted;
+    case 'intelligenceTaskPeriodUpdated':
+      return _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated;
     default:
       throw ArgumentError(name);
   }
@@ -62,6 +67,7 @@ final BuiltSet<CreateWebhookRequestEventTypeEnum>
   _$createWebhookRequestEventTypeEnum_sentimentPeriodNegativeDetected,
   _$createWebhookRequestEventTypeEnum_recommendationPeriodCompleted,
   _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodCompleted,
+  _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated,
 ]);
 
 Serializer<CreateWebhookRequestEventTypeEnum>
@@ -78,6 +84,7 @@ class _$CreateWebhookRequestEventTypeEnumSerializer
     'sentimentPeriodNegativeDetected': 'sentiment.negative_detected',
     'recommendationPeriodCompleted': 'recommendation.completed',
     'intelligenceTaskPeriodCompleted': 'intelligence_task.completed',
+    'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -87,6 +94,7 @@ class _$CreateWebhookRequestEventTypeEnumSerializer
     'sentiment.negative_detected': 'sentimentPeriodNegativeDetected',
     'recommendation.completed': 'recommendationPeriodCompleted',
     'intelligence_task.completed': 'intelligenceTaskPeriodCompleted',
+    'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
   };
 
   @override

@@ -14,8 +14,11 @@ part 'update_competitor_request.g.dart';
 /// Properties:
 /// * [projectId] 
 /// * [brandName] 
+/// * [domain] - Website domain or host used for citation matching. A full URL is accepted and normalised to its host.
 /// * [matchingNames] 
 /// * [color] - Hex color, e.g. #1a2b3c
+/// * [citationMatchMode] 
+/// * [citationMatchPath] - Required when changing citation_match_mode to path_prefix
 @BuiltValue()
 abstract class UpdateCompetitorRequest implements Built<UpdateCompetitorRequest, UpdateCompetitorRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -24,12 +27,24 @@ abstract class UpdateCompetitorRequest implements Built<UpdateCompetitorRequest,
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 
+  /// Website domain or host used for citation matching. A full URL is accepted and normalised to its host.
+  @BuiltValueField(wireName: r'domain')
+  String? get domain;
+
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 
   /// Hex color, e.g. #1a2b3c
   @BuiltValueField(wireName: r'color')
   String? get color;
+
+  @BuiltValueField(wireName: r'citation_match_mode')
+  UpdateCompetitorRequestCitationMatchModeEnum? get citationMatchMode;
+  // enum citationMatchModeEnum {  domain,  host,  path_prefix,  };
+
+  /// Required when changing citation_match_mode to path_prefix
+  @BuiltValueField(wireName: r'citation_match_path')
+  String? get citationMatchPath;
 
   UpdateCompetitorRequest._();
 
@@ -66,6 +81,13 @@ class _$UpdateCompetitorRequestSerializer implements PrimitiveSerializer<UpdateC
         specifiedType: const FullType(String),
       );
     }
+    if (object.domain != null) {
+      yield r'domain';
+      yield serializers.serialize(
+        object.domain,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.matchingNames != null) {
       yield r'matching_names';
       yield serializers.serialize(
@@ -77,6 +99,20 @@ class _$UpdateCompetitorRequestSerializer implements PrimitiveSerializer<UpdateC
       yield r'color';
       yield serializers.serialize(
         object.color,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.citationMatchMode != null) {
+      yield r'citation_match_mode';
+      yield serializers.serialize(
+        object.citationMatchMode,
+        specifiedType: const FullType(UpdateCompetitorRequestCitationMatchModeEnum),
+      );
+    }
+    if (object.citationMatchPath != null) {
+      yield r'citation_match_path';
+      yield serializers.serialize(
+        object.citationMatchPath,
         specifiedType: const FullType(String),
       );
     }
@@ -118,6 +154,14 @@ class _$UpdateCompetitorRequestSerializer implements PrimitiveSerializer<UpdateC
           if (valueDes == null) continue;
           result.brandName = valueDes;
           break;
+        case r'domain':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.domain = valueDes;
+          break;
         case r'matching_names':
           final valueDes = serializers.deserialize(
             value,
@@ -133,6 +177,22 @@ class _$UpdateCompetitorRequestSerializer implements PrimitiveSerializer<UpdateC
           ) as String?;
           if (valueDes == null) continue;
           result.color = valueDes;
+          break;
+        case r'citation_match_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(UpdateCompetitorRequestCitationMatchModeEnum),
+          ) as UpdateCompetitorRequestCitationMatchModeEnum?;
+          if (valueDes == null) continue;
+          result.citationMatchMode = valueDes;
+          break;
+        case r'citation_match_path':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.citationMatchPath = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -161,5 +221,22 @@ class _$UpdateCompetitorRequestSerializer implements PrimitiveSerializer<UpdateC
     );
     return result.build();
   }
+}
+
+class UpdateCompetitorRequestCitationMatchModeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'domain')
+  static const UpdateCompetitorRequestCitationMatchModeEnum domain = _$updateCompetitorRequestCitationMatchModeEnum_domain;
+  @BuiltValueEnumConst(wireName: r'host')
+  static const UpdateCompetitorRequestCitationMatchModeEnum host = _$updateCompetitorRequestCitationMatchModeEnum_host;
+  @BuiltValueEnumConst(wireName: r'path_prefix')
+  static const UpdateCompetitorRequestCitationMatchModeEnum pathPrefix = _$updateCompetitorRequestCitationMatchModeEnum_pathPrefix;
+
+  static Serializer<UpdateCompetitorRequestCitationMatchModeEnum> get serializer => _$updateCompetitorRequestCitationMatchModeEnumSerializer;
+
+  const UpdateCompetitorRequestCitationMatchModeEnum._(String name): super(name);
+
+  static BuiltSet<UpdateCompetitorRequestCitationMatchModeEnum> get values => _$updateCompetitorRequestCitationMatchModeEnumValues;
+  static UpdateCompetitorRequestCitationMatchModeEnum valueOf(String name) => _$updateCompetitorRequestCitationMatchModeEnumValueOf(name);
 }
 

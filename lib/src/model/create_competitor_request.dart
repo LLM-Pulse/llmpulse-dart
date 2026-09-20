@@ -16,6 +16,8 @@ part 'create_competitor_request.g.dart';
 /// * [brandName] 
 /// * [domain] - URL is accepted and normalised to host (e.g. https://www.openai.com → openai.com)
 /// * [matchingNames] 
+/// * [citationMatchMode] - domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
+/// * [citationMatchPath] - Required when citation_match_mode=path_prefix, e.g. /es. Case-sensitive; trailing slash is optional; query and fragment are ignored
 @BuiltValue()
 abstract class CreateCompetitorRequest implements Built<CreateCompetitorRequest, CreateCompetitorRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -31,12 +33,22 @@ abstract class CreateCompetitorRequest implements Built<CreateCompetitorRequest,
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 
+  /// domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
+  @BuiltValueField(wireName: r'citation_match_mode')
+  CreateCompetitorRequestCitationMatchModeEnum? get citationMatchMode;
+  // enum citationMatchModeEnum {  domain,  host,  path_prefix,  };
+
+  /// Required when citation_match_mode=path_prefix, e.g. /es. Case-sensitive; trailing slash is optional; query and fragment are ignored
+  @BuiltValueField(wireName: r'citation_match_path')
+  String? get citationMatchPath;
+
   CreateCompetitorRequest._();
 
   factory CreateCompetitorRequest([void updates(CreateCompetitorRequestBuilder b)]) = _$CreateCompetitorRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateCompetitorRequestBuilder b) => b;
+  static void _defaults(CreateCompetitorRequestBuilder b) => b
+      ..citationMatchMode = CreateCompetitorRequestCitationMatchModeEnum.valueOf('domain');
 
   @BuiltValueSerializer(custom: true)
   static Serializer<CreateCompetitorRequest> get serializer => _$CreateCompetitorRequestSerializer();
@@ -74,6 +86,20 @@ class _$CreateCompetitorRequestSerializer implements PrimitiveSerializer<CreateC
       yield serializers.serialize(
         object.matchingNames,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.citationMatchMode != null) {
+      yield r'citation_match_mode';
+      yield serializers.serialize(
+        object.citationMatchMode,
+        specifiedType: const FullType(CreateCompetitorRequestCitationMatchModeEnum),
+      );
+    }
+    if (object.citationMatchPath != null) {
+      yield r'citation_match_path';
+      yield serializers.serialize(
+        object.citationMatchPath,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -128,6 +154,22 @@ class _$CreateCompetitorRequestSerializer implements PrimitiveSerializer<CreateC
           if (valueDes == null) continue;
           result.matchingNames.replace(valueDes);
           break;
+        case r'citation_match_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(CreateCompetitorRequestCitationMatchModeEnum),
+          ) as CreateCompetitorRequestCitationMatchModeEnum?;
+          if (valueDes == null) continue;
+          result.citationMatchMode = valueDes;
+          break;
+        case r'citation_match_path':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.citationMatchPath = valueDes;
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -155,5 +197,25 @@ class _$CreateCompetitorRequestSerializer implements PrimitiveSerializer<CreateC
     );
     return result.build();
   }
+}
+
+class CreateCompetitorRequestCitationMatchModeEnum extends EnumClass {
+
+  /// domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
+  @BuiltValueEnumConst(wireName: r'domain')
+  static const CreateCompetitorRequestCitationMatchModeEnum domain = _$createCompetitorRequestCitationMatchModeEnum_domain;
+  /// domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
+  @BuiltValueEnumConst(wireName: r'host')
+  static const CreateCompetitorRequestCitationMatchModeEnum host = _$createCompetitorRequestCitationMatchModeEnum_host;
+  /// domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
+  @BuiltValueEnumConst(wireName: r'path_prefix')
+  static const CreateCompetitorRequestCitationMatchModeEnum pathPrefix = _$createCompetitorRequestCitationMatchModeEnum_pathPrefix;
+
+  static Serializer<CreateCompetitorRequestCitationMatchModeEnum> get serializer => _$createCompetitorRequestCitationMatchModeEnumSerializer;
+
+  const CreateCompetitorRequestCitationMatchModeEnum._(String name): super(name);
+
+  static BuiltSet<CreateCompetitorRequestCitationMatchModeEnum> get values => _$createCompetitorRequestCitationMatchModeEnumValues;
+  static CreateCompetitorRequestCitationMatchModeEnum valueOf(String name) => _$createCompetitorRequestCitationMatchModeEnumValueOf(name);
 }
 

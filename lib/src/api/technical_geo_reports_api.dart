@@ -10,22 +10,21 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/create_collection_request.dart';
-import 'package:llmpulse/src/model/update_collection_request.dart';
+import 'package:llmpulse/src/model/create_technical_geo_reports_request.dart';
 
-class CollectionsApi {
+class TechnicalGEOReportsApi {
 
   final Dio _dio;
 
   final Serializers _serializers;
 
-  const CollectionsApi(this._dio, this._serializers);
+  const TechnicalGEOReportsApi(this._dio, this._serializers);
 
-  /// Create a tag
-  /// Creates a tag (Collection) in a project. Optional &#x60;prompt_ids&#x60; attaches existing prompts in the same call. Tag name must be unique per project (case-insensitive). Requires a &#x60;read_write&#x60; scope API key.
+  /// Run technical GEO analysis
+  /// Launches the full technical GEO analysis bundle (crawlability, schema, content readiness, discoverability, site structure, robots.txt, agent readiness, llms.txt, AI visibility) for a URL + country. Each report runs in a background job. Requires a &#x60;read_write&#x60; scope API key.
   ///
   /// Parameters:
-  /// * [createCollectionRequest] 
+  /// * [createTechnicalGeoReportsRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -35,8 +34,8 @@ class CollectionsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> createCollection({ 
-    required CreateCollectionRequest createCollectionRequest,
+  Future<Response<void>> createTechnicalGeoReports({ 
+    required CreateTechnicalGeoReportsRequest createTechnicalGeoReportsRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -44,7 +43,7 @@ class CollectionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/collections';
+    final _path = r'/technical_geo_reports';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -67,8 +66,8 @@ class CollectionsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateCollectionRequest);
-      _bodyData = _serializers.serialize(createCollectionRequest, specifiedType: _type);
+      const _type = FullType(CreateTechnicalGeoReportsRequest);
+      _bodyData = _serializers.serialize(createTechnicalGeoReportsRequest, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -94,12 +93,13 @@ class CollectionsApi {
     return _response;
   }
 
-  /// Delete a tag
-  /// Deletes a tag/collection. The prompts inside it are NOT deleted; only the grouping disappears. Requires a &#x60;read_write&#x60; scope API key.
+  /// Get a technical GEO report
+  /// Returns the current status and the full result_data once the report is completed. While it is running, result_data is null and poll_after_seconds tells clients when to check again.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [id] 
+  /// * [reportType] 
+  /// * [id] - Report id returned by POST /technical_geo_reports or GET /technical_geo_reports
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -109,8 +109,9 @@ class CollectionsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteCollection({ 
+  Future<Response<void>> getTechnicalGeoReport({ 
     required int projectId,
+    required String reportType,
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -119,9 +120,9 @@ class CollectionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/collections/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/technical_geo_reports/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
-      method: r'DELETE',
+      method: r'GET',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -140,6 +141,7 @@ class CollectionsApi {
 
     final _queryParameters = <String, dynamic>{
       r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
+      r'report_type': encodeQueryParameter(_serializers, reportType, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -154,12 +156,16 @@ class CollectionsApi {
     return _response;
   }
 
-  /// Update a tag
-  /// Renames a tag/collection or changes its description. Prompt membership is managed via POST /prompts/assign_tags, not here. Requires a &#x60;read_write&#x60; scope API key.
+  /// List technical GEO reports
+  /// Lists reports of one technical GEO type for a project, newest first. Use agent_readiness for the AI/Agent Readiness report.
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateCollectionRequest] 
+  /// * [projectId] - Project ID
+  /// * [reportType] 
+  /// * [status] - Optional status filter; valid values depend on report_type
+  /// * [batchId] - Optional batch id returned when the report bundle was created
+  /// * [page] 
+  /// * [perPage] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -169,9 +175,13 @@ class CollectionsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> updateCollection({ 
-    required int id,
-    required UpdateCollectionRequest updateCollectionRequest,
+  Future<Response<void>> listTechnicalGeoReports({ 
+    required int projectId,
+    required String reportType,
+    String? status,
+    int? batchId,
+    int? page = 1,
+    int? perPage = 20,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -179,9 +189,9 @@ class CollectionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/collections/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/technical_geo_reports';
     final _options = Options(
-      method: r'PATCH',
+      method: r'GET',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -195,32 +205,22 @@ class CollectionsApi {
         ],
         ...?extra,
       },
-      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(UpdateCollectionRequest);
-      _bodyData = _serializers.serialize(updateCollectionRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
+    final _queryParameters = <String, dynamic>{
+      r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
+      r'report_type': encodeQueryParameter(_serializers, reportType, const FullType(String)),
+      if (status != null) r'status': encodeQueryParameter(_serializers, status, const FullType(String)),
+      if (batchId != null) r'batch_id': encodeQueryParameter(_serializers, batchId, const FullType(int)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
+    };
 
     final _response = await _dio.request<Object>(
       _path,
-      data: _bodyData,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,

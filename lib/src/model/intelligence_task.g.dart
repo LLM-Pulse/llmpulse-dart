@@ -6,7 +6,74 @@ part of 'intelligence_task.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$IntelligenceTask extends IntelligenceTask {
+abstract class IntelligenceTaskBuilder {
+  void replace(IntelligenceTask other);
+  void update(void Function(IntelligenceTaskBuilder) updates);
+  int? get id;
+  set id(int? id);
+
+  String? get publicId;
+  set publicId(String? publicId);
+
+  int? get projectId;
+  set projectId(int? projectId);
+
+  String? get taskType;
+  set taskType(String? taskType);
+
+  String? get title;
+  set title(String? title);
+
+  String? get status;
+  set status(String? status);
+
+  int? get promptId;
+  set promptId(int? promptId);
+
+  String? get promptText;
+  set promptText(String? promptText);
+
+  bool? get agenticMode;
+  set agenticMode(bool? agenticMode);
+
+  String? get customTopic;
+  set customTopic(String? customTopic);
+
+  String? get userInstructions;
+  set userInstructions(String? userInstructions);
+
+  String? get outputLanguageCode;
+  set outputLanguageCode(String? outputLanguageCode);
+
+  int? get wordCount;
+  set wordCount(int? wordCount);
+
+  JsonObject? get resultData;
+  set resultData(JsonObject? resultData);
+
+  String? get errorMessage;
+  set errorMessage(String? errorMessage);
+
+  String? get estimatedTime;
+  set estimatedTime(String? estimatedTime);
+
+  DateTime? get createdAt;
+  set createdAt(DateTime? createdAt);
+
+  DateTime? get processedAt;
+  set processedAt(DateTime? processedAt);
+
+  DateTime? get manuallyEditedAt;
+  set manuallyEditedAt(DateTime? manuallyEditedAt);
+
+  int? get editedByUserId;
+  set editedByUserId(int? editedByUserId);
+
+  String? get requestId;
+  set requestId(String? requestId);
+}
+
+class _$$IntelligenceTask extends $IntelligenceTask {
   @override
   final int? id;
   @override
@@ -44,13 +111,17 @@ class _$IntelligenceTask extends IntelligenceTask {
   @override
   final DateTime? processedAt;
   @override
+  final DateTime? manuallyEditedAt;
+  @override
+  final int? editedByUserId;
+  @override
   final String? requestId;
 
-  factory _$IntelligenceTask(
-          [void Function(IntelligenceTaskBuilder)? updates]) =>
-      (IntelligenceTaskBuilder()..update(updates))._build();
+  factory _$$IntelligenceTask(
+          [void Function($IntelligenceTaskBuilder)? updates]) =>
+      ($IntelligenceTaskBuilder()..update(updates))._build();
 
-  _$IntelligenceTask._(
+  _$$IntelligenceTask._(
       {this.id,
       this.publicId,
       this.projectId,
@@ -69,20 +140,22 @@ class _$IntelligenceTask extends IntelligenceTask {
       this.estimatedTime,
       this.createdAt,
       this.processedAt,
+      this.manuallyEditedAt,
+      this.editedByUserId,
       this.requestId})
       : super._();
   @override
-  IntelligenceTask rebuild(void Function(IntelligenceTaskBuilder) updates) =>
+  $IntelligenceTask rebuild(void Function($IntelligenceTaskBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  IntelligenceTaskBuilder toBuilder() =>
-      IntelligenceTaskBuilder()..replace(this);
+  $IntelligenceTaskBuilder toBuilder() =>
+      $IntelligenceTaskBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is IntelligenceTask &&
+    return other is $IntelligenceTask &&
         id == other.id &&
         publicId == other.publicId &&
         projectId == other.projectId &&
@@ -101,6 +174,8 @@ class _$IntelligenceTask extends IntelligenceTask {
         estimatedTime == other.estimatedTime &&
         createdAt == other.createdAt &&
         processedAt == other.processedAt &&
+        manuallyEditedAt == other.manuallyEditedAt &&
+        editedByUserId == other.editedByUserId &&
         requestId == other.requestId;
   }
 
@@ -125,6 +200,8 @@ class _$IntelligenceTask extends IntelligenceTask {
     _$hash = $jc(_$hash, estimatedTime.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, processedAt.hashCode);
+    _$hash = $jc(_$hash, manuallyEditedAt.hashCode);
+    _$hash = $jc(_$hash, editedByUserId.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -132,7 +209,7 @@ class _$IntelligenceTask extends IntelligenceTask {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'IntelligenceTask')
+    return (newBuiltValueToStringHelper(r'$IntelligenceTask')
           ..add('id', id)
           ..add('publicId', publicId)
           ..add('projectId', projectId)
@@ -151,99 +228,119 @@ class _$IntelligenceTask extends IntelligenceTask {
           ..add('estimatedTime', estimatedTime)
           ..add('createdAt', createdAt)
           ..add('processedAt', processedAt)
+          ..add('manuallyEditedAt', manuallyEditedAt)
+          ..add('editedByUserId', editedByUserId)
           ..add('requestId', requestId))
         .toString();
   }
 }
 
-class IntelligenceTaskBuilder
-    implements Builder<IntelligenceTask, IntelligenceTaskBuilder> {
-  _$IntelligenceTask? _$v;
+class $IntelligenceTaskBuilder
+    implements
+        Builder<$IntelligenceTask, $IntelligenceTaskBuilder>,
+        IntelligenceTaskBuilder {
+  _$$IntelligenceTask? _$v;
 
   int? _id;
   int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
+  set id(covariant int? id) => _$this._id = id;
 
   String? _publicId;
   String? get publicId => _$this._publicId;
-  set publicId(String? publicId) => _$this._publicId = publicId;
+  set publicId(covariant String? publicId) => _$this._publicId = publicId;
 
   int? _projectId;
   int? get projectId => _$this._projectId;
-  set projectId(int? projectId) => _$this._projectId = projectId;
+  set projectId(covariant int? projectId) => _$this._projectId = projectId;
 
   String? _taskType;
   String? get taskType => _$this._taskType;
-  set taskType(String? taskType) => _$this._taskType = taskType;
+  set taskType(covariant String? taskType) => _$this._taskType = taskType;
 
   String? _title;
   String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
+  set title(covariant String? title) => _$this._title = title;
 
   String? _status;
   String? get status => _$this._status;
-  set status(String? status) => _$this._status = status;
+  set status(covariant String? status) => _$this._status = status;
 
   int? _promptId;
   int? get promptId => _$this._promptId;
-  set promptId(int? promptId) => _$this._promptId = promptId;
+  set promptId(covariant int? promptId) => _$this._promptId = promptId;
 
   String? _promptText;
   String? get promptText => _$this._promptText;
-  set promptText(String? promptText) => _$this._promptText = promptText;
+  set promptText(covariant String? promptText) =>
+      _$this._promptText = promptText;
 
   bool? _agenticMode;
   bool? get agenticMode => _$this._agenticMode;
-  set agenticMode(bool? agenticMode) => _$this._agenticMode = agenticMode;
+  set agenticMode(covariant bool? agenticMode) =>
+      _$this._agenticMode = agenticMode;
 
   String? _customTopic;
   String? get customTopic => _$this._customTopic;
-  set customTopic(String? customTopic) => _$this._customTopic = customTopic;
+  set customTopic(covariant String? customTopic) =>
+      _$this._customTopic = customTopic;
 
   String? _userInstructions;
   String? get userInstructions => _$this._userInstructions;
-  set userInstructions(String? userInstructions) =>
+  set userInstructions(covariant String? userInstructions) =>
       _$this._userInstructions = userInstructions;
 
   String? _outputLanguageCode;
   String? get outputLanguageCode => _$this._outputLanguageCode;
-  set outputLanguageCode(String? outputLanguageCode) =>
+  set outputLanguageCode(covariant String? outputLanguageCode) =>
       _$this._outputLanguageCode = outputLanguageCode;
 
   int? _wordCount;
   int? get wordCount => _$this._wordCount;
-  set wordCount(int? wordCount) => _$this._wordCount = wordCount;
+  set wordCount(covariant int? wordCount) => _$this._wordCount = wordCount;
 
   JsonObject? _resultData;
   JsonObject? get resultData => _$this._resultData;
-  set resultData(JsonObject? resultData) => _$this._resultData = resultData;
+  set resultData(covariant JsonObject? resultData) =>
+      _$this._resultData = resultData;
 
   String? _errorMessage;
   String? get errorMessage => _$this._errorMessage;
-  set errorMessage(String? errorMessage) => _$this._errorMessage = errorMessage;
+  set errorMessage(covariant String? errorMessage) =>
+      _$this._errorMessage = errorMessage;
 
   String? _estimatedTime;
   String? get estimatedTime => _$this._estimatedTime;
-  set estimatedTime(String? estimatedTime) =>
+  set estimatedTime(covariant String? estimatedTime) =>
       _$this._estimatedTime = estimatedTime;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
-  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+  set createdAt(covariant DateTime? createdAt) => _$this._createdAt = createdAt;
 
   DateTime? _processedAt;
   DateTime? get processedAt => _$this._processedAt;
-  set processedAt(DateTime? processedAt) => _$this._processedAt = processedAt;
+  set processedAt(covariant DateTime? processedAt) =>
+      _$this._processedAt = processedAt;
+
+  DateTime? _manuallyEditedAt;
+  DateTime? get manuallyEditedAt => _$this._manuallyEditedAt;
+  set manuallyEditedAt(covariant DateTime? manuallyEditedAt) =>
+      _$this._manuallyEditedAt = manuallyEditedAt;
+
+  int? _editedByUserId;
+  int? get editedByUserId => _$this._editedByUserId;
+  set editedByUserId(covariant int? editedByUserId) =>
+      _$this._editedByUserId = editedByUserId;
 
   String? _requestId;
   String? get requestId => _$this._requestId;
-  set requestId(String? requestId) => _$this._requestId = requestId;
+  set requestId(covariant String? requestId) => _$this._requestId = requestId;
 
-  IntelligenceTaskBuilder() {
-    IntelligenceTask._defaults(this);
+  $IntelligenceTaskBuilder() {
+    $IntelligenceTask._defaults(this);
   }
 
-  IntelligenceTaskBuilder get _$this {
+  $IntelligenceTaskBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
@@ -264,6 +361,8 @@ class IntelligenceTaskBuilder
       _estimatedTime = $v.estimatedTime;
       _createdAt = $v.createdAt;
       _processedAt = $v.processedAt;
+      _manuallyEditedAt = $v.manuallyEditedAt;
+      _editedByUserId = $v.editedByUserId;
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -271,21 +370,21 @@ class IntelligenceTaskBuilder
   }
 
   @override
-  void replace(IntelligenceTask other) {
-    _$v = other as _$IntelligenceTask;
+  void replace(covariant $IntelligenceTask other) {
+    _$v = other as _$$IntelligenceTask;
   }
 
   @override
-  void update(void Function(IntelligenceTaskBuilder)? updates) {
+  void update(void Function($IntelligenceTaskBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  IntelligenceTask build() => _build();
+  $IntelligenceTask build() => _build();
 
-  _$IntelligenceTask _build() {
+  _$$IntelligenceTask _build() {
     final _$result = _$v ??
-        _$IntelligenceTask._(
+        _$$IntelligenceTask._(
           id: id,
           publicId: publicId,
           projectId: projectId,
@@ -304,6 +403,8 @@ class IntelligenceTaskBuilder
           estimatedTime: estimatedTime,
           createdAt: createdAt,
           processedAt: processedAt,
+          manuallyEditedAt: manuallyEditedAt,
+          editedByUserId: editedByUserId,
           requestId: requestId,
         );
     replace(_$result);

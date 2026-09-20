@@ -9,8 +9,8 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
-import 'package:llmpulse/src/model/agent_traffic_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
+import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 import 'package:llmpulse/src/model/prompt_summary_response.dart';
 import 'package:llmpulse/src/model/sov_response.dart';
 import 'package:llmpulse/src/model/summary_response.dart';
@@ -25,186 +25,6 @@ class MetricsApi {
 
   const MetricsApi(this._dio, this._serializers);
 
-  /// AI bot crawler traffic (Scale+, Beta)
-  /// Aggregated AI bot traffic hitting the project&#39;s origin server (GPTBot, PerplexityBot, ClaudeBot, OAI-SearchBot, Google-Extended, etc.). Sourced from Cloudflare or CSV uploads. Requires the Scale plan; lower tiers receive ERR_PLAN_REQUIRED.
-  ///
-  /// Parameters:
-  /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
-  /// * [to] 
-  /// * [bot] - Filter by bot slug (e.g. gptbot, claudebot, perplexitybot)
-  /// * [company] - Filter by company (e.g. openai, anthropic, google)
-  /// * [groupBy] 
-  /// * [granularity] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [AgentTrafficResponse] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<AgentTrafficResponse>> getAgentTraffic({ 
-    required int projectId,
-    int? range,
-    DateTime? from,
-    DateTime? to,
-    String? bot,
-    String? company,
-    String? groupBy = 'bot',
-    String? granularity,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/metrics/agent_traffic';
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'BearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
-      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
-      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
-      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
-      if (bot != null) r'bot': encodeQueryParameter(_serializers, bot, const FullType(String)),
-      if (company != null) r'company': encodeQueryParameter(_serializers, company, const FullType(String)),
-      if (groupBy != null) r'group_by': encodeQueryParameter(_serializers, groupBy, const FullType(String)),
-      if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-    };
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    AgentTrafficResponse? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(AgentTrafficResponse),
-      ) as AgentTrafficResponse;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<AgentTrafficResponse>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// AI referral traffic (Scale+)
-  /// AI referral traffic for a project: human visits arriving from AI assistants (ChatGPT, Perplexity, Gemini, Claude, etc.), measured from the connected web analytics provider (Google Analytics 4, Adobe Analytics, PostHog, Plausible or Piano). Returns per-source users, sessions and conversions with totals and a conversion rate. Requires a connected provider and the Scale plan; otherwise returns ERR_AI_TRAFFIC_NOT_CONNECTED or ERR_PLAN_REQUIRED.
-  ///
-  /// Parameters:
-  /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
-  /// * [to] 
-  /// * [source_] - Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude)
-  /// * [granularity] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future]
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getAiTraffic({ 
-    required int projectId,
-    int? range,
-    DateTime? from,
-    DateTime? to,
-    String? source_,
-    String? granularity,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/metrics/ai_traffic';
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'BearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
-      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
-      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
-      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
-      if (source_ != null) r'source': encodeQueryParameter(_serializers, source_, const FullType(String)),
-      if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-    };
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    return _response;
-  }
-
   /// Per-prompt metrics summary
   /// Paginated per-prompt aggregated metrics. Returns responses, mentions, citations, mention_rate, citation_rate, avg_mention_position and avg_position per prompt. Citations and citation rate include visible citations and background source references; avg_position uses visible citations only. Pass &#x60;breakdown&#x3D;model&#x60; to split each prompt by model.
   ///
@@ -212,14 +32,14 @@ class MetricsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [breakdown] - Add per-(prompt, model) rows to the output
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [sort] 
   /// * [sortDir] 
@@ -242,7 +62,7 @@ class MetricsApi {
     DateTime? to,
     String? breakdown,
     String? model,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -286,7 +106,7 @@ class MetricsApi {
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (breakdown != null) r'breakdown': encodeQueryParameter(_serializers, breakdown, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -346,13 +166,13 @@ class MetricsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] 
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
   /// * [prompt] - Filter by prompt ID
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [view] - Which Share of Voice projection to flatten. Only valid together with 'output'. 'over_time' (default) is one row per date and actor, 'current' the ranked snapshot, 'breakdown' the Top 4 plus Others.
@@ -373,7 +193,7 @@ class MetricsApi {
     String? granularity,
     String? competitors,
     String? model,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     int? prompt,
     String? promptType,
     String? brandKind,
@@ -413,7 +233,7 @@ class MetricsApi {
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
       if (competitors != null) r'competitors': encodeQueryParameter(_serializers, competitors, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
@@ -470,12 +290,12 @@ class MetricsApi {
   /// * [granularity] 
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] 
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
   /// * [prompt] - Filter by prompt ID
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -496,7 +316,7 @@ class MetricsApi {
     DateTime? to,
     String? competitors,
     String? model,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     int? prompt,
     String? promptType,
     String? brandKind,
@@ -536,7 +356,7 @@ class MetricsApi {
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (competitors != null) r'competitors': encodeQueryParameter(_serializers, competitors, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
@@ -592,14 +412,14 @@ class MetricsApi {
   /// * [granularity] 
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [includeProject] 
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
@@ -621,7 +441,7 @@ class MetricsApi {
     DateTime? to,
     String? competitors,
     String? model,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -664,7 +484,7 @@ class MetricsApi {
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (competitors != null) r'competitors': encodeQueryParameter(_serializers, competitors, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -721,13 +541,13 @@ class MetricsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [sort] 
   /// * [query] - Filter domains by case-insensitive partial match
@@ -749,7 +569,7 @@ class MetricsApi {
     DateTime? from,
     DateTime? to,
     String? model,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -792,7 +612,7 @@ class MetricsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),

@@ -9,22 +9,27 @@ import 'package:llmpulse/src/auth/api_key_auth.dart';
 import 'package:llmpulse/src/auth/basic_auth.dart';
 import 'package:llmpulse/src/auth/bearer_auth.dart';
 import 'package:llmpulse/src/auth/oauth.dart';
+import 'package:llmpulse/src/api/ai_agent_traffic_api.dart';
 import 'package:llmpulse/src/api/ai_model_insights_api.dart';
+import 'package:llmpulse/src/api/account_api.dart';
 import 'package:llmpulse/src/api/annotations_api.dart';
 import 'package:llmpulse/src/api/answers_api.dart';
-import 'package:llmpulse/src/api/citation_intelligence_api.dart';
-import 'package:llmpulse/src/api/collections_api.dart';
+import 'package:llmpulse/src/api/collections_tags_api.dart';
 import 'package:llmpulse/src/api/competitors_api.dart';
-import 'package:llmpulse/src/api/dimensions_api.dart';
 import 'package:llmpulse/src/api/geo_writer_api.dart';
 import 'package:llmpulse/src/api/health_api.dart';
+import 'package:llmpulse/src/api/mentions_citations_api.dart';
 import 'package:llmpulse/src/api/metrics_api.dart';
+import 'package:llmpulse/src/api/owned_media_communities_api.dart';
 import 'package:llmpulse/src/api/projects_api.dart';
 import 'package:llmpulse/src/api/prompts_api.dart';
 import 'package:llmpulse/src/api/recommendations_api.dart';
-import 'package:llmpulse/src/api/reports_api.dart';
+import 'package:llmpulse/src/api/reputation_studies_api.dart';
 import 'package:llmpulse/src/api/search_console_api.dart';
 import 'package:llmpulse/src/api/sentiments_api.dart';
+import 'package:llmpulse/src/api/shopping_ads_api.dart';
+import 'package:llmpulse/src/api/sources_citation_intelligence_api.dart';
+import 'package:llmpulse/src/api/technical_geo_reports_api.dart';
 import 'package:llmpulse/src/api/webhooks_api.dart';
 
 class Llmpulse {
@@ -121,10 +126,22 @@ class Llmpulse {
     }
   }
 
+  /// Get AIAgentTrafficApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AIAgentTrafficApi getAIAgentTrafficApi() {
+    return AIAgentTrafficApi(dio, serializers);
+  }
+
   /// Get AIModelInsightsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AIModelInsightsApi getAIModelInsightsApi() {
     return AIModelInsightsApi(dio, serializers);
+  }
+
+  /// Get AccountApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AccountApi getAccountApi() {
+    return AccountApi(dio, serializers);
   }
 
   /// Get AnnotationsApi instance, base route and serializer can be overridden by a given but be careful,
@@ -139,28 +156,16 @@ class Llmpulse {
     return AnswersApi(dio, serializers);
   }
 
-  /// Get CitationIntelligenceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get CollectionsTagsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  CitationIntelligenceApi getCitationIntelligenceApi() {
-    return CitationIntelligenceApi(dio, serializers);
-  }
-
-  /// Get CollectionsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  CollectionsApi getCollectionsApi() {
-    return CollectionsApi(dio, serializers);
+  CollectionsTagsApi getCollectionsTagsApi() {
+    return CollectionsTagsApi(dio, serializers);
   }
 
   /// Get CompetitorsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   CompetitorsApi getCompetitorsApi() {
     return CompetitorsApi(dio, serializers);
-  }
-
-  /// Get DimensionsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  DimensionsApi getDimensionsApi() {
-    return DimensionsApi(dio, serializers);
   }
 
   /// Get GEOWriterApi instance, base route and serializer can be overridden by a given but be careful,
@@ -175,10 +180,22 @@ class Llmpulse {
     return HealthApi(dio, serializers);
   }
 
+  /// Get MentionsCitationsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  MentionsCitationsApi getMentionsCitationsApi() {
+    return MentionsCitationsApi(dio, serializers);
+  }
+
   /// Get MetricsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   MetricsApi getMetricsApi() {
     return MetricsApi(dio, serializers);
+  }
+
+  /// Get OwnedMediaCommunitiesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  OwnedMediaCommunitiesApi getOwnedMediaCommunitiesApi() {
+    return OwnedMediaCommunitiesApi(dio, serializers);
   }
 
   /// Get ProjectsApi instance, base route and serializer can be overridden by a given but be careful,
@@ -199,10 +216,10 @@ class Llmpulse {
     return RecommendationsApi(dio, serializers);
   }
 
-  /// Get ReportsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get ReputationStudiesApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  ReportsApi getReportsApi() {
-    return ReportsApi(dio, serializers);
+  ReputationStudiesApi getReputationStudiesApi() {
+    return ReputationStudiesApi(dio, serializers);
   }
 
   /// Get SearchConsoleApi instance, base route and serializer can be overridden by a given but be careful,
@@ -215,6 +232,24 @@ class Llmpulse {
   /// by doing that all interceptors will not be executed
   SentimentsApi getSentimentsApi() {
     return SentimentsApi(dio, serializers);
+  }
+
+  /// Get ShoppingAdsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ShoppingAdsApi getShoppingAdsApi() {
+    return ShoppingAdsApi(dio, serializers);
+  }
+
+  /// Get SourcesCitationIntelligenceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  SourcesCitationIntelligenceApi getSourcesCitationIntelligenceApi() {
+    return SourcesCitationIntelligenceApi(dio, serializers);
+  }
+
+  /// Get TechnicalGEOReportsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  TechnicalGEOReportsApi getTechnicalGEOReportsApi() {
+    return TechnicalGEOReportsApi(dio, serializers);
   }
 
   /// Get WebhooksApi instance, base route and serializer can be overridden by a given but be careful,

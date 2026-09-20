@@ -22,9 +22,11 @@ part 'project_details.g.dart';
 /// * [matchingNames] 
 /// * [industry] 
 /// * [businessModel] 
+/// * [businessModelOther] - Set only when business_model is OTHER
 /// * [primaryProducts] 
 /// * [targetAudience] 
 /// * [brandVoice] 
+/// * [goals] 
 /// * [countryCode] 
 /// * [languageCode] 
 /// * [paused] 
@@ -70,6 +72,10 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   @BuiltValueField(wireName: r'stats')
   ProjectDetailsAllOfStats? get stats;
 
+  /// Set only when business_model is OTHER
+  @BuiltValueField(wireName: r'business_model_other')
+  String? get businessModelOther;
+
   @BuiltValueField(wireName: r'country_code')
   String? get countryCode;
 
@@ -77,7 +83,10 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   BuiltList<String>? get matchingNames;
 
   @BuiltValueField(wireName: r'primary_products')
-  String? get primaryProducts;
+  BuiltList<String>? get primaryProducts;
+
+  @BuiltValueField(wireName: r'goals')
+  String? get goals;
 
   ProjectDetails._();
 
@@ -193,6 +202,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType(ProjectDetailsAllOfStats),
       );
     }
+    if (object.businessModelOther != null) {
+      yield r'business_model_other';
+      yield serializers.serialize(
+        object.businessModelOther,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.countryCode != null) {
       yield r'country_code';
       yield serializers.serialize(
@@ -211,7 +227,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'primary_products';
       yield serializers.serialize(
         object.primaryProducts,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.name != null) {
@@ -226,6 +242,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.id,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.goals != null) {
+      yield r'goals';
+      yield serializers.serialize(
+        object.goals,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -355,6 +378,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.stats.replace(valueDes);
           break;
+        case r'business_model_other':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.businessModelOther = valueDes;
+          break;
         case r'country_code':
           final valueDes = serializers.deserialize(
             value,
@@ -374,10 +405,10 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         case r'primary_products':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
           if (valueDes == null) continue;
-          result.primaryProducts = valueDes;
+          result.primaryProducts.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -394,6 +425,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as int?;
           if (valueDes == null) continue;
           result.id = valueDes;
+          break;
+        case r'goals':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.goals = valueDes;
           break;
         default:
           unhandled.add(key);

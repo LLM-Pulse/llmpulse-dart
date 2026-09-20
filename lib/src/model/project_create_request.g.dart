@@ -22,6 +22,18 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
   @override
   final BuiltList<String>? industry;
   @override
+  final String? businessModel;
+  @override
+  final String? businessModelOther;
+  @override
+  final String? targetAudience;
+  @override
+  final String? brandVoice;
+  @override
+  final String? goals;
+  @override
+  final BuiltList<String>? primaryProducts;
+  @override
   final BuiltList<String>? matchingNames;
   @override
   final BuiltList<String>? prompts;
@@ -50,6 +62,12 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
       this.brandName,
       this.description,
       this.industry,
+      this.businessModel,
+      this.businessModelOther,
+      this.targetAudience,
+      this.brandVoice,
+      this.goals,
+      this.primaryProducts,
       this.matchingNames,
       this.prompts,
       this.competitors,
@@ -79,6 +97,12 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
         brandName == other.brandName &&
         description == other.description &&
         industry == other.industry &&
+        businessModel == other.businessModel &&
+        businessModelOther == other.businessModelOther &&
+        targetAudience == other.targetAudience &&
+        brandVoice == other.brandVoice &&
+        goals == other.goals &&
+        primaryProducts == other.primaryProducts &&
         matchingNames == other.matchingNames &&
         prompts == other.prompts &&
         competitors == other.competitors &&
@@ -99,6 +123,12 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
     _$hash = $jc(_$hash, brandName.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, industry.hashCode);
+    _$hash = $jc(_$hash, businessModel.hashCode);
+    _$hash = $jc(_$hash, businessModelOther.hashCode);
+    _$hash = $jc(_$hash, targetAudience.hashCode);
+    _$hash = $jc(_$hash, brandVoice.hashCode);
+    _$hash = $jc(_$hash, goals.hashCode);
+    _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, prompts.hashCode);
     _$hash = $jc(_$hash, competitors.hashCode);
@@ -121,6 +151,12 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
           ..add('brandName', brandName)
           ..add('description', description)
           ..add('industry', industry)
+          ..add('businessModel', businessModel)
+          ..add('businessModelOther', businessModelOther)
+          ..add('targetAudience', targetAudience)
+          ..add('brandVoice', brandVoice)
+          ..add('goals', goals)
+          ..add('primaryProducts', primaryProducts)
           ..add('matchingNames', matchingNames)
           ..add('prompts', prompts)
           ..add('competitors', competitors)
@@ -165,6 +201,35 @@ class ProjectCreateRequestBuilder
   ListBuilder<String> get industry =>
       _$this._industry ??= ListBuilder<String>();
   set industry(ListBuilder<String>? industry) => _$this._industry = industry;
+
+  String? _businessModel;
+  String? get businessModel => _$this._businessModel;
+  set businessModel(String? businessModel) =>
+      _$this._businessModel = businessModel;
+
+  String? _businessModelOther;
+  String? get businessModelOther => _$this._businessModelOther;
+  set businessModelOther(String? businessModelOther) =>
+      _$this._businessModelOther = businessModelOther;
+
+  String? _targetAudience;
+  String? get targetAudience => _$this._targetAudience;
+  set targetAudience(String? targetAudience) =>
+      _$this._targetAudience = targetAudience;
+
+  String? _brandVoice;
+  String? get brandVoice => _$this._brandVoice;
+  set brandVoice(String? brandVoice) => _$this._brandVoice = brandVoice;
+
+  String? _goals;
+  String? get goals => _$this._goals;
+  set goals(String? goals) => _$this._goals = goals;
+
+  ListBuilder<String>? _primaryProducts;
+  ListBuilder<String> get primaryProducts =>
+      _$this._primaryProducts ??= ListBuilder<String>();
+  set primaryProducts(ListBuilder<String>? primaryProducts) =>
+      _$this._primaryProducts = primaryProducts;
 
   ListBuilder<String>? _matchingNames;
   ListBuilder<String> get matchingNames =>
@@ -223,6 +288,12 @@ class ProjectCreateRequestBuilder
       _brandName = $v.brandName;
       _description = $v.description;
       _industry = $v.industry?.toBuilder();
+      _businessModel = $v.businessModel;
+      _businessModelOther = $v.businessModelOther;
+      _targetAudience = $v.targetAudience;
+      _brandVoice = $v.brandVoice;
+      _goals = $v.goals;
+      _primaryProducts = $v.primaryProducts?.toBuilder();
       _matchingNames = $v.matchingNames?.toBuilder();
       _prompts = $v.prompts?.toBuilder();
       _competitors = $v.competitors?.toBuilder();
@@ -265,6 +336,12 @@ class ProjectCreateRequestBuilder
             brandName: brandName,
             description: description,
             industry: _industry?.build(),
+            businessModel: businessModel,
+            businessModelOther: businessModelOther,
+            targetAudience: targetAudience,
+            brandVoice: brandVoice,
+            goals: goals,
+            primaryProducts: _primaryProducts?.build(),
             matchingNames: _matchingNames?.build(),
             prompts: _prompts?.build(),
             competitors: _competitors?.build(),
@@ -279,6 +356,9 @@ class ProjectCreateRequestBuilder
       try {
         _$failedField = 'industry';
         _industry?.build();
+
+        _$failedField = 'primaryProducts';
+        _primaryProducts?.build();
         _$failedField = 'matchingNames';
         _matchingNames?.build();
         _$failedField = 'prompts';

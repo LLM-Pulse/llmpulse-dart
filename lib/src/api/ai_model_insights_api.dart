@@ -9,6 +9,7 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
+import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class AIModelInsightsApi {
 
@@ -25,12 +26,12 @@ class AIModelInsightsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -48,7 +49,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -86,7 +87,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
@@ -113,12 +114,12 @@ class AIModelInsightsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
   /// * [brand1] - Competitor ID for the first comparison brand (omit to compare project brand)
@@ -138,7 +139,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -178,7 +179,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
@@ -207,12 +208,12 @@ class AIModelInsightsApi {
   /// * [projectId] - Project ID
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
-  /// * [to] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] 
-  /// * [countryCode] - ISO country code (e.g. US, GB, DE)
-  /// * [languageCode] - ISO language code (e.g. en, es, de)
-  /// * [promptType] - Filter by prompt type (search intent)
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [page] 
   /// * [perPage] 
@@ -231,7 +232,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    int? collectionId,
+    GetTimeseriesCollectionIdParameter? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -270,7 +271,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(int)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),

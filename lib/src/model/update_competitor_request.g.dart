@@ -6,22 +6,105 @@ part of 'update_competitor_request.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateCompetitorRequestCitationMatchModeEnum
+    _$updateCompetitorRequestCitationMatchModeEnum_domain =
+    const UpdateCompetitorRequestCitationMatchModeEnum._('domain');
+const UpdateCompetitorRequestCitationMatchModeEnum
+    _$updateCompetitorRequestCitationMatchModeEnum_host =
+    const UpdateCompetitorRequestCitationMatchModeEnum._('host');
+const UpdateCompetitorRequestCitationMatchModeEnum
+    _$updateCompetitorRequestCitationMatchModeEnum_pathPrefix =
+    const UpdateCompetitorRequestCitationMatchModeEnum._('pathPrefix');
+
+UpdateCompetitorRequestCitationMatchModeEnum
+    _$updateCompetitorRequestCitationMatchModeEnumValueOf(String name) {
+  switch (name) {
+    case 'domain':
+      return _$updateCompetitorRequestCitationMatchModeEnum_domain;
+    case 'host':
+      return _$updateCompetitorRequestCitationMatchModeEnum_host;
+    case 'pathPrefix':
+      return _$updateCompetitorRequestCitationMatchModeEnum_pathPrefix;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateCompetitorRequestCitationMatchModeEnum>
+    _$updateCompetitorRequestCitationMatchModeEnumValues = BuiltSet<
+        UpdateCompetitorRequestCitationMatchModeEnum>(const <UpdateCompetitorRequestCitationMatchModeEnum>[
+  _$updateCompetitorRequestCitationMatchModeEnum_domain,
+  _$updateCompetitorRequestCitationMatchModeEnum_host,
+  _$updateCompetitorRequestCitationMatchModeEnum_pathPrefix,
+]);
+
+Serializer<UpdateCompetitorRequestCitationMatchModeEnum>
+    _$updateCompetitorRequestCitationMatchModeEnumSerializer =
+    _$UpdateCompetitorRequestCitationMatchModeEnumSerializer();
+
+class _$UpdateCompetitorRequestCitationMatchModeEnumSerializer
+    implements
+        PrimitiveSerializer<UpdateCompetitorRequestCitationMatchModeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'domain': 'domain',
+    'host': 'host',
+    'pathPrefix': 'path_prefix',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'domain': 'domain',
+    'host': 'host',
+    'path_prefix': 'pathPrefix',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateCompetitorRequestCitationMatchModeEnum
+  ];
+  @override
+  final String wireName = 'UpdateCompetitorRequestCitationMatchModeEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateCompetitorRequestCitationMatchModeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateCompetitorRequestCitationMatchModeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateCompetitorRequestCitationMatchModeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateCompetitorRequest extends UpdateCompetitorRequest {
   @override
   final int projectId;
   @override
   final String? brandName;
   @override
+  final String? domain;
+  @override
   final BuiltList<String>? matchingNames;
   @override
   final String? color;
+  @override
+  final UpdateCompetitorRequestCitationMatchModeEnum? citationMatchMode;
+  @override
+  final String? citationMatchPath;
 
   factory _$UpdateCompetitorRequest(
           [void Function(UpdateCompetitorRequestBuilder)? updates]) =>
       (UpdateCompetitorRequestBuilder()..update(updates))._build();
 
   _$UpdateCompetitorRequest._(
-      {required this.projectId, this.brandName, this.matchingNames, this.color})
+      {required this.projectId,
+      this.brandName,
+      this.domain,
+      this.matchingNames,
+      this.color,
+      this.citationMatchMode,
+      this.citationMatchPath})
       : super._();
   @override
   UpdateCompetitorRequest rebuild(
@@ -38,8 +121,11 @@ class _$UpdateCompetitorRequest extends UpdateCompetitorRequest {
     return other is UpdateCompetitorRequest &&
         projectId == other.projectId &&
         brandName == other.brandName &&
+        domain == other.domain &&
         matchingNames == other.matchingNames &&
-        color == other.color;
+        color == other.color &&
+        citationMatchMode == other.citationMatchMode &&
+        citationMatchPath == other.citationMatchPath;
   }
 
   @override
@@ -47,8 +133,11 @@ class _$UpdateCompetitorRequest extends UpdateCompetitorRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
+    _$hash = $jc(_$hash, domain.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, color.hashCode);
+    _$hash = $jc(_$hash, citationMatchMode.hashCode);
+    _$hash = $jc(_$hash, citationMatchPath.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -58,8 +147,11 @@ class _$UpdateCompetitorRequest extends UpdateCompetitorRequest {
     return (newBuiltValueToStringHelper(r'UpdateCompetitorRequest')
           ..add('projectId', projectId)
           ..add('brandName', brandName)
+          ..add('domain', domain)
           ..add('matchingNames', matchingNames)
-          ..add('color', color))
+          ..add('color', color)
+          ..add('citationMatchMode', citationMatchMode)
+          ..add('citationMatchPath', citationMatchPath))
         .toString();
   }
 }
@@ -77,6 +169,10 @@ class UpdateCompetitorRequestBuilder
   String? get brandName => _$this._brandName;
   set brandName(String? brandName) => _$this._brandName = brandName;
 
+  String? _domain;
+  String? get domain => _$this._domain;
+  set domain(String? domain) => _$this._domain = domain;
+
   ListBuilder<String>? _matchingNames;
   ListBuilder<String> get matchingNames =>
       _$this._matchingNames ??= ListBuilder<String>();
@@ -87,6 +183,18 @@ class UpdateCompetitorRequestBuilder
   String? get color => _$this._color;
   set color(String? color) => _$this._color = color;
 
+  UpdateCompetitorRequestCitationMatchModeEnum? _citationMatchMode;
+  UpdateCompetitorRequestCitationMatchModeEnum? get citationMatchMode =>
+      _$this._citationMatchMode;
+  set citationMatchMode(
+          UpdateCompetitorRequestCitationMatchModeEnum? citationMatchMode) =>
+      _$this._citationMatchMode = citationMatchMode;
+
+  String? _citationMatchPath;
+  String? get citationMatchPath => _$this._citationMatchPath;
+  set citationMatchPath(String? citationMatchPath) =>
+      _$this._citationMatchPath = citationMatchPath;
+
   UpdateCompetitorRequestBuilder() {
     UpdateCompetitorRequest._defaults(this);
   }
@@ -96,8 +204,11 @@ class UpdateCompetitorRequestBuilder
     if ($v != null) {
       _projectId = $v.projectId;
       _brandName = $v.brandName;
+      _domain = $v.domain;
       _matchingNames = $v.matchingNames?.toBuilder();
       _color = $v.color;
+      _citationMatchMode = $v.citationMatchMode;
+      _citationMatchPath = $v.citationMatchPath;
       _$v = null;
     }
     return this;
@@ -124,8 +235,11 @@ class UpdateCompetitorRequestBuilder
             projectId: BuiltValueNullFieldError.checkNotNull(
                 projectId, r'UpdateCompetitorRequest', 'projectId'),
             brandName: brandName,
+            domain: domain,
             matchingNames: _matchingNames?.build(),
             color: color,
+            citationMatchMode: citationMatchMode,
+            citationMatchPath: citationMatchPath,
           );
     } catch (_) {
       late String _$failedField;

@@ -31,7 +31,7 @@ abstract class CreateWebhook201Response implements Built<CreateWebhook201Respons
 
   @BuiltValueField(wireName: r'event_type')
   CreateWebhook201ResponseEventTypeEnum? get eventType;
-  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  };
+  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  };
 
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
@@ -278,6 +278,8 @@ class CreateWebhook201ResponseEventTypeEnum extends EnumClass {
   static const CreateWebhook201ResponseEventTypeEnum recommendationPeriodCompleted = _$createWebhook201ResponseEventTypeEnum_recommendationPeriodCompleted;
   @BuiltValueEnumConst(wireName: r'intelligence_task.completed')
   static const CreateWebhook201ResponseEventTypeEnum intelligenceTaskPeriodCompleted = _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodCompleted;
+  @BuiltValueEnumConst(wireName: r'intelligence_task.updated')
+  static const CreateWebhook201ResponseEventTypeEnum intelligenceTaskPeriodUpdated = _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated;
 
   static Serializer<CreateWebhook201ResponseEventTypeEnum> get serializer => _$createWebhook201ResponseEventTypeEnumSerializer;
 

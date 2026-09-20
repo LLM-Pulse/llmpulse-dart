@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **estimatedTime** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **processedAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**manuallyEditedAt** | [**DateTime**](DateTime.md) | When the content was last edited by hand; null while the output is as generated | [optional] 
+**editedByUserId** | **int** | User behind the last manual edit; null for an unedited task or an edit made from an embedded portal | [optional] 
 **requestId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
