@@ -9,7 +9,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class MentionsCitationsApi {
 
@@ -28,7 +27,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -48,7 +47,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     int? prompt,
     DateTime? from,
     DateTime? to,
@@ -85,7 +84,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
@@ -113,7 +112,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -133,7 +132,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     int? prompt,
     DateTime? from,
     DateTime? to,
@@ -170,7 +169,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
@@ -197,7 +196,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -218,7 +217,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -256,7 +255,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -286,7 +285,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -306,7 +305,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     int? prompt,
     DateTime? from,
     DateTime? to,
@@ -343,7 +342,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
@@ -371,7 +370,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -391,7 +390,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     int? prompt,
     DateTime? from,
     DateTime? to,
@@ -428,7 +427,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
@@ -455,7 +454,7 @@ class MentionsCitationsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -476,7 +475,7 @@ class MentionsCitationsApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -514,7 +513,7 @@ class MentionsCitationsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),

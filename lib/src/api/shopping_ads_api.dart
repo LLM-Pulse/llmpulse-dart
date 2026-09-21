@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class ShoppingAdsApi {
 
@@ -33,7 +32,7 @@ class ShoppingAdsApi {
   /// * [direction] - Sort direction for view=advertisers. Defaults to desc, except avg_position and domain which default to asc.
   /// * [query] - Case-insensitive substring filter on the ad title, domain or snippet
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -62,7 +61,7 @@ class ShoppingAdsApi {
     String? direction,
     String? query,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -108,7 +107,7 @@ class ShoppingAdsApi {
       if (direction != null) r'direction': encodeQueryParameter(_serializers, direction, const FullType(String)),
       if (query != null) r'query': encodeQueryParameter(_serializers, query, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -145,7 +144,7 @@ class ShoppingAdsApi {
   /// * [direction] 
   /// * [query] - Case-insensitive substring filter on the product title
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -174,7 +173,7 @@ class ShoppingAdsApi {
     String? direction = 'desc',
     String? query,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -220,7 +219,7 @@ class ShoppingAdsApi {
       if (direction != null) r'direction': encodeQueryParameter(_serializers, direction, const FullType(String)),
       if (query != null) r'query': encodeQueryParameter(_serializers, query, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),

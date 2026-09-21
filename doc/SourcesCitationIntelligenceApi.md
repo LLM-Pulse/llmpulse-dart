@@ -120,7 +120,7 @@ final api = Llmpulse().getSourcesCitationIntelligenceApi();
 final int projectId = 56; // int | Project ID
 final BuiltList<String> domains = ; // BuiltList<String> | Source domains to analyze, e.g. domains[]=gmac.com&domains[]=educaweb.com
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **domains** | [**BuiltList&lt;String&gt;**](String.md)| Source domains to analyze, e.g. domains[]=gmac.com&domains[]=educaweb.com | 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
@@ -184,7 +184,7 @@ final int perPage = 56; // int |
 final String order = order_example; // String | 
 final String direction = direction_example; // String | 
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
  **order** | **String**|  | [optional] 
  **direction** | **String**|  | [optional] 
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
@@ -299,7 +299,7 @@ final int projectId = 56; // int | Project ID
 final int page = 56; // int | 
 final int perPage = 56; // int | 
 final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
-final GetTimeseriesCollectionIdParameter collectionId = ; // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final int prompt = 56; // int | Filter by prompt ID
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
  **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
- **collectionId** | [**GetTimeseriesCollectionIdParameter**](.md)| One collection/tag ID or a comma-separated list of IDs | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 

@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class OwnedMediaCommunitiesApi {
 
@@ -32,7 +31,7 @@ class OwnedMediaCommunitiesApi {
   /// * [store] - provider=mobile_apps only
   /// * [owned] - Return only rows belonging to the account's own connected profile
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -58,7 +57,7 @@ class OwnedMediaCommunitiesApi {
     String? store = 'google_play',
     bool? owned,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     String? brandKind,
@@ -101,7 +100,7 @@ class OwnedMediaCommunitiesApi {
       if (store != null) r'store': encodeQueryParameter(_serializers, store, const FullType(String)),
       if (owned != null) r'owned': encodeQueryParameter(_serializers, owned, const FullType(bool)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
@@ -139,7 +138,7 @@ class OwnedMediaCommunitiesApi {
   /// * [order] - Sort field; the allowed set depends on view
   /// * [direction] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -169,7 +168,7 @@ class OwnedMediaCommunitiesApi {
     String? order,
     String? direction = 'desc',
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     String? brandKind,
@@ -216,7 +215,7 @@ class OwnedMediaCommunitiesApi {
       if (order != null) r'order': encodeQueryParameter(_serializers, order, const FullType(String)),
       if (direction != null) r'direction': encodeQueryParameter(_serializers, direction, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),

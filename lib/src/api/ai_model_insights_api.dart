@@ -9,7 +9,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class AIModelInsightsApi {
 
@@ -28,7 +27,7 @@ class AIModelInsightsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -49,7 +48,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -87,7 +86,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
@@ -116,7 +115,7 @@ class AIModelInsightsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -139,7 +138,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -179,7 +178,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
@@ -210,7 +209,7 @@ class AIModelInsightsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -232,7 +231,7 @@ class AIModelInsightsApi {
     DateTime? from,
     DateTime? to,
     String? granularity,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     String? promptType,
@@ -271,7 +270,7 @@ class AIModelInsightsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),

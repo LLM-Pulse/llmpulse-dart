@@ -36,7 +36,6 @@ doc/GetAccount200Response.md
 doc/GetAccount200ResponseLimits.md
 doc/GetAccount200ResponseRateLimits.md
 doc/GetAccount200ResponseSubscription.md
-doc/GetTimeseriesCollectionIdParameter.md
 doc/HealthApi.md
 doc/IntelligenceTask.md
 doc/IntelligenceTaskCreateRequest.md
@@ -156,7 +155,6 @@ lib/src/model/get_account200_response.dart
 lib/src/model/get_account200_response_limits.dart
 lib/src/model/get_account200_response_rate_limits.dart
 lib/src/model/get_account200_response_subscription.dart
-lib/src/model/get_timeseries_collection_id_parameter.dart
 lib/src/model/intelligence_task.dart
 lib/src/model/intelligence_task_create_request.dart
 lib/src/model/intelligence_task_update_request.dart

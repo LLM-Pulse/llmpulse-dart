@@ -40,7 +40,6 @@ import 'package:llmpulse/src/model/get_account200_response.dart';
 import 'package:llmpulse/src/model/get_account200_response_limits.dart';
 import 'package:llmpulse/src/model/get_account200_response_rate_limits.dart';
 import 'package:llmpulse/src/model/get_account200_response_subscription.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 import 'package:llmpulse/src/model/intelligence_task.dart';
 import 'package:llmpulse/src/model/intelligence_task_create_request.dart';
 import 'package:llmpulse/src/model/intelligence_task_update_request.dart';
@@ -118,7 +117,6 @@ part 'serializers.g.dart';
   GetAccount200ResponseLimits,
   GetAccount200ResponseRateLimits,
   GetAccount200ResponseSubscription,
-  GetTimeseriesCollectionIdParameter,
   IntelligenceTask,$IntelligenceTask,
   IntelligenceTaskCreateRequest,
   IntelligenceTaskUpdateRequest,

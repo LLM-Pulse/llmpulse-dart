@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class SentimentsApi {
 
@@ -90,7 +89,7 @@ class SentimentsApi {
   /// * [brandOnly] 
   /// * [analysis] - One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [from] 
@@ -112,7 +111,7 @@ class SentimentsApi {
     bool? brandOnly,
     String? analysis,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     DateTime? from,
@@ -151,7 +150,7 @@ class SentimentsApi {
       if (brandOnly != null) r'brand_only': encodeQueryParameter(_serializers, brandOnly, const FullType(bool)),
       if (analysis != null) r'analysis': encodeQueryParameter(_serializers, analysis, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),

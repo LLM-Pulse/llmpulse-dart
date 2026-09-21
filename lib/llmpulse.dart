@@ -59,7 +59,6 @@ export 'package:llmpulse/src/model/get_account200_response.dart';
 export 'package:llmpulse/src/model/get_account200_response_limits.dart';
 export 'package:llmpulse/src/model/get_account200_response_rate_limits.dart';
 export 'package:llmpulse/src/model/get_account200_response_subscription.dart';
-export 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 export 'package:llmpulse/src/model/intelligence_task.dart';
 export 'package:llmpulse/src/model/intelligence_task_create_request.dart';
 export 'package:llmpulse/src/model/intelligence_task_update_request.dart';

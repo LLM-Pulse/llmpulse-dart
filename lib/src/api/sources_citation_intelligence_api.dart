@@ -11,7 +11,6 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/get_timeseries_collection_id_parameter.dart';
 
 class SourcesCitationIntelligenceApi {
 
@@ -148,7 +147,7 @@ class SourcesCitationIntelligenceApi {
   /// * [projectId] - Project ID
   /// * [domains] - Source domains to analyze, e.g. domains[]=gmac.com&domains[]=educaweb.com
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -168,7 +167,7 @@ class SourcesCitationIntelligenceApi {
     required int projectId,
     required BuiltList<String> domains,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -205,7 +204,7 @@ class SourcesCitationIntelligenceApi {
       r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
       r'domains': encodeCollectionQueryParameter<String>(_serializers, domains, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -237,7 +236,7 @@ class SourcesCitationIntelligenceApi {
   /// * [order] 
   /// * [direction] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -264,7 +263,7 @@ class SourcesCitationIntelligenceApi {
     String? order,
     String? direction,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -308,7 +307,7 @@ class SourcesCitationIntelligenceApi {
       if (order != null) r'order': encodeQueryParameter(_serializers, order, const FullType(String)),
       if (direction != null) r'direction': encodeQueryParameter(_serializers, direction, const FullType(String)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
@@ -406,7 +405,7 @@ class SourcesCitationIntelligenceApi {
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
-  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
@@ -430,7 +429,7 @@ class SourcesCitationIntelligenceApi {
     int? page = 1,
     int? perPage = 20,
     String? model,
-    GetTimeseriesCollectionIdParameter? collectionId,
+    String? collectionId,
     String? countryCode,
     String? languageCode,
     int? prompt,
@@ -471,7 +470,7 @@ class SourcesCitationIntelligenceApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
-      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(GetTimeseriesCollectionIdParameter)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),

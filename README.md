@@ -190,7 +190,6 @@ Class | Method | HTTP request | Description
  - [GetAccount200ResponseLimits](doc/GetAccount200ResponseLimits.md)
  - [GetAccount200ResponseRateLimits](doc/GetAccount200ResponseRateLimits.md)
  - [GetAccount200ResponseSubscription](doc/GetAccount200ResponseSubscription.md)
- - [GetTimeseriesCollectionIdParameter](doc/GetTimeseriesCollectionIdParameter.md)
  - [IntelligenceTask](doc/IntelligenceTask.md)
  - [IntelligenceTaskCreateRequest](doc/IntelligenceTaskCreateRequest.md)
  - [IntelligenceTaskUpdateRequest](doc/IntelligenceTaskUpdateRequest.md)
