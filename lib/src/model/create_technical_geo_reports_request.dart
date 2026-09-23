@@ -14,6 +14,7 @@ part 'create_technical_geo_reports_request.g.dart';
 /// * [projectId] 
 /// * [url] 
 /// * [countryCode] - Defaults to the project country
+/// * [outputLanguageCode] - ISO 639-1 code of the language the llms.txt files are written in (for example es). Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; an unsupported code returns 422 ERR_INVALID_PARAM
 @BuiltValue()
 abstract class CreateTechnicalGeoReportsRequest implements Built<CreateTechnicalGeoReportsRequest, CreateTechnicalGeoReportsRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -25,6 +26,10 @@ abstract class CreateTechnicalGeoReportsRequest implements Built<CreateTechnical
   /// Defaults to the project country
   @BuiltValueField(wireName: r'country_code')
   String? get countryCode;
+
+  /// ISO 639-1 code of the language the llms.txt files are written in (for example es). Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; an unsupported code returns 422 ERR_INVALID_PARAM
+  @BuiltValueField(wireName: r'output_language_code')
+  String? get outputLanguageCode;
 
   CreateTechnicalGeoReportsRequest._();
 
@@ -63,6 +68,13 @@ class _$CreateTechnicalGeoReportsRequestSerializer implements PrimitiveSerialize
       yield r'country_code';
       yield serializers.serialize(
         object.countryCode,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.outputLanguageCode != null) {
+      yield r'output_language_code';
+      yield serializers.serialize(
+        object.outputLanguageCode,
         specifiedType: const FullType(String),
       );
     }
@@ -110,6 +122,14 @@ class _$CreateTechnicalGeoReportsRequestSerializer implements PrimitiveSerialize
           ) as String?;
           if (valueDes == null) continue;
           result.countryCode = valueDes;
+          break;
+        case r'output_language_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.outputLanguageCode = valueDes;
           break;
         default:
           unhandled.add(key);

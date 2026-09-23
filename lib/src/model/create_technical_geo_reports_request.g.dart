@@ -14,13 +14,18 @@ class _$CreateTechnicalGeoReportsRequest
   final String url;
   @override
   final String? countryCode;
+  @override
+  final String? outputLanguageCode;
 
   factory _$CreateTechnicalGeoReportsRequest(
           [void Function(CreateTechnicalGeoReportsRequestBuilder)? updates]) =>
       (CreateTechnicalGeoReportsRequestBuilder()..update(updates))._build();
 
   _$CreateTechnicalGeoReportsRequest._(
-      {required this.projectId, required this.url, this.countryCode})
+      {required this.projectId,
+      required this.url,
+      this.countryCode,
+      this.outputLanguageCode})
       : super._();
   @override
   CreateTechnicalGeoReportsRequest rebuild(
@@ -37,7 +42,8 @@ class _$CreateTechnicalGeoReportsRequest
     return other is CreateTechnicalGeoReportsRequest &&
         projectId == other.projectId &&
         url == other.url &&
-        countryCode == other.countryCode;
+        countryCode == other.countryCode &&
+        outputLanguageCode == other.outputLanguageCode;
   }
 
   @override
@@ -46,6 +52,7 @@ class _$CreateTechnicalGeoReportsRequest
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
     _$hash = $jc(_$hash, countryCode.hashCode);
+    _$hash = $jc(_$hash, outputLanguageCode.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -55,7 +62,8 @@ class _$CreateTechnicalGeoReportsRequest
     return (newBuiltValueToStringHelper(r'CreateTechnicalGeoReportsRequest')
           ..add('projectId', projectId)
           ..add('url', url)
-          ..add('countryCode', countryCode))
+          ..add('countryCode', countryCode)
+          ..add('outputLanguageCode', outputLanguageCode))
         .toString();
   }
 }
@@ -78,6 +86,11 @@ class CreateTechnicalGeoReportsRequestBuilder
   String? get countryCode => _$this._countryCode;
   set countryCode(String? countryCode) => _$this._countryCode = countryCode;
 
+  String? _outputLanguageCode;
+  String? get outputLanguageCode => _$this._outputLanguageCode;
+  set outputLanguageCode(String? outputLanguageCode) =>
+      _$this._outputLanguageCode = outputLanguageCode;
+
   CreateTechnicalGeoReportsRequestBuilder() {
     CreateTechnicalGeoReportsRequest._defaults(this);
   }
@@ -88,6 +101,7 @@ class CreateTechnicalGeoReportsRequestBuilder
       _projectId = $v.projectId;
       _url = $v.url;
       _countryCode = $v.countryCode;
+      _outputLanguageCode = $v.outputLanguageCode;
       _$v = null;
     }
     return this;
@@ -114,6 +128,7 @@ class CreateTechnicalGeoReportsRequestBuilder
           url: BuiltValueNullFieldError.checkNotNull(
               url, r'CreateTechnicalGeoReportsRequest', 'url'),
           countryCode: countryCode,
+          outputLanguageCode: outputLanguageCode,
         );
     replace(_$result);
     return _$result;
