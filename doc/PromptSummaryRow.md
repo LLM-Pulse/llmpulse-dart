@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **citationRate** | **num** |  | [optional] 
 **avgMentionPosition** | **num** |  | [optional] 
 **avgPosition** | **num** |  | [optional] 
+**appUrl** | **String** | Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

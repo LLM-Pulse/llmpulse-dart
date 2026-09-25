@@ -47,6 +47,8 @@ class _$AnswerDetails extends AnswerDetails {
   final BuiltList<JsonObject>? localBusinesses;
   @override
   final AnswerDetailsLocale? locale;
+  @override
+  final String? appUrl;
 
   factory _$AnswerDetails([void Function(AnswerDetailsBuilder)? updates]) =>
       (AnswerDetailsBuilder()..update(updates))._build();
@@ -71,7 +73,8 @@ class _$AnswerDetails extends AnswerDetails {
       this.shoppingProducts,
       this.brandEntities,
       this.localBusinesses,
-      this.locale})
+      this.locale,
+      this.appUrl})
       : super._();
   @override
   AnswerDetails rebuild(void Function(AnswerDetailsBuilder) updates) =>
@@ -103,7 +106,8 @@ class _$AnswerDetails extends AnswerDetails {
         shoppingProducts == other.shoppingProducts &&
         brandEntities == other.brandEntities &&
         localBusinesses == other.localBusinesses &&
-        locale == other.locale;
+        locale == other.locale &&
+        appUrl == other.appUrl;
   }
 
   @override
@@ -129,6 +133,7 @@ class _$AnswerDetails extends AnswerDetails {
     _$hash = $jc(_$hash, brandEntities.hashCode);
     _$hash = $jc(_$hash, localBusinesses.hashCode);
     _$hash = $jc(_$hash, locale.hashCode);
+    _$hash = $jc(_$hash, appUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -155,7 +160,8 @@ class _$AnswerDetails extends AnswerDetails {
           ..add('shoppingProducts', shoppingProducts)
           ..add('brandEntities', brandEntities)
           ..add('localBusinesses', localBusinesses)
-          ..add('locale', locale))
+          ..add('locale', locale)
+          ..add('appUrl', appUrl))
         .toString();
   }
 }
@@ -265,6 +271,10 @@ class AnswerDetailsBuilder
       _$this._locale ??= AnswerDetailsLocaleBuilder();
   set locale(AnswerDetailsLocaleBuilder? locale) => _$this._locale = locale;
 
+  String? _appUrl;
+  String? get appUrl => _$this._appUrl;
+  set appUrl(String? appUrl) => _$this._appUrl = appUrl;
+
   AnswerDetailsBuilder() {
     AnswerDetails._defaults(this);
   }
@@ -292,6 +302,7 @@ class AnswerDetailsBuilder
       _brandEntities = $v.brandEntities?.toBuilder();
       _localBusinesses = $v.localBusinesses?.toBuilder();
       _locale = $v.locale?.toBuilder();
+      _appUrl = $v.appUrl;
       _$v = null;
     }
     return this;
@@ -335,6 +346,7 @@ class AnswerDetailsBuilder
             brandEntities: _brandEntities?.build(),
             localBusinesses: _localBusinesses?.build(),
             locale: _locale?.build(),
+            appUrl: appUrl,
           );
     } catch (_) {
       late String _$failedField;

@@ -22,6 +22,7 @@ part 'prompt_summary_row.g.dart';
 /// * [citationRate] 
 /// * [avgMentionPosition] 
 /// * [avgPosition] 
+/// * [appUrl] - Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
 @BuiltValue()
 abstract class PromptSummaryRow implements Built<PromptSummaryRow, PromptSummaryRowBuilder> {
   @BuiltValueField(wireName: r'prompt_id')
@@ -57,6 +58,10 @@ abstract class PromptSummaryRow implements Built<PromptSummaryRow, PromptSummary
 
   @BuiltValueField(wireName: r'avg_position')
   num? get avgPosition;
+
+  /// Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
+  @BuiltValueField(wireName: r'app_url')
+  String? get appUrl;
 
   PromptSummaryRow._();
 
@@ -156,6 +161,13 @@ class _$PromptSummaryRowSerializer implements PrimitiveSerializer<PromptSummaryR
       yield serializers.serialize(
         object.avgPosition,
         specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.appUrl != null) {
+      yield r'app_url';
+      yield serializers.serialize(
+        object.appUrl,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -268,6 +280,14 @@ class _$PromptSummaryRowSerializer implements PrimitiveSerializer<PromptSummaryR
           ) as num?;
           if (valueDes == null) continue;
           result.avgPosition = valueDes;
+          break;
+        case r'app_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.appUrl = valueDes;
           break;
         default:
           unhandled.add(key);

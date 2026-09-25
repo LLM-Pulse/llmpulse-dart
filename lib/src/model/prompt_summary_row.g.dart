@@ -29,6 +29,8 @@ class _$PromptSummaryRow extends PromptSummaryRow {
   final num? avgMentionPosition;
   @override
   final num? avgPosition;
+  @override
+  final String? appUrl;
 
   factory _$PromptSummaryRow(
           [void Function(PromptSummaryRowBuilder)? updates]) =>
@@ -45,7 +47,8 @@ class _$PromptSummaryRow extends PromptSummaryRow {
       this.mentionRate,
       this.citationRate,
       this.avgMentionPosition,
-      this.avgPosition})
+      this.avgPosition,
+      this.appUrl})
       : super._();
   @override
   PromptSummaryRow rebuild(void Function(PromptSummaryRowBuilder) updates) =>
@@ -69,7 +72,8 @@ class _$PromptSummaryRow extends PromptSummaryRow {
         mentionRate == other.mentionRate &&
         citationRate == other.citationRate &&
         avgMentionPosition == other.avgMentionPosition &&
-        avgPosition == other.avgPosition;
+        avgPosition == other.avgPosition &&
+        appUrl == other.appUrl;
   }
 
   @override
@@ -86,6 +90,7 @@ class _$PromptSummaryRow extends PromptSummaryRow {
     _$hash = $jc(_$hash, citationRate.hashCode);
     _$hash = $jc(_$hash, avgMentionPosition.hashCode);
     _$hash = $jc(_$hash, avgPosition.hashCode);
+    _$hash = $jc(_$hash, appUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -103,7 +108,8 @@ class _$PromptSummaryRow extends PromptSummaryRow {
           ..add('mentionRate', mentionRate)
           ..add('citationRate', citationRate)
           ..add('avgMentionPosition', avgMentionPosition)
-          ..add('avgPosition', avgPosition))
+          ..add('avgPosition', avgPosition)
+          ..add('appUrl', appUrl))
         .toString();
   }
 }
@@ -157,6 +163,10 @@ class PromptSummaryRowBuilder
   num? get avgPosition => _$this._avgPosition;
   set avgPosition(num? avgPosition) => _$this._avgPosition = avgPosition;
 
+  String? _appUrl;
+  String? get appUrl => _$this._appUrl;
+  set appUrl(String? appUrl) => _$this._appUrl = appUrl;
+
   PromptSummaryRowBuilder() {
     PromptSummaryRow._defaults(this);
   }
@@ -175,6 +185,7 @@ class PromptSummaryRowBuilder
       _citationRate = $v.citationRate;
       _avgMentionPosition = $v.avgMentionPosition;
       _avgPosition = $v.avgPosition;
+      _appUrl = $v.appUrl;
       _$v = null;
     }
     return this;
@@ -207,6 +218,7 @@ class PromptSummaryRowBuilder
           citationRate: citationRate,
           avgMentionPosition: avgMentionPosition,
           avgPosition: avgPosition,
+          appUrl: appUrl,
         );
     replace(_$result);
     return _$result;

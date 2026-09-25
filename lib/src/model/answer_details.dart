@@ -34,6 +34,7 @@ part 'answer_details.g.dart';
 /// * [brandEntities] 
 /// * [localBusinesses] 
 /// * [locale] 
+/// * [appUrl] - Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
 @BuiltValue()
 abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -95,6 +96,10 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
 
   @BuiltValueField(wireName: r'locale')
   AnswerDetailsLocale? get locale;
+
+  /// Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
+  @BuiltValueField(wireName: r'app_url')
+  String? get appUrl;
 
   AnswerDetails._();
 
@@ -257,6 +262,13 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
       yield serializers.serialize(
         object.locale,
         specifiedType: const FullType(AnswerDetailsLocale),
+      );
+    }
+    if (object.appUrl != null) {
+      yield r'app_url';
+      yield serializers.serialize(
+        object.appUrl,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -441,6 +453,14 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
           ) as AnswerDetailsLocale?;
           if (valueDes == null) continue;
           result.locale.replace(valueDes);
+          break;
+        case r'app_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.appUrl = valueDes;
           break;
         default:
           unhandled.add(key);
