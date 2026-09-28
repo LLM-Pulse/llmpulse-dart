@@ -8,6 +8,8 @@ part of 'update_project_request.dart';
 
 class _$UpdateProjectRequest extends UpdateProjectRequest {
   @override
+  final String? name;
+  @override
   final String? brandName;
   @override
   final String? description;
@@ -33,7 +35,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
       (UpdateProjectRequestBuilder()..update(updates))._build();
 
   _$UpdateProjectRequest._(
-      {this.brandName,
+      {this.name,
+      this.brandName,
       this.description,
       this.industry,
       this.businessModel,
@@ -57,6 +60,7 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UpdateProjectRequest &&
+        name == other.name &&
         brandName == other.brandName &&
         description == other.description &&
         industry == other.industry &&
@@ -72,6 +76,7 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, industry.hashCode);
@@ -89,6 +94,7 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateProjectRequest')
+          ..add('name', name)
           ..add('brandName', brandName)
           ..add('description', description)
           ..add('industry', industry)
@@ -106,6 +112,10 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
 class UpdateProjectRequestBuilder
     implements Builder<UpdateProjectRequest, UpdateProjectRequestBuilder> {
   _$UpdateProjectRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
   String? _brandName;
   String? get brandName => _$this._brandName;
@@ -161,6 +171,7 @@ class UpdateProjectRequestBuilder
   UpdateProjectRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _name = $v.name;
       _brandName = $v.brandName;
       _description = $v.description;
       _industry = $v.industry;
@@ -194,6 +205,7 @@ class UpdateProjectRequestBuilder
     try {
       _$result = _$v ??
           _$UpdateProjectRequest._(
+            name: name,
             brandName: brandName,
             description: description,
             industry: industry,

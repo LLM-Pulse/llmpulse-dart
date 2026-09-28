@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/project_create_request_owned_media.dart';
+import 'package:llmpulse/src/model/project_create_request_collections_inner.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/project_create_request_competitors_inner.dart';
 import 'package:built_value/built_value.dart';
@@ -15,12 +16,12 @@ part 'project_create_request.g.dart';
 ///
 /// Properties:
 /// * [websiteUrl] - Public HTTP(S) URL with a DNS hostname or public IP address. Credentials, private and special IP addresses, localhost and internal hostnames are rejected.
-/// * [name] 
+/// * [name] - Project name, as plain text. It can be changed later with PATCH /projects/{id}
 /// * [mainCountry] 
 /// * [mainLanguage] 
 /// * [brandName] 
 /// * [description] 
-/// * [industry] 
+/// * [industry] - Industry keys, case-insensitive; a single key string is also accepted. An unknown key returns ERR_INVALID_PARAM listing the valid keys (the same list as the in-app industry picker, e.g. TECHNOLOGY, SAAS, ECOMMERCE)
 /// * [businessModel] - Business model key (e.g. B2B_SAAS, MARKETPLACE); unknown keys are rejected
 /// * [businessModelOther] - Free-text business model, only accepted when business_model is OTHER; rejected against any other key
 /// * [targetAudience] - Who the brand sells to. Context for Recommendations and GEO Writer (Brand Book)
@@ -29,6 +30,7 @@ part 'project_create_request.g.dart';
 /// * [primaryProducts] - Main products or services
 /// * [matchingNames] 
 /// * [prompts] 
+/// * [collections] - Collections (prompt tags) created with the project, each tagging prompts of this request by their exact text, so no separate tagging calls are needed. A text that is not in prompts returns ERR_INVALID_PARAM. A team member also needs Tags: Create permission.
 /// * [competitors] 
 /// * [ownedMedia] 
 /// * [useSubdomain] 
@@ -41,6 +43,7 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   @BuiltValueField(wireName: r'website_url')
   String get websiteUrl;
 
+  /// Project name, as plain text. It can be changed later with PATCH /projects/{id}
   @BuiltValueField(wireName: r'name')
   String get name;
 
@@ -56,6 +59,7 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   @BuiltValueField(wireName: r'description')
   String? get description;
 
+  /// Industry keys, case-insensitive; a single key string is also accepted. An unknown key returns ERR_INVALID_PARAM listing the valid keys (the same list as the in-app industry picker, e.g. TECHNOLOGY, SAAS, ECOMMERCE)
   @BuiltValueField(wireName: r'industry')
   BuiltList<String>? get industry;
 
@@ -88,6 +92,10 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
 
   @BuiltValueField(wireName: r'prompts')
   BuiltList<String>? get prompts;
+
+  /// Collections (prompt tags) created with the project, each tagging prompts of this request by their exact text, so no separate tagging calls are needed. A text that is not in prompts returns ERR_INVALID_PARAM. A team member also needs Tags: Create permission.
+  @BuiltValueField(wireName: r'collections')
+  BuiltList<ProjectCreateRequestCollectionsInner>? get collections;
 
   @BuiltValueField(wireName: r'competitors')
   BuiltList<ProjectCreateRequestCompetitorsInner>? get competitors;
@@ -229,6 +237,13 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
       yield serializers.serialize(
         object.prompts,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.collections != null) {
+      yield r'collections';
+      yield serializers.serialize(
+        object.collections,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
       );
     }
     if (object.competitors != null) {
@@ -411,6 +426,14 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
           ) as BuiltList<String>?;
           if (valueDes == null) continue;
           result.prompts.replace(valueDes);
+          break;
+        case r'collections':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
+          ) as BuiltList<ProjectCreateRequestCollectionsInner>?;
+          if (valueDes == null) continue;
+          result.collections.replace(valueDes);
           break;
         case r'competitors':
           final valueDes = serializers.deserialize(

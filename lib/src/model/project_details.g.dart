@@ -16,7 +16,7 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? description;
   @override
-  final String? industry;
+  final JsonObject? industry;
   @override
   final String? appStoreId;
   @override
@@ -183,9 +183,9 @@ class ProjectDetailsBuilder
   set description(covariant String? description) =>
       _$this._description = description;
 
-  String? _industry;
-  String? get industry => _$this._industry;
-  set industry(covariant String? industry) => _$this._industry = industry;
+  JsonObject? _industry;
+  JsonObject? get industry => _$this._industry;
+  set industry(covariant JsonObject? industry) => _$this._industry = industry;
 
   String? _appStoreId;
   String? get appStoreId => _$this._appStoreId;

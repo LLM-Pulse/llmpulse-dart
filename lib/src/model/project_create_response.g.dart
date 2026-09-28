@@ -14,6 +14,11 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
   @override
   final ProjectCreateResponseCompetitors? competitors;
   @override
+  final BuiltList<ProjectCreateResponseCollectionsInner>? collections;
+  @override
+  final BuiltList<ProjectCreateResponseSameDomainProjectsInner>?
+      sameDomainProjects;
+  @override
   final ProjectCreateResponseEmailSubscription? emailSubscription;
   @override
   final ProjectCreateResponseLimits? limits;
@@ -30,6 +35,8 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
       {this.project,
       this.prompts,
       this.competitors,
+      this.collections,
+      this.sameDomainProjects,
       this.emailSubscription,
       this.limits,
       this.idempotent,
@@ -51,6 +58,8 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
         project == other.project &&
         prompts == other.prompts &&
         competitors == other.competitors &&
+        collections == other.collections &&
+        sameDomainProjects == other.sameDomainProjects &&
         emailSubscription == other.emailSubscription &&
         limits == other.limits &&
         idempotent == other.idempotent &&
@@ -63,6 +72,8 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
     _$hash = $jc(_$hash, project.hashCode);
     _$hash = $jc(_$hash, prompts.hashCode);
     _$hash = $jc(_$hash, competitors.hashCode);
+    _$hash = $jc(_$hash, collections.hashCode);
+    _$hash = $jc(_$hash, sameDomainProjects.hashCode);
     _$hash = $jc(_$hash, emailSubscription.hashCode);
     _$hash = $jc(_$hash, limits.hashCode);
     _$hash = $jc(_$hash, idempotent.hashCode);
@@ -77,6 +88,8 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
           ..add('project', project)
           ..add('prompts', prompts)
           ..add('competitors', competitors)
+          ..add('collections', collections)
+          ..add('sameDomainProjects', sameDomainProjects)
           ..add('emailSubscription', emailSubscription)
           ..add('limits', limits)
           ..add('idempotent', idempotent)
@@ -104,6 +117,24 @@ class ProjectCreateResponseBuilder
       _$this._competitors ??= ProjectCreateResponseCompetitorsBuilder();
   set competitors(ProjectCreateResponseCompetitorsBuilder? competitors) =>
       _$this._competitors = competitors;
+
+  ListBuilder<ProjectCreateResponseCollectionsInner>? _collections;
+  ListBuilder<ProjectCreateResponseCollectionsInner> get collections =>
+      _$this._collections ??=
+          ListBuilder<ProjectCreateResponseCollectionsInner>();
+  set collections(
+          ListBuilder<ProjectCreateResponseCollectionsInner>? collections) =>
+      _$this._collections = collections;
+
+  ListBuilder<ProjectCreateResponseSameDomainProjectsInner>?
+      _sameDomainProjects;
+  ListBuilder<ProjectCreateResponseSameDomainProjectsInner>
+      get sameDomainProjects => _$this._sameDomainProjects ??=
+          ListBuilder<ProjectCreateResponseSameDomainProjectsInner>();
+  set sameDomainProjects(
+          ListBuilder<ProjectCreateResponseSameDomainProjectsInner>?
+              sameDomainProjects) =>
+      _$this._sameDomainProjects = sameDomainProjects;
 
   ProjectCreateResponseEmailSubscriptionBuilder? _emailSubscription;
   ProjectCreateResponseEmailSubscriptionBuilder get emailSubscription =>
@@ -137,6 +168,8 @@ class ProjectCreateResponseBuilder
       _project = $v.project;
       _prompts = $v.prompts?.toBuilder();
       _competitors = $v.competitors?.toBuilder();
+      _collections = $v.collections?.toBuilder();
+      _sameDomainProjects = $v.sameDomainProjects?.toBuilder();
       _emailSubscription = $v.emailSubscription?.toBuilder();
       _limits = $v.limits?.toBuilder();
       _idempotent = $v.idempotent;
@@ -167,6 +200,8 @@ class ProjectCreateResponseBuilder
             project: project,
             prompts: _prompts?.build(),
             competitors: _competitors?.build(),
+            collections: _collections?.build(),
+            sameDomainProjects: _sameDomainProjects?.build(),
             emailSubscription: _emailSubscription?.build(),
             limits: _limits?.build(),
             idempotent: idempotent,
@@ -179,6 +214,10 @@ class ProjectCreateResponseBuilder
         _prompts?.build();
         _$failedField = 'competitors';
         _competitors?.build();
+        _$failedField = 'collections';
+        _collections?.build();
+        _$failedField = 'sameDomainProjects';
+        _sameDomainProjects?.build();
         _$failedField = 'emailSubscription';
         _emailSubscription?.build();
         _$failedField = 'limits';

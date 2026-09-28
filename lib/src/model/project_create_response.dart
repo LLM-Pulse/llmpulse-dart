@@ -3,9 +3,12 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/project_create_response_collections_inner.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/project_create_response_prompts.dart';
 import 'package:llmpulse/src/model/project_create_response_competitors.dart';
 import 'package:llmpulse/src/model/project_create_response_limits.dart';
+import 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
 import 'package:built_value/json_object.dart';
 import 'package:llmpulse/src/model/project_create_response_email_subscription.dart';
 import 'package:built_value/built_value.dart';
@@ -19,6 +22,8 @@ part 'project_create_response.g.dart';
 /// * [project] - Same shape as GET /dimensions/projects/{id}
 /// * [prompts] 
 /// * [competitors] 
+/// * [collections] - Collections created from the request's collections field (empty when none were sent; absent on an idempotent replay)
+/// * [sameDomainProjects] - Projects the caller can already see on the same domain (absent on an idempotent replay). Informational only: the create is never blocked, since one domain tracked per market is a normal setup.
 /// * [emailSubscription] 
 /// * [limits] 
 /// * [idempotent] - Present and true only on external_identifier replays
@@ -34,6 +39,14 @@ abstract class ProjectCreateResponse implements Built<ProjectCreateResponse, Pro
 
   @BuiltValueField(wireName: r'competitors')
   ProjectCreateResponseCompetitors? get competitors;
+
+  /// Collections created from the request's collections field (empty when none were sent; absent on an idempotent replay)
+  @BuiltValueField(wireName: r'collections')
+  BuiltList<ProjectCreateResponseCollectionsInner>? get collections;
+
+  /// Projects the caller can already see on the same domain (absent on an idempotent replay). Informational only: the create is never blocked, since one domain tracked per market is a normal setup.
+  @BuiltValueField(wireName: r'same_domain_projects')
+  BuiltList<ProjectCreateResponseSameDomainProjectsInner>? get sameDomainProjects;
 
   @BuiltValueField(wireName: r'email_subscription')
   ProjectCreateResponseEmailSubscription? get emailSubscription;
@@ -90,6 +103,20 @@ class _$ProjectCreateResponseSerializer implements PrimitiveSerializer<ProjectCr
       yield serializers.serialize(
         object.competitors,
         specifiedType: const FullType(ProjectCreateResponseCompetitors),
+      );
+    }
+    if (object.collections != null) {
+      yield r'collections';
+      yield serializers.serialize(
+        object.collections,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
+      );
+    }
+    if (object.sameDomainProjects != null) {
+      yield r'same_domain_projects';
+      yield serializers.serialize(
+        object.sameDomainProjects,
+        specifiedType: const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
       );
     }
     if (object.emailSubscription != null) {
@@ -166,6 +193,22 @@ class _$ProjectCreateResponseSerializer implements PrimitiveSerializer<ProjectCr
           ) as ProjectCreateResponseCompetitors?;
           if (valueDes == null) continue;
           result.competitors.replace(valueDes);
+          break;
+        case r'collections':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
+          ) as BuiltList<ProjectCreateResponseCollectionsInner>?;
+          if (valueDes == null) continue;
+          result.collections.replace(valueDes);
+          break;
+        case r'same_domain_projects':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
+          ) as BuiltList<ProjectCreateResponseSameDomainProjectsInner>?;
+          if (valueDes == null) continue;
+          result.sameDomainProjects.replace(valueDes);
           break;
         case r'email_subscription':
           final valueDes = serializers.deserialize(

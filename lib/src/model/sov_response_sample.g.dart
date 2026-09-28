@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sov_response_periods_inner.dart';
+part of 'sov_response_sample.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$SovResponsePeriodsInner extends SovResponsePeriodsInner {
+class _$SovResponseSample extends SovResponseSample {
   @override
   final Date? date;
   @override
@@ -18,11 +18,11 @@ class _$SovResponsePeriodsInner extends SovResponsePeriodsInner {
   @override
   final num? marginOfError;
 
-  factory _$SovResponsePeriodsInner(
-          [void Function(SovResponsePeriodsInnerBuilder)? updates]) =>
-      (SovResponsePeriodsInnerBuilder()..update(updates))._build();
+  factory _$SovResponseSample(
+          [void Function(SovResponseSampleBuilder)? updates]) =>
+      (SovResponseSampleBuilder()..update(updates))._build();
 
-  _$SovResponsePeriodsInner._(
+  _$SovResponseSample._(
       {this.date,
       this.mentions,
       this.partial,
@@ -30,18 +30,17 @@ class _$SovResponsePeriodsInner extends SovResponsePeriodsInner {
       this.marginOfError})
       : super._();
   @override
-  SovResponsePeriodsInner rebuild(
-          void Function(SovResponsePeriodsInnerBuilder) updates) =>
+  SovResponseSample rebuild(void Function(SovResponseSampleBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  SovResponsePeriodsInnerBuilder toBuilder() =>
-      SovResponsePeriodsInnerBuilder()..replace(this);
+  SovResponseSampleBuilder toBuilder() =>
+      SovResponseSampleBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SovResponsePeriodsInner &&
+    return other is SovResponseSample &&
         date == other.date &&
         mentions == other.mentions &&
         partial == other.partial &&
@@ -63,7 +62,7 @@ class _$SovResponsePeriodsInner extends SovResponsePeriodsInner {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'SovResponsePeriodsInner')
+    return (newBuiltValueToStringHelper(r'SovResponseSample')
           ..add('date', date)
           ..add('mentions', mentions)
           ..add('partial', partial)
@@ -73,10 +72,9 @@ class _$SovResponsePeriodsInner extends SovResponsePeriodsInner {
   }
 }
 
-class SovResponsePeriodsInnerBuilder
-    implements
-        Builder<SovResponsePeriodsInner, SovResponsePeriodsInnerBuilder> {
-  _$SovResponsePeriodsInner? _$v;
+class SovResponseSampleBuilder
+    implements Builder<SovResponseSample, SovResponseSampleBuilder> {
+  _$SovResponseSample? _$v;
 
   Date? _date;
   Date? get date => _$this._date;
@@ -99,11 +97,11 @@ class SovResponsePeriodsInnerBuilder
   set marginOfError(num? marginOfError) =>
       _$this._marginOfError = marginOfError;
 
-  SovResponsePeriodsInnerBuilder() {
-    SovResponsePeriodsInner._defaults(this);
+  SovResponseSampleBuilder() {
+    SovResponseSample._defaults(this);
   }
 
-  SovResponsePeriodsInnerBuilder get _$this {
+  SovResponseSampleBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _date = $v.date;
@@ -117,21 +115,21 @@ class SovResponsePeriodsInnerBuilder
   }
 
   @override
-  void replace(SovResponsePeriodsInner other) {
-    _$v = other as _$SovResponsePeriodsInner;
+  void replace(SovResponseSample other) {
+    _$v = other as _$SovResponseSample;
   }
 
   @override
-  void update(void Function(SovResponsePeriodsInnerBuilder)? updates) {
+  void update(void Function(SovResponseSampleBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  SovResponsePeriodsInner build() => _build();
+  SovResponseSample build() => _build();
 
-  _$SovResponsePeriodsInner _build() {
+  _$SovResponseSample _build() {
     final _$result = _$v ??
-        _$SovResponsePeriodsInner._(
+        _$SovResponseSample._(
           date: date,
           mentions: mentions,
           partial: partial,

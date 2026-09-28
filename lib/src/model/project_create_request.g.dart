@@ -38,6 +38,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
   @override
   final BuiltList<String>? prompts;
   @override
+  final BuiltList<ProjectCreateRequestCollectionsInner>? collections;
+  @override
   final BuiltList<ProjectCreateRequestCompetitorsInner>? competitors;
   @override
   final ProjectCreateRequestOwnedMedia? ownedMedia;
@@ -70,6 +72,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
       this.primaryProducts,
       this.matchingNames,
       this.prompts,
+      this.collections,
       this.competitors,
       this.ownedMedia,
       this.useSubdomain,
@@ -105,6 +108,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
         primaryProducts == other.primaryProducts &&
         matchingNames == other.matchingNames &&
         prompts == other.prompts &&
+        collections == other.collections &&
         competitors == other.competitors &&
         ownedMedia == other.ownedMedia &&
         useSubdomain == other.useSubdomain &&
@@ -131,6 +135,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
     _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, prompts.hashCode);
+    _$hash = $jc(_$hash, collections.hashCode);
     _$hash = $jc(_$hash, competitors.hashCode);
     _$hash = $jc(_$hash, ownedMedia.hashCode);
     _$hash = $jc(_$hash, useSubdomain.hashCode);
@@ -159,6 +164,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
           ..add('primaryProducts', primaryProducts)
           ..add('matchingNames', matchingNames)
           ..add('prompts', prompts)
+          ..add('collections', collections)
           ..add('competitors', competitors)
           ..add('ownedMedia', ownedMedia)
           ..add('useSubdomain', useSubdomain)
@@ -241,6 +247,14 @@ class ProjectCreateRequestBuilder
   ListBuilder<String> get prompts => _$this._prompts ??= ListBuilder<String>();
   set prompts(ListBuilder<String>? prompts) => _$this._prompts = prompts;
 
+  ListBuilder<ProjectCreateRequestCollectionsInner>? _collections;
+  ListBuilder<ProjectCreateRequestCollectionsInner> get collections =>
+      _$this._collections ??=
+          ListBuilder<ProjectCreateRequestCollectionsInner>();
+  set collections(
+          ListBuilder<ProjectCreateRequestCollectionsInner>? collections) =>
+      _$this._collections = collections;
+
   ListBuilder<ProjectCreateRequestCompetitorsInner>? _competitors;
   ListBuilder<ProjectCreateRequestCompetitorsInner> get competitors =>
       _$this._competitors ??=
@@ -296,6 +310,7 @@ class ProjectCreateRequestBuilder
       _primaryProducts = $v.primaryProducts?.toBuilder();
       _matchingNames = $v.matchingNames?.toBuilder();
       _prompts = $v.prompts?.toBuilder();
+      _collections = $v.collections?.toBuilder();
       _competitors = $v.competitors?.toBuilder();
       _ownedMedia = $v.ownedMedia?.toBuilder();
       _useSubdomain = $v.useSubdomain;
@@ -344,6 +359,7 @@ class ProjectCreateRequestBuilder
             primaryProducts: _primaryProducts?.build(),
             matchingNames: _matchingNames?.build(),
             prompts: _prompts?.build(),
+            collections: _collections?.build(),
             competitors: _competitors?.build(),
             ownedMedia: _ownedMedia?.build(),
             useSubdomain: useSubdomain,
@@ -363,6 +379,8 @@ class ProjectCreateRequestBuilder
         _matchingNames?.build();
         _$failedField = 'prompts';
         _prompts?.build();
+        _$failedField = 'collections';
+        _collections?.build();
         _$failedField = 'competitors';
         _competitors?.build();
         _$failedField = 'ownedMedia';

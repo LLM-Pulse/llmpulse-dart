@@ -16,6 +16,7 @@ part 'get_account200_response.g.dart';
 ///
 /// Properties:
 /// * [plan] - Plan key (starter, growth, scale, ...)
+/// * [planName] - Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key)
 /// * [trackingFrequency] - How often prompts run (weekly, daily, monthly, ...)
 /// * [role] - Whether the key belongs to the account owner or a team member
 /// * [subscription] 
@@ -27,6 +28,10 @@ abstract class GetAccount200Response implements Built<GetAccount200Response, Get
   /// Plan key (starter, growth, scale, ...)
   @BuiltValueField(wireName: r'plan')
   String? get plan;
+
+  /// Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key)
+  @BuiltValueField(wireName: r'plan_name')
+  String? get planName;
 
   /// How often prompts run (weekly, daily, monthly, ...)
   @BuiltValueField(wireName: r'tracking_frequency')
@@ -76,6 +81,13 @@ class _$GetAccount200ResponseSerializer implements PrimitiveSerializer<GetAccoun
       yield r'plan';
       yield serializers.serialize(
         object.plan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.planName != null) {
+      yield r'plan_name';
+      yield serializers.serialize(
+        object.planName,
         specifiedType: const FullType(String),
       );
     }
@@ -151,6 +163,14 @@ class _$GetAccount200ResponseSerializer implements PrimitiveSerializer<GetAccoun
           ) as String?;
           if (valueDes == null) continue;
           result.plan = valueDes;
+          break;
+        case r'plan_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.planName = valueDes;
           break;
         case r'tracking_frequency':
           final valueDes = serializers.deserialize(

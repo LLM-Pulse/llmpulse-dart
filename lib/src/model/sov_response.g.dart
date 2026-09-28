@@ -12,6 +12,8 @@ class _$SovResponse extends SovResponse {
   @override
   final BuiltList<SovResponsePeriodsInner>? periods;
   @override
+  final SovResponseSample? sample;
+  @override
   final BuiltList<SovResponseOverTimeInner>? overTime;
   @override
   final BuiltList<SovResponseCurrentInner>? current;
@@ -26,6 +28,7 @@ class _$SovResponse extends SovResponse {
   _$SovResponse._(
       {this.projectId,
       this.periods,
+      this.sample,
       this.overTime,
       this.current,
       this.breakdown,
@@ -44,6 +47,7 @@ class _$SovResponse extends SovResponse {
     return other is SovResponse &&
         projectId == other.projectId &&
         periods == other.periods &&
+        sample == other.sample &&
         overTime == other.overTime &&
         current == other.current &&
         breakdown == other.breakdown &&
@@ -55,6 +59,7 @@ class _$SovResponse extends SovResponse {
     var _$hash = 0;
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, periods.hashCode);
+    _$hash = $jc(_$hash, sample.hashCode);
     _$hash = $jc(_$hash, overTime.hashCode);
     _$hash = $jc(_$hash, current.hashCode);
     _$hash = $jc(_$hash, breakdown.hashCode);
@@ -68,6 +73,7 @@ class _$SovResponse extends SovResponse {
     return (newBuiltValueToStringHelper(r'SovResponse')
           ..add('projectId', projectId)
           ..add('periods', periods)
+          ..add('sample', sample)
           ..add('overTime', overTime)
           ..add('current', current)
           ..add('breakdown', breakdown)
@@ -88,6 +94,11 @@ class SovResponseBuilder implements Builder<SovResponse, SovResponseBuilder> {
       _$this._periods ??= ListBuilder<SovResponsePeriodsInner>();
   set periods(ListBuilder<SovResponsePeriodsInner>? periods) =>
       _$this._periods = periods;
+
+  SovResponseSampleBuilder? _sample;
+  SovResponseSampleBuilder get sample =>
+      _$this._sample ??= SovResponseSampleBuilder();
+  set sample(SovResponseSampleBuilder? sample) => _$this._sample = sample;
 
   ListBuilder<SovResponseOverTimeInner>? _overTime;
   ListBuilder<SovResponseOverTimeInner> get overTime =>
@@ -121,6 +132,7 @@ class SovResponseBuilder implements Builder<SovResponse, SovResponseBuilder> {
     if ($v != null) {
       _projectId = $v.projectId;
       _periods = $v.periods?.toBuilder();
+      _sample = $v.sample?.toBuilder();
       _overTime = $v.overTime?.toBuilder();
       _current = $v.current?.toBuilder();
       _breakdown = $v.breakdown?.toBuilder();
@@ -150,6 +162,7 @@ class SovResponseBuilder implements Builder<SovResponse, SovResponseBuilder> {
           _$SovResponse._(
             projectId: projectId,
             periods: _periods?.build(),
+            sample: _sample?.build(),
             overTime: _overTime?.build(),
             current: _current?.build(),
             breakdown: _breakdown?.build(),
@@ -160,6 +173,8 @@ class SovResponseBuilder implements Builder<SovResponse, SovResponseBuilder> {
       try {
         _$failedField = 'periods';
         _periods?.build();
+        _$failedField = 'sample';
+        _sample?.build();
         _$failedField = 'overTime';
         _overTime?.build();
         _$failedField = 'current';

@@ -8,6 +8,7 @@ import 'package:llmpulse/src/model/sov_response_periods_inner.dart';
 import 'package:llmpulse/src/model/sov_response_current_inner.dart';
 import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/sov_response_over_time_inner.dart';
+import 'package:llmpulse/src/model/sov_response_sample.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -18,7 +19,8 @@ part 'sov_response.g.dart';
 ///
 /// Properties:
 /// * [projectId] 
-/// * [periods] - Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window.
+/// * [periods] - Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window; confidence and margin_of_error read the sample size.
+/// * [sample] 
 /// * [overTime] 
 /// * [current] 
 /// * [breakdown] 
@@ -28,9 +30,12 @@ abstract class SovResponse implements Built<SovResponse, SovResponseBuilder> {
   @BuiltValueField(wireName: r'project_id')
   int? get projectId;
 
-  /// Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window.
+  /// Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window; confidence and margin_of_error read the sample size.
   @BuiltValueField(wireName: r'periods')
   BuiltList<SovResponsePeriodsInner>? get periods;
+
+  @BuiltValueField(wireName: r'sample')
+  SovResponseSample? get sample;
 
   @BuiltValueField(wireName: r'over_time')
   BuiltList<SovResponseOverTimeInner>? get overTime;
@@ -79,6 +84,13 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
       yield serializers.serialize(
         object.periods,
         specifiedType: const FullType(BuiltList, [FullType(SovResponsePeriodsInner)]),
+      );
+    }
+    if (object.sample != null) {
+      yield r'sample';
+      yield serializers.serialize(
+        object.sample,
+        specifiedType: const FullType.nullable(SovResponseSample),
       );
     }
     if (object.overTime != null) {
@@ -147,6 +159,14 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
           ) as BuiltList<SovResponsePeriodsInner>?;
           if (valueDes == null) continue;
           result.periods.replace(valueDes);
+          break;
+        case r'sample':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(SovResponseSample),
+          ) as SovResponseSample?;
+          if (valueDes == null) continue;
+          result.sample.replace(valueDes);
           break;
         case r'over_time':
           final valueDes = serializers.deserialize(

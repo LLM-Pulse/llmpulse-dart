@@ -12,9 +12,10 @@ part 'update_project_request.g.dart';
 /// UpdateProjectRequest
 ///
 /// Properties:
+/// * [name] - Project name shown in the app. A label: it does not change mention detection unless brand_name is empty. Cannot be blank
 /// * [brandName] - Brand name used to detect mentions. Applies to future runs; it does not rewrite history
 /// * [description] - What the brand does. Context for Recommendations and GEO Writer (Brand Book)
-/// * [industry] - Single industry key (e.g. SAAS); unknown keys are rejected
+/// * [industry] - Single industry key (e.g. SAAS), stored as sent; an array of keys is also accepted and stored as an array, like the in-app multi-select. Unknown keys are rejected with the valid keys listed
 /// * [businessModel] - Business model key (e.g. B2B_SAAS); unknown keys are rejected
 /// * [businessModelOther] - Free-text business model, only accepted when business_model is OTHER; rejected against any other key
 /// * [targetAudience] - Who the brand sells to (Brand Book)
@@ -24,6 +25,10 @@ part 'update_project_request.g.dart';
 /// * [matchingNames] - FULL replacement list of the brand-name variants used to detect mentions; send every variant to keep
 @BuiltValue()
 abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, UpdateProjectRequestBuilder> {
+  /// Project name shown in the app. A label: it does not change mention detection unless brand_name is empty. Cannot be blank
+  @BuiltValueField(wireName: r'name')
+  String? get name;
+
   /// Brand name used to detect mentions. Applies to future runs; it does not rewrite history
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
@@ -32,7 +37,7 @@ abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, Updat
   @BuiltValueField(wireName: r'description')
   String? get description;
 
-  /// Single industry key (e.g. SAAS); unknown keys are rejected
+  /// Single industry key (e.g. SAAS), stored as sent; an array of keys is also accepted and stored as an array, like the in-app multi-select. Unknown keys are rejected with the valid keys listed
   @BuiltValueField(wireName: r'industry')
   String? get industry;
 
@@ -87,6 +92,13 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
     UpdateProjectRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.brandName != null) {
       yield r'brand_name';
       yield serializers.serialize(
@@ -180,6 +192,14 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.name = valueDes;
+          break;
         case r'brand_name':
           final valueDes = serializers.deserialize(
             value,

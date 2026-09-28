@@ -7,18 +7,18 @@ import 'package:llmpulse/src/model/date.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'sov_response_periods_inner.g.dart';
+part 'sov_response_sample.g.dart';
 
-/// SovResponsePeriodsInner
+/// The period the current shares were computed on (the last one with mentions), same shape as a periods item; null when the window has no mentions.
 ///
 /// Properties:
 /// * [date] 
 /// * [mentions] 
 /// * [partial] 
-/// * [confidence] - How far the shares of this period can be trusted, from its mentions: none (0), low (under 30), medium (under 100) or high (100 or more).
-/// * [marginOfError] - Worst-case 95% margin of a share in percentage points, 98 / sqrt(mentions); mentions within one answer are not independent, so the real margin is at least this wide. null with no mentions.
+/// * [confidence] 
+/// * [marginOfError] 
 @BuiltValue()
-abstract class SovResponsePeriodsInner implements Built<SovResponsePeriodsInner, SovResponsePeriodsInnerBuilder> {
+abstract class SovResponseSample implements Built<SovResponseSample, SovResponseSampleBuilder> {
   @BuiltValueField(wireName: r'date')
   Date? get date;
 
@@ -28,35 +28,33 @@ abstract class SovResponsePeriodsInner implements Built<SovResponsePeriodsInner,
   @BuiltValueField(wireName: r'partial')
   bool? get partial;
 
-  /// How far the shares of this period can be trusted, from its mentions: none (0), low (under 30), medium (under 100) or high (100 or more).
   @BuiltValueField(wireName: r'confidence')
   String? get confidence;
 
-  /// Worst-case 95% margin of a share in percentage points, 98 / sqrt(mentions); mentions within one answer are not independent, so the real margin is at least this wide. null with no mentions.
   @BuiltValueField(wireName: r'margin_of_error')
   num? get marginOfError;
 
-  SovResponsePeriodsInner._();
+  SovResponseSample._();
 
-  factory SovResponsePeriodsInner([void updates(SovResponsePeriodsInnerBuilder b)]) = _$SovResponsePeriodsInner;
+  factory SovResponseSample([void updates(SovResponseSampleBuilder b)]) = _$SovResponseSample;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SovResponsePeriodsInnerBuilder b) => b;
+  static void _defaults(SovResponseSampleBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SovResponsePeriodsInner> get serializer => _$SovResponsePeriodsInnerSerializer();
+  static Serializer<SovResponseSample> get serializer => _$SovResponseSampleSerializer();
 }
 
-class _$SovResponsePeriodsInnerSerializer implements PrimitiveSerializer<SovResponsePeriodsInner> {
+class _$SovResponseSampleSerializer implements PrimitiveSerializer<SovResponseSample> {
   @override
-  final Iterable<Type> types = const [SovResponsePeriodsInner, _$SovResponsePeriodsInner];
+  final Iterable<Type> types = const [SovResponseSample, _$SovResponseSample];
 
   @override
-  final String wireName = r'SovResponsePeriodsInner';
+  final String wireName = r'SovResponseSample';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    SovResponsePeriodsInner object, {
+    SovResponseSample object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.date != null) {
@@ -99,7 +97,7 @@ class _$SovResponsePeriodsInnerSerializer implements PrimitiveSerializer<SovResp
   @override
   Object serialize(
     Serializers serializers,
-    SovResponsePeriodsInner object, {
+    SovResponseSample object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -110,7 +108,7 @@ class _$SovResponsePeriodsInnerSerializer implements PrimitiveSerializer<SovResp
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required SovResponsePeriodsInnerBuilder result,
+    required SovResponseSampleBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -166,12 +164,12 @@ class _$SovResponsePeriodsInnerSerializer implements PrimitiveSerializer<SovResp
   }
 
   @override
-  SovResponsePeriodsInner deserialize(
+  SovResponseSample deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SovResponsePeriodsInnerBuilder();
+    final result = SovResponseSampleBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

@@ -68,6 +68,8 @@ class _$GetAccount200Response extends GetAccount200Response {
   @override
   final String? plan;
   @override
+  final String? planName;
+  @override
   final String? trackingFrequency;
   @override
   final GetAccount200ResponseRoleEnum? role;
@@ -86,6 +88,7 @@ class _$GetAccount200Response extends GetAccount200Response {
 
   _$GetAccount200Response._(
       {this.plan,
+      this.planName,
       this.trackingFrequency,
       this.role,
       this.subscription,
@@ -107,6 +110,7 @@ class _$GetAccount200Response extends GetAccount200Response {
     if (identical(other, this)) return true;
     return other is GetAccount200Response &&
         plan == other.plan &&
+        planName == other.planName &&
         trackingFrequency == other.trackingFrequency &&
         role == other.role &&
         subscription == other.subscription &&
@@ -119,6 +123,7 @@ class _$GetAccount200Response extends GetAccount200Response {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, plan.hashCode);
+    _$hash = $jc(_$hash, planName.hashCode);
     _$hash = $jc(_$hash, trackingFrequency.hashCode);
     _$hash = $jc(_$hash, role.hashCode);
     _$hash = $jc(_$hash, subscription.hashCode);
@@ -133,6 +138,7 @@ class _$GetAccount200Response extends GetAccount200Response {
   String toString() {
     return (newBuiltValueToStringHelper(r'GetAccount200Response')
           ..add('plan', plan)
+          ..add('planName', planName)
           ..add('trackingFrequency', trackingFrequency)
           ..add('role', role)
           ..add('subscription', subscription)
@@ -150,6 +156,10 @@ class GetAccount200ResponseBuilder
   String? _plan;
   String? get plan => _$this._plan;
   set plan(String? plan) => _$this._plan = plan;
+
+  String? _planName;
+  String? get planName => _$this._planName;
+  set planName(String? planName) => _$this._planName = planName;
 
   String? _trackingFrequency;
   String? get trackingFrequency => _$this._trackingFrequency;
@@ -190,6 +200,7 @@ class GetAccount200ResponseBuilder
     final $v = _$v;
     if ($v != null) {
       _plan = $v.plan;
+      _planName = $v.planName;
       _trackingFrequency = $v.trackingFrequency;
       _role = $v.role;
       _subscription = $v.subscription?.toBuilder();
@@ -220,6 +231,7 @@ class GetAccount200ResponseBuilder
       _$result = _$v ??
           _$GetAccount200Response._(
             plan: plan,
+            planName: planName,
             trackingFrequency: trackingFrequency,
             role: role,
             subscription: _subscription?.build(),

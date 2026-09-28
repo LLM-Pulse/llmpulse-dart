@@ -52,13 +52,16 @@ import 'package:llmpulse/src/model/list_webhooks200_response_data_inner.dart';
 import 'package:llmpulse/src/model/ping200_response.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:llmpulse/src/model/project_create_request.dart';
+import 'package:llmpulse/src/model/project_create_request_collections_inner.dart';
 import 'package:llmpulse/src/model/project_create_request_competitors_inner.dart';
 import 'package:llmpulse/src/model/project_create_request_owned_media.dart';
 import 'package:llmpulse/src/model/project_create_response.dart';
+import 'package:llmpulse/src/model/project_create_response_collections_inner.dart';
 import 'package:llmpulse/src/model/project_create_response_competitors.dart';
 import 'package:llmpulse/src/model/project_create_response_email_subscription.dart';
 import 'package:llmpulse/src/model/project_create_response_limits.dart';
 import 'package:llmpulse/src/model/project_create_response_prompts.dart';
+import 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
 import 'package:llmpulse/src/model/project_details.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/prompt_summary_response.dart';
@@ -74,6 +77,7 @@ import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/sov_response_current_inner.dart';
 import 'package:llmpulse/src/model/sov_response_over_time_inner.dart';
 import 'package:llmpulse/src/model/sov_response_periods_inner.dart';
+import 'package:llmpulse/src/model/sov_response_sample.dart';
 import 'package:llmpulse/src/model/summary_response.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
@@ -129,13 +133,16 @@ part 'serializers.g.dart';
   Ping200Response,
   Project,$Project,
   ProjectCreateRequest,
+  ProjectCreateRequestCollectionsInner,
   ProjectCreateRequestCompetitorsInner,
   ProjectCreateRequestOwnedMedia,
   ProjectCreateResponse,
+  ProjectCreateResponseCollectionsInner,
   ProjectCreateResponseCompetitors,
   ProjectCreateResponseEmailSubscription,
   ProjectCreateResponseLimits,
   ProjectCreateResponsePrompts,
+  ProjectCreateResponseSameDomainProjectsInner,
   ProjectDetails,
   ProjectDetailsAllOfStats,
   PromptSummaryResponse,
@@ -151,6 +158,7 @@ part 'serializers.g.dart';
   SovResponseCurrentInner,
   SovResponseOverTimeInner,
   SovResponsePeriodsInner,
+  SovResponseSample,
   SummaryResponse,
   SummaryResponseAllOfPositionDistribution,
   SummaryResponseAllOfSummaryValueInner,
@@ -179,6 +187,50 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SovResponseCurrentInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PromptSummaryRow)]),
+        () => ListBuilder<PromptSummaryRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
+        () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
+        () => ListBuilder<ProjectCreateRequestCollectionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(TimeseriesSeries)])]),
+        () => MapBuilder<String, BuiltList<TimeseriesSeries>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(int)])]),
+        () => MapBuilder<String, BuiltMap<String, int>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AgentBot)]),
+        () => ListBuilder<AgentBot>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Project)]),
+        () => ListBuilder<Project>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(int)]),
+        () => MapBuilder<String, int>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ListWebhooks200ResponseDataInner)]),
+        () => ListBuilder<ListWebhooks200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PromptsCreateResponseDataInner)]),
+        () => ListBuilder<PromptsCreateResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
+        () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TopSourcesResponseDataInner)]),
         () => ListBuilder<TopSourcesResponseDataInner>(),
       )
@@ -189,14 +241,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponsePeriodsInner)]),
         () => ListBuilder<SovResponsePeriodsInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(PromptSummaryRow)]),
-        () => ListBuilder<PromptSummaryRow>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
-        () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TimeseriesPoint)]),
@@ -211,20 +255,16 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Competitor>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(TimeseriesSeries)])]),
-        () => MapBuilder<String, BuiltList<TimeseriesSeries>>(),
+        const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
+        () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
+        () => ListBuilder<ProjectCreateResponseCollectionsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseBreakdownInner)]),
         () => ListBuilder<SovResponseBreakdownInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(int)])]),
-        () => MapBuilder<String, BuiltMap<String, int>>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(AgentBot)]),
-        () => ListBuilder<AgentBot>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseOverTimeInner)]),
@@ -239,28 +279,8 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(Project)]),
-        () => ListBuilder<Project>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(int)]),
-        () => MapBuilder<String, int>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(ListWebhooks200ResponseDataInner)]),
-        () => ListBuilder<ListWebhooks200ResponseDataInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(PromptsCreateResponseDataInner)]),
-        () => ListBuilder<PromptsCreateResponseDataInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
-        () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
       )
       ..add(IntelligenceTask.serializer)
       ..add(Project.serializer)

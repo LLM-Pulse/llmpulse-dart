@@ -58,14 +58,17 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ListWebhooks200ResponseDataInnerEventTypeEnum.serializer)
       ..add(Ping200Response.serializer)
       ..add(ProjectCreateRequest.serializer)
+      ..add(ProjectCreateRequestCollectionsInner.serializer)
       ..add(ProjectCreateRequestCompetitorsInner.serializer)
       ..add(ProjectCreateRequestOwnedMedia.serializer)
       ..add(ProjectCreateResponse.serializer)
+      ..add(ProjectCreateResponseCollectionsInner.serializer)
       ..add(ProjectCreateResponseCompetitors.serializer)
       ..add(ProjectCreateResponseEmailSubscription.serializer)
       ..add(ProjectCreateResponseLimits.serializer)
       ..add(ProjectCreateResponsePrompts.serializer)
       ..add(ProjectCreateResponsePromptsExecutionEnum.serializer)
+      ..add(ProjectCreateResponseSameDomainProjectsInner.serializer)
       ..add(ProjectDetails.serializer)
       ..add(ProjectDetailsAllOfStats.serializer)
       ..add(PromptSummaryResponse.serializer)
@@ -84,6 +87,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(SovResponseCurrentInner.serializer)
       ..add(SovResponseOverTimeInner.serializer)
       ..add(SovResponsePeriodsInner.serializer)
+      ..add(SovResponseSample.serializer)
       ..add(SummaryResponse.serializer)
       ..add(SummaryResponseAllOfPositionDistribution.serializer)
       ..add(SummaryResponseAllOfSummaryValueInner.serializer)
@@ -114,6 +118,15 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Project)]),
           () => ListBuilder<Project>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(ProjectCreateResponseCollectionsInner)]),
+          () => ListBuilder<ProjectCreateResponseCollectionsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(ProjectCreateResponseSameDomainProjectsInner)
+          ]),
+          () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(PromptSummaryRow)]),
           () => ListBuilder<PromptSummaryRow>())
@@ -167,6 +180,12 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(JsonObject)]),
+          () => ListBuilder<JsonObject>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(JsonObject)]),
           () => ListBuilder<JsonObject>())
       ..addBuilderFactory(
@@ -191,9 +210,6 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(JsonObject)]),
           () => ListBuilder<JsonObject>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(JsonObject)]),
-          () => ListBuilder<JsonObject>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
@@ -229,6 +245,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(ProjectCreateRequestCollectionsInner)]),
+          () => ListBuilder<ProjectCreateRequestCollectionsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(ProjectCreateRequestCompetitorsInner)]),

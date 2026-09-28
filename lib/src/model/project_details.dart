@@ -6,6 +6,7 @@
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -20,7 +21,7 @@ part 'project_details.g.dart';
 /// * [url] 
 /// * [description] 
 /// * [matchingNames] 
-/// * [industry] 
+/// * [industry] - Industry as stored: one key as a string (e.g. SAAS), or an array of key strings when the project was created with a list or the in-app multi-select. Deliberately untyped so generated clients decode either shape
 /// * [businessModel] 
 /// * [businessModelOther] - Set only when business_model is OTHER
 /// * [primaryProducts] 
@@ -48,8 +49,9 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   @BuiltValueField(wireName: r'description')
   String? get description;
 
+  /// Industry as stored: one key as a string (e.g. SAAS), or an array of key strings when the project was created with a list or the in-app multi-select. Deliberately untyped so generated clients decode either shape
   @BuiltValueField(wireName: r'industry')
-  String? get industry;
+  JsonObject? get industry;
 
   @BuiltValueField(wireName: r'app_store_id')
   String? get appStoreId;
@@ -150,7 +152,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'industry';
       yield serializers.serialize(
         object.industry,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.appStoreId != null) {
@@ -317,8 +319,8 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         case r'industry':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
           if (valueDes == null) continue;
           result.industry = valueDes;
           break;
