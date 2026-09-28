@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **userInstructions** | **String** |  | [optional] 
 **outputLanguageCode** | **String** |  | [optional] 
 **wordCount** | **int** |  | [optional] 
-**resultData** | [**JsonObject**](.md) | Only present when status='completed' | [optional] 
+**resultData** | [**JsonObject**](.md) | The generated content once status is completed; null before that | [optional] 
 **errorMessage** | **String** |  | [optional] 
 **estimatedTime** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 

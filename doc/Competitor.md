@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **String** |  | [optional] 
-**domain** | **String** |  | [optional] 
+**domain** | **String** | Bare (scheme-less) domain. Null only on the own-brand row (include_project_brand=true) when the project has no URL. | [optional] 
 **actorType** | **String** | Only present when include_project_brand=true | [optional] 
 **isOwn** | **bool** | Only present when include_project_brand=true | [optional] 
 

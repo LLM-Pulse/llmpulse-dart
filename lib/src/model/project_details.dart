@@ -17,7 +17,7 @@ part 'project_details.g.dart';
 /// Properties:
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
-/// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Defaults to `name` when not set.
+/// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
 /// * [url] 
 /// * [description] 
 /// * [matchingNames] 
@@ -117,7 +117,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'brand_voice';
       yield serializers.serialize(
         object.brandVoice,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.paused != null) {
@@ -131,21 +131,21 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'brand_name';
       yield serializers.serialize(
         object.brandName,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.businessModel != null) {
       yield r'business_model';
       yield serializers.serialize(
         object.businessModel,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.industry != null) {
@@ -159,7 +159,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'app_store_id';
       yield serializers.serialize(
         object.appStoreId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.languageCode != null) {
@@ -173,7 +173,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'url';
       yield serializers.serialize(
         object.url,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.createdAt != null) {
@@ -187,14 +187,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'google_play_id';
       yield serializers.serialize(
         object.googlePlayId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.targetAudience != null) {
       yield r'target_audience';
       yield serializers.serialize(
         object.targetAudience,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.stats != null) {
@@ -250,7 +250,7 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'goals';
       yield serializers.serialize(
         object.goals,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
   }

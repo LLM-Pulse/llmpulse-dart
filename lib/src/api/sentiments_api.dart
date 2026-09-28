@@ -19,8 +19,8 @@ class SentimentsApi {
 
   const SentimentsApi(this._dio, this._serializers);
 
-  /// List sentiment categories
-  /// Sentiment metric keys + labels + colors. For records, use /sentiments.
+  /// List sentiment categories (Growth plan or above)
+  /// Sentiment metric keys + labels + colors. For records, use /sentiments. Requires the Growth plan; lower tiers receive ERR_PLAN_REQUIRED.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
@@ -80,8 +80,8 @@ class SentimentsApi {
     return _response;
   }
 
-  /// List sentiment records
-  /// 
+  /// List sentiment records (Growth plan or above)
+  /// Requires the Growth plan; lower tiers receive ERR_PLAN_REQUIRED.
   ///
   /// Parameters:
   /// * [projectId] - Project ID

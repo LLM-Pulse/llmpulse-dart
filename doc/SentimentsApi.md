@@ -9,16 +9,16 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**listSentimentCategories**](SentimentsApi.md#listsentimentcategories) | **GET** /dimensions/sentiments | List sentiment categories
-[**listSentimentRecords**](SentimentsApi.md#listsentimentrecords) | **GET** /sentiments | List sentiment records
+[**listSentimentCategories**](SentimentsApi.md#listsentimentcategories) | **GET** /dimensions/sentiments | List sentiment categories (Growth plan or above)
+[**listSentimentRecords**](SentimentsApi.md#listsentimentrecords) | **GET** /sentiments | List sentiment records (Growth plan or above)
 
 
 # **listSentimentCategories**
 > listSentimentCategories(projectId, output)
 
-List sentiment categories
+List sentiment categories (Growth plan or above)
 
-Sentiment metric keys + labels + colors. For records, use /sentiments.
+Sentiment metric keys + labels + colors. For records, use /sentiments. Requires the Growth plan; lower tiers receive ERR_PLAN_REQUIRED.
 
 ### Example
 ```dart
@@ -53,14 +53,16 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSentimentRecords**
 > listSentimentRecords(projectId, competitorId, brandOnly, analysis, model, collectionId, countryCode, languageCode, from, to, page, perPage)
 
-List sentiment records
+List sentiment records (Growth plan or above)
+
+Requires the Growth plan; lower tiers receive ERR_PLAN_REQUIRED.
 
 ### Example
 ```dart

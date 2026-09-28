@@ -21,8 +21,8 @@ part 'answer_details.g.dart';
 /// * [response] 
 /// * [responseTruncated] 
 /// * [executedAt] 
-/// * [durationMs] 
-/// * [success] 
+/// * [durationMs] - Milliseconds, rounded to one decimal place
+/// * [success] - Null while the answer is still pending
 /// * [fanOutQueries] 
 /// * [mentions] 
 /// * [citations] 
@@ -58,9 +58,11 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   @BuiltValueField(wireName: r'executed_at')
   DateTime? get executedAt;
 
+  /// Milliseconds, rounded to one decimal place
   @BuiltValueField(wireName: r'duration_ms')
-  int? get durationMs;
+  num? get durationMs;
 
+  /// Null while the answer is still pending
   @BuiltValueField(wireName: r'success')
   bool? get success;
 
@@ -156,7 +158,7 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
       yield r'response';
       yield serializers.serialize(
         object.response,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.responseTruncated != null) {
@@ -170,28 +172,28 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
       yield r'executed_at';
       yield serializers.serialize(
         object.executedAt,
-        specifiedType: const FullType(DateTime),
+        specifiedType: const FullType.nullable(DateTime),
       );
     }
     if (object.durationMs != null) {
       yield r'duration_ms';
       yield serializers.serialize(
         object.durationMs,
-        specifiedType: const FullType(int),
+        specifiedType: const FullType.nullable(num),
       );
     }
     if (object.success != null) {
       yield r'success';
       yield serializers.serialize(
         object.success,
-        specifiedType: const FullType(bool),
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.fanOutQueries != null) {
       yield r'fan_out_queries';
       yield serializers.serialize(
         object.fanOutQueries,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
+        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
       );
     }
     if (object.mentions != null) {
@@ -353,8 +355,8 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
         case r'duration_ms':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
           if (valueDes == null) continue;
           result.durationMs = valueDes;
           break;

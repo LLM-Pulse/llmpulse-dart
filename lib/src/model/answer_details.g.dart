@@ -22,7 +22,7 @@ class _$AnswerDetails extends AnswerDetails {
   @override
   final DateTime? executedAt;
   @override
-  final int? durationMs;
+  final num? durationMs;
   @override
   final bool? success;
   @override
@@ -199,9 +199,9 @@ class AnswerDetailsBuilder
   DateTime? get executedAt => _$this._executedAt;
   set executedAt(DateTime? executedAt) => _$this._executedAt = executedAt;
 
-  int? _durationMs;
-  int? get durationMs => _$this._durationMs;
-  set durationMs(int? durationMs) => _$this._durationMs = durationMs;
+  num? _durationMs;
+  num? get durationMs => _$this._durationMs;
+  set durationMs(num? durationMs) => _$this._durationMs = durationMs;
 
   bool? _success;
   bool? get success => _$this._success;

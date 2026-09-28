@@ -27,7 +27,7 @@ part 'intelligence_task_update_response.g.dart';
 /// * [userInstructions] 
 /// * [outputLanguageCode] 
 /// * [wordCount] 
-/// * [resultData] - Only present when status='completed'
+/// * [resultData] - The generated content once status is completed; null before that
 /// * [errorMessage] 
 /// * [estimatedTime] 
 /// * [createdAt] 
@@ -97,7 +97,7 @@ class _$IntelligenceTaskUpdateResponseSerializer implements PrimitiveSerializer<
       yield r'result_data';
       yield serializers.serialize(
         object.resultData,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.errorMessage != null) {

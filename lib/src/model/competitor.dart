@@ -14,7 +14,7 @@ part 'competitor.g.dart';
 /// Properties:
 /// * [id] 
 /// * [name] 
-/// * [domain] 
+/// * [domain] - Bare (scheme-less) domain. Null only on the own-brand row (include_project_brand=true) when the project has no URL.
 /// * [actorType] - Only present when include_project_brand=true
 /// * [isOwn] - Only present when include_project_brand=true
 @BuiltValue()
@@ -25,6 +25,7 @@ abstract class Competitor implements Built<Competitor, CompetitorBuilder> {
   @BuiltValueField(wireName: r'name')
   String? get name;
 
+  /// Bare (scheme-less) domain. Null only on the own-brand row (include_project_brand=true) when the project has no URL.
   @BuiltValueField(wireName: r'domain')
   String? get domain;
 
@@ -78,7 +79,7 @@ class _$CompetitorSerializer implements PrimitiveSerializer<Competitor> {
       yield r'domain';
       yield serializers.serialize(
         object.domain,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.actorType != null) {

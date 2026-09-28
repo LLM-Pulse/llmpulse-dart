@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/date.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,13 +12,15 @@ part 'timeseries_point.g.dart';
 /// TimeseriesPoint
 ///
 /// Properties:
-/// * [date] 
-/// * [value] 
+/// * [date] - Calendar day in Europe/Madrid (YYYY-MM-DD). With granularity week or month it is the first day of the bucket (the Monday, or the 1st of the month).
+/// * [value] - Null when the metric has no value for the bucket, e.g. a rate, position or sentiment metric on a day without answers.
 @BuiltValue()
 abstract class TimeseriesPoint implements Built<TimeseriesPoint, TimeseriesPointBuilder> {
+  /// Calendar day in Europe/Madrid (YYYY-MM-DD). With granularity week or month it is the first day of the bucket (the Monday, or the 1st of the month).
   @BuiltValueField(wireName: r'date')
-  DateTime? get date;
+  Date? get date;
 
+  /// Null when the metric has no value for the bucket, e.g. a rate, position or sentiment metric on a day without answers.
   @BuiltValueField(wireName: r'value')
   num? get value;
 
@@ -48,14 +51,14 @@ class _$TimeseriesPointSerializer implements PrimitiveSerializer<TimeseriesPoint
       yield r'date';
       yield serializers.serialize(
         object.date,
-        specifiedType: const FullType(DateTime),
+        specifiedType: const FullType(Date),
       );
     }
     if (object.value != null) {
       yield r'value';
       yield serializers.serialize(
         object.value,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType.nullable(num),
       );
     }
   }
@@ -84,8 +87,8 @@ class _$TimeseriesPointSerializer implements PrimitiveSerializer<TimeseriesPoint
         case r'date':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
+            specifiedType: const FullType.nullable(Date),
+          ) as Date?;
           if (valueDes == null) continue;
           result.date = valueDes;
           break;

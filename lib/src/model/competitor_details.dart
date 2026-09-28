@@ -105,28 +105,28 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
       yield r'matching_names';
       yield serializers.serialize(
         object.matchingNames,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
+        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
       );
     }
     if (object.googlePlayId != null) {
       yield r'google_play_id';
       yield serializers.serialize(
         object.googlePlayId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.appStoreId != null) {
       yield r'app_store_id';
       yield serializers.serialize(
         object.appStoreId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.color != null) {
       yield r'color';
       yield serializers.serialize(
         object.color,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.createdAt != null) {

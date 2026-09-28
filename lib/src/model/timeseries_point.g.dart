@@ -8,7 +8,7 @@ part of 'timeseries_point.dart';
 
 class _$TimeseriesPoint extends TimeseriesPoint {
   @override
-  final DateTime? date;
+  final Date? date;
   @override
   final num? value;
 
@@ -53,9 +53,9 @@ class TimeseriesPointBuilder
     implements Builder<TimeseriesPoint, TimeseriesPointBuilder> {
   _$TimeseriesPoint? _$v;
 
-  DateTime? _date;
-  DateTime? get date => _$this._date;
-  set date(DateTime? date) => _$this._date = date;
+  Date? _date;
+  Date? get date => _$this._date;
+  set date(Date? date) => _$this._date = date;
 
   num? _value;
   num? get value => _$this._value;

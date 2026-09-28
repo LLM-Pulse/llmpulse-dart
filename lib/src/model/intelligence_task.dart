@@ -25,7 +25,7 @@ part 'intelligence_task.g.dart';
 /// * [userInstructions] 
 /// * [outputLanguageCode] 
 /// * [wordCount] 
-/// * [resultData] - Only present when status='completed'
+/// * [resultData] - The generated content once status is completed; null before that
 /// * [errorMessage] 
 /// * [estimatedTime] 
 /// * [createdAt] 
@@ -74,7 +74,7 @@ abstract class IntelligenceTask  {
   @BuiltValueField(wireName: r'word_count')
   int? get wordCount;
 
-  /// Only present when status='completed'
+  /// The generated content once status is completed; null before that
   @BuiltValueField(wireName: r'result_data')
   JsonObject? get resultData;
 
@@ -212,7 +212,7 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
       yield r'result_data';
       yield serializers.serialize(
         object.resultData,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.errorMessage != null) {

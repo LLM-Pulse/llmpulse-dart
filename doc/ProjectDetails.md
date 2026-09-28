@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **String** | Internal project label (sidebar, settings, admin) | [optional] 
-**brandName** | **String** | LLM-facing brand label (used in prompts and customer-facing charts). Defaults to `name` when not set. | [optional] 
+**brandName** | **String** | LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`. | [optional] 
 **url** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
 **matchingNames** | **BuiltList&lt;String&gt;** |  | [optional] 

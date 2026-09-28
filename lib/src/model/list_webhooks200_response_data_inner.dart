@@ -116,7 +116,7 @@ class _$ListWebhooks200ResponseDataInnerSerializer implements PrimitiveSerialize
       yield r'last_delivered_at';
       yield serializers.serialize(
         object.lastDeliveredAt,
-        specifiedType: const FullType(DateTime),
+        specifiedType: const FullType.nullable(DateTime),
       );
     }
     if (object.createdAt != null) {

@@ -13,7 +13,7 @@ part 'project.g.dart';
 /// Properties:
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
-/// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Defaults to `name` when not set.
+/// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
 @BuiltValue(instantiable: false)
 abstract class Project  {
   @BuiltValueField(wireName: r'id')
@@ -23,7 +23,7 @@ abstract class Project  {
   @BuiltValueField(wireName: r'name')
   String? get name;
 
-  /// LLM-facing brand label (used in prompts and customer-facing charts). Defaults to `name` when not set.
+  /// LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 
@@ -61,7 +61,7 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       yield r'brand_name';
       yield serializers.serialize(
         object.brandName,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
   }

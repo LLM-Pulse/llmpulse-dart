@@ -16,7 +16,7 @@ part 'actor.g.dart';
 /// * [id] 
 /// * [competitorId] 
 /// * [name] 
-/// * [domain] - Bare (scheme-less) domain
+/// * [domain] - Bare (scheme-less) domain. Null for the project actor when the project has no URL.
 @BuiltValue()
 abstract class Actor implements Built<Actor, ActorBuilder> {
   @BuiltValueField(wireName: r'type')
@@ -32,7 +32,7 @@ abstract class Actor implements Built<Actor, ActorBuilder> {
   @BuiltValueField(wireName: r'name')
   String? get name;
 
-  /// Bare (scheme-less) domain
+  /// Bare (scheme-less) domain. Null for the project actor when the project has no URL.
   @BuiltValueField(wireName: r'domain')
   String? get domain;
 
@@ -91,7 +91,7 @@ class _$ActorSerializer implements PrimitiveSerializer<Actor> {
       yield r'domain';
       yield serializers.serialize(
         object.domain,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
   }
