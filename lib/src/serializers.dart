@@ -49,6 +49,8 @@ import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/list_projects200_response.dart';
 import 'package:llmpulse/src/model/list_webhooks200_response.dart';
 import 'package:llmpulse/src/model/list_webhooks200_response_data_inner.dart';
+import 'package:llmpulse/src/model/llms_txt_technical_geo_report.dart';
+import 'package:llmpulse/src/model/llms_txt_technical_geo_report_result_data.dart';
 import 'package:llmpulse/src/model/ping200_response.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:llmpulse/src/model/project_create_request.dart';
@@ -81,6 +83,10 @@ import 'package:llmpulse/src/model/sov_response_sample.dart';
 import 'package:llmpulse/src/model/summary_response.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
+import 'package:llmpulse/src/model/technical_geo_report_content_revert_request.dart';
+import 'package:llmpulse/src/model/technical_geo_report_content_update_request.dart';
+import 'package:llmpulse/src/model/technical_geo_report_content_update_request_edits.dart';
+import 'package:llmpulse/src/model/technical_geo_report_content_update_response.dart';
 import 'package:llmpulse/src/model/timeseries_point.dart';
 import 'package:llmpulse/src/model/timeseries_response.dart';
 import 'package:llmpulse/src/model/timeseries_series.dart';
@@ -130,6 +136,8 @@ part 'serializers.g.dart';
   ListProjects200Response,
   ListWebhooks200Response,
   ListWebhooks200ResponseDataInner,
+  LlmsTxtTechnicalGeoReport,$LlmsTxtTechnicalGeoReport,
+  LlmsTxtTechnicalGeoReportResultData,
   Ping200Response,
   Project,$Project,
   ProjectCreateRequest,
@@ -162,6 +170,10 @@ part 'serializers.g.dart';
   SummaryResponse,
   SummaryResponseAllOfPositionDistribution,
   SummaryResponseAllOfSummaryValueInner,
+  TechnicalGeoReportContentRevertRequest,
+  TechnicalGeoReportContentUpdateRequest,
+  TechnicalGeoReportContentUpdateRequestEdits,
+  TechnicalGeoReportContentUpdateResponse,
   TimeseriesPoint,
   TimeseriesResponse,$TimeseriesResponse,
   TimeseriesSeries,
@@ -283,6 +295,7 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<String>(),
       )
       ..add(IntelligenceTask.serializer)
+      ..add(LlmsTxtTechnicalGeoReport.serializer)
       ..add(Project.serializer)
       ..add(TimeseriesResponse.serializer)
       ..add(const OneOfSerializer())

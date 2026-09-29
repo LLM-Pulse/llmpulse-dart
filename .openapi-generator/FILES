@@ -46,6 +46,8 @@ doc/ListCompetitors200Response.md
 doc/ListProjects200Response.md
 doc/ListWebhooks200Response.md
 doc/ListWebhooks200ResponseDataInner.md
+doc/LlmsTxtTechnicalGeoReport.md
+doc/LlmsTxtTechnicalGeoReportResultData.md
 doc/MentionsCitationsApi.md
 doc/MetricsApi.md
 doc/OwnedMediaCommunitiesApi.md
@@ -90,6 +92,10 @@ doc/SummaryResponse.md
 doc/SummaryResponseAllOfPositionDistribution.md
 doc/SummaryResponseAllOfSummaryValueInner.md
 doc/TechnicalGEOReportsApi.md
+doc/TechnicalGeoReportContentRevertRequest.md
+doc/TechnicalGeoReportContentUpdateRequest.md
+doc/TechnicalGeoReportContentUpdateRequestEdits.md
+doc/TechnicalGeoReportContentUpdateResponse.md
 doc/TimeseriesPoint.md
 doc/TimeseriesResponse.md
 doc/TimeseriesSeries.md
@@ -168,6 +174,8 @@ lib/src/model/list_competitors200_response.dart
 lib/src/model/list_projects200_response.dart
 lib/src/model/list_webhooks200_response.dart
 lib/src/model/list_webhooks200_response_data_inner.dart
+lib/src/model/llms_txt_technical_geo_report.dart
+lib/src/model/llms_txt_technical_geo_report_result_data.dart
 lib/src/model/ping200_response.dart
 lib/src/model/project.dart
 lib/src/model/project_create_request.dart
@@ -200,6 +208,10 @@ lib/src/model/sov_response_sample.dart
 lib/src/model/summary_response.dart
 lib/src/model/summary_response_all_of_position_distribution.dart
 lib/src/model/summary_response_all_of_summary_value_inner.dart
+lib/src/model/technical_geo_report_content_revert_request.dart
+lib/src/model/technical_geo_report_content_update_request.dart
+lib/src/model/technical_geo_report_content_update_request_edits.dart
+lib/src/model/technical_geo_report_content_update_response.dart
 lib/src/model/timeseries_point.dart
 lib/src/model/timeseries_response.dart
 lib/src/model/timeseries_series.dart

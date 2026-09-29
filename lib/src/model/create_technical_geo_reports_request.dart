@@ -14,7 +14,7 @@ part 'create_technical_geo_reports_request.g.dart';
 /// * [projectId] 
 /// * [url] 
 /// * [countryCode] - Defaults to the project country
-/// * [outputLanguageCode] - ISO 639-1 code of the language the llms.txt files are written in (for example es). Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; an unsupported code returns 422 ERR_INVALID_PARAM
+/// * [outputLanguageCode] - ISO 639-1 code of the language the llms.txt files are written in (for example es), or auto to keep the language detected on the website. Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; the response echoes the code used, or auto. An unsupported code returns 422 ERR_INVALID_PARAM
 @BuiltValue()
 abstract class CreateTechnicalGeoReportsRequest implements Built<CreateTechnicalGeoReportsRequest, CreateTechnicalGeoReportsRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -27,7 +27,7 @@ abstract class CreateTechnicalGeoReportsRequest implements Built<CreateTechnical
   @BuiltValueField(wireName: r'country_code')
   String? get countryCode;
 
-  /// ISO 639-1 code of the language the llms.txt files are written in (for example es). Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; an unsupported code returns 422 ERR_INVALID_PARAM
+  /// ISO 639-1 code of the language the llms.txt files are written in (for example es), or auto to keep the language detected on the website. Defaults to the project language, else en. Only the llms.txt report of the bundle uses it; the response echoes the code used, or auto. An unsupported code returns 422 ERR_INVALID_PARAM
   @BuiltValueField(wireName: r'output_language_code')
   String? get outputLanguageCode;
 

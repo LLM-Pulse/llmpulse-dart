@@ -8,6 +8,7 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (Serializers().toBuilder()
       ..add($IntelligenceTask.serializer)
+      ..add($LlmsTxtTechnicalGeoReport.serializer)
       ..add($Project.serializer)
       ..add($TimeseriesResponse.serializer)
       ..add(AccountCapacity.serializer)
@@ -56,6 +57,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ListWebhooks200Response.serializer)
       ..add(ListWebhooks200ResponseDataInner.serializer)
       ..add(ListWebhooks200ResponseDataInnerEventTypeEnum.serializer)
+      ..add(LlmsTxtTechnicalGeoReportResultData.serializer)
       ..add(Ping200Response.serializer)
       ..add(ProjectCreateRequest.serializer)
       ..add(ProjectCreateRequestCollectionsInner.serializer)
@@ -91,6 +93,13 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(SummaryResponse.serializer)
       ..add(SummaryResponseAllOfPositionDistribution.serializer)
       ..add(SummaryResponseAllOfSummaryValueInner.serializer)
+      ..add(TechnicalGeoReportContentRevertRequest.serializer)
+      ..add(TechnicalGeoReportContentRevertRequestReportTypeEnum.serializer)
+      ..add(TechnicalGeoReportContentUpdateRequest.serializer)
+      ..add(TechnicalGeoReportContentUpdateRequestEdits.serializer)
+      ..add(TechnicalGeoReportContentUpdateRequestReportTypeEnum.serializer)
+      ..add(TechnicalGeoReportContentUpdateResponse.serializer)
+      ..add(TechnicalGeoReportContentUpdateResponseChangedFilesEnum.serializer)
       ..add(TimeseriesPoint.serializer)
       ..add(TimeseriesSeries.serializer)
       ..add(TopSourcesResponse.serializer)
@@ -253,6 +262,13 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(ProjectCreateRequestCompetitorsInner)]),
           () => ListBuilder<ProjectCreateRequestCompetitorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                TechnicalGeoReportContentUpdateResponseChangedFilesEnum)
+          ]),
+          () => ListBuilder<
+              TechnicalGeoReportContentUpdateResponseChangedFilesEnum>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TimeseriesPoint)]),
           () => ListBuilder<TimeseriesPoint>())
