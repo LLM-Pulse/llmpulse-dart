@@ -10,6 +10,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**listAds**](ShoppingAdsApi.md#listads) | **GET** /dimensions/ads | List AI ad placements
+[**listLocalBusinesses**](ShoppingAdsApi.md#listlocalbusinesses) | **GET** /dimensions/local_businesses | List local businesses
 [**listShopping**](ShoppingAdsApi.md#listshopping) | **GET** /dimensions/shopping | List shopping results
 
 
@@ -79,6 +80,83 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listLocalBusinesses**
+> LocalBusinessesResponse listLocalBusinesses(projectId, page, perPage, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+
+List local businesses
+
+Local businesses (shops, restaurants, services) listed inside AI answers, one row per business: its name at its address, so two locations of a chain are two rows. Each row carries its appearance count, the number of prompts that listed it, its average rating and average position in the list, its review count, and whether it is yours or a tracked competitor. Every response also carries a totals block matching the KPI cards in the app. Local business lists come from a subset of models and only for prompts with local intent. Available on every plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getShoppingAdsApi();
+final int projectId = 56; // int | Project ID
+final int page = 56; // int | 
+final int perPage = 56; // int | 
+final bool owned = true; // bool | Return only listings identified as the tracked brand's own locations. The totals block stays account-wide.
+final String order = order_example; // String | Sort field
+final String direction = direction_example; // String | 
+final String query = query_example; // String | Case-insensitive substring filter on the business name or address
+final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
+final int prompt = 56; // int | Filter by prompt ID
+final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+final int range = 56; // int | Number of days to look back (alternative to from/to)
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+
+try {
+    final response = api.listLocalBusinesses(projectId, page, perPage, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ShoppingAdsApi->listLocalBusinesses: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **page** | **int**|  | [optional] [default to 1]
+ **perPage** | **int**|  | [optional] [default to 20]
+ **owned** | **bool**| Return only listings identified as the tracked brand's own locations. The totals block stays account-wide. | [optional] 
+ **order** | **String**| Sort field | [optional] [default to 'appearances']
+ **direction** | **String**|  | [optional] [default to 'desc']
+ **query** | **String**| Case-insensitive substring filter on the business name or address | [optional] 
+ **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
+ **prompt** | **int**| Filter by prompt ID | [optional] 
+ **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
+ **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **from** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
+ **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
+
+### Return type
+
+[**LocalBusinessesResponse**](LocalBusinessesResponse.md)
 
 ### Authorization
 

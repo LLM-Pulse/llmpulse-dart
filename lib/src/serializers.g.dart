@@ -58,6 +58,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ListWebhooks200ResponseDataInner.serializer)
       ..add(ListWebhooks200ResponseDataInnerEventTypeEnum.serializer)
       ..add(LlmsTxtTechnicalGeoReportResultData.serializer)
+      ..add(LocalBusiness.serializer)
+      ..add(LocalBusinessesResponse.serializer)
+      ..add(LocalBusinessesTotals.serializer)
       ..add(Ping200Response.serializer)
       ..add(ProjectCreateRequest.serializer)
       ..add(ProjectCreateRequestCollectionsInner.serializer)
@@ -124,6 +127,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(ListWebhooks200ResponseDataInner)]),
           () => ListBuilder<ListWebhooks200ResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(LocalBusiness)]),
+          () => ListBuilder<LocalBusiness>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Project)]),
           () => ListBuilder<Project>())

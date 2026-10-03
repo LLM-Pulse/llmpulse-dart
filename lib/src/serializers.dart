@@ -51,6 +51,9 @@ import 'package:llmpulse/src/model/list_webhooks200_response.dart';
 import 'package:llmpulse/src/model/list_webhooks200_response_data_inner.dart';
 import 'package:llmpulse/src/model/llms_txt_technical_geo_report.dart';
 import 'package:llmpulse/src/model/llms_txt_technical_geo_report_result_data.dart';
+import 'package:llmpulse/src/model/local_business.dart';
+import 'package:llmpulse/src/model/local_businesses_response.dart';
+import 'package:llmpulse/src/model/local_businesses_totals.dart';
 import 'package:llmpulse/src/model/ping200_response.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:llmpulse/src/model/project_create_request.dart';
@@ -138,6 +141,9 @@ part 'serializers.g.dart';
   ListWebhooks200ResponseDataInner,
   LlmsTxtTechnicalGeoReport,$LlmsTxtTechnicalGeoReport,
   LlmsTxtTechnicalGeoReportResultData,
+  LocalBusiness,
+  LocalBusinessesResponse,
+  LocalBusinessesTotals,
   Ping200Response,
   Project,$Project,
   ProjectCreateRequest,
@@ -205,6 +211,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
         () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(LocalBusiness)]),
+        () => ListBuilder<LocalBusiness>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
