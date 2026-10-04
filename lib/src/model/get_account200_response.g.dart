@@ -74,6 +74,8 @@ class _$GetAccount200Response extends GetAccount200Response {
   @override
   final GetAccount200ResponseRoleEnum? role;
   @override
+  final BuiltList<int>? apiKeyProjectIds;
+  @override
   final GetAccount200ResponseSubscription? subscription;
   @override
   final GetAccount200ResponseLimits? limits;
@@ -91,6 +93,7 @@ class _$GetAccount200Response extends GetAccount200Response {
       this.planName,
       this.trackingFrequency,
       this.role,
+      this.apiKeyProjectIds,
       this.subscription,
       this.limits,
       this.rateLimits,
@@ -113,6 +116,7 @@ class _$GetAccount200Response extends GetAccount200Response {
         planName == other.planName &&
         trackingFrequency == other.trackingFrequency &&
         role == other.role &&
+        apiKeyProjectIds == other.apiKeyProjectIds &&
         subscription == other.subscription &&
         limits == other.limits &&
         rateLimits == other.rateLimits &&
@@ -126,6 +130,7 @@ class _$GetAccount200Response extends GetAccount200Response {
     _$hash = $jc(_$hash, planName.hashCode);
     _$hash = $jc(_$hash, trackingFrequency.hashCode);
     _$hash = $jc(_$hash, role.hashCode);
+    _$hash = $jc(_$hash, apiKeyProjectIds.hashCode);
     _$hash = $jc(_$hash, subscription.hashCode);
     _$hash = $jc(_$hash, limits.hashCode);
     _$hash = $jc(_$hash, rateLimits.hashCode);
@@ -141,6 +146,7 @@ class _$GetAccount200Response extends GetAccount200Response {
           ..add('planName', planName)
           ..add('trackingFrequency', trackingFrequency)
           ..add('role', role)
+          ..add('apiKeyProjectIds', apiKeyProjectIds)
           ..add('subscription', subscription)
           ..add('limits', limits)
           ..add('rateLimits', rateLimits)
@@ -169,6 +175,12 @@ class GetAccount200ResponseBuilder
   GetAccount200ResponseRoleEnum? _role;
   GetAccount200ResponseRoleEnum? get role => _$this._role;
   set role(GetAccount200ResponseRoleEnum? role) => _$this._role = role;
+
+  ListBuilder<int>? _apiKeyProjectIds;
+  ListBuilder<int> get apiKeyProjectIds =>
+      _$this._apiKeyProjectIds ??= ListBuilder<int>();
+  set apiKeyProjectIds(ListBuilder<int>? apiKeyProjectIds) =>
+      _$this._apiKeyProjectIds = apiKeyProjectIds;
 
   GetAccount200ResponseSubscriptionBuilder? _subscription;
   GetAccount200ResponseSubscriptionBuilder get subscription =>
@@ -203,6 +215,7 @@ class GetAccount200ResponseBuilder
       _planName = $v.planName;
       _trackingFrequency = $v.trackingFrequency;
       _role = $v.role;
+      _apiKeyProjectIds = $v.apiKeyProjectIds?.toBuilder();
       _subscription = $v.subscription?.toBuilder();
       _limits = $v.limits?.toBuilder();
       _rateLimits = $v.rateLimits?.toBuilder();
@@ -234,6 +247,7 @@ class GetAccount200ResponseBuilder
             planName: planName,
             trackingFrequency: trackingFrequency,
             role: role,
+            apiKeyProjectIds: _apiKeyProjectIds?.build(),
             subscription: _subscription?.build(),
             limits: _limits?.build(),
             rateLimits: _rateLimits?.build(),
@@ -242,6 +256,8 @@ class GetAccount200ResponseBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'apiKeyProjectIds';
+        _apiKeyProjectIds?.build();
         _$failedField = 'subscription';
         _subscription?.build();
         _$failedField = 'limits';

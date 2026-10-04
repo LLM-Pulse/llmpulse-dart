@@ -15,21 +15,22 @@ part 'get_account200_response.g.dart';
 /// GetAccount200Response
 ///
 /// Properties:
-/// * [plan] - Plan key (starter, growth, scale, ...)
-/// * [planName] - Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key)
+/// * [plan] - Plan key (starter, growth, scale, ...). Absent for a key limited to some projects.
+/// * [planName] - Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key). Absent for a key limited to some projects.
 /// * [trackingFrequency] - How often prompts run (weekly, daily, monthly, ...)
 /// * [role] - Whether the key belongs to the account owner or a team member
+/// * [apiKeyProjectIds] - The projects the calling API key is limited to; null for a key that sees the whole account, and for OAuth
 /// * [subscription] 
 /// * [limits] 
 /// * [rateLimits] 
 /// * [requestId] 
 @BuiltValue()
 abstract class GetAccount200Response implements Built<GetAccount200Response, GetAccount200ResponseBuilder> {
-  /// Plan key (starter, growth, scale, ...)
+  /// Plan key (starter, growth, scale, ...). Absent for a key limited to some projects.
   @BuiltValueField(wireName: r'plan')
   String? get plan;
 
-  /// Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key)
+  /// Display name of the plan to show people (e.g. Scale++ for the scaleplusplus key). Absent for a key limited to some projects.
   @BuiltValueField(wireName: r'plan_name')
   String? get planName;
 
@@ -41,6 +42,10 @@ abstract class GetAccount200Response implements Built<GetAccount200Response, Get
   @BuiltValueField(wireName: r'role')
   GetAccount200ResponseRoleEnum? get role;
   // enum roleEnum {  owner,  member,  };
+
+  /// The projects the calling API key is limited to; null for a key that sees the whole account, and for OAuth
+  @BuiltValueField(wireName: r'api_key_project_ids')
+  BuiltList<int>? get apiKeyProjectIds;
 
   @BuiltValueField(wireName: r'subscription')
   GetAccount200ResponseSubscription? get subscription;
@@ -103,6 +108,13 @@ class _$GetAccount200ResponseSerializer implements PrimitiveSerializer<GetAccoun
       yield serializers.serialize(
         object.role,
         specifiedType: const FullType(GetAccount200ResponseRoleEnum),
+      );
+    }
+    if (object.apiKeyProjectIds != null) {
+      yield r'api_key_project_ids';
+      yield serializers.serialize(
+        object.apiKeyProjectIds,
+        specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
       );
     }
     if (object.subscription != null) {
@@ -187,6 +199,14 @@ class _$GetAccount200ResponseSerializer implements PrimitiveSerializer<GetAccoun
           ) as GetAccount200ResponseRoleEnum?;
           if (valueDes == null) continue;
           result.role = valueDes;
+          break;
+        case r'api_key_project_ids':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
+          ) as BuiltList<int>?;
+          if (valueDes == null) continue;
+          result.apiKeyProjectIds.replace(valueDes);
           break;
         case r'subscription':
           final valueDes = serializers.deserialize(

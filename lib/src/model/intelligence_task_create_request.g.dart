@@ -21,6 +21,9 @@ const IntelligenceTaskCreateRequestTaskTypeEnum
 const IntelligenceTaskCreateRequestTaskTypeEnum
     _$intelligenceTaskCreateRequestTaskTypeEnum_custom =
     const IntelligenceTaskCreateRequestTaskTypeEnum._('custom');
+const IntelligenceTaskCreateRequestTaskTypeEnum
+    _$intelligenceTaskCreateRequestTaskTypeEnum_productListing =
+    const IntelligenceTaskCreateRequestTaskTypeEnum._('productListing');
 
 IntelligenceTaskCreateRequestTaskTypeEnum
     _$intelligenceTaskCreateRequestTaskTypeEnumValueOf(String name) {
@@ -35,6 +38,8 @@ IntelligenceTaskCreateRequestTaskTypeEnum
       return _$intelligenceTaskCreateRequestTaskTypeEnum_prInsights;
     case 'custom':
       return _$intelligenceTaskCreateRequestTaskTypeEnum_custom;
+    case 'productListing':
+      return _$intelligenceTaskCreateRequestTaskTypeEnum_productListing;
     default:
       throw ArgumentError(name);
   }
@@ -48,6 +53,7 @@ final BuiltSet<IntelligenceTaskCreateRequestTaskTypeEnum>
   _$intelligenceTaskCreateRequestTaskTypeEnum_update,
   _$intelligenceTaskCreateRequestTaskTypeEnum_prInsights,
   _$intelligenceTaskCreateRequestTaskTypeEnum_custom,
+  _$intelligenceTaskCreateRequestTaskTypeEnum_productListing,
 ]);
 
 Serializer<IntelligenceTaskCreateRequestTaskTypeEnum>
@@ -62,6 +68,7 @@ class _$IntelligenceTaskCreateRequestTaskTypeEnumSerializer
     'update': 'update',
     'prInsights': 'pr_insights',
     'custom': 'custom',
+    'productListing': 'product_listing',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'brief': 'brief',
@@ -69,6 +76,7 @@ class _$IntelligenceTaskCreateRequestTaskTypeEnumSerializer
     'update': 'update',
     'pr_insights': 'prInsights',
     'custom': 'custom',
+    'product_listing': 'productListing',
   };
 
   @override
@@ -109,6 +117,10 @@ class _$IntelligenceTaskCreateRequest extends IntelligenceTaskCreateRequest {
   final String? existingContent;
   @override
   final String? existingContentUrl;
+  @override
+  final IntelligenceTaskProduct? product;
+  @override
+  final BuiltList<int>? promptIds;
 
   factory _$IntelligenceTaskCreateRequest(
           [void Function(IntelligenceTaskCreateRequestBuilder)? updates]) =>
@@ -122,7 +134,9 @@ class _$IntelligenceTaskCreateRequest extends IntelligenceTaskCreateRequest {
       this.userInstructions,
       this.outputLanguageCode,
       this.existingContent,
-      this.existingContentUrl})
+      this.existingContentUrl,
+      this.product,
+      this.promptIds})
       : super._();
   @override
   IntelligenceTaskCreateRequest rebuild(
@@ -144,7 +158,9 @@ class _$IntelligenceTaskCreateRequest extends IntelligenceTaskCreateRequest {
         userInstructions == other.userInstructions &&
         outputLanguageCode == other.outputLanguageCode &&
         existingContent == other.existingContent &&
-        existingContentUrl == other.existingContentUrl;
+        existingContentUrl == other.existingContentUrl &&
+        product == other.product &&
+        promptIds == other.promptIds;
   }
 
   @override
@@ -158,6 +174,8 @@ class _$IntelligenceTaskCreateRequest extends IntelligenceTaskCreateRequest {
     _$hash = $jc(_$hash, outputLanguageCode.hashCode);
     _$hash = $jc(_$hash, existingContent.hashCode);
     _$hash = $jc(_$hash, existingContentUrl.hashCode);
+    _$hash = $jc(_$hash, product.hashCode);
+    _$hash = $jc(_$hash, promptIds.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -172,7 +190,9 @@ class _$IntelligenceTaskCreateRequest extends IntelligenceTaskCreateRequest {
           ..add('userInstructions', userInstructions)
           ..add('outputLanguageCode', outputLanguageCode)
           ..add('existingContent', existingContent)
-          ..add('existingContentUrl', existingContentUrl))
+          ..add('existingContentUrl', existingContentUrl)
+          ..add('product', product)
+          ..add('promptIds', promptIds))
         .toString();
   }
 }
@@ -220,6 +240,16 @@ class IntelligenceTaskCreateRequestBuilder
   set existingContentUrl(String? existingContentUrl) =>
       _$this._existingContentUrl = existingContentUrl;
 
+  IntelligenceTaskProductBuilder? _product;
+  IntelligenceTaskProductBuilder get product =>
+      _$this._product ??= IntelligenceTaskProductBuilder();
+  set product(IntelligenceTaskProductBuilder? product) =>
+      _$this._product = product;
+
+  ListBuilder<int>? _promptIds;
+  ListBuilder<int> get promptIds => _$this._promptIds ??= ListBuilder<int>();
+  set promptIds(ListBuilder<int>? promptIds) => _$this._promptIds = promptIds;
+
   IntelligenceTaskCreateRequestBuilder() {
     IntelligenceTaskCreateRequest._defaults(this);
   }
@@ -235,6 +265,8 @@ class IntelligenceTaskCreateRequestBuilder
       _outputLanguageCode = $v.outputLanguageCode;
       _existingContent = $v.existingContent;
       _existingContentUrl = $v.existingContentUrl;
+      _product = $v.product?.toBuilder();
+      _promptIds = $v.promptIds?.toBuilder();
       _$v = null;
     }
     return this;
@@ -254,19 +286,36 @@ class IntelligenceTaskCreateRequestBuilder
   IntelligenceTaskCreateRequest build() => _build();
 
   _$IntelligenceTaskCreateRequest _build() {
-    final _$result = _$v ??
-        _$IntelligenceTaskCreateRequest._(
-          projectId: BuiltValueNullFieldError.checkNotNull(
-              projectId, r'IntelligenceTaskCreateRequest', 'projectId'),
-          taskType: BuiltValueNullFieldError.checkNotNull(
-              taskType, r'IntelligenceTaskCreateRequest', 'taskType'),
-          promptId: promptId,
-          customTopic: customTopic,
-          userInstructions: userInstructions,
-          outputLanguageCode: outputLanguageCode,
-          existingContent: existingContent,
-          existingContentUrl: existingContentUrl,
-        );
+    _$IntelligenceTaskCreateRequest _$result;
+    try {
+      _$result = _$v ??
+          _$IntelligenceTaskCreateRequest._(
+            projectId: BuiltValueNullFieldError.checkNotNull(
+                projectId, r'IntelligenceTaskCreateRequest', 'projectId'),
+            taskType: BuiltValueNullFieldError.checkNotNull(
+                taskType, r'IntelligenceTaskCreateRequest', 'taskType'),
+            promptId: promptId,
+            customTopic: customTopic,
+            userInstructions: userInstructions,
+            outputLanguageCode: outputLanguageCode,
+            existingContent: existingContent,
+            existingContentUrl: existingContentUrl,
+            product: _product?.build(),
+            promptIds: _promptIds?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'product';
+        _product?.build();
+        _$failedField = 'promptIds';
+        _promptIds?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'IntelligenceTaskCreateRequest', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

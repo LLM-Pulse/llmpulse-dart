@@ -17,8 +17,15 @@ const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_SCOPE =
 const ApiErrorErrorCodeEnum
     _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_PERMISSION =
     const ApiErrorErrorCodeEnum._('ERR_INSUFFICIENT_PERMISSION');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_KEY_PROJECT_SCOPED =
+    const ApiErrorErrorCodeEnum._('ERR_KEY_PROJECT_SCOPED');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_PLAN_REQUIRED =
     const ApiErrorErrorCodeEnum._('ERR_PLAN_REQUIRED');
+const ApiErrorErrorCodeEnum
+    _$apiErrorErrorCodeEnum_ERR_INTEGRATION_UNAVAILABLE =
+    const ApiErrorErrorCodeEnum._('ERR_INTEGRATION_UNAVAILABLE');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_GENERATION_FAILED =
+    const ApiErrorErrorCodeEnum._('ERR_GENERATION_FAILED');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_ACCOUNT_INACTIVE =
     const ApiErrorErrorCodeEnum._('ERR_ACCOUNT_INACTIVE');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_DRAFT_NOT_FOUND =
@@ -67,8 +74,14 @@ ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnumValueOf(String name) {
       return _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_SCOPE;
     case 'ERR_INSUFFICIENT_PERMISSION':
       return _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_PERMISSION;
+    case 'ERR_KEY_PROJECT_SCOPED':
+      return _$apiErrorErrorCodeEnum_ERR_KEY_PROJECT_SCOPED;
     case 'ERR_PLAN_REQUIRED':
       return _$apiErrorErrorCodeEnum_ERR_PLAN_REQUIRED;
+    case 'ERR_INTEGRATION_UNAVAILABLE':
+      return _$apiErrorErrorCodeEnum_ERR_INTEGRATION_UNAVAILABLE;
+    case 'ERR_GENERATION_FAILED':
+      return _$apiErrorErrorCodeEnum_ERR_GENERATION_FAILED;
     case 'ERR_ACCOUNT_INACTIVE':
       return _$apiErrorErrorCodeEnum_ERR_ACCOUNT_INACTIVE;
     case 'ERR_DRAFT_NOT_FOUND':
@@ -111,7 +124,10 @@ final BuiltSet<ApiErrorErrorCodeEnum> _$apiErrorErrorCodeEnumValues =
   _$apiErrorErrorCodeEnum_ERR_REVOKED_API_KEY,
   _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_SCOPE,
   _$apiErrorErrorCodeEnum_ERR_INSUFFICIENT_PERMISSION,
+  _$apiErrorErrorCodeEnum_ERR_KEY_PROJECT_SCOPED,
   _$apiErrorErrorCodeEnum_ERR_PLAN_REQUIRED,
+  _$apiErrorErrorCodeEnum_ERR_INTEGRATION_UNAVAILABLE,
+  _$apiErrorErrorCodeEnum_ERR_GENERATION_FAILED,
   _$apiErrorErrorCodeEnum_ERR_ACCOUNT_INACTIVE,
   _$apiErrorErrorCodeEnum_ERR_DRAFT_NOT_FOUND,
   _$apiErrorErrorCodeEnum_ERR_DRAFT_STATE,
@@ -140,7 +156,10 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_REVOKED_API_KEY': 'ERR_REVOKED_API_KEY',
     'ERR_INSUFFICIENT_SCOPE': 'ERR_INSUFFICIENT_SCOPE',
     'ERR_INSUFFICIENT_PERMISSION': 'ERR_INSUFFICIENT_PERMISSION',
+    'ERR_KEY_PROJECT_SCOPED': 'ERR_KEY_PROJECT_SCOPED',
     'ERR_PLAN_REQUIRED': 'ERR_PLAN_REQUIRED',
+    'ERR_INTEGRATION_UNAVAILABLE': 'ERR_INTEGRATION_UNAVAILABLE',
+    'ERR_GENERATION_FAILED': 'ERR_GENERATION_FAILED',
     'ERR_ACCOUNT_INACTIVE': 'ERR_ACCOUNT_INACTIVE',
     'ERR_DRAFT_NOT_FOUND': 'ERR_DRAFT_NOT_FOUND',
     'ERR_DRAFT_STATE': 'ERR_DRAFT_STATE',
@@ -163,7 +182,10 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_REVOKED_API_KEY': 'ERR_REVOKED_API_KEY',
     'ERR_INSUFFICIENT_SCOPE': 'ERR_INSUFFICIENT_SCOPE',
     'ERR_INSUFFICIENT_PERMISSION': 'ERR_INSUFFICIENT_PERMISSION',
+    'ERR_KEY_PROJECT_SCOPED': 'ERR_KEY_PROJECT_SCOPED',
     'ERR_PLAN_REQUIRED': 'ERR_PLAN_REQUIRED',
+    'ERR_INTEGRATION_UNAVAILABLE': 'ERR_INTEGRATION_UNAVAILABLE',
+    'ERR_GENERATION_FAILED': 'ERR_GENERATION_FAILED',
     'ERR_ACCOUNT_INACTIVE': 'ERR_ACCOUNT_INACTIVE',
     'ERR_DRAFT_NOT_FOUND': 'ERR_DRAFT_NOT_FOUND',
     'ERR_DRAFT_STATE': 'ERR_DRAFT_STATE',

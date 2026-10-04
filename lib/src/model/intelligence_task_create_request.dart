@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/intelligence_task_product.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -13,22 +14,26 @@ part 'intelligence_task_create_request.g.dart';
 ///
 /// Properties:
 /// * [projectId] 
-/// * [taskType] 
-/// * [promptId] 
+/// * [taskType] - product_listing is API-only: it needs product and returns ready-to-apply product page copy
+/// * [promptId] - Not used by product_listing; send null or omit it
 /// * [customTopic] 
 /// * [userInstructions] 
 /// * [outputLanguageCode] 
 /// * [existingContent] 
 /// * [existingContentUrl] 
+/// * [product] 
+/// * [promptIds] - product_listing only: up to 20 project prompts the copy should answer
 @BuiltValue()
 abstract class IntelligenceTaskCreateRequest implements Built<IntelligenceTaskCreateRequest, IntelligenceTaskCreateRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
   int get projectId;
 
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueField(wireName: r'task_type')
   IntelligenceTaskCreateRequestTaskTypeEnum get taskType;
-  // enum taskTypeEnum {  brief,  create,  update,  pr_insights,  custom,  };
+  // enum taskTypeEnum {  brief,  create,  update,  pr_insights,  custom,  product_listing,  };
 
+  /// Not used by product_listing; send null or omit it
   @BuiltValueField(wireName: r'prompt_id')
   int? get promptId;
 
@@ -46,6 +51,13 @@ abstract class IntelligenceTaskCreateRequest implements Built<IntelligenceTaskCr
 
   @BuiltValueField(wireName: r'existing_content_url')
   String? get existingContentUrl;
+
+  @BuiltValueField(wireName: r'product')
+  IntelligenceTaskProduct? get product;
+
+  /// product_listing only: up to 20 project prompts the copy should answer
+  @BuiltValueField(wireName: r'prompt_ids')
+  BuiltList<int>? get promptIds;
 
   IntelligenceTaskCreateRequest._();
 
@@ -84,7 +96,7 @@ class _$IntelligenceTaskCreateRequestSerializer implements PrimitiveSerializer<I
       yield r'prompt_id';
       yield serializers.serialize(
         object.promptId,
-        specifiedType: const FullType(int),
+        specifiedType: const FullType.nullable(int),
       );
     }
     if (object.customTopic != null) {
@@ -120,6 +132,20 @@ class _$IntelligenceTaskCreateRequestSerializer implements PrimitiveSerializer<I
       yield serializers.serialize(
         object.existingContentUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.product != null) {
+      yield r'product';
+      yield serializers.serialize(
+        object.product,
+        specifiedType: const FullType(IntelligenceTaskProduct),
+      );
+    }
+    if (object.promptIds != null) {
+      yield r'prompt_ids';
+      yield serializers.serialize(
+        object.promptIds,
+        specifiedType: const FullType(BuiltList, [FullType(int)]),
       );
     }
   }
@@ -207,6 +233,22 @@ class _$IntelligenceTaskCreateRequestSerializer implements PrimitiveSerializer<I
           if (valueDes == null) continue;
           result.existingContentUrl = valueDes;
           break;
+        case r'product':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(IntelligenceTaskProduct),
+          ) as IntelligenceTaskProduct?;
+          if (valueDes == null) continue;
+          result.product.replace(valueDes);
+          break;
+        case r'prompt_ids':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
+          ) as BuiltList<int>?;
+          if (valueDes == null) continue;
+          result.promptIds.replace(valueDes);
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -238,16 +280,24 @@ class _$IntelligenceTaskCreateRequestSerializer implements PrimitiveSerializer<I
 
 class IntelligenceTaskCreateRequestTaskTypeEnum extends EnumClass {
 
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueEnumConst(wireName: r'brief')
   static const IntelligenceTaskCreateRequestTaskTypeEnum brief = _$intelligenceTaskCreateRequestTaskTypeEnum_brief;
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueEnumConst(wireName: r'create')
   static const IntelligenceTaskCreateRequestTaskTypeEnum create = _$intelligenceTaskCreateRequestTaskTypeEnum_create;
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueEnumConst(wireName: r'update')
   static const IntelligenceTaskCreateRequestTaskTypeEnum update = _$intelligenceTaskCreateRequestTaskTypeEnum_update;
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueEnumConst(wireName: r'pr_insights')
   static const IntelligenceTaskCreateRequestTaskTypeEnum prInsights = _$intelligenceTaskCreateRequestTaskTypeEnum_prInsights;
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
   @BuiltValueEnumConst(wireName: r'custom')
   static const IntelligenceTaskCreateRequestTaskTypeEnum custom = _$intelligenceTaskCreateRequestTaskTypeEnum_custom;
+  /// product_listing is API-only: it needs product and returns ready-to-apply product page copy
+  @BuiltValueEnumConst(wireName: r'product_listing')
+  static const IntelligenceTaskCreateRequestTaskTypeEnum productListing = _$intelligenceTaskCreateRequestTaskTypeEnum_productListing;
 
   static Serializer<IntelligenceTaskCreateRequestTaskTypeEnum> get serializer => _$intelligenceTaskCreateRequestTaskTypeEnumSerializer;
 

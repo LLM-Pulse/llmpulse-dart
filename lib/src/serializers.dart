@@ -20,11 +20,29 @@ import 'package:llmpulse/src/model/actor.dart';
 import 'package:llmpulse/src/model/agent_bot.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
 import 'package:llmpulse/src/model/agent_traffic_response.dart';
+import 'package:llmpulse/src/model/ai_orders_response.dart';
+import 'package:llmpulse/src/model/ai_orders_response_by_source_inner.dart';
+import 'package:llmpulse/src/model/ai_orders_response_series_inner.dart';
+import 'package:llmpulse/src/model/ai_orders_response_totals.dart';
+import 'package:llmpulse/src/model/ai_orders_update_request.dart';
+import 'package:llmpulse/src/model/ai_orders_update_request_days_inner.dart';
+import 'package:llmpulse/src/model/ai_orders_update_response.dart';
 import 'package:llmpulse/src/model/answer_details.dart';
 import 'package:llmpulse/src/model/answer_details_locale.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/api_error_error.dart';
 import 'package:llmpulse/src/model/assign_prompt_tags_request.dart';
+import 'package:llmpulse/src/model/catalog_product.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestion.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestion_ids_request.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestion_product.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_accept_response.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_accept_response_accepted_inner.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_accept_response_skipped_inner.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_create_request.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_create_response.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_reject_response.dart';
+import 'package:llmpulse/src/model/catalog_prompt_suggestions_response.dart';
 import 'package:llmpulse/src/model/competitor.dart';
 import 'package:llmpulse/src/model/competitor_details.dart';
 import 'package:llmpulse/src/model/create_annotation_request.dart';
@@ -42,6 +60,8 @@ import 'package:llmpulse/src/model/get_account200_response_rate_limits.dart';
 import 'package:llmpulse/src/model/get_account200_response_subscription.dart';
 import 'package:llmpulse/src/model/intelligence_task.dart';
 import 'package:llmpulse/src/model/intelligence_task_create_request.dart';
+import 'package:llmpulse/src/model/intelligence_task_product.dart';
+import 'package:llmpulse/src/model/intelligence_task_product_images_inner.dart';
 import 'package:llmpulse/src/model/intelligence_task_update_request.dart';
 import 'package:llmpulse/src/model/intelligence_task_update_response.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
@@ -83,6 +103,10 @@ import 'package:llmpulse/src/model/sov_response_current_inner.dart';
 import 'package:llmpulse/src/model/sov_response_over_time_inner.dart';
 import 'package:llmpulse/src/model/sov_response_periods_inner.dart';
 import 'package:llmpulse/src/model/sov_response_sample.dart';
+import 'package:llmpulse/src/model/store_connection_response.dart';
+import 'package:llmpulse/src/model/store_connection_response_account.dart';
+import 'package:llmpulse/src/model/store_connection_response_candidates_inner.dart';
+import 'package:llmpulse/src/model/store_connection_response_project.dart';
 import 'package:llmpulse/src/model/summary_response.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
@@ -110,11 +134,29 @@ part 'serializers.g.dart';
   AgentBot,
   AgentBotsResponse,
   AgentTrafficResponse,
+  AiOrdersResponse,
+  AiOrdersResponseBySourceInner,
+  AiOrdersResponseSeriesInner,
+  AiOrdersResponseTotals,
+  AiOrdersUpdateRequest,
+  AiOrdersUpdateRequestDaysInner,
+  AiOrdersUpdateResponse,
   AnswerDetails,
   AnswerDetailsLocale,
   ApiError,
   ApiErrorError,
   AssignPromptTagsRequest,
+  CatalogProduct,
+  CatalogPromptSuggestion,
+  CatalogPromptSuggestionIdsRequest,
+  CatalogPromptSuggestionProduct,
+  CatalogPromptSuggestionsAcceptResponse,
+  CatalogPromptSuggestionsAcceptResponseAcceptedInner,
+  CatalogPromptSuggestionsAcceptResponseSkippedInner,
+  CatalogPromptSuggestionsCreateRequest,
+  CatalogPromptSuggestionsCreateResponse,
+  CatalogPromptSuggestionsRejectResponse,
+  CatalogPromptSuggestionsResponse,
   Competitor,
   CompetitorDetails,
   CreateAnnotationRequest,
@@ -132,6 +174,8 @@ part 'serializers.g.dart';
   GetAccount200ResponseSubscription,
   IntelligenceTask,$IntelligenceTask,
   IntelligenceTaskCreateRequest,
+  IntelligenceTaskProduct,
+  IntelligenceTaskProductImagesInner,
   IntelligenceTaskUpdateRequest,
   IntelligenceTaskUpdateResponse,
   LaunchRecommendationsRequest,
@@ -173,6 +217,10 @@ part 'serializers.g.dart';
   SovResponseOverTimeInner,
   SovResponsePeriodsInner,
   SovResponseSample,
+  StoreConnectionResponse,
+  StoreConnectionResponseAccount,
+  StoreConnectionResponseCandidatesInner,
+  StoreConnectionResponseProject,
   SummaryResponse,
   SummaryResponseAllOfPositionDistribution,
   SummaryResponseAllOfSummaryValueInner,
@@ -209,12 +257,24 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<PromptSummaryRow>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(IntelligenceTaskProductImagesInner)]),
+        () => ListBuilder<IntelligenceTaskProductImagesInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
         () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(LocalBusiness)]),
         () => ListBuilder<LocalBusiness>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(StoreConnectionResponseCandidatesInner)]),
+        () => ListBuilder<StoreConnectionResponseCandidatesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOrdersResponseSeriesInner)]),
+        () => ListBuilder<AiOrdersResponseSeriesInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
@@ -231,6 +291,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AgentBot)]),
         () => ListBuilder<AgentBot>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogProduct)]),
+        () => ListBuilder<CatalogProduct>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOrdersUpdateRequestDaysInner)]),
+        () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Project)]),
@@ -251,6 +319,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
         () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOrdersResponseBySourceInner)]),
+        () => ListBuilder<AiOrdersResponseBySourceInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TopSourcesResponseDataInner)]),
@@ -277,6 +349,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Competitor>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseAcceptedInner)]),
+        () => ListBuilder<CatalogPromptSuggestionsAcceptResponseAcceptedInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
         () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
       )
@@ -301,8 +377,16 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogPromptSuggestion)]),
+        () => ListBuilder<CatalogPromptSuggestion>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseSkippedInner)]),
+        () => ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>(),
       )
       ..add(IntelligenceTask.serializer)
       ..add(LlmsTxtTechnicalGeoReport.serializer)
