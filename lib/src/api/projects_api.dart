@@ -13,6 +13,8 @@ import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/create_project_draft_request.dart';
 import 'package:llmpulse/src/model/finalize_project_draft_request.dart';
 import 'package:llmpulse/src/model/list_projects200_response.dart';
+import 'package:llmpulse/src/model/locales_response.dart';
+import 'package:llmpulse/src/model/models_response.dart';
 import 'package:llmpulse/src/model/project_create_request.dart';
 import 'package:llmpulse/src/model/project_create_response.dart';
 import 'package:llmpulse/src/model/project_details.dart';
@@ -429,9 +431,9 @@ class ProjectsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [LocalesResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listLocales({ 
+  Future<Response<LocalesResponse>> listLocales({ 
     required int projectId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -472,7 +474,35 @@ class ProjectsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    LocalesResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LocalesResponse),
+      ) as LocalesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<LocalesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List models with data
@@ -487,9 +517,9 @@ class ProjectsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ModelsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listModels({ 
+  Future<Response<ModelsResponse>> listModels({ 
     required int projectId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -530,7 +560,35 @@ class ProjectsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ModelsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ModelsResponse),
+      ) as ModelsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ModelsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List projects

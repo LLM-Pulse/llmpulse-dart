@@ -23,6 +23,7 @@ part 'answer_details.g.dart';
 /// * [executedAt] 
 /// * [durationMs] - Milliseconds, rounded to one decimal place
 /// * [success] - Null while the answer is still pending
+/// * [noResult] - True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics
 /// * [fanOutQueries] 
 /// * [mentions] 
 /// * [citations] 
@@ -35,6 +36,7 @@ part 'answer_details.g.dart';
 /// * [localBusinesses] 
 /// * [locale] 
 /// * [appUrl] - Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
+/// * [requestId] 
 @BuiltValue()
 abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -65,6 +67,10 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   /// Null while the answer is still pending
   @BuiltValueField(wireName: r'success')
   bool? get success;
+
+  /// True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics
+  @BuiltValueField(wireName: r'no_result')
+  bool? get noResult;
 
   @BuiltValueField(wireName: r'fan_out_queries')
   BuiltList<String>? get fanOutQueries;
@@ -102,6 +108,9 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   /// Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
   @BuiltValueField(wireName: r'app_url')
   String? get appUrl;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   AnswerDetails._();
 
@@ -189,6 +198,13 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
         specifiedType: const FullType.nullable(bool),
       );
     }
+    if (object.noResult != null) {
+      yield r'no_result';
+      yield serializers.serialize(
+        object.noResult,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.fanOutQueries != null) {
       yield r'fan_out_queries';
       yield serializers.serialize(
@@ -270,6 +286,13 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
       yield r'app_url';
       yield serializers.serialize(
         object.appUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
         specifiedType: const FullType(String),
       );
     }
@@ -368,6 +391,14 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
           if (valueDes == null) continue;
           result.success = valueDes;
           break;
+        case r'no_result':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.noResult = valueDes;
+          break;
         case r'fan_out_queries':
           final valueDes = serializers.deserialize(
             value,
@@ -463,6 +494,14 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
           ) as String?;
           if (valueDes == null) continue;
           result.appUrl = valueDes;
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         default:
           unhandled.add(key);

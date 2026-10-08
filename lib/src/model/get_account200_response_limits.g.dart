@@ -17,6 +17,10 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
   final AccountQuota? intelligenceTasks;
   @override
   final AccountCapacity? teamMembers;
+  @override
+  final AccountQuota? recurringGeoAudits;
+  @override
+  final AccountQuota? geoAuditManualRuns;
 
   factory _$GetAccount200ResponseLimits(
           [void Function(GetAccount200ResponseLimitsBuilder)? updates]) =>
@@ -27,7 +31,9 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
       this.projects,
       this.competitorsPerProject,
       this.intelligenceTasks,
-      this.teamMembers})
+      this.teamMembers,
+      this.recurringGeoAudits,
+      this.geoAuditManualRuns})
       : super._();
   @override
   GetAccount200ResponseLimits rebuild(
@@ -46,7 +52,9 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
         projects == other.projects &&
         competitorsPerProject == other.competitorsPerProject &&
         intelligenceTasks == other.intelligenceTasks &&
-        teamMembers == other.teamMembers;
+        teamMembers == other.teamMembers &&
+        recurringGeoAudits == other.recurringGeoAudits &&
+        geoAuditManualRuns == other.geoAuditManualRuns;
   }
 
   @override
@@ -57,6 +65,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
     _$hash = $jc(_$hash, competitorsPerProject.hashCode);
     _$hash = $jc(_$hash, intelligenceTasks.hashCode);
     _$hash = $jc(_$hash, teamMembers.hashCode);
+    _$hash = $jc(_$hash, recurringGeoAudits.hashCode);
+    _$hash = $jc(_$hash, geoAuditManualRuns.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -68,7 +78,9 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
           ..add('projects', projects)
           ..add('competitorsPerProject', competitorsPerProject)
           ..add('intelligenceTasks', intelligenceTasks)
-          ..add('teamMembers', teamMembers))
+          ..add('teamMembers', teamMembers)
+          ..add('recurringGeoAudits', recurringGeoAudits)
+          ..add('geoAuditManualRuns', geoAuditManualRuns))
         .toString();
   }
 }
@@ -106,6 +118,18 @@ class GetAccount200ResponseLimitsBuilder
   set teamMembers(AccountCapacityBuilder? teamMembers) =>
       _$this._teamMembers = teamMembers;
 
+  AccountQuotaBuilder? _recurringGeoAudits;
+  AccountQuotaBuilder get recurringGeoAudits =>
+      _$this._recurringGeoAudits ??= AccountQuotaBuilder();
+  set recurringGeoAudits(AccountQuotaBuilder? recurringGeoAudits) =>
+      _$this._recurringGeoAudits = recurringGeoAudits;
+
+  AccountQuotaBuilder? _geoAuditManualRuns;
+  AccountQuotaBuilder get geoAuditManualRuns =>
+      _$this._geoAuditManualRuns ??= AccountQuotaBuilder();
+  set geoAuditManualRuns(AccountQuotaBuilder? geoAuditManualRuns) =>
+      _$this._geoAuditManualRuns = geoAuditManualRuns;
+
   GetAccount200ResponseLimitsBuilder() {
     GetAccount200ResponseLimits._defaults(this);
   }
@@ -118,6 +142,8 @@ class GetAccount200ResponseLimitsBuilder
       _competitorsPerProject = $v.competitorsPerProject?.toBuilder();
       _intelligenceTasks = $v.intelligenceTasks?.toBuilder();
       _teamMembers = $v.teamMembers?.toBuilder();
+      _recurringGeoAudits = $v.recurringGeoAudits?.toBuilder();
+      _geoAuditManualRuns = $v.geoAuditManualRuns?.toBuilder();
       _$v = null;
     }
     return this;
@@ -146,6 +172,8 @@ class GetAccount200ResponseLimitsBuilder
             competitorsPerProject: _competitorsPerProject?.build(),
             intelligenceTasks: _intelligenceTasks?.build(),
             teamMembers: _teamMembers?.build(),
+            recurringGeoAudits: _recurringGeoAudits?.build(),
+            geoAuditManualRuns: _geoAuditManualRuns?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -160,6 +188,10 @@ class GetAccount200ResponseLimitsBuilder
         _intelligenceTasks?.build();
         _$failedField = 'teamMembers';
         _teamMembers?.build();
+        _$failedField = 'recurringGeoAudits';
+        _recurringGeoAudits?.build();
+        _$failedField = 'geoAuditManualRuns';
+        _geoAuditManualRuns?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'GetAccount200ResponseLimits', _$failedField, e.toString());

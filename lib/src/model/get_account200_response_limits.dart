@@ -18,6 +18,8 @@ part 'get_account200_response_limits.g.dart';
 /// * [competitorsPerProject] 
 /// * [intelligenceTasks] 
 /// * [teamMembers] 
+/// * [recurringGeoAudits] 
+/// * [geoAuditManualRuns] 
 @BuiltValue()
 abstract class GetAccount200ResponseLimits implements Built<GetAccount200ResponseLimits, GetAccount200ResponseLimitsBuilder> {
   @BuiltValueField(wireName: r'prompts')
@@ -34,6 +36,12 @@ abstract class GetAccount200ResponseLimits implements Built<GetAccount200Respons
 
   @BuiltValueField(wireName: r'team_members')
   AccountCapacity? get teamMembers;
+
+  @BuiltValueField(wireName: r'recurring_geo_audits')
+  AccountQuota? get recurringGeoAudits;
+
+  @BuiltValueField(wireName: r'geo_audit_manual_runs')
+  AccountQuota? get geoAuditManualRuns;
 
   GetAccount200ResponseLimits._();
 
@@ -91,6 +99,20 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
       yield serializers.serialize(
         object.teamMembers,
         specifiedType: const FullType(AccountCapacity),
+      );
+    }
+    if (object.recurringGeoAudits != null) {
+      yield r'recurring_geo_audits';
+      yield serializers.serialize(
+        object.recurringGeoAudits,
+        specifiedType: const FullType(AccountQuota),
+      );
+    }
+    if (object.geoAuditManualRuns != null) {
+      yield r'geo_audit_manual_runs';
+      yield serializers.serialize(
+        object.geoAuditManualRuns,
+        specifiedType: const FullType(AccountQuota),
       );
     }
   }
@@ -155,6 +177,22 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
           ) as AccountCapacity?;
           if (valueDes == null) continue;
           result.teamMembers.replace(valueDes);
+          break;
+        case r'recurring_geo_audits':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AccountQuota),
+          ) as AccountQuota?;
+          if (valueDes == null) continue;
+          result.recurringGeoAudits.replace(valueDes);
+          break;
+        case r'geo_audit_manual_runs':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AccountQuota),
+          ) as AccountQuota?;
+          if (valueDes == null) continue;
+          result.geoAuditManualRuns.replace(valueDes);
           break;
         default:
           unhandled.add(key);

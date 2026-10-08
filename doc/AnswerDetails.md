@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **executedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **durationMs** | **num** | Milliseconds, rounded to one decimal place | [optional] 
 **success** | **bool** | Null while the answer is still pending | [optional] 
+**noResult** | **bool** | True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics | [optional] 
 **fanOutQueries** | **BuiltList&lt;String&gt;** |  | [optional] 
 **mentions** | [**BuiltList&lt;JsonObject&gt;**](JsonObject.md) |  | [optional] 
 **citations** | [**BuiltList&lt;JsonObject&gt;**](JsonObject.md) |  | [optional] 
@@ -29,6 +30,7 @@ Name | Type | Description | Notes
 **localBusinesses** | [**BuiltList&lt;JsonObject&gt;**](JsonObject.md) |  | [optional] 
 **locale** | [**AnswerDetailsLocale**](AnswerDetailsLocale.md) |  | [optional] 
 **appUrl** | **String** | Opens this answer in the app. The link names its project, so it opens there for any user with access to that project | [optional] 
+**requestId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

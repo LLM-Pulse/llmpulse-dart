@@ -10,8 +10,10 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
+import 'package:llmpulse/src/model/prompt_executions_response.dart';
 import 'package:llmpulse/src/model/prompts_create_request.dart';
 import 'package:llmpulse/src/model/prompts_create_response.dart';
+import 'package:llmpulse/src/model/prompts_response.dart';
 
 class PromptsApi {
 
@@ -207,9 +209,9 @@ class PromptsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PromptExecutionsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listPromptExecutions({ 
+  Future<Response<PromptExecutionsResponse>> listPromptExecutions({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -276,7 +278,35 @@ class PromptsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PromptExecutionsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PromptExecutionsResponse),
+      ) as PromptExecutionsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PromptExecutionsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List prompts
@@ -302,9 +332,9 @@ class PromptsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PromptsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listPrompts({ 
+  Future<Response<PromptsResponse>> listPrompts({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -367,7 +397,35 @@ class PromptsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PromptsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PromptsResponse),
+      ) as PromptsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PromptsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List query fan-out

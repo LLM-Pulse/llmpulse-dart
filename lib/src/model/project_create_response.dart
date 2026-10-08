@@ -19,6 +19,7 @@ part 'project_create_response.g.dart';
 /// ProjectCreateResponse
 ///
 /// Properties:
+/// * [draftId] - The finalized draft; only present on POST /project_drafts/{id}/finalize
 /// * [project] - Same shape as GET /dimensions/projects/{id}
 /// * [prompts] 
 /// * [competitors] 
@@ -30,6 +31,10 @@ part 'project_create_response.g.dart';
 /// * [requestId] 
 @BuiltValue()
 abstract class ProjectCreateResponse implements Built<ProjectCreateResponse, ProjectCreateResponseBuilder> {
+  /// The finalized draft; only present on POST /project_drafts/{id}/finalize
+  @BuiltValueField(wireName: r'draft_id')
+  String? get draftId;
+
   /// Same shape as GET /dimensions/projects/{id}
   @BuiltValueField(wireName: r'project')
   JsonObject? get project;
@@ -84,6 +89,13 @@ class _$ProjectCreateResponseSerializer implements PrimitiveSerializer<ProjectCr
     ProjectCreateResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.draftId != null) {
+      yield r'draft_id';
+      yield serializers.serialize(
+        object.draftId,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.project != null) {
       yield r'project';
       yield serializers.serialize(
@@ -170,6 +182,14 @@ class _$ProjectCreateResponseSerializer implements PrimitiveSerializer<ProjectCr
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'draft_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.draftId = valueDes;
+          break;
         case r'project':
           final valueDes = serializers.deserialize(
             value,

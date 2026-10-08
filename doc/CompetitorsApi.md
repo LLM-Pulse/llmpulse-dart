@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **createCompetitor**
-> createCompetitor(createCompetitorRequest)
+> CompetitorCreateResponse createCompetitor(createCompetitorRequest)
 
 Add a competitor
 
@@ -31,7 +31,8 @@ final api = Llmpulse().getCompetitorsApi();
 final CreateCompetitorRequest createCompetitorRequest = ; // CreateCompetitorRequest | 
 
 try {
-    api.createCompetitor(createCompetitorRequest);
+    final response = api.createCompetitor(createCompetitorRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CompetitorsApi->createCompetitor: $e\n');
 }
@@ -45,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CompetitorCreateResponse**](CompetitorCreateResponse.md)
 
 ### Authorization
 

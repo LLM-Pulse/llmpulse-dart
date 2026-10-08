@@ -5,11 +5,12 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/sov_response_periods_inner.dart';
+import 'package:llmpulse/src/model/metrics_filters_echo.dart';
+import 'package:llmpulse/src/model/sov_response_others_inner.dart';
 import 'package:llmpulse/src/model/sov_response_current_inner.dart';
 import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/sov_response_over_time_inner.dart';
 import 'package:llmpulse/src/model/sov_response_sample.dart';
-import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,16 +20,34 @@ part 'sov_response.g.dart';
 ///
 /// Properties:
 /// * [projectId] 
+/// * [from] 
+/// * [to] 
+/// * [granularity] - day, week or month
+/// * [filters] 
 /// * [periods] - Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window; confidence and margin_of_error read the sample size.
 /// * [sample] 
 /// * [overTime] 
 /// * [current] 
 /// * [breakdown] 
-/// * [others] 
+/// * [others] - Actors ranked fifth and below, folded into the Others share of breakdown
+/// * [requestId] 
 @BuiltValue()
 abstract class SovResponse implements Built<SovResponse, SovResponseBuilder> {
   @BuiltValueField(wireName: r'project_id')
   int? get projectId;
+
+  @BuiltValueField(wireName: r'from')
+  DateTime? get from;
+
+  @BuiltValueField(wireName: r'to')
+  DateTime? get to;
+
+  /// day, week or month
+  @BuiltValueField(wireName: r'granularity')
+  String? get granularity;
+
+  @BuiltValueField(wireName: r'filters')
+  MetricsFiltersEcho? get filters;
 
   /// Per-bucket sample size and completeness: mentions is the total the shares were computed on (1-3 mentions produce the 100/50/33.33 low-sample patterns); partial marks buckets still collecting data or clipped by the requested window; confidence and margin_of_error read the sample size.
   @BuiltValueField(wireName: r'periods')
@@ -46,8 +65,12 @@ abstract class SovResponse implements Built<SovResponse, SovResponseBuilder> {
   @BuiltValueField(wireName: r'breakdown')
   BuiltList<SovResponseBreakdownInner>? get breakdown;
 
+  /// Actors ranked fifth and below, folded into the Others share of breakdown
   @BuiltValueField(wireName: r'others')
-  BuiltList<JsonObject>? get others;
+  BuiltList<SovResponseOthersInner>? get others;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   SovResponse._();
 
@@ -77,6 +100,34 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
       yield serializers.serialize(
         object.projectId,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.from != null) {
+      yield r'from';
+      yield serializers.serialize(
+        object.from,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.to != null) {
+      yield r'to';
+      yield serializers.serialize(
+        object.to,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.granularity != null) {
+      yield r'granularity';
+      yield serializers.serialize(
+        object.granularity,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.filters != null) {
+      yield r'filters';
+      yield serializers.serialize(
+        object.filters,
+        specifiedType: const FullType(MetricsFiltersEcho),
       );
     }
     if (object.periods != null) {
@@ -118,7 +169,14 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
       yield r'others';
       yield serializers.serialize(
         object.others,
-        specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
+        specifiedType: const FullType(BuiltList, [FullType(SovResponseOthersInner)]),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -151,6 +209,38 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
           ) as int?;
           if (valueDes == null) continue;
           result.projectId = valueDes;
+          break;
+        case r'from':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.from = valueDes;
+          break;
+        case r'to':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.to = valueDes;
+          break;
+        case r'granularity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.granularity = valueDes;
+          break;
+        case r'filters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(MetricsFiltersEcho),
+          ) as MetricsFiltersEcho?;
+          if (valueDes == null) continue;
+          result.filters.replace(valueDes);
           break;
         case r'periods':
           final valueDes = serializers.deserialize(
@@ -195,10 +285,18 @@ class _$SovResponseSerializer implements PrimitiveSerializer<SovResponse> {
         case r'others':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>?;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(SovResponseOthersInner)]),
+          ) as BuiltList<SovResponseOthersInner>?;
           if (valueDes == null) continue;
           result.others.replace(valueDes);
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         default:
           unhandled.add(key);

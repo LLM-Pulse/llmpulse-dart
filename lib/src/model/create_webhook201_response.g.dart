@@ -36,6 +36,13 @@ const CreateWebhook201ResponseEventTypeEnum
     _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated =
     const CreateWebhook201ResponseEventTypeEnum._(
         'intelligenceTaskPeriodUpdated');
+const CreateWebhook201ResponseEventTypeEnum
+    _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted =
+    const CreateWebhook201ResponseEventTypeEnum._('geoAuditRunPeriodCompleted');
+const CreateWebhook201ResponseEventTypeEnum
+    _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered =
+    const CreateWebhook201ResponseEventTypeEnum._(
+        'geoAuditAlertPeriodTriggered');
 
 CreateWebhook201ResponseEventTypeEnum
     _$createWebhook201ResponseEventTypeEnumValueOf(String name) {
@@ -56,6 +63,10 @@ CreateWebhook201ResponseEventTypeEnum
       return _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodCompleted;
     case 'intelligenceTaskPeriodUpdated':
       return _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated;
+    case 'geoAuditRunPeriodCompleted':
+      return _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted;
+    case 'geoAuditAlertPeriodTriggered':
+      return _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered;
     default:
       throw ArgumentError(name);
   }
@@ -72,6 +83,8 @@ final BuiltSet<CreateWebhook201ResponseEventTypeEnum>
   _$createWebhook201ResponseEventTypeEnum_recommendationPeriodCompleted,
   _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodCompleted,
   _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated,
+  _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted,
+  _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered,
 ]);
 
 Serializer<CreateWebhook201ResponseEventTypeEnum>
@@ -89,6 +102,8 @@ class _$CreateWebhook201ResponseEventTypeEnumSerializer
     'recommendationPeriodCompleted': 'recommendation.completed',
     'intelligenceTaskPeriodCompleted': 'intelligence_task.completed',
     'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
+    'geoAuditRunPeriodCompleted': 'geo_audit_run.completed',
+    'geoAuditAlertPeriodTriggered': 'geo_audit_alert.triggered',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -99,6 +114,8 @@ class _$CreateWebhook201ResponseEventTypeEnumSerializer
     'recommendation.completed': 'recommendationPeriodCompleted',
     'intelligence_task.completed': 'intelligenceTaskPeriodCompleted',
     'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
+    'geo_audit_run.completed': 'geoAuditRunPeriodCompleted',
+    'geo_audit_alert.triggered': 'geoAuditAlertPeriodTriggered',
   };
 
   @override
@@ -141,6 +158,8 @@ class _$CreateWebhook201Response extends CreateWebhook201Response {
   final DateTime? createdAt;
   @override
   final String? secret;
+  @override
+  final String? requestId;
 
   factory _$CreateWebhook201Response(
           [void Function(CreateWebhook201ResponseBuilder)? updates]) =>
@@ -155,7 +174,8 @@ class _$CreateWebhook201Response extends CreateWebhook201Response {
       this.failureCount,
       this.lastDeliveredAt,
       this.createdAt,
-      this.secret})
+      this.secret,
+      this.requestId})
       : super._();
   @override
   CreateWebhook201Response rebuild(
@@ -178,7 +198,8 @@ class _$CreateWebhook201Response extends CreateWebhook201Response {
         failureCount == other.failureCount &&
         lastDeliveredAt == other.lastDeliveredAt &&
         createdAt == other.createdAt &&
-        secret == other.secret;
+        secret == other.secret &&
+        requestId == other.requestId;
   }
 
   @override
@@ -193,6 +214,7 @@ class _$CreateWebhook201Response extends CreateWebhook201Response {
     _$hash = $jc(_$hash, lastDeliveredAt.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, secret.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -208,7 +230,8 @@ class _$CreateWebhook201Response extends CreateWebhook201Response {
           ..add('failureCount', failureCount)
           ..add('lastDeliveredAt', lastDeliveredAt)
           ..add('createdAt', createdAt)
-          ..add('secret', secret))
+          ..add('secret', secret)
+          ..add('requestId', requestId))
         .toString();
   }
 }
@@ -256,6 +279,10 @@ class CreateWebhook201ResponseBuilder
   String? get secret => _$this._secret;
   set secret(String? secret) => _$this._secret = secret;
 
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
   CreateWebhook201ResponseBuilder() {
     CreateWebhook201Response._defaults(this);
   }
@@ -272,6 +299,7 @@ class CreateWebhook201ResponseBuilder
       _lastDeliveredAt = $v.lastDeliveredAt;
       _createdAt = $v.createdAt;
       _secret = $v.secret;
+      _requestId = $v.requestId;
       _$v = null;
     }
     return this;
@@ -302,6 +330,7 @@ class CreateWebhook201ResponseBuilder
           lastDeliveredAt: lastDeliveredAt,
           createdAt: createdAt,
           secret: secret,
+          requestId: requestId,
         );
     replace(_$result);
     return _$result;

@@ -15,6 +15,7 @@ part 'list_competitors200_response.g.dart';
 /// Properties:
 /// * [projectId] 
 /// * [competitors] 
+/// * [requestId] 
 @BuiltValue()
 abstract class ListCompetitors200Response implements Built<ListCompetitors200Response, ListCompetitors200ResponseBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -22,6 +23,9 @@ abstract class ListCompetitors200Response implements Built<ListCompetitors200Res
 
   @BuiltValueField(wireName: r'competitors')
   BuiltList<Competitor>? get competitors;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   ListCompetitors200Response._();
 
@@ -58,6 +62,13 @@ class _$ListCompetitors200ResponseSerializer implements PrimitiveSerializer<List
       yield serializers.serialize(
         object.competitors,
         specifiedType: const FullType(BuiltList, [FullType(Competitor)]),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -98,6 +109,14 @@ class _$ListCompetitors200ResponseSerializer implements PrimitiveSerializer<List
           ) as BuiltList<Competitor>?;
           if (valueDes == null) continue;
           result.competitors.replace(valueDes);
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         default:
           unhandled.add(key);

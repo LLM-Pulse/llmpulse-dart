@@ -4,8 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/metrics_filters_echo.dart';
 import 'package:llmpulse/src/model/timeseries_series.dart';
-import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,7 +17,7 @@ part 'timeseries_response.g.dart';
 /// * [projectId] 
 /// * [from] 
 /// * [to] 
-/// * [granularity] 
+/// * [granularity] - day, week or month
 /// * [filters] 
 /// * [series] 
 /// * [requestId] 
@@ -32,11 +32,12 @@ abstract class TimeseriesResponse  {
   @BuiltValueField(wireName: r'to')
   DateTime? get to;
 
+  /// day, week or month
   @BuiltValueField(wireName: r'granularity')
   String? get granularity;
 
   @BuiltValueField(wireName: r'filters')
-  JsonObject? get filters;
+  MetricsFiltersEcho? get filters;
 
   @BuiltValueField(wireName: r'series')
   BuiltMap<String, BuiltList<TimeseriesSeries>>? get series;
@@ -92,7 +93,7 @@ class _$TimeseriesResponseSerializer implements PrimitiveSerializer<TimeseriesRe
       yield r'filters';
       yield serializers.serialize(
         object.filters,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType(MetricsFiltersEcho),
       );
     }
     if (object.series != null) {
@@ -207,10 +208,10 @@ class _$$TimeseriesResponseSerializer implements PrimitiveSerializer<$Timeseries
         case r'filters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
+            specifiedType: const FullType.nullable(MetricsFiltersEcho),
+          ) as MetricsFiltersEcho?;
           if (valueDes == null) continue;
-          result.filters = valueDes;
+          result.filters.replace(valueDes);
           break;
         case r'series':
           final valueDes = serializers.deserialize(

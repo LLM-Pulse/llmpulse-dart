@@ -14,6 +14,8 @@ class _$TopSourcesResponse extends TopSourcesResponse {
   @override
   final DateTime? to;
   @override
+  final MetricsFiltersEcho? filters;
+  @override
   final String? sort;
   @override
   final int? page;
@@ -23,6 +25,8 @@ class _$TopSourcesResponse extends TopSourcesResponse {
   final int? total;
   @override
   final BuiltList<TopSourcesResponseDataInner>? data;
+  @override
+  final String? requestId;
 
   factory _$TopSourcesResponse(
           [void Function(TopSourcesResponseBuilder)? updates]) =>
@@ -32,11 +36,13 @@ class _$TopSourcesResponse extends TopSourcesResponse {
       {this.projectId,
       this.from,
       this.to,
+      this.filters,
       this.sort,
       this.page,
       this.perPage,
       this.total,
-      this.data})
+      this.data,
+      this.requestId})
       : super._();
   @override
   TopSourcesResponse rebuild(
@@ -54,11 +60,13 @@ class _$TopSourcesResponse extends TopSourcesResponse {
         projectId == other.projectId &&
         from == other.from &&
         to == other.to &&
+        filters == other.filters &&
         sort == other.sort &&
         page == other.page &&
         perPage == other.perPage &&
         total == other.total &&
-        data == other.data;
+        data == other.data &&
+        requestId == other.requestId;
   }
 
   @override
@@ -67,11 +75,13 @@ class _$TopSourcesResponse extends TopSourcesResponse {
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, from.hashCode);
     _$hash = $jc(_$hash, to.hashCode);
+    _$hash = $jc(_$hash, filters.hashCode);
     _$hash = $jc(_$hash, sort.hashCode);
     _$hash = $jc(_$hash, page.hashCode);
     _$hash = $jc(_$hash, perPage.hashCode);
     _$hash = $jc(_$hash, total.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -82,11 +92,13 @@ class _$TopSourcesResponse extends TopSourcesResponse {
           ..add('projectId', projectId)
           ..add('from', from)
           ..add('to', to)
+          ..add('filters', filters)
           ..add('sort', sort)
           ..add('page', page)
           ..add('perPage', perPage)
           ..add('total', total)
-          ..add('data', data))
+          ..add('data', data)
+          ..add('requestId', requestId))
         .toString();
   }
 }
@@ -106,6 +118,11 @@ class TopSourcesResponseBuilder
   DateTime? _to;
   DateTime? get to => _$this._to;
   set to(DateTime? to) => _$this._to = to;
+
+  MetricsFiltersEchoBuilder? _filters;
+  MetricsFiltersEchoBuilder get filters =>
+      _$this._filters ??= MetricsFiltersEchoBuilder();
+  set filters(MetricsFiltersEchoBuilder? filters) => _$this._filters = filters;
 
   String? _sort;
   String? get sort => _$this._sort;
@@ -129,6 +146,10 @@ class TopSourcesResponseBuilder
   set data(ListBuilder<TopSourcesResponseDataInner>? data) =>
       _$this._data = data;
 
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
   TopSourcesResponseBuilder() {
     TopSourcesResponse._defaults(this);
   }
@@ -139,11 +160,13 @@ class TopSourcesResponseBuilder
       _projectId = $v.projectId;
       _from = $v.from;
       _to = $v.to;
+      _filters = $v.filters?.toBuilder();
       _sort = $v.sort;
       _page = $v.page;
       _perPage = $v.perPage;
       _total = $v.total;
       _data = $v.data?.toBuilder();
+      _requestId = $v.requestId;
       _$v = null;
     }
     return this;
@@ -170,15 +193,20 @@ class TopSourcesResponseBuilder
             projectId: projectId,
             from: from,
             to: to,
+            filters: _filters?.build(),
             sort: sort,
             page: page,
             perPage: perPage,
             total: total,
             data: _data?.build(),
+            requestId: requestId,
           );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'filters';
+        _filters?.build();
+
         _$failedField = 'data';
         _data?.build();
       } catch (e) {

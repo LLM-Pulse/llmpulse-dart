@@ -58,7 +58,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSentimentRecords**
-> listSentimentRecords(projectId, competitorId, brandOnly, analysis, model, collectionId, countryCode, languageCode, from, to, page, perPage)
+> SentimentsResponse listSentimentRecords(projectId, competitorId, brandOnly, analysis, model, collectionId, countryCode, languageCode, from, to, page, perPage)
 
 List sentiment records (Growth plan or above)
 
@@ -83,7 +83,8 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 
 try {
-    api.listSentimentRecords(projectId, competitorId, brandOnly, analysis, model, collectionId, countryCode, languageCode, from, to, page, perPage);
+    final response = api.listSentimentRecords(projectId, competitorId, brandOnly, analysis, model, collectionId, countryCode, languageCode, from, to, page, perPage);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SentimentsApi->listSentimentRecords: $e\n');
 }
@@ -108,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**SentimentsResponse**](SentimentsResponse.md)
 
 ### Authorization
 

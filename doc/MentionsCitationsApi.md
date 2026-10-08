@@ -138,7 +138,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCitations**
-> listCitations(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output)
+> CitationsResponse listCitations(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output)
 
 List brand citations
 
@@ -162,7 +162,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listCitations(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output);
+    final response = api.listCitations(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listCitations: $e\n');
 }
@@ -186,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitationsResponse**](CitationsResponse.md)
 
 ### Authorization
 
@@ -195,7 +196,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -260,7 +261,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCompetitorMentions**
-> listCompetitorMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output)
+> CompetitorMentionsResponse listCompetitorMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output)
 
 List competitor mentions
 
@@ -281,7 +282,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listCompetitorMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output);
+    final response = api.listCompetitorMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listCompetitorMentions: $e\n');
 }
@@ -304,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CompetitorMentionsResponse**](CompetitorMentionsResponse.md)
 
 ### Authorization
 
@@ -313,12 +315,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listMentions**
-> listMentions(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output)
+> MentionsResponse listMentions(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output)
 
 List brand mentions
 
@@ -340,7 +342,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listMentions(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output);
+    final response = api.listMentions(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listMentions: $e\n');
 }
@@ -364,7 +367,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**MentionsResponse**](MentionsResponse.md)
 
 ### Authorization
 
@@ -373,7 +376,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

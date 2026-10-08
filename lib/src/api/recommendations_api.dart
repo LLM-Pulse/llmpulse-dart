@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
+import 'package:llmpulse/src/model/recommendations_response.dart';
 
 class RecommendationsApi {
 
@@ -175,9 +176,9 @@ class RecommendationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [RecommendationsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listRecommendations({ 
+  Future<Response<RecommendationsResponse>> listRecommendations({ 
     required int projectId,
     String? recommendationType,
     String? status,
@@ -226,7 +227,35 @@ class RecommendationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    RecommendationsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecommendationsResponse),
+      ) as RecommendationsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<RecommendationsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

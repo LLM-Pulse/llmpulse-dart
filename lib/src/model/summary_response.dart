@@ -5,9 +5,9 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
+import 'package:llmpulse/src/model/metrics_filters_echo.dart';
 import 'package:llmpulse/src/model/timeseries_series.dart';
 import 'package:llmpulse/src/model/timeseries_response.dart';
-import 'package:built_value/json_object.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,7 +20,7 @@ part 'summary_response.g.dart';
 /// * [projectId] 
 /// * [from] 
 /// * [to] 
-/// * [granularity] 
+/// * [granularity] - day, week or month
 /// * [filters] 
 /// * [series] 
 /// * [requestId] 
@@ -110,7 +110,7 @@ class _$SummaryResponseSerializer implements PrimitiveSerializer<SummaryResponse
       yield r'filters';
       yield serializers.serialize(
         object.filters,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType(MetricsFiltersEcho),
       );
     }
     if (object.projectId != null) {
@@ -202,10 +202,10 @@ class _$SummaryResponseSerializer implements PrimitiveSerializer<SummaryResponse
         case r'filters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
+            specifiedType: const FullType.nullable(MetricsFiltersEcho),
+          ) as MetricsFiltersEcho?;
           if (valueDes == null) continue;
-          result.filters = valueDes;
+          result.filters.replace(valueDes);
           break;
         case r'project_id':
           final valueDes = serializers.deserialize(

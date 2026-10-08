@@ -236,7 +236,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listLocales**
-> listLocales(projectId)
+> LocalesResponse listLocales(projectId)
 
 List locales with data
 
@@ -248,7 +248,8 @@ final api = Llmpulse().getProjectsApi();
 final int projectId = 56; // int | Project ID
 
 try {
-    api.listLocales(projectId);
+    final response = api.listLocales(projectId);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ProjectsApi->listLocales: $e\n');
 }
@@ -262,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**LocalesResponse**](LocalesResponse.md)
 
 ### Authorization
 
@@ -271,12 +272,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listModels**
-> listModels(projectId)
+> ModelsResponse listModels(projectId)
 
 List models with data
 
@@ -288,7 +289,8 @@ final api = Llmpulse().getProjectsApi();
 final int projectId = 56; // int | Project ID
 
 try {
-    api.listModels(projectId);
+    final response = api.listModels(projectId);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ProjectsApi->listModels: $e\n');
 }
@@ -302,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ModelsResponse**](ModelsResponse.md)
 
 ### Authorization
 
@@ -311,7 +313,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

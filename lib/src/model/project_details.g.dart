@@ -36,6 +36,10 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? countryCode;
   @override
+  final ProjectDetailsAllOfDataCoverage? dataCoverage;
+  @override
+  final String? requestId;
+  @override
   final BuiltList<String>? matchingNames;
   @override
   final BuiltList<String>? primaryProducts;
@@ -66,6 +70,8 @@ class _$ProjectDetails extends ProjectDetails {
       this.stats,
       this.businessModelOther,
       this.countryCode,
+      this.dataCoverage,
+      this.requestId,
       this.matchingNames,
       this.primaryProducts,
       this.goals,
@@ -98,6 +104,8 @@ class _$ProjectDetails extends ProjectDetails {
         stats == other.stats &&
         businessModelOther == other.businessModelOther &&
         countryCode == other.countryCode &&
+        dataCoverage == other.dataCoverage &&
+        requestId == other.requestId &&
         matchingNames == other.matchingNames &&
         primaryProducts == other.primaryProducts &&
         goals == other.goals &&
@@ -123,6 +131,8 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, stats.hashCode);
     _$hash = $jc(_$hash, businessModelOther.hashCode);
     _$hash = $jc(_$hash, countryCode.hashCode);
+    _$hash = $jc(_$hash, dataCoverage.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, goals.hashCode);
@@ -150,6 +160,8 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('stats', stats)
           ..add('businessModelOther', businessModelOther)
           ..add('countryCode', countryCode)
+          ..add('dataCoverage', dataCoverage)
+          ..add('requestId', requestId)
           ..add('matchingNames', matchingNames)
           ..add('primaryProducts', primaryProducts)
           ..add('goals', goals)
@@ -231,6 +243,17 @@ class ProjectDetailsBuilder
   set countryCode(covariant String? countryCode) =>
       _$this._countryCode = countryCode;
 
+  ProjectDetailsAllOfDataCoverageBuilder? _dataCoverage;
+  ProjectDetailsAllOfDataCoverageBuilder get dataCoverage =>
+      _$this._dataCoverage ??= ProjectDetailsAllOfDataCoverageBuilder();
+  set dataCoverage(
+          covariant ProjectDetailsAllOfDataCoverageBuilder? dataCoverage) =>
+      _$this._dataCoverage = dataCoverage;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(covariant String? requestId) => _$this._requestId = requestId;
+
   ListBuilder<String>? _matchingNames;
   ListBuilder<String> get matchingNames =>
       _$this._matchingNames ??= ListBuilder<String>();
@@ -280,6 +303,8 @@ class ProjectDetailsBuilder
       _stats = $v.stats?.toBuilder();
       _businessModelOther = $v.businessModelOther;
       _countryCode = $v.countryCode;
+      _dataCoverage = $v.dataCoverage?.toBuilder();
+      _requestId = $v.requestId;
       _matchingNames = $v.matchingNames?.toBuilder();
       _primaryProducts = $v.primaryProducts?.toBuilder();
       _goals = $v.goals;
@@ -323,6 +348,8 @@ class ProjectDetailsBuilder
             stats: _stats?.build(),
             businessModelOther: businessModelOther,
             countryCode: countryCode,
+            dataCoverage: _dataCoverage?.build(),
+            requestId: requestId,
             matchingNames: _matchingNames?.build(),
             primaryProducts: _primaryProducts?.build(),
             goals: goals,
@@ -335,6 +362,9 @@ class ProjectDetailsBuilder
       try {
         _$failedField = 'stats';
         _stats?.build();
+
+        _$failedField = 'dataCoverage';
+        _dataCoverage?.build();
 
         _$failedField = 'matchingNames';
         _matchingNames?.build();

@@ -8,6 +8,8 @@ part of 'project_create_response.dart';
 
 class _$ProjectCreateResponse extends ProjectCreateResponse {
   @override
+  final String? draftId;
+  @override
   final JsonObject? project;
   @override
   final ProjectCreateResponsePrompts? prompts;
@@ -32,7 +34,8 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
       (ProjectCreateResponseBuilder()..update(updates))._build();
 
   _$ProjectCreateResponse._(
-      {this.project,
+      {this.draftId,
+      this.project,
       this.prompts,
       this.competitors,
       this.collections,
@@ -55,6 +58,7 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ProjectCreateResponse &&
+        draftId == other.draftId &&
         project == other.project &&
         prompts == other.prompts &&
         competitors == other.competitors &&
@@ -69,6 +73,7 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, draftId.hashCode);
     _$hash = $jc(_$hash, project.hashCode);
     _$hash = $jc(_$hash, prompts.hashCode);
     _$hash = $jc(_$hash, competitors.hashCode);
@@ -85,6 +90,7 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectCreateResponse')
+          ..add('draftId', draftId)
           ..add('project', project)
           ..add('prompts', prompts)
           ..add('competitors', competitors)
@@ -101,6 +107,10 @@ class _$ProjectCreateResponse extends ProjectCreateResponse {
 class ProjectCreateResponseBuilder
     implements Builder<ProjectCreateResponse, ProjectCreateResponseBuilder> {
   _$ProjectCreateResponse? _$v;
+
+  String? _draftId;
+  String? get draftId => _$this._draftId;
+  set draftId(String? draftId) => _$this._draftId = draftId;
 
   JsonObject? _project;
   JsonObject? get project => _$this._project;
@@ -165,6 +175,7 @@ class ProjectCreateResponseBuilder
   ProjectCreateResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _draftId = $v.draftId;
       _project = $v.project;
       _prompts = $v.prompts?.toBuilder();
       _competitors = $v.competitors?.toBuilder();
@@ -197,6 +208,7 @@ class ProjectCreateResponseBuilder
     try {
       _$result = _$v ??
           _$ProjectCreateResponse._(
+            draftId: draftId,
             project: project,
             prompts: _prompts?.build(),
             competitors: _competitors?.build(),

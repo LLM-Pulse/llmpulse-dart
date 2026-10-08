@@ -21,6 +21,7 @@ part 'create_webhook201_response.g.dart';
 /// * [lastDeliveredAt] 
 /// * [createdAt] 
 /// * [secret] - HMAC signing secret (whsec_...). Only returned on create.
+/// * [requestId] 
 @BuiltValue()
 abstract class CreateWebhook201Response implements Built<CreateWebhook201Response, CreateWebhook201ResponseBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -31,7 +32,7 @@ abstract class CreateWebhook201Response implements Built<CreateWebhook201Respons
 
   @BuiltValueField(wireName: r'event_type')
   CreateWebhook201ResponseEventTypeEnum? get eventType;
-  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  };
+  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  };
 
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
@@ -51,6 +52,9 @@ abstract class CreateWebhook201Response implements Built<CreateWebhook201Respons
   /// HMAC signing secret (whsec_...). Only returned on create.
   @BuiltValueField(wireName: r'secret')
   String? get secret;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   CreateWebhook201Response._();
 
@@ -135,6 +139,13 @@ class _$CreateWebhook201ResponseSerializer implements PrimitiveSerializer<Create
       yield r'secret';
       yield serializers.serialize(
         object.secret,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
         specifiedType: const FullType(String),
       );
     }
@@ -233,6 +244,14 @@ class _$CreateWebhook201ResponseSerializer implements PrimitiveSerializer<Create
           if (valueDes == null) continue;
           result.secret = valueDes;
           break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -280,6 +299,10 @@ class CreateWebhook201ResponseEventTypeEnum extends EnumClass {
   static const CreateWebhook201ResponseEventTypeEnum intelligenceTaskPeriodCompleted = _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodCompleted;
   @BuiltValueEnumConst(wireName: r'intelligence_task.updated')
   static const CreateWebhook201ResponseEventTypeEnum intelligenceTaskPeriodUpdated = _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated;
+  @BuiltValueEnumConst(wireName: r'geo_audit_run.completed')
+  static const CreateWebhook201ResponseEventTypeEnum geoAuditRunPeriodCompleted = _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted;
+  @BuiltValueEnumConst(wireName: r'geo_audit_alert.triggered')
+  static const CreateWebhook201ResponseEventTypeEnum geoAuditAlertPeriodTriggered = _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered;
 
   static Serializer<CreateWebhook201ResponseEventTypeEnum> get serializer => _$createWebhook201ResponseEventTypeEnumSerializer;
 

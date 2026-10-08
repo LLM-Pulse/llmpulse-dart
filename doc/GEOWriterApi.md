@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIntelligenceTasks**
-> listIntelligenceTasks(projectId, taskType, status, page, perPage)
+> IntelligenceTasksResponse listIntelligenceTasks(projectId, taskType, status, page, perPage)
 
 List GEO Writer tasks
 
@@ -119,7 +119,8 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 
 try {
-    api.listIntelligenceTasks(projectId, taskType, status, page, perPage);
+    final response = api.listIntelligenceTasks(projectId, taskType, status, page, perPage);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling GEOWriterApi->listIntelligenceTasks: $e\n');
 }
@@ -137,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**IntelligenceTasksResponse**](IntelligenceTasksResponse.md)
 
 ### Authorization
 
@@ -146,7 +147,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

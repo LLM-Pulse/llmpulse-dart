@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/metrics_filters_echo.dart';
 import 'package:llmpulse/src/model/top_sources_response_data_inner.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,11 +17,13 @@ part 'top_sources_response.g.dart';
 /// * [projectId] 
 /// * [from] 
 /// * [to] 
+/// * [filters] 
 /// * [sort] 
 /// * [page] 
 /// * [perPage] 
 /// * [total] 
 /// * [data] 
+/// * [requestId] 
 @BuiltValue()
 abstract class TopSourcesResponse implements Built<TopSourcesResponse, TopSourcesResponseBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -31,6 +34,9 @@ abstract class TopSourcesResponse implements Built<TopSourcesResponse, TopSource
 
   @BuiltValueField(wireName: r'to')
   DateTime? get to;
+
+  @BuiltValueField(wireName: r'filters')
+  MetricsFiltersEcho? get filters;
 
   @BuiltValueField(wireName: r'sort')
   String? get sort;
@@ -46,6 +52,9 @@ abstract class TopSourcesResponse implements Built<TopSourcesResponse, TopSource
 
   @BuiltValueField(wireName: r'data')
   BuiltList<TopSourcesResponseDataInner>? get data;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   TopSourcesResponse._();
 
@@ -91,6 +100,13 @@ class _$TopSourcesResponseSerializer implements PrimitiveSerializer<TopSourcesRe
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.filters != null) {
+      yield r'filters';
+      yield serializers.serialize(
+        object.filters,
+        specifiedType: const FullType(MetricsFiltersEcho),
+      );
+    }
     if (object.sort != null) {
       yield r'sort';
       yield serializers.serialize(
@@ -124,6 +140,13 @@ class _$TopSourcesResponseSerializer implements PrimitiveSerializer<TopSourcesRe
       yield serializers.serialize(
         object.data,
         specifiedType: const FullType(BuiltList, [FullType(TopSourcesResponseDataInner)]),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -173,6 +196,14 @@ class _$TopSourcesResponseSerializer implements PrimitiveSerializer<TopSourcesRe
           if (valueDes == null) continue;
           result.to = valueDes;
           break;
+        case r'filters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(MetricsFiltersEcho),
+          ) as MetricsFiltersEcho?;
+          if (valueDes == null) continue;
+          result.filters.replace(valueDes);
+          break;
         case r'sort':
           final valueDes = serializers.deserialize(
             value,
@@ -212,6 +243,14 @@ class _$TopSourcesResponseSerializer implements PrimitiveSerializer<TopSourcesRe
           ) as BuiltList<TopSourcesResponseDataInner>?;
           if (valueDes == null) continue;
           result.data.replace(valueDes);
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         default:
           unhandled.add(key);

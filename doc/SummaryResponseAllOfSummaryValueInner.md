@@ -9,7 +9,9 @@ import 'package:llmpulse/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor** | [**Actor**](Actor.md) |  | [optional] 
+**metric** | **String** |  | [optional] 
 **total** | **num** |  | [optional] 
+**aggregation** | **String** | How total combines the buckets | [optional] 
 **min** | **num** |  | [optional] 
 **max** | **num** |  | [optional] 
 **last** | **num** |  | [optional] 

@@ -6,12 +6,81 @@ part of 'summary_response_all_of_summary_value_inner.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const SummaryResponseAllOfSummaryValueInnerAggregationEnum
+    _$summaryResponseAllOfSummaryValueInnerAggregationEnum_sum =
+    const SummaryResponseAllOfSummaryValueInnerAggregationEnum._('sum');
+const SummaryResponseAllOfSummaryValueInnerAggregationEnum
+    _$summaryResponseAllOfSummaryValueInnerAggregationEnum_average =
+    const SummaryResponseAllOfSummaryValueInnerAggregationEnum._('average');
+
+SummaryResponseAllOfSummaryValueInnerAggregationEnum
+    _$summaryResponseAllOfSummaryValueInnerAggregationEnumValueOf(String name) {
+  switch (name) {
+    case 'sum':
+      return _$summaryResponseAllOfSummaryValueInnerAggregationEnum_sum;
+    case 'average':
+      return _$summaryResponseAllOfSummaryValueInnerAggregationEnum_average;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<SummaryResponseAllOfSummaryValueInnerAggregationEnum>
+    _$summaryResponseAllOfSummaryValueInnerAggregationEnumValues = BuiltSet<
+        SummaryResponseAllOfSummaryValueInnerAggregationEnum>(const <SummaryResponseAllOfSummaryValueInnerAggregationEnum>[
+  _$summaryResponseAllOfSummaryValueInnerAggregationEnum_sum,
+  _$summaryResponseAllOfSummaryValueInnerAggregationEnum_average,
+]);
+
+Serializer<SummaryResponseAllOfSummaryValueInnerAggregationEnum>
+    _$summaryResponseAllOfSummaryValueInnerAggregationEnumSerializer =
+    _$SummaryResponseAllOfSummaryValueInnerAggregationEnumSerializer();
+
+class _$SummaryResponseAllOfSummaryValueInnerAggregationEnumSerializer
+    implements
+        PrimitiveSerializer<
+            SummaryResponseAllOfSummaryValueInnerAggregationEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'sum': 'sum',
+    'average': 'average',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'sum': 'sum',
+    'average': 'average',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    SummaryResponseAllOfSummaryValueInnerAggregationEnum
+  ];
+  @override
+  final String wireName =
+      'SummaryResponseAllOfSummaryValueInnerAggregationEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          SummaryResponseAllOfSummaryValueInnerAggregationEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  SummaryResponseAllOfSummaryValueInnerAggregationEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      SummaryResponseAllOfSummaryValueInnerAggregationEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$SummaryResponseAllOfSummaryValueInner
     extends SummaryResponseAllOfSummaryValueInner {
   @override
   final Actor? actor;
   @override
+  final String? metric;
+  @override
   final num? total;
+  @override
+  final SummaryResponseAllOfSummaryValueInnerAggregationEnum? aggregation;
   @override
   final num? min;
   @override
@@ -26,7 +95,13 @@ class _$SummaryResponseAllOfSummaryValueInner
           ._build();
 
   _$SummaryResponseAllOfSummaryValueInner._(
-      {this.actor, this.total, this.min, this.max, this.last})
+      {this.actor,
+      this.metric,
+      this.total,
+      this.aggregation,
+      this.min,
+      this.max,
+      this.last})
       : super._();
   @override
   SummaryResponseAllOfSummaryValueInner rebuild(
@@ -43,7 +118,9 @@ class _$SummaryResponseAllOfSummaryValueInner
     if (identical(other, this)) return true;
     return other is SummaryResponseAllOfSummaryValueInner &&
         actor == other.actor &&
+        metric == other.metric &&
         total == other.total &&
+        aggregation == other.aggregation &&
         min == other.min &&
         max == other.max &&
         last == other.last;
@@ -53,7 +130,9 @@ class _$SummaryResponseAllOfSummaryValueInner
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, actor.hashCode);
+    _$hash = $jc(_$hash, metric.hashCode);
     _$hash = $jc(_$hash, total.hashCode);
+    _$hash = $jc(_$hash, aggregation.hashCode);
     _$hash = $jc(_$hash, min.hashCode);
     _$hash = $jc(_$hash, max.hashCode);
     _$hash = $jc(_$hash, last.hashCode);
@@ -66,7 +145,9 @@ class _$SummaryResponseAllOfSummaryValueInner
     return (newBuiltValueToStringHelper(
             r'SummaryResponseAllOfSummaryValueInner')
           ..add('actor', actor)
+          ..add('metric', metric)
           ..add('total', total)
+          ..add('aggregation', aggregation)
           ..add('min', min)
           ..add('max', max)
           ..add('last', last))
@@ -84,9 +165,20 @@ class SummaryResponseAllOfSummaryValueInnerBuilder
   ActorBuilder get actor => _$this._actor ??= ActorBuilder();
   set actor(ActorBuilder? actor) => _$this._actor = actor;
 
+  String? _metric;
+  String? get metric => _$this._metric;
+  set metric(String? metric) => _$this._metric = metric;
+
   num? _total;
   num? get total => _$this._total;
   set total(num? total) => _$this._total = total;
+
+  SummaryResponseAllOfSummaryValueInnerAggregationEnum? _aggregation;
+  SummaryResponseAllOfSummaryValueInnerAggregationEnum? get aggregation =>
+      _$this._aggregation;
+  set aggregation(
+          SummaryResponseAllOfSummaryValueInnerAggregationEnum? aggregation) =>
+      _$this._aggregation = aggregation;
 
   num? _min;
   num? get min => _$this._min;
@@ -108,7 +200,9 @@ class SummaryResponseAllOfSummaryValueInnerBuilder
     final $v = _$v;
     if ($v != null) {
       _actor = $v.actor?.toBuilder();
+      _metric = $v.metric;
       _total = $v.total;
+      _aggregation = $v.aggregation;
       _min = $v.min;
       _max = $v.max;
       _last = $v.last;
@@ -137,7 +231,9 @@ class SummaryResponseAllOfSummaryValueInnerBuilder
       _$result = _$v ??
           _$SummaryResponseAllOfSummaryValueInner._(
             actor: _actor?.build(),
+            metric: metric,
             total: total,
+            aggregation: aggregation,
             min: min,
             max: max,
             last: last,

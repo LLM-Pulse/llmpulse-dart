@@ -26,6 +26,8 @@ class _$AnswerDetails extends AnswerDetails {
   @override
   final bool? success;
   @override
+  final bool? noResult;
+  @override
   final BuiltList<String>? fanOutQueries;
   @override
   final BuiltList<JsonObject>? mentions;
@@ -49,6 +51,8 @@ class _$AnswerDetails extends AnswerDetails {
   final AnswerDetailsLocale? locale;
   @override
   final String? appUrl;
+  @override
+  final String? requestId;
 
   factory _$AnswerDetails([void Function(AnswerDetailsBuilder)? updates]) =>
       (AnswerDetailsBuilder()..update(updates))._build();
@@ -63,6 +67,7 @@ class _$AnswerDetails extends AnswerDetails {
       this.executedAt,
       this.durationMs,
       this.success,
+      this.noResult,
       this.fanOutQueries,
       this.mentions,
       this.citations,
@@ -74,7 +79,8 @@ class _$AnswerDetails extends AnswerDetails {
       this.brandEntities,
       this.localBusinesses,
       this.locale,
-      this.appUrl})
+      this.appUrl,
+      this.requestId})
       : super._();
   @override
   AnswerDetails rebuild(void Function(AnswerDetailsBuilder) updates) =>
@@ -96,6 +102,7 @@ class _$AnswerDetails extends AnswerDetails {
         executedAt == other.executedAt &&
         durationMs == other.durationMs &&
         success == other.success &&
+        noResult == other.noResult &&
         fanOutQueries == other.fanOutQueries &&
         mentions == other.mentions &&
         citations == other.citations &&
@@ -107,7 +114,8 @@ class _$AnswerDetails extends AnswerDetails {
         brandEntities == other.brandEntities &&
         localBusinesses == other.localBusinesses &&
         locale == other.locale &&
-        appUrl == other.appUrl;
+        appUrl == other.appUrl &&
+        requestId == other.requestId;
   }
 
   @override
@@ -122,6 +130,7 @@ class _$AnswerDetails extends AnswerDetails {
     _$hash = $jc(_$hash, executedAt.hashCode);
     _$hash = $jc(_$hash, durationMs.hashCode);
     _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, noResult.hashCode);
     _$hash = $jc(_$hash, fanOutQueries.hashCode);
     _$hash = $jc(_$hash, mentions.hashCode);
     _$hash = $jc(_$hash, citations.hashCode);
@@ -134,6 +143,7 @@ class _$AnswerDetails extends AnswerDetails {
     _$hash = $jc(_$hash, localBusinesses.hashCode);
     _$hash = $jc(_$hash, locale.hashCode);
     _$hash = $jc(_$hash, appUrl.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -150,6 +160,7 @@ class _$AnswerDetails extends AnswerDetails {
           ..add('executedAt', executedAt)
           ..add('durationMs', durationMs)
           ..add('success', success)
+          ..add('noResult', noResult)
           ..add('fanOutQueries', fanOutQueries)
           ..add('mentions', mentions)
           ..add('citations', citations)
@@ -161,7 +172,8 @@ class _$AnswerDetails extends AnswerDetails {
           ..add('brandEntities', brandEntities)
           ..add('localBusinesses', localBusinesses)
           ..add('locale', locale)
-          ..add('appUrl', appUrl))
+          ..add('appUrl', appUrl)
+          ..add('requestId', requestId))
         .toString();
   }
 }
@@ -206,6 +218,10 @@ class AnswerDetailsBuilder
   bool? _success;
   bool? get success => _$this._success;
   set success(bool? success) => _$this._success = success;
+
+  bool? _noResult;
+  bool? get noResult => _$this._noResult;
+  set noResult(bool? noResult) => _$this._noResult = noResult;
 
   ListBuilder<String>? _fanOutQueries;
   ListBuilder<String> get fanOutQueries =>
@@ -275,6 +291,10 @@ class AnswerDetailsBuilder
   String? get appUrl => _$this._appUrl;
   set appUrl(String? appUrl) => _$this._appUrl = appUrl;
 
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
   AnswerDetailsBuilder() {
     AnswerDetails._defaults(this);
   }
@@ -291,6 +311,7 @@ class AnswerDetailsBuilder
       _executedAt = $v.executedAt;
       _durationMs = $v.durationMs;
       _success = $v.success;
+      _noResult = $v.noResult;
       _fanOutQueries = $v.fanOutQueries?.toBuilder();
       _mentions = $v.mentions?.toBuilder();
       _citations = $v.citations?.toBuilder();
@@ -303,6 +324,7 @@ class AnswerDetailsBuilder
       _localBusinesses = $v.localBusinesses?.toBuilder();
       _locale = $v.locale?.toBuilder();
       _appUrl = $v.appUrl;
+      _requestId = $v.requestId;
       _$v = null;
     }
     return this;
@@ -335,6 +357,7 @@ class AnswerDetailsBuilder
             executedAt: executedAt,
             durationMs: durationMs,
             success: success,
+            noResult: noResult,
             fanOutQueries: _fanOutQueries?.build(),
             mentions: _mentions?.build(),
             citations: _citations?.build(),
@@ -347,6 +370,7 @@ class AnswerDetailsBuilder
             localBusinesses: _localBusinesses?.build(),
             locale: _locale?.build(),
             appUrl: appUrl,
+            requestId: requestId,
           );
     } catch (_) {
       late String _$failedField;

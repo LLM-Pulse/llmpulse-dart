@@ -32,6 +32,12 @@ const CreateWebhookRequestEventTypeEnum
 const CreateWebhookRequestEventTypeEnum
     _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated =
     const CreateWebhookRequestEventTypeEnum._('intelligenceTaskPeriodUpdated');
+const CreateWebhookRequestEventTypeEnum
+    _$createWebhookRequestEventTypeEnum_geoAuditRunPeriodCompleted =
+    const CreateWebhookRequestEventTypeEnum._('geoAuditRunPeriodCompleted');
+const CreateWebhookRequestEventTypeEnum
+    _$createWebhookRequestEventTypeEnum_geoAuditAlertPeriodTriggered =
+    const CreateWebhookRequestEventTypeEnum._('geoAuditAlertPeriodTriggered');
 
 CreateWebhookRequestEventTypeEnum _$createWebhookRequestEventTypeEnumValueOf(
     String name) {
@@ -52,6 +58,10 @@ CreateWebhookRequestEventTypeEnum _$createWebhookRequestEventTypeEnumValueOf(
       return _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodCompleted;
     case 'intelligenceTaskPeriodUpdated':
       return _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated;
+    case 'geoAuditRunPeriodCompleted':
+      return _$createWebhookRequestEventTypeEnum_geoAuditRunPeriodCompleted;
+    case 'geoAuditAlertPeriodTriggered':
+      return _$createWebhookRequestEventTypeEnum_geoAuditAlertPeriodTriggered;
     default:
       throw ArgumentError(name);
   }
@@ -68,6 +78,8 @@ final BuiltSet<CreateWebhookRequestEventTypeEnum>
   _$createWebhookRequestEventTypeEnum_recommendationPeriodCompleted,
   _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodCompleted,
   _$createWebhookRequestEventTypeEnum_intelligenceTaskPeriodUpdated,
+  _$createWebhookRequestEventTypeEnum_geoAuditRunPeriodCompleted,
+  _$createWebhookRequestEventTypeEnum_geoAuditAlertPeriodTriggered,
 ]);
 
 Serializer<CreateWebhookRequestEventTypeEnum>
@@ -85,6 +97,8 @@ class _$CreateWebhookRequestEventTypeEnumSerializer
     'recommendationPeriodCompleted': 'recommendation.completed',
     'intelligenceTaskPeriodCompleted': 'intelligence_task.completed',
     'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
+    'geoAuditRunPeriodCompleted': 'geo_audit_run.completed',
+    'geoAuditAlertPeriodTriggered': 'geo_audit_alert.triggered',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -95,6 +109,8 @@ class _$CreateWebhookRequestEventTypeEnumSerializer
     'recommendation.completed': 'recommendationPeriodCompleted',
     'intelligence_task.completed': 'intelligenceTaskPeriodCompleted',
     'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
+    'geo_audit_run.completed': 'geoAuditRunPeriodCompleted',
+    'geo_audit_alert.triggered': 'geoAuditAlertPeriodTriggered',
   };
 
   @override

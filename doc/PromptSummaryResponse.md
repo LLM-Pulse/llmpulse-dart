@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **projectId** | **int** |  | [optional] 
 **from** | [**DateTime**](DateTime.md) |  | [optional] 
 **to** | [**DateTime**](DateTime.md) |  | [optional] 
-**filters** | [**JsonObject**](.md) |  | [optional] 
+**filters** | [**MetricsFiltersEcho**](MetricsFiltersEcho.md) |  | [optional] 
 **breakdown** | **String** |  | [optional] 
 **sort** | **String** |  | [optional] 
 **sortDir** | **String** |  | [optional] 

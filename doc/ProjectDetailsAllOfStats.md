@@ -9,6 +9,7 @@ import 'package:llmpulse/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **promptsCount** | **int** |  | [optional] 
+**promptsByBrandKind** | [**ProjectDetailsAllOfStatsPromptsByBrandKind**](ProjectDetailsAllOfStatsPromptsByBrandKind.md) |  | [optional] 
 **competitorsCount** | **int** |  | [optional] 
 **collectionsCount** | **int** |  | [optional] 
 

@@ -21,7 +21,7 @@ class _$SummaryResponse extends SummaryResponse {
   @override
   final String? granularity;
   @override
-  final JsonObject? filters;
+  final MetricsFiltersEcho? filters;
   @override
   final BuiltMap<String, BuiltList<TimeseriesSeries>>? series;
   @override
@@ -138,9 +138,11 @@ class SummaryResponseBuilder
   set granularity(covariant String? granularity) =>
       _$this._granularity = granularity;
 
-  JsonObject? _filters;
-  JsonObject? get filters => _$this._filters;
-  set filters(covariant JsonObject? filters) => _$this._filters = filters;
+  MetricsFiltersEchoBuilder? _filters;
+  MetricsFiltersEchoBuilder get filters =>
+      _$this._filters ??= MetricsFiltersEchoBuilder();
+  set filters(covariant MetricsFiltersEchoBuilder? filters) =>
+      _$this._filters = filters;
 
   MapBuilder<String, BuiltList<TimeseriesSeries>>? _series;
   MapBuilder<String, BuiltList<TimeseriesSeries>> get series =>
@@ -166,7 +168,7 @@ class SummaryResponseBuilder
       _from = $v.from;
       _to = $v.to;
       _granularity = $v.granularity;
-      _filters = $v.filters;
+      _filters = $v.filters?.toBuilder();
       _series = $v.series?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
@@ -198,7 +200,7 @@ class SummaryResponseBuilder
             from: from,
             to: to,
             granularity: granularity,
-            filters: filters,
+            filters: _filters?.build(),
             series: _series?.build(),
             requestId: requestId,
           );
@@ -210,6 +212,8 @@ class SummaryResponseBuilder
         _$failedField = 'positionDistribution';
         _positionDistribution?.build();
 
+        _$failedField = 'filters';
+        _filters?.build();
         _$failedField = 'series';
         _series?.build();
       } catch (e) {

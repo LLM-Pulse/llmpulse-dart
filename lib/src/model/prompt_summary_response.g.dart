@@ -14,7 +14,7 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
   @override
   final DateTime? to;
   @override
-  final JsonObject? filters;
+  final MetricsFiltersEcho? filters;
   @override
   final String? breakdown;
   @override
@@ -131,9 +131,10 @@ class PromptSummaryResponseBuilder
   DateTime? get to => _$this._to;
   set to(DateTime? to) => _$this._to = to;
 
-  JsonObject? _filters;
-  JsonObject? get filters => _$this._filters;
-  set filters(JsonObject? filters) => _$this._filters = filters;
+  MetricsFiltersEchoBuilder? _filters;
+  MetricsFiltersEchoBuilder get filters =>
+      _$this._filters ??= MetricsFiltersEchoBuilder();
+  set filters(MetricsFiltersEchoBuilder? filters) => _$this._filters = filters;
 
   String? _breakdown;
   String? get breakdown => _$this._breakdown;
@@ -178,7 +179,7 @@ class PromptSummaryResponseBuilder
       _projectId = $v.projectId;
       _from = $v.from;
       _to = $v.to;
-      _filters = $v.filters;
+      _filters = $v.filters?.toBuilder();
       _breakdown = $v.breakdown;
       _sort = $v.sort;
       _sortDir = $v.sortDir;
@@ -213,7 +214,7 @@ class PromptSummaryResponseBuilder
             projectId: projectId,
             from: from,
             to: to,
-            filters: filters,
+            filters: _filters?.build(),
             breakdown: breakdown,
             sort: sort,
             sortDir: sortDir,
@@ -226,6 +227,9 @@ class PromptSummaryResponseBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'filters';
+        _filters?.build();
+
         _$failedField = 'data';
         _data?.build();
       } catch (e) {

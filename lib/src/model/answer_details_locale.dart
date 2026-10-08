@@ -48,14 +48,14 @@ class _$AnswerDetailsLocaleSerializer implements PrimitiveSerializer<AnswerDetai
       yield r'country_code';
       yield serializers.serialize(
         object.countryCode,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.languageCode != null) {
       yield r'language_code';
       yield serializers.serialize(
         object.languageCode,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
   }

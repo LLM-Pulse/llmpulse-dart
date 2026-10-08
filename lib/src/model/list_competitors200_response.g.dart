@@ -11,12 +11,15 @@ class _$ListCompetitors200Response extends ListCompetitors200Response {
   final int? projectId;
   @override
   final BuiltList<Competitor>? competitors;
+  @override
+  final String? requestId;
 
   factory _$ListCompetitors200Response(
           [void Function(ListCompetitors200ResponseBuilder)? updates]) =>
       (ListCompetitors200ResponseBuilder()..update(updates))._build();
 
-  _$ListCompetitors200Response._({this.projectId, this.competitors})
+  _$ListCompetitors200Response._(
+      {this.projectId, this.competitors, this.requestId})
       : super._();
   @override
   ListCompetitors200Response rebuild(
@@ -32,7 +35,8 @@ class _$ListCompetitors200Response extends ListCompetitors200Response {
     if (identical(other, this)) return true;
     return other is ListCompetitors200Response &&
         projectId == other.projectId &&
-        competitors == other.competitors;
+        competitors == other.competitors &&
+        requestId == other.requestId;
   }
 
   @override
@@ -40,6 +44,7 @@ class _$ListCompetitors200Response extends ListCompetitors200Response {
     var _$hash = 0;
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, competitors.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -48,7 +53,8 @@ class _$ListCompetitors200Response extends ListCompetitors200Response {
   String toString() {
     return (newBuiltValueToStringHelper(r'ListCompetitors200Response')
           ..add('projectId', projectId)
-          ..add('competitors', competitors))
+          ..add('competitors', competitors)
+          ..add('requestId', requestId))
         .toString();
   }
 }
@@ -68,6 +74,10 @@ class ListCompetitors200ResponseBuilder
   set competitors(ListBuilder<Competitor>? competitors) =>
       _$this._competitors = competitors;
 
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
   ListCompetitors200ResponseBuilder() {
     ListCompetitors200Response._defaults(this);
   }
@@ -77,6 +87,7 @@ class ListCompetitors200ResponseBuilder
     if ($v != null) {
       _projectId = $v.projectId;
       _competitors = $v.competitors?.toBuilder();
+      _requestId = $v.requestId;
       _$v = null;
     }
     return this;
@@ -102,6 +113,7 @@ class ListCompetitors200ResponseBuilder
           _$ListCompetitors200Response._(
             projectId: projectId,
             competitors: _competitors?.build(),
+            requestId: requestId,
           );
     } catch (_) {
       late String _$failedField;

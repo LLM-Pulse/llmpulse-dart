@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/citation_match_mode.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -15,6 +16,9 @@ part 'competitor.g.dart';
 /// * [id] 
 /// * [name] 
 /// * [domain] - Bare (scheme-less) domain. Null only on the own-brand row (include_project_brand=true) when the project has no URL.
+/// * [matchingNames] - Alternative names matched as this competitor. Absent on the own-brand row
+/// * [citationMatchMode] 
+/// * [citationMatchPath] - Set only when citation_match_mode is path_prefix
 /// * [actorType] - Only present when include_project_brand=true
 /// * [isOwn] - Only present when include_project_brand=true
 @BuiltValue()
@@ -28,6 +32,18 @@ abstract class Competitor implements Built<Competitor, CompetitorBuilder> {
   /// Bare (scheme-less) domain. Null only on the own-brand row (include_project_brand=true) when the project has no URL.
   @BuiltValueField(wireName: r'domain')
   String? get domain;
+
+  /// Alternative names matched as this competitor. Absent on the own-brand row
+  @BuiltValueField(wireName: r'matching_names')
+  BuiltList<String>? get matchingNames;
+
+  @BuiltValueField(wireName: r'citation_match_mode')
+  CitationMatchMode? get citationMatchMode;
+  // enum citationMatchModeEnum {  domain,  host,  path_prefix,  };
+
+  /// Set only when citation_match_mode is path_prefix
+  @BuiltValueField(wireName: r'citation_match_path')
+  String? get citationMatchPath;
 
   /// Only present when include_project_brand=true
   @BuiltValueField(wireName: r'actor_type')
@@ -79,6 +95,27 @@ class _$CompetitorSerializer implements PrimitiveSerializer<Competitor> {
       yield r'domain';
       yield serializers.serialize(
         object.domain,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.matchingNames != null) {
+      yield r'matching_names';
+      yield serializers.serialize(
+        object.matchingNames,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.citationMatchMode != null) {
+      yield r'citation_match_mode';
+      yield serializers.serialize(
+        object.citationMatchMode,
+        specifiedType: const FullType(CitationMatchMode),
+      );
+    }
+    if (object.citationMatchPath != null) {
+      yield r'citation_match_path';
+      yield serializers.serialize(
+        object.citationMatchPath,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -142,6 +179,30 @@ class _$CompetitorSerializer implements PrimitiveSerializer<Competitor> {
           ) as String?;
           if (valueDes == null) continue;
           result.domain = valueDes;
+          break;
+        case r'matching_names':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
+          result.matchingNames.replace(valueDes);
+          break;
+        case r'citation_match_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(CitationMatchMode),
+          ) as CitationMatchMode?;
+          if (valueDes == null) continue;
+          result.citationMatchMode = valueDes;
+          break;
+        case r'citation_match_path':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.citationMatchPath = valueDes;
           break;
         case r'actor_type':
           final valueDes = serializers.deserialize(

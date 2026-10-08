@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/citation_match_mode.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,8 +20,16 @@ part 'competitor_details.g.dart';
 /// * [matchingNames] 
 /// * [googlePlayId] 
 /// * [appStoreId] 
+/// * [citationMatchMode] 
+/// * [citationMatchPath] - Set only when citation_match_mode is path_prefix
+/// * [googlePlayName] - English app name on Google Play, when the competitor has an Android app
+/// * [appStoreName] - English app name on the App Store, when the competitor has an iOS app
+/// * [googlePlayIconUrl] 
+/// * [appStoreIconUrl] 
 /// * [color] 
+/// * [processing] - True while the competitor's historical mentions are being recalculated
 /// * [createdAt] 
+/// * [requestId] 
 @BuiltValue()
 abstract class CompetitorDetails implements Built<CompetitorDetails, CompetitorDetailsBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -44,11 +53,40 @@ abstract class CompetitorDetails implements Built<CompetitorDetails, CompetitorD
   @BuiltValueField(wireName: r'app_store_id')
   String? get appStoreId;
 
+  @BuiltValueField(wireName: r'citation_match_mode')
+  CitationMatchMode? get citationMatchMode;
+  // enum citationMatchModeEnum {  domain,  host,  path_prefix,  };
+
+  /// Set only when citation_match_mode is path_prefix
+  @BuiltValueField(wireName: r'citation_match_path')
+  String? get citationMatchPath;
+
+  /// English app name on Google Play, when the competitor has an Android app
+  @BuiltValueField(wireName: r'google_play_name')
+  String? get googlePlayName;
+
+  /// English app name on the App Store, when the competitor has an iOS app
+  @BuiltValueField(wireName: r'app_store_name')
+  String? get appStoreName;
+
+  @BuiltValueField(wireName: r'google_play_icon_url')
+  String? get googlePlayIconUrl;
+
+  @BuiltValueField(wireName: r'app_store_icon_url')
+  String? get appStoreIconUrl;
+
   @BuiltValueField(wireName: r'color')
   String? get color;
 
+  /// True while the competitor's historical mentions are being recalculated
+  @BuiltValueField(wireName: r'processing')
+  bool? get processing;
+
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   CompetitorDetails._();
 
@@ -122,6 +160,48 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
         specifiedType: const FullType.nullable(String),
       );
     }
+    if (object.citationMatchMode != null) {
+      yield r'citation_match_mode';
+      yield serializers.serialize(
+        object.citationMatchMode,
+        specifiedType: const FullType(CitationMatchMode),
+      );
+    }
+    if (object.citationMatchPath != null) {
+      yield r'citation_match_path';
+      yield serializers.serialize(
+        object.citationMatchPath,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.googlePlayName != null) {
+      yield r'google_play_name';
+      yield serializers.serialize(
+        object.googlePlayName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.appStoreName != null) {
+      yield r'app_store_name';
+      yield serializers.serialize(
+        object.appStoreName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.googlePlayIconUrl != null) {
+      yield r'google_play_icon_url';
+      yield serializers.serialize(
+        object.googlePlayIconUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.appStoreIconUrl != null) {
+      yield r'app_store_icon_url';
+      yield serializers.serialize(
+        object.appStoreIconUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.color != null) {
       yield r'color';
       yield serializers.serialize(
@@ -129,11 +209,25 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
         specifiedType: const FullType.nullable(String),
       );
     }
+    if (object.processing != null) {
+      yield r'processing';
+      yield serializers.serialize(
+        object.processing,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -215,6 +309,54 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
           if (valueDes == null) continue;
           result.appStoreId = valueDes;
           break;
+        case r'citation_match_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(CitationMatchMode),
+          ) as CitationMatchMode?;
+          if (valueDes == null) continue;
+          result.citationMatchMode = valueDes;
+          break;
+        case r'citation_match_path':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.citationMatchPath = valueDes;
+          break;
+        case r'google_play_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.googlePlayName = valueDes;
+          break;
+        case r'app_store_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.appStoreName = valueDes;
+          break;
+        case r'google_play_icon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.googlePlayIconUrl = valueDes;
+          break;
+        case r'app_store_icon_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.appStoreIconUrl = valueDes;
+          break;
         case r'color':
           final valueDes = serializers.deserialize(
             value,
@@ -223,6 +365,14 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
           if (valueDes == null) continue;
           result.color = valueDes;
           break;
+        case r'processing':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.processing = valueDes;
+          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
@@ -230,6 +380,14 @@ class _$CompetitorDetailsSerializer implements PrimitiveSerializer<CompetitorDet
           ) as DateTime?;
           if (valueDes == null) continue;
           result.createdAt = valueDes;
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         default:
           unhandled.add(key);

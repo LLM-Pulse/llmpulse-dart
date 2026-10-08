@@ -22,9 +22,25 @@ class _$CompetitorDetails extends CompetitorDetails {
   @override
   final String? appStoreId;
   @override
+  final CitationMatchMode? citationMatchMode;
+  @override
+  final String? citationMatchPath;
+  @override
+  final String? googlePlayName;
+  @override
+  final String? appStoreName;
+  @override
+  final String? googlePlayIconUrl;
+  @override
+  final String? appStoreIconUrl;
+  @override
   final String? color;
   @override
+  final bool? processing;
+  @override
   final DateTime? createdAt;
+  @override
+  final String? requestId;
 
   factory _$CompetitorDetails(
           [void Function(CompetitorDetailsBuilder)? updates]) =>
@@ -38,8 +54,16 @@ class _$CompetitorDetails extends CompetitorDetails {
       this.matchingNames,
       this.googlePlayId,
       this.appStoreId,
+      this.citationMatchMode,
+      this.citationMatchPath,
+      this.googlePlayName,
+      this.appStoreName,
+      this.googlePlayIconUrl,
+      this.appStoreIconUrl,
       this.color,
-      this.createdAt})
+      this.processing,
+      this.createdAt,
+      this.requestId})
       : super._();
   @override
   CompetitorDetails rebuild(void Function(CompetitorDetailsBuilder) updates) =>
@@ -60,8 +84,16 @@ class _$CompetitorDetails extends CompetitorDetails {
         matchingNames == other.matchingNames &&
         googlePlayId == other.googlePlayId &&
         appStoreId == other.appStoreId &&
+        citationMatchMode == other.citationMatchMode &&
+        citationMatchPath == other.citationMatchPath &&
+        googlePlayName == other.googlePlayName &&
+        appStoreName == other.appStoreName &&
+        googlePlayIconUrl == other.googlePlayIconUrl &&
+        appStoreIconUrl == other.appStoreIconUrl &&
         color == other.color &&
-        createdAt == other.createdAt;
+        processing == other.processing &&
+        createdAt == other.createdAt &&
+        requestId == other.requestId;
   }
 
   @override
@@ -74,8 +106,16 @@ class _$CompetitorDetails extends CompetitorDetails {
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, googlePlayId.hashCode);
     _$hash = $jc(_$hash, appStoreId.hashCode);
+    _$hash = $jc(_$hash, citationMatchMode.hashCode);
+    _$hash = $jc(_$hash, citationMatchPath.hashCode);
+    _$hash = $jc(_$hash, googlePlayName.hashCode);
+    _$hash = $jc(_$hash, appStoreName.hashCode);
+    _$hash = $jc(_$hash, googlePlayIconUrl.hashCode);
+    _$hash = $jc(_$hash, appStoreIconUrl.hashCode);
     _$hash = $jc(_$hash, color.hashCode);
+    _$hash = $jc(_$hash, processing.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -90,8 +130,16 @@ class _$CompetitorDetails extends CompetitorDetails {
           ..add('matchingNames', matchingNames)
           ..add('googlePlayId', googlePlayId)
           ..add('appStoreId', appStoreId)
+          ..add('citationMatchMode', citationMatchMode)
+          ..add('citationMatchPath', citationMatchPath)
+          ..add('googlePlayName', googlePlayName)
+          ..add('appStoreName', appStoreName)
+          ..add('googlePlayIconUrl', googlePlayIconUrl)
+          ..add('appStoreIconUrl', appStoreIconUrl)
           ..add('color', color)
-          ..add('createdAt', createdAt))
+          ..add('processing', processing)
+          ..add('createdAt', createdAt)
+          ..add('requestId', requestId))
         .toString();
   }
 }
@@ -130,13 +178,50 @@ class CompetitorDetailsBuilder
   String? get appStoreId => _$this._appStoreId;
   set appStoreId(String? appStoreId) => _$this._appStoreId = appStoreId;
 
+  CitationMatchMode? _citationMatchMode;
+  CitationMatchMode? get citationMatchMode => _$this._citationMatchMode;
+  set citationMatchMode(CitationMatchMode? citationMatchMode) =>
+      _$this._citationMatchMode = citationMatchMode;
+
+  String? _citationMatchPath;
+  String? get citationMatchPath => _$this._citationMatchPath;
+  set citationMatchPath(String? citationMatchPath) =>
+      _$this._citationMatchPath = citationMatchPath;
+
+  String? _googlePlayName;
+  String? get googlePlayName => _$this._googlePlayName;
+  set googlePlayName(String? googlePlayName) =>
+      _$this._googlePlayName = googlePlayName;
+
+  String? _appStoreName;
+  String? get appStoreName => _$this._appStoreName;
+  set appStoreName(String? appStoreName) => _$this._appStoreName = appStoreName;
+
+  String? _googlePlayIconUrl;
+  String? get googlePlayIconUrl => _$this._googlePlayIconUrl;
+  set googlePlayIconUrl(String? googlePlayIconUrl) =>
+      _$this._googlePlayIconUrl = googlePlayIconUrl;
+
+  String? _appStoreIconUrl;
+  String? get appStoreIconUrl => _$this._appStoreIconUrl;
+  set appStoreIconUrl(String? appStoreIconUrl) =>
+      _$this._appStoreIconUrl = appStoreIconUrl;
+
   String? _color;
   String? get color => _$this._color;
   set color(String? color) => _$this._color = color;
 
+  bool? _processing;
+  bool? get processing => _$this._processing;
+  set processing(bool? processing) => _$this._processing = processing;
+
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
 
   CompetitorDetailsBuilder() {
     CompetitorDetails._defaults(this);
@@ -152,8 +237,16 @@ class CompetitorDetailsBuilder
       _matchingNames = $v.matchingNames?.toBuilder();
       _googlePlayId = $v.googlePlayId;
       _appStoreId = $v.appStoreId;
+      _citationMatchMode = $v.citationMatchMode;
+      _citationMatchPath = $v.citationMatchPath;
+      _googlePlayName = $v.googlePlayName;
+      _appStoreName = $v.appStoreName;
+      _googlePlayIconUrl = $v.googlePlayIconUrl;
+      _appStoreIconUrl = $v.appStoreIconUrl;
       _color = $v.color;
+      _processing = $v.processing;
       _createdAt = $v.createdAt;
+      _requestId = $v.requestId;
       _$v = null;
     }
     return this;
@@ -184,8 +277,16 @@ class CompetitorDetailsBuilder
             matchingNames: _matchingNames?.build(),
             googlePlayId: googlePlayId,
             appStoreId: appStoreId,
+            citationMatchMode: citationMatchMode,
+            citationMatchPath: citationMatchPath,
+            googlePlayName: googlePlayName,
+            appStoreName: appStoreName,
+            googlePlayIconUrl: googlePlayIconUrl,
+            appStoreIconUrl: appStoreIconUrl,
             color: color,
+            processing: processing,
             createdAt: createdAt,
+            requestId: requestId,
           );
     } catch (_) {
       late String _$failedField;

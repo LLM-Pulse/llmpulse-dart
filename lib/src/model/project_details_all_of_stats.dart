@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,12 +13,16 @@ part 'project_details_all_of_stats.g.dart';
 ///
 /// Properties:
 /// * [promptsCount] 
+/// * [promptsByBrandKind] 
 /// * [competitorsCount] 
 /// * [collectionsCount] 
 @BuiltValue()
 abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStats, ProjectDetailsAllOfStatsBuilder> {
   @BuiltValueField(wireName: r'prompts_count')
   int? get promptsCount;
+
+  @BuiltValueField(wireName: r'prompts_by_brand_kind')
+  ProjectDetailsAllOfStatsPromptsByBrandKind? get promptsByBrandKind;
 
   @BuiltValueField(wireName: r'competitors_count')
   int? get competitorsCount;
@@ -53,6 +58,13 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
       yield serializers.serialize(
         object.promptsCount,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.promptsByBrandKind != null) {
+      yield r'prompts_by_brand_kind';
+      yield serializers.serialize(
+        object.promptsByBrandKind,
+        specifiedType: const FullType(ProjectDetailsAllOfStatsPromptsByBrandKind),
       );
     }
     if (object.competitorsCount != null) {
@@ -99,6 +111,14 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
           ) as int?;
           if (valueDes == null) continue;
           result.promptsCount = valueDes;
+          break;
+        case r'prompts_by_brand_kind':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfStatsPromptsByBrandKind),
+          ) as ProjectDetailsAllOfStatsPromptsByBrandKind?;
+          if (valueDes == null) continue;
+          result.promptsByBrandKind.replace(valueDes);
           break;
         case r'competitors_count':
           final valueDes = serializers.deserialize(

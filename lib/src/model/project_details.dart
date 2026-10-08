@@ -6,6 +6,7 @@
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -35,6 +36,8 @@ part 'project_details.g.dart';
 /// * [appStoreId] 
 /// * [createdAt] 
 /// * [stats] 
+/// * [dataCoverage] 
+/// * [requestId] 
 @BuiltValue()
 abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectDetailsBuilder> {
   @BuiltValueField(wireName: r'brand_voice')
@@ -80,6 +83,12 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
 
   @BuiltValueField(wireName: r'country_code')
   String? get countryCode;
+
+  @BuiltValueField(wireName: r'data_coverage')
+  ProjectDetailsAllOfDataCoverage? get dataCoverage;
+
+  @BuiltValueField(wireName: r'request_id')
+  String? get requestId;
 
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
@@ -215,6 +224,20 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'country_code';
       yield serializers.serialize(
         object.countryCode,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.dataCoverage != null) {
+      yield r'data_coverage';
+      yield serializers.serialize(
+        object.dataCoverage,
+        specifiedType: const FullType(ProjectDetailsAllOfDataCoverage),
+      );
+    }
+    if (object.requestId != null) {
+      yield r'request_id';
+      yield serializers.serialize(
+        object.requestId,
         specifiedType: const FullType(String),
       );
     }
@@ -395,6 +418,22 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.countryCode = valueDes;
+          break;
+        case r'data_coverage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfDataCoverage),
+          ) as ProjectDetailsAllOfDataCoverage?;
+          if (valueDes == null) continue;
+          result.dataCoverage.replace(valueDes);
+          break;
+        case r'request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.requestId = valueDes;
           break;
         case r'matching_names':
           final valueDes = serializers.deserialize(

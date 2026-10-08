@@ -68,6 +68,12 @@ class _$Competitor extends Competitor {
   @override
   final String? domain;
   @override
+  final BuiltList<String>? matchingNames;
+  @override
+  final CitationMatchMode? citationMatchMode;
+  @override
+  final String? citationMatchPath;
+  @override
   final CompetitorActorTypeEnum? actorType;
   @override
   final bool? isOwn;
@@ -75,7 +81,15 @@ class _$Competitor extends Competitor {
   factory _$Competitor([void Function(CompetitorBuilder)? updates]) =>
       (CompetitorBuilder()..update(updates))._build();
 
-  _$Competitor._({this.id, this.name, this.domain, this.actorType, this.isOwn})
+  _$Competitor._(
+      {this.id,
+      this.name,
+      this.domain,
+      this.matchingNames,
+      this.citationMatchMode,
+      this.citationMatchPath,
+      this.actorType,
+      this.isOwn})
       : super._();
   @override
   Competitor rebuild(void Function(CompetitorBuilder) updates) =>
@@ -91,6 +105,9 @@ class _$Competitor extends Competitor {
         id == other.id &&
         name == other.name &&
         domain == other.domain &&
+        matchingNames == other.matchingNames &&
+        citationMatchMode == other.citationMatchMode &&
+        citationMatchPath == other.citationMatchPath &&
         actorType == other.actorType &&
         isOwn == other.isOwn;
   }
@@ -101,6 +118,9 @@ class _$Competitor extends Competitor {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, domain.hashCode);
+    _$hash = $jc(_$hash, matchingNames.hashCode);
+    _$hash = $jc(_$hash, citationMatchMode.hashCode);
+    _$hash = $jc(_$hash, citationMatchPath.hashCode);
     _$hash = $jc(_$hash, actorType.hashCode);
     _$hash = $jc(_$hash, isOwn.hashCode);
     _$hash = $jf(_$hash);
@@ -113,6 +133,9 @@ class _$Competitor extends Competitor {
           ..add('id', id)
           ..add('name', name)
           ..add('domain', domain)
+          ..add('matchingNames', matchingNames)
+          ..add('citationMatchMode', citationMatchMode)
+          ..add('citationMatchPath', citationMatchPath)
           ..add('actorType', actorType)
           ..add('isOwn', isOwn))
         .toString();
@@ -134,6 +157,22 @@ class CompetitorBuilder implements Builder<Competitor, CompetitorBuilder> {
   String? get domain => _$this._domain;
   set domain(String? domain) => _$this._domain = domain;
 
+  ListBuilder<String>? _matchingNames;
+  ListBuilder<String> get matchingNames =>
+      _$this._matchingNames ??= ListBuilder<String>();
+  set matchingNames(ListBuilder<String>? matchingNames) =>
+      _$this._matchingNames = matchingNames;
+
+  CitationMatchMode? _citationMatchMode;
+  CitationMatchMode? get citationMatchMode => _$this._citationMatchMode;
+  set citationMatchMode(CitationMatchMode? citationMatchMode) =>
+      _$this._citationMatchMode = citationMatchMode;
+
+  String? _citationMatchPath;
+  String? get citationMatchPath => _$this._citationMatchPath;
+  set citationMatchPath(String? citationMatchPath) =>
+      _$this._citationMatchPath = citationMatchPath;
+
   CompetitorActorTypeEnum? _actorType;
   CompetitorActorTypeEnum? get actorType => _$this._actorType;
   set actorType(CompetitorActorTypeEnum? actorType) =>
@@ -153,6 +192,9 @@ class CompetitorBuilder implements Builder<Competitor, CompetitorBuilder> {
       _id = $v.id;
       _name = $v.name;
       _domain = $v.domain;
+      _matchingNames = $v.matchingNames?.toBuilder();
+      _citationMatchMode = $v.citationMatchMode;
+      _citationMatchPath = $v.citationMatchPath;
       _actorType = $v.actorType;
       _isOwn = $v.isOwn;
       _$v = null;
@@ -174,14 +216,30 @@ class CompetitorBuilder implements Builder<Competitor, CompetitorBuilder> {
   Competitor build() => _build();
 
   _$Competitor _build() {
-    final _$result = _$v ??
-        _$Competitor._(
-          id: id,
-          name: name,
-          domain: domain,
-          actorType: actorType,
-          isOwn: isOwn,
-        );
+    _$Competitor _$result;
+    try {
+      _$result = _$v ??
+          _$Competitor._(
+            id: id,
+            name: name,
+            domain: domain,
+            matchingNames: _matchingNames?.build(),
+            citationMatchMode: citationMatchMode,
+            citationMatchPath: citationMatchPath,
+            actorType: actorType,
+            isOwn: isOwn,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'matchingNames';
+        _matchingNames?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'Competitor', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

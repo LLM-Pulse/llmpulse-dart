@@ -5,7 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/prompt_summary_row.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
+import 'package:llmpulse/src/model/metrics_filters_echo.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -38,7 +38,7 @@ abstract class PromptSummaryResponse implements Built<PromptSummaryResponse, Pro
   DateTime? get to;
 
   @BuiltValueField(wireName: r'filters')
-  JsonObject? get filters;
+  MetricsFiltersEcho? get filters;
 
   @BuiltValueField(wireName: r'breakdown')
   String? get breakdown;
@@ -112,7 +112,7 @@ class _$PromptSummaryResponseSerializer implements PrimitiveSerializer<PromptSum
       yield r'filters';
       yield serializers.serialize(
         object.filters,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType(MetricsFiltersEcho),
       );
     }
     if (object.breakdown != null) {
@@ -221,10 +221,10 @@ class _$PromptSummaryResponseSerializer implements PrimitiveSerializer<PromptSum
         case r'filters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
+            specifiedType: const FullType.nullable(MetricsFiltersEcho),
+          ) as MetricsFiltersEcho?;
           if (valueDes == null) continue;
-          result.filters = valueDes;
+          result.filters.replace(valueDes);
           break;
         case r'breakdown':
           final valueDes = serializers.deserialize(

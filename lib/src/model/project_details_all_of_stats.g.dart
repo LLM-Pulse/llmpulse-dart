@@ -10,6 +10,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   @override
   final int? promptsCount;
   @override
+  final ProjectDetailsAllOfStatsPromptsByBrandKind? promptsByBrandKind;
+  @override
   final int? competitorsCount;
   @override
   final int? collectionsCount;
@@ -19,7 +21,10 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
       (ProjectDetailsAllOfStatsBuilder()..update(updates))._build();
 
   _$ProjectDetailsAllOfStats._(
-      {this.promptsCount, this.competitorsCount, this.collectionsCount})
+      {this.promptsCount,
+      this.promptsByBrandKind,
+      this.competitorsCount,
+      this.collectionsCount})
       : super._();
   @override
   ProjectDetailsAllOfStats rebuild(
@@ -35,6 +40,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
     if (identical(other, this)) return true;
     return other is ProjectDetailsAllOfStats &&
         promptsCount == other.promptsCount &&
+        promptsByBrandKind == other.promptsByBrandKind &&
         competitorsCount == other.competitorsCount &&
         collectionsCount == other.collectionsCount;
   }
@@ -43,6 +49,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, promptsCount.hashCode);
+    _$hash = $jc(_$hash, promptsByBrandKind.hashCode);
     _$hash = $jc(_$hash, competitorsCount.hashCode);
     _$hash = $jc(_$hash, collectionsCount.hashCode);
     _$hash = $jf(_$hash);
@@ -53,6 +60,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetailsAllOfStats')
           ..add('promptsCount', promptsCount)
+          ..add('promptsByBrandKind', promptsByBrandKind)
           ..add('competitorsCount', competitorsCount)
           ..add('collectionsCount', collectionsCount))
         .toString();
@@ -67,6 +75,15 @@ class ProjectDetailsAllOfStatsBuilder
   int? _promptsCount;
   int? get promptsCount => _$this._promptsCount;
   set promptsCount(int? promptsCount) => _$this._promptsCount = promptsCount;
+
+  ProjectDetailsAllOfStatsPromptsByBrandKindBuilder? _promptsByBrandKind;
+  ProjectDetailsAllOfStatsPromptsByBrandKindBuilder get promptsByBrandKind =>
+      _$this._promptsByBrandKind ??=
+          ProjectDetailsAllOfStatsPromptsByBrandKindBuilder();
+  set promptsByBrandKind(
+          ProjectDetailsAllOfStatsPromptsByBrandKindBuilder?
+              promptsByBrandKind) =>
+      _$this._promptsByBrandKind = promptsByBrandKind;
 
   int? _competitorsCount;
   int? get competitorsCount => _$this._competitorsCount;
@@ -86,6 +103,7 @@ class ProjectDetailsAllOfStatsBuilder
     final $v = _$v;
     if ($v != null) {
       _promptsCount = $v.promptsCount;
+      _promptsByBrandKind = $v.promptsByBrandKind?.toBuilder();
       _competitorsCount = $v.competitorsCount;
       _collectionsCount = $v.collectionsCount;
       _$v = null;
@@ -107,12 +125,26 @@ class ProjectDetailsAllOfStatsBuilder
   ProjectDetailsAllOfStats build() => _build();
 
   _$ProjectDetailsAllOfStats _build() {
-    final _$result = _$v ??
-        _$ProjectDetailsAllOfStats._(
-          promptsCount: promptsCount,
-          competitorsCount: competitorsCount,
-          collectionsCount: collectionsCount,
-        );
+    _$ProjectDetailsAllOfStats _$result;
+    try {
+      _$result = _$v ??
+          _$ProjectDetailsAllOfStats._(
+            promptsCount: promptsCount,
+            promptsByBrandKind: _promptsByBrandKind?.build(),
+            competitorsCount: competitorsCount,
+            collectionsCount: collectionsCount,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'promptsByBrandKind';
+        _promptsByBrandKind?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'ProjectDetailsAllOfStats', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **createAnnotation**
-> createAnnotation(createAnnotationRequest)
+> AnnotationCreateResponse createAnnotation(createAnnotationRequest)
 
 Create a timeline annotation
 
@@ -30,7 +30,8 @@ final api = Llmpulse().getAnnotationsApi();
 final CreateAnnotationRequest createAnnotationRequest = ; // CreateAnnotationRequest | 
 
 try {
-    api.createAnnotation(createAnnotationRequest);
+    final response = api.createAnnotation(createAnnotationRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AnnotationsApi->createAnnotation: $e\n');
 }
@@ -44,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AnnotationCreateResponse**](AnnotationCreateResponse.md)
 
 ### Authorization
 

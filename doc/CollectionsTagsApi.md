@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **assignPromptTags**
-> assignPromptTags(assignPromptTagsRequest)
+> PromptTagsAssignResponse assignPromptTags(assignPromptTagsRequest)
 
 Bulk-attach tags to prompts
 
@@ -32,7 +32,8 @@ final api = Llmpulse().getCollectionsTagsApi();
 final AssignPromptTagsRequest assignPromptTagsRequest = ; // AssignPromptTagsRequest | 
 
 try {
-    api.assignPromptTags(assignPromptTagsRequest);
+    final response = api.assignPromptTags(assignPromptTagsRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->assignPromptTags: $e\n');
 }
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PromptTagsAssignResponse**](PromptTagsAssignResponse.md)
 
 ### Authorization
 
@@ -60,7 +61,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createCollection**
-> createCollection(createCollectionRequest)
+> CollectionCreateResponse createCollection(createCollectionRequest)
 
 Create a tag
 
@@ -74,7 +75,8 @@ final api = Llmpulse().getCollectionsTagsApi();
 final CreateCollectionRequest createCollectionRequest = ; // CreateCollectionRequest | 
 
 try {
-    api.createCollection(createCollectionRequest);
+    final response = api.createCollection(createCollectionRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->createCollection: $e\n');
 }
@@ -88,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CollectionCreateResponse**](CollectionCreateResponse.md)
 
 ### Authorization
 
@@ -146,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCollections**
-> listCollections(projectId, output)
+> CollectionsResponse listCollections(projectId, output)
 
 List tags/collections
 
@@ -159,7 +161,8 @@ final int projectId = 56; // int | Project ID
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listCollections(projectId, output);
+    final response = api.listCollections(projectId, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->listCollections: $e\n');
 }
@@ -174,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CollectionsResponse**](CollectionsResponse.md)
 
 ### Authorization
 
@@ -183,12 +186,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listTags**
-> listTags(projectId, output)
+> CollectionsResponse listTags(projectId, output)
 
 List tags (alias for /collections)
 
@@ -201,7 +204,8 @@ final int projectId = 56; // int | Project ID
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listTags(projectId, output);
+    final response = api.listTags(projectId, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->listTags: $e\n');
 }
@@ -216,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CollectionsResponse**](CollectionsResponse.md)
 
 ### Authorization
 
@@ -225,7 +229,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
