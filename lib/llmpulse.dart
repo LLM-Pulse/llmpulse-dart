@@ -165,6 +165,7 @@ export 'package:llmpulse/src/model/prompts_create_request.dart';
 export 'package:llmpulse/src/model/prompts_create_response.dart';
 export 'package:llmpulse/src/model/prompts_create_response_data_inner.dart';
 export 'package:llmpulse/src/model/prompts_response.dart';
+export 'package:llmpulse/src/model/query_web_analytics_request.dart';
 export 'package:llmpulse/src/model/recommendation_summary.dart';
 export 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 export 'package:llmpulse/src/model/recommendations_response.dart';
@@ -202,4 +203,7 @@ export 'package:llmpulse/src/model/update_collection_request.dart';
 export 'package:llmpulse/src/model/update_competitor_request.dart';
 export 'package:llmpulse/src/model/update_project_draft_request.dart';
 export 'package:llmpulse/src/model/update_project_request.dart';
+export 'package:llmpulse/src/model/web_analytics_query_response.dart';
+export 'package:llmpulse/src/model/web_analytics_query_response_columns_inner.dart';
+export 'package:llmpulse/src/model/web_analytics_schema_response.dart';
 

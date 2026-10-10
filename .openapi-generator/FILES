@@ -147,6 +147,7 @@ doc/PromptsCreateRequest.md
 doc/PromptsCreateResponse.md
 doc/PromptsCreateResponseDataInner.md
 doc/PromptsResponse.md
+doc/QueryWebAnalyticsRequest.md
 doc/RecommendationSummary.md
 doc/RecommendationSummarySummary.md
 doc/RecommendationsApi.md
@@ -192,6 +193,9 @@ doc/UpdateCollectionRequest.md
 doc/UpdateCompetitorRequest.md
 doc/UpdateProjectDraftRequest.md
 doc/UpdateProjectRequest.md
+doc/WebAnalyticsQueryResponse.md
+doc/WebAnalyticsQueryResponseColumnsInner.md
+doc/WebAnalyticsSchemaResponse.md
 doc/WebhooksApi.md
 lib/llmpulse.dart
 lib/src/api.dart
@@ -357,6 +361,7 @@ lib/src/model/prompts_create_request.dart
 lib/src/model/prompts_create_response.dart
 lib/src/model/prompts_create_response_data_inner.dart
 lib/src/model/prompts_response.dart
+lib/src/model/query_web_analytics_request.dart
 lib/src/model/recommendation_summary.dart
 lib/src/model/recommendation_summary_summary.dart
 lib/src/model/recommendations_response.dart
@@ -394,5 +399,8 @@ lib/src/model/update_collection_request.dart
 lib/src/model/update_competitor_request.dart
 lib/src/model/update_project_draft_request.dart
 lib/src/model/update_project_request.dart
+lib/src/model/web_analytics_query_response.dart
+lib/src/model/web_analytics_query_response_columns_inner.dart
+lib/src/model/web_analytics_schema_response.dart
 lib/src/serializers.dart
 pubspec.yaml

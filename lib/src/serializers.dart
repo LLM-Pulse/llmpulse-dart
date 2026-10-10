@@ -144,6 +144,7 @@ import 'package:llmpulse/src/model/prompts_create_request.dart';
 import 'package:llmpulse/src/model/prompts_create_response.dart';
 import 'package:llmpulse/src/model/prompts_create_response_data_inner.dart';
 import 'package:llmpulse/src/model/prompts_response.dart';
+import 'package:llmpulse/src/model/query_web_analytics_request.dart';
 import 'package:llmpulse/src/model/recommendation_summary.dart';
 import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
@@ -181,6 +182,9 @@ import 'package:llmpulse/src/model/update_collection_request.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
 import 'package:llmpulse/src/model/update_project_draft_request.dart';
 import 'package:llmpulse/src/model/update_project_request.dart';
+import 'package:llmpulse/src/model/web_analytics_query_response.dart';
+import 'package:llmpulse/src/model/web_analytics_query_response_columns_inner.dart';
+import 'package:llmpulse/src/model/web_analytics_schema_response.dart';
 
 part 'serializers.g.dart';
 
@@ -315,6 +319,7 @@ part 'serializers.g.dart';
   PromptsCreateResponse,
   PromptsCreateResponseDataInner,
   PromptsResponse,
+  QueryWebAnalyticsRequest,
   RecommendationSummary,
   RecommendationSummarySummary,
   RecommendationsResponse,
@@ -352,6 +357,9 @@ part 'serializers.g.dart';
   UpdateCompetitorRequest,
   UpdateProjectDraftRequest,
   UpdateProjectRequest,
+  WebAnalyticsQueryResponse,
+  WebAnalyticsQueryResponseColumnsInner,
+  WebAnalyticsSchemaResponse,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
@@ -407,6 +415,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<PromptExecutionRecord>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(JsonObject)]),
+        () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseAcceptedInner)]),
         () => ListBuilder<CatalogPromptSuggestionsAcceptResponseAcceptedInner>(),
       )
@@ -421,6 +433,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseBreakdownInner)]),
         () => ListBuilder<SovResponseBreakdownInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BuiltList, [FullType(JsonObject)])]),
+        () => ListBuilder<BuiltList<JsonObject>>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SampleWebhookPayloads200ResponseDataInner)]),
@@ -495,6 +511,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Project>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WebAnalyticsQueryResponseColumnsInner)]),
+        () => ListBuilder<WebAnalyticsQueryResponseColumnsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(int)]),
         () => MapBuilder<String, int>(),
       )
@@ -561,6 +581,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditIssue)]),
         () => ListBuilder<GeoAuditIssue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IntelligenceTaskSummary)]),

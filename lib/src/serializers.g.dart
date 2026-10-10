@@ -172,6 +172,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(PromptsCreateResponseDataInner.serializer)
       ..add(PromptsCreateResponseDataInnerStatusEnum.serializer)
       ..add(PromptsResponse.serializer)
+      ..add(QueryWebAnalyticsRequest.serializer)
       ..add(RecommendationSummary.serializer)
       ..add(RecommendationSummaryRecommendationTypeEnum.serializer)
       ..add(RecommendationSummaryStatusEnum.serializer)
@@ -220,6 +221,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(UpdateProjectDraftRequest.serializer)
       ..add(UpdateProjectDraftRequestStepEnum.serializer)
       ..add(UpdateProjectRequest.serializer)
+      ..add(WebAnalyticsQueryResponse.serializer)
+      ..add(WebAnalyticsQueryResponseColumnsInner.serializer)
+      ..add(WebAnalyticsQueryResponseProviderEnum.serializer)
+      ..add(WebAnalyticsSchemaResponse.serializer)
+      ..add(WebAnalyticsSchemaResponseProviderEnum.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AgentBot)]),
           () => ListBuilder<AgentBot>())
@@ -512,6 +518,24 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
       ..addBuilderFactory(
@@ -549,6 +573,37 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(TopSourcesResponseDataInner)]),
           () => ListBuilder<TopSourcesResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(WebAnalyticsQueryResponseColumnsInner)]),
+          () => ListBuilder<WebAnalyticsQueryResponseColumnsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                BuiltList, const [const FullType.nullable(JsonObject)])
+          ]),
+          () => ListBuilder<BuiltList<JsonObject?>>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
