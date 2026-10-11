@@ -7,6 +7,7 @@ import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
+import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -37,11 +38,15 @@ part 'project_details.g.dart';
 /// * [createdAt] 
 /// * [stats] 
 /// * [dataCoverage] 
+/// * [searchConsole] 
 /// * [requestId] 
 @BuiltValue()
 abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectDetailsBuilder> {
   @BuiltValueField(wireName: r'brand_voice')
   String? get brandVoice;
+
+  @BuiltValueField(wireName: r'search_console')
+  ProjectDetailsAllOfSearchConsole? get searchConsole;
 
   @BuiltValueField(wireName: r'paused')
   bool? get paused;
@@ -127,6 +132,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.brandVoice,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.searchConsole != null) {
+      yield r'search_console';
+      yield serializers.serialize(
+        object.searchConsole,
+        specifiedType: const FullType(ProjectDetailsAllOfSearchConsole),
       );
     }
     if (object.paused != null) {
@@ -306,6 +318,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.brandVoice = valueDes;
+          break;
+        case r'search_console':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfSearchConsole),
+          ) as ProjectDetailsAllOfSearchConsole?;
+          if (valueDes == null) continue;
+          result.searchConsole.replace(valueDes);
           break;
         case r'paused':
           final valueDes = serializers.deserialize(

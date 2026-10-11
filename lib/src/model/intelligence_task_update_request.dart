@@ -14,6 +14,7 @@ part 'intelligence_task_update_request.g.dart';
 /// Properties:
 /// * [projectId] 
 /// * [edits] - Dotted result_data paths (title, sections.0.content, key_points.2) mapped to their replacement text. Only string fields that already exist are editable; sections cannot be added or removed.
+/// * [resultVersion] - Optional. The result_version of the task as last read. When sent, the edit is refused with ERR_STALE_CONTENT (409) and nothing is written if the task was regenerated since. Omitted, null or empty, the edits apply to whatever the task holds now
 @BuiltValue()
 abstract class IntelligenceTaskUpdateRequest implements Built<IntelligenceTaskUpdateRequest, IntelligenceTaskUpdateRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -22,6 +23,10 @@ abstract class IntelligenceTaskUpdateRequest implements Built<IntelligenceTaskUp
   /// Dotted result_data paths (title, sections.0.content, key_points.2) mapped to their replacement text. Only string fields that already exist are editable; sections cannot be added or removed.
   @BuiltValueField(wireName: r'edits')
   BuiltMap<String, String> get edits;
+
+  /// Optional. The result_version of the task as last read. When sent, the edit is refused with ERR_STALE_CONTENT (409) and nothing is written if the task was regenerated since. Omitted, null or empty, the edits apply to whatever the task holds now
+  @BuiltValueField(wireName: r'result_version')
+  String? get resultVersion;
 
   IntelligenceTaskUpdateRequest._();
 
@@ -56,6 +61,13 @@ class _$IntelligenceTaskUpdateRequestSerializer implements PrimitiveSerializer<I
       object.edits,
       specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)]),
     );
+    if (object.resultVersion != null) {
+      yield r'result_version';
+      yield serializers.serialize(
+        object.resultVersion,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -92,6 +104,14 @@ class _$IntelligenceTaskUpdateRequestSerializer implements PrimitiveSerializer<I
             specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)]),
           ) as BuiltMap<String, String>;
           result.edits.replace(valueDes);
+          break;
+        case r'result_version':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.resultVersion = valueDes;
           break;
         default:
           unhandled.add(key);

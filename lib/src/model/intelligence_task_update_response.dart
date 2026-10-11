@@ -34,6 +34,7 @@ part 'intelligence_task_update_response.g.dart';
 /// * [processedAt] 
 /// * [manuallyEditedAt] - When the content was last edited by hand; null while the output is as generated
 /// * [editedByUserId] - User behind the last manual edit; null for an unedited task or an edit made from an embedded portal
+/// * [resultVersion] - Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
 /// * [requestId] 
 /// * [changedPaths] - Paths whose text actually changed; empty when every value matched the stored text
 @BuiltValue()
@@ -105,6 +106,13 @@ class _$IntelligenceTaskUpdateResponseSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.errorMessage,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.resultVersion != null) {
+      yield r'result_version';
+      yield serializers.serialize(
+        object.resultVersion,
+        specifiedType: const FullType(String),
       );
     }
     if (object.title != null) {
@@ -289,6 +297,14 @@ class _$IntelligenceTaskUpdateResponseSerializer implements PrimitiveSerializer<
           ) as String?;
           if (valueDes == null) continue;
           result.errorMessage = valueDes;
+          break;
+        case r'result_version':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.resultVersion = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(

@@ -11,13 +11,15 @@ class _$IntelligenceTaskUpdateRequest extends IntelligenceTaskUpdateRequest {
   final int projectId;
   @override
   final BuiltMap<String, String> edits;
+  @override
+  final String? resultVersion;
 
   factory _$IntelligenceTaskUpdateRequest(
           [void Function(IntelligenceTaskUpdateRequestBuilder)? updates]) =>
       (IntelligenceTaskUpdateRequestBuilder()..update(updates))._build();
 
   _$IntelligenceTaskUpdateRequest._(
-      {required this.projectId, required this.edits})
+      {required this.projectId, required this.edits, this.resultVersion})
       : super._();
   @override
   IntelligenceTaskUpdateRequest rebuild(
@@ -33,7 +35,8 @@ class _$IntelligenceTaskUpdateRequest extends IntelligenceTaskUpdateRequest {
     if (identical(other, this)) return true;
     return other is IntelligenceTaskUpdateRequest &&
         projectId == other.projectId &&
-        edits == other.edits;
+        edits == other.edits &&
+        resultVersion == other.resultVersion;
   }
 
   @override
@@ -41,6 +44,7 @@ class _$IntelligenceTaskUpdateRequest extends IntelligenceTaskUpdateRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, edits.hashCode);
+    _$hash = $jc(_$hash, resultVersion.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -49,7 +53,8 @@ class _$IntelligenceTaskUpdateRequest extends IntelligenceTaskUpdateRequest {
   String toString() {
     return (newBuiltValueToStringHelper(r'IntelligenceTaskUpdateRequest')
           ..add('projectId', projectId)
-          ..add('edits', edits))
+          ..add('edits', edits)
+          ..add('resultVersion', resultVersion))
         .toString();
   }
 }
@@ -69,6 +74,11 @@ class IntelligenceTaskUpdateRequestBuilder
       _$this._edits ??= MapBuilder<String, String>();
   set edits(MapBuilder<String, String>? edits) => _$this._edits = edits;
 
+  String? _resultVersion;
+  String? get resultVersion => _$this._resultVersion;
+  set resultVersion(String? resultVersion) =>
+      _$this._resultVersion = resultVersion;
+
   IntelligenceTaskUpdateRequestBuilder() {
     IntelligenceTaskUpdateRequest._defaults(this);
   }
@@ -78,6 +88,7 @@ class IntelligenceTaskUpdateRequestBuilder
     if ($v != null) {
       _projectId = $v.projectId;
       _edits = $v.edits.toBuilder();
+      _resultVersion = $v.resultVersion;
       _$v = null;
     }
     return this;
@@ -104,6 +115,7 @@ class IntelligenceTaskUpdateRequestBuilder
             projectId: BuiltValueNullFieldError.checkNotNull(
                 projectId, r'IntelligenceTaskUpdateRequest', 'projectId'),
             edits: edits.build(),
+            resultVersion: resultVersion,
           );
     } catch (_) {
       late String _$failedField;

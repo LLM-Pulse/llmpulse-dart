@@ -69,6 +69,9 @@ abstract class IntelligenceTaskBuilder {
   int? get editedByUserId;
   set editedByUserId(int? editedByUserId);
 
+  String? get resultVersion;
+  set resultVersion(String? resultVersion);
+
   String? get requestId;
   set requestId(String? requestId);
 }
@@ -115,6 +118,8 @@ class _$$IntelligenceTask extends $IntelligenceTask {
   @override
   final int? editedByUserId;
   @override
+  final String? resultVersion;
+  @override
   final String? requestId;
 
   factory _$$IntelligenceTask(
@@ -142,6 +147,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
       this.processedAt,
       this.manuallyEditedAt,
       this.editedByUserId,
+      this.resultVersion,
       this.requestId})
       : super._();
   @override
@@ -176,6 +182,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
         processedAt == other.processedAt &&
         manuallyEditedAt == other.manuallyEditedAt &&
         editedByUserId == other.editedByUserId &&
+        resultVersion == other.resultVersion &&
         requestId == other.requestId;
   }
 
@@ -202,6 +209,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
     _$hash = $jc(_$hash, processedAt.hashCode);
     _$hash = $jc(_$hash, manuallyEditedAt.hashCode);
     _$hash = $jc(_$hash, editedByUserId.hashCode);
+    _$hash = $jc(_$hash, resultVersion.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -230,6 +238,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
           ..add('processedAt', processedAt)
           ..add('manuallyEditedAt', manuallyEditedAt)
           ..add('editedByUserId', editedByUserId)
+          ..add('resultVersion', resultVersion)
           ..add('requestId', requestId))
         .toString();
   }
@@ -332,6 +341,11 @@ class $IntelligenceTaskBuilder
   set editedByUserId(covariant int? editedByUserId) =>
       _$this._editedByUserId = editedByUserId;
 
+  String? _resultVersion;
+  String? get resultVersion => _$this._resultVersion;
+  set resultVersion(covariant String? resultVersion) =>
+      _$this._resultVersion = resultVersion;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(covariant String? requestId) => _$this._requestId = requestId;
@@ -363,6 +377,7 @@ class $IntelligenceTaskBuilder
       _processedAt = $v.processedAt;
       _manuallyEditedAt = $v.manuallyEditedAt;
       _editedByUserId = $v.editedByUserId;
+      _resultVersion = $v.resultVersion;
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -405,6 +420,7 @@ class $IntelligenceTaskBuilder
           processedAt: processedAt,
           manuallyEditedAt: manuallyEditedAt,
           editedByUserId: editedByUserId,
+          resultVersion: resultVersion,
           requestId: requestId,
         );
     replace(_$result);

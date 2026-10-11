@@ -31,6 +31,7 @@ import 'package:llmpulse/src/api/sentiments_api.dart';
 import 'package:llmpulse/src/api/shopping_ads_api.dart';
 import 'package:llmpulse/src/api/sources_citation_intelligence_api.dart';
 import 'package:llmpulse/src/api/store_integrations_api.dart';
+import 'package:llmpulse/src/api/team_api.dart';
 import 'package:llmpulse/src/api/technical_geo_reports_api.dart';
 import 'package:llmpulse/src/api/webhooks_api.dart';
 
@@ -258,6 +259,12 @@ class Llmpulse {
   /// by doing that all interceptors will not be executed
   StoreIntegrationsApi getStoreIntegrationsApi() {
     return StoreIntegrationsApi(dio, serializers);
+  }
+
+  /// Get TeamApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  TeamApi getTeamApi() {
+    return TeamApi(dio, serializers);
   }
 
   /// Get TechnicalGEOReportsApi instance, base route and serializer can be overridden by a given but be careful,

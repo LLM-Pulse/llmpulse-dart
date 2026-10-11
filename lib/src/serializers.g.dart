@@ -14,6 +14,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add($LlmsTxtTechnicalGeoReport.serializer)
       ..add($PaginatedEnvelope.serializer)
       ..add($Project.serializer)
+      ..add($TeamInvitation.serializer)
       ..add($TimeseriesResponse.serializer)
       ..add(AccountCapacity.serializer)
       ..add(AccountQuota.serializer)
@@ -70,6 +71,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CreateCompetitorRequest.serializer)
       ..add(CreateCompetitorRequestCitationMatchModeEnum.serializer)
       ..add(CreateProjectDraftRequest.serializer)
+      ..add(CreateTeamInvitation201Response.serializer)
+      ..add(CreateTeamInvitationRequest.serializer)
+      ..add(CreateTeamInvitationRequestPermissionRoleEnum.serializer)
       ..add(CreateTechnicalGeoReportsRequest.serializer)
       ..add(CreateWebhook201Response.serializer)
       ..add(CreateWebhook201ResponseEventTypeEnum.serializer)
@@ -129,6 +133,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(LaunchRecommendationsRequestRecommendationTypeEnum.serializer)
       ..add(ListCompetitors200Response.serializer)
       ..add(ListProjects200Response.serializer)
+      ..add(ListTeamInvitations200Response.serializer)
+      ..add(ListTeamMembers200Response.serializer)
       ..add(ListWebhooks200Response.serializer)
       ..add(ListWebhooks200ResponseDataInner.serializer)
       ..add(ListWebhooks200ResponseDataInnerEventTypeEnum.serializer)
@@ -158,6 +164,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProjectDetails.serializer)
       ..add(ProjectDetailsAllOfDataCoverage.serializer)
       ..add(ProjectDetailsAllOfDataCoverageModelsEnum.serializer)
+      ..add(ProjectDetailsAllOfSearchConsole.serializer)
+      ..add(ProjectDetailsAllOfSearchConsoleStatusEnum.serializer)
       ..add(ProjectDetailsAllOfStats.serializer)
       ..add(ProjectDetailsAllOfStatsPromptsByBrandKind.serializer)
       ..add(PromptExecutionRecord.serializer)
@@ -178,11 +186,23 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(RecommendationSummaryStatusEnum.serializer)
       ..add(RecommendationSummarySummary.serializer)
       ..add(RecommendationsResponse.serializer)
+      ..add(RemoveTeamMember200Response.serializer)
+      ..add(RevokeTeamInvitation200Response.serializer)
       ..add(SampleWebhookPayloads200Response.serializer)
       ..add(SampleWebhookPayloads200ResponseDataInner.serializer)
       ..add(SearchConsoleFiltersInner.serializer)
       ..add(SearchConsoleFiltersInnerDimensionEnum.serializer)
       ..add(SearchConsoleFiltersInnerOperator_Enum.serializer)
+      ..add(SearchConsoleListResponse.serializer)
+      ..add(SearchConsoleListResponseDataInner.serializer)
+      ..add(SearchConsoleMetrics.serializer)
+      ..add(SearchConsoleProperty.serializer)
+      ..add(SearchConsoleRowsResponse.serializer)
+      ..add(SearchConsoleRowsResponseDataInner.serializer)
+      ..add(SearchConsoleSummaryResponse.serializer)
+      ..add(SearchConsoleSummaryResponseBreakdownInner.serializer)
+      ..add(SearchConsoleTimeseriesResponse.serializer)
+      ..add(SearchConsoleTimeseriesResponseDataInner.serializer)
       ..add(SentimentRecord.serializer)
       ..add(SentimentRecordAnalysisEnum.serializer)
       ..add(SentimentRecordModelEnum.serializer)
@@ -203,6 +223,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(SummaryResponseAllOfSummaryValueInner.serializer)
       ..add(SummaryResponseAllOfSummaryValueInnerAggregationEnum.serializer)
       ..add(TagRef.serializer)
+      ..add(TeamAccountRole.serializer)
+      ..add(TeamInvitationPermissionRoleEnum.serializer)
+      ..add(TeamMember.serializer)
+      ..add(TeamMemberRoleEnum.serializer)
+      ..add(TeamMemberStatusEnum.serializer)
       ..add(TechnicalGeoReportContentRevertRequest.serializer)
       ..add(TechnicalGeoReportContentRevertRequestReportTypeEnum.serializer)
       ..add(TechnicalGeoReportContentUpdateRequest.serializer)
@@ -369,6 +394,19 @@ Serializers _$serializers = (Serializers().toBuilder()
           ]),
           () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(SearchConsoleListResponseDataInner)]),
+          () => ListBuilder<SearchConsoleListResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(SearchConsoleSummaryResponseBreakdownInner)
+          ]),
+          () => ListBuilder<SearchConsoleSummaryResponseBreakdownInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(SearchConsoleTimeseriesResponseDataInner)]),
+          () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SentimentRecord)]),
           () => ListBuilder<SentimentRecord>())
       ..addBuilderFactory(
@@ -462,6 +500,13 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(SearchConsoleRowsResponseDataInner)]),
+          () => ListBuilder<SearchConsoleRowsResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
@@ -551,11 +596,20 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(TagRef)]),
           () => ListBuilder<TagRef>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(TagRef)]),
+          () => ListBuilder<TagRef>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(TeamInvitation)]),
+          () => ListBuilder<TeamInvitation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(TeamMember)]),
+          () => ListBuilder<TeamMember>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
@@ -632,9 +686,45 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(BuiltList, const [const FullType(String)])
+          ]),
+          () => MapBuilder<String, BuiltList<String>>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType.nullable(GeoAuditRun)]),
           () => ListBuilder<GeoAuditRun?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(BuiltList, const [const FullType(String)])
+          ]),
+          () => MapBuilder<String, BuiltList<String>>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(BuiltList, const [const FullType(String)])
+          ]),
+          () => MapBuilder<String, BuiltList<String>>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(BuiltList, const [const FullType(String)])
+          ]),
+          () => MapBuilder<String, BuiltList<String>>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltMap, const [
             const FullType(String),

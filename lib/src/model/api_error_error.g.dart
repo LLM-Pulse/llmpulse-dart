@@ -70,6 +70,8 @@ const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_LIMIT_REACHED =
     const ApiErrorErrorCodeEnum._('ERR_LIMIT_REACHED');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_QUOTA_EXCEEDED =
     const ApiErrorErrorCodeEnum._('ERR_QUOTA_EXCEEDED');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_STALE_CONTENT =
+    const ApiErrorErrorCodeEnum._('ERR_STALE_CONTENT');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_RATE_LIMITED =
     const ApiErrorErrorCodeEnum._('ERR_RATE_LIMITED');
 
@@ -129,6 +131,8 @@ ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnumValueOf(String name) {
       return _$apiErrorErrorCodeEnum_ERR_LIMIT_REACHED;
     case 'ERR_QUOTA_EXCEEDED':
       return _$apiErrorErrorCodeEnum_ERR_QUOTA_EXCEEDED;
+    case 'ERR_STALE_CONTENT':
+      return _$apiErrorErrorCodeEnum_ERR_STALE_CONTENT;
     case 'ERR_RATE_LIMITED':
       return _$apiErrorErrorCodeEnum_ERR_RATE_LIMITED;
     default:
@@ -165,6 +169,7 @@ final BuiltSet<ApiErrorErrorCodeEnum> _$apiErrorErrorCodeEnumValues =
   _$apiErrorErrorCodeEnum_ERR_INVALID_RANGE,
   _$apiErrorErrorCodeEnum_ERR_LIMIT_REACHED,
   _$apiErrorErrorCodeEnum_ERR_QUOTA_EXCEEDED,
+  _$apiErrorErrorCodeEnum_ERR_STALE_CONTENT,
   _$apiErrorErrorCodeEnum_ERR_RATE_LIMITED,
 ]);
 
@@ -201,6 +206,7 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_INVALID_RANGE': 'ERR_INVALID_RANGE',
     'ERR_LIMIT_REACHED': 'ERR_LIMIT_REACHED',
     'ERR_QUOTA_EXCEEDED': 'ERR_QUOTA_EXCEEDED',
+    'ERR_STALE_CONTENT': 'ERR_STALE_CONTENT',
     'ERR_RATE_LIMITED': 'ERR_RATE_LIMITED',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
@@ -231,6 +237,7 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_INVALID_RANGE': 'ERR_INVALID_RANGE',
     'ERR_LIMIT_REACHED': 'ERR_LIMIT_REACHED',
     'ERR_QUOTA_EXCEEDED': 'ERR_QUOTA_EXCEEDED',
+    'ERR_STALE_CONTENT': 'ERR_STALE_CONTENT',
     'ERR_RATE_LIMITED': 'ERR_RATE_LIMITED',
   };
 

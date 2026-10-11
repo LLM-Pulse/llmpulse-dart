@@ -10,6 +10,8 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? brandVoice;
   @override
+  final ProjectDetailsAllOfSearchConsole? searchConsole;
+  @override
   final bool? paused;
   @override
   final String? businessModel;
@@ -57,6 +59,7 @@ class _$ProjectDetails extends ProjectDetails {
 
   _$ProjectDetails._(
       {this.brandVoice,
+      this.searchConsole,
       this.paused,
       this.businessModel,
       this.description,
@@ -91,6 +94,7 @@ class _$ProjectDetails extends ProjectDetails {
     if (identical(other, this)) return true;
     return other is ProjectDetails &&
         brandVoice == other.brandVoice &&
+        searchConsole == other.searchConsole &&
         paused == other.paused &&
         businessModel == other.businessModel &&
         description == other.description &&
@@ -118,6 +122,7 @@ class _$ProjectDetails extends ProjectDetails {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, brandVoice.hashCode);
+    _$hash = $jc(_$hash, searchConsole.hashCode);
     _$hash = $jc(_$hash, paused.hashCode);
     _$hash = $jc(_$hash, businessModel.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
@@ -147,6 +152,7 @@ class _$ProjectDetails extends ProjectDetails {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetails')
           ..add('brandVoice', brandVoice)
+          ..add('searchConsole', searchConsole)
           ..add('paused', paused)
           ..add('businessModel', businessModel)
           ..add('description', description)
@@ -180,6 +186,13 @@ class ProjectDetailsBuilder
   String? get brandVoice => _$this._brandVoice;
   set brandVoice(covariant String? brandVoice) =>
       _$this._brandVoice = brandVoice;
+
+  ProjectDetailsAllOfSearchConsoleBuilder? _searchConsole;
+  ProjectDetailsAllOfSearchConsoleBuilder get searchConsole =>
+      _$this._searchConsole ??= ProjectDetailsAllOfSearchConsoleBuilder();
+  set searchConsole(
+          covariant ProjectDetailsAllOfSearchConsoleBuilder? searchConsole) =>
+      _$this._searchConsole = searchConsole;
 
   bool? _paused;
   bool? get paused => _$this._paused;
@@ -290,6 +303,7 @@ class ProjectDetailsBuilder
     final $v = _$v;
     if ($v != null) {
       _brandVoice = $v.brandVoice;
+      _searchConsole = $v.searchConsole?.toBuilder();
       _paused = $v.paused;
       _businessModel = $v.businessModel;
       _description = $v.description;
@@ -335,6 +349,7 @@ class ProjectDetailsBuilder
       _$result = _$v ??
           _$ProjectDetails._(
             brandVoice: brandVoice,
+            searchConsole: _searchConsole?.build(),
             paused: paused,
             businessModel: businessModel,
             description: description,
@@ -360,6 +375,9 @@ class ProjectDetailsBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'searchConsole';
+        _searchConsole?.build();
+
         _$failedField = 'stats';
         _stats?.build();
 

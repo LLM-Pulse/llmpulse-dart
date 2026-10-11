@@ -31,6 +31,30 @@ class _$PromptSummaryRow extends PromptSummaryRow {
   final num? avgPosition;
   @override
   final String? appUrl;
+  @override
+  final String? countryCode;
+  @override
+  final String? languageCode;
+  @override
+  final String? promptType;
+  @override
+  final String? brandKind;
+  @override
+  final BuiltList<TagRef>? tags;
+  @override
+  final int? sentimentResponses;
+  @override
+  final num? sentimentVeryPositive;
+  @override
+  final num? sentimentPositive;
+  @override
+  final num? sentimentNeutral;
+  @override
+  final num? sentimentNegative;
+  @override
+  final num? sentimentVeryNegative;
+  @override
+  final num? netSentiment;
 
   factory _$PromptSummaryRow(
           [void Function(PromptSummaryRowBuilder)? updates]) =>
@@ -48,7 +72,19 @@ class _$PromptSummaryRow extends PromptSummaryRow {
       this.citationRate,
       this.avgMentionPosition,
       this.avgPosition,
-      this.appUrl})
+      this.appUrl,
+      this.countryCode,
+      this.languageCode,
+      this.promptType,
+      this.brandKind,
+      this.tags,
+      this.sentimentResponses,
+      this.sentimentVeryPositive,
+      this.sentimentPositive,
+      this.sentimentNeutral,
+      this.sentimentNegative,
+      this.sentimentVeryNegative,
+      this.netSentiment})
       : super._();
   @override
   PromptSummaryRow rebuild(void Function(PromptSummaryRowBuilder) updates) =>
@@ -73,7 +109,19 @@ class _$PromptSummaryRow extends PromptSummaryRow {
         citationRate == other.citationRate &&
         avgMentionPosition == other.avgMentionPosition &&
         avgPosition == other.avgPosition &&
-        appUrl == other.appUrl;
+        appUrl == other.appUrl &&
+        countryCode == other.countryCode &&
+        languageCode == other.languageCode &&
+        promptType == other.promptType &&
+        brandKind == other.brandKind &&
+        tags == other.tags &&
+        sentimentResponses == other.sentimentResponses &&
+        sentimentVeryPositive == other.sentimentVeryPositive &&
+        sentimentPositive == other.sentimentPositive &&
+        sentimentNeutral == other.sentimentNeutral &&
+        sentimentNegative == other.sentimentNegative &&
+        sentimentVeryNegative == other.sentimentVeryNegative &&
+        netSentiment == other.netSentiment;
   }
 
   @override
@@ -91,6 +139,18 @@ class _$PromptSummaryRow extends PromptSummaryRow {
     _$hash = $jc(_$hash, avgMentionPosition.hashCode);
     _$hash = $jc(_$hash, avgPosition.hashCode);
     _$hash = $jc(_$hash, appUrl.hashCode);
+    _$hash = $jc(_$hash, countryCode.hashCode);
+    _$hash = $jc(_$hash, languageCode.hashCode);
+    _$hash = $jc(_$hash, promptType.hashCode);
+    _$hash = $jc(_$hash, brandKind.hashCode);
+    _$hash = $jc(_$hash, tags.hashCode);
+    _$hash = $jc(_$hash, sentimentResponses.hashCode);
+    _$hash = $jc(_$hash, sentimentVeryPositive.hashCode);
+    _$hash = $jc(_$hash, sentimentPositive.hashCode);
+    _$hash = $jc(_$hash, sentimentNeutral.hashCode);
+    _$hash = $jc(_$hash, sentimentNegative.hashCode);
+    _$hash = $jc(_$hash, sentimentVeryNegative.hashCode);
+    _$hash = $jc(_$hash, netSentiment.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -109,7 +169,19 @@ class _$PromptSummaryRow extends PromptSummaryRow {
           ..add('citationRate', citationRate)
           ..add('avgMentionPosition', avgMentionPosition)
           ..add('avgPosition', avgPosition)
-          ..add('appUrl', appUrl))
+          ..add('appUrl', appUrl)
+          ..add('countryCode', countryCode)
+          ..add('languageCode', languageCode)
+          ..add('promptType', promptType)
+          ..add('brandKind', brandKind)
+          ..add('tags', tags)
+          ..add('sentimentResponses', sentimentResponses)
+          ..add('sentimentVeryPositive', sentimentVeryPositive)
+          ..add('sentimentPositive', sentimentPositive)
+          ..add('sentimentNeutral', sentimentNeutral)
+          ..add('sentimentNegative', sentimentNegative)
+          ..add('sentimentVeryNegative', sentimentVeryNegative)
+          ..add('netSentiment', netSentiment))
         .toString();
   }
 }
@@ -167,6 +239,60 @@ class PromptSummaryRowBuilder
   String? get appUrl => _$this._appUrl;
   set appUrl(String? appUrl) => _$this._appUrl = appUrl;
 
+  String? _countryCode;
+  String? get countryCode => _$this._countryCode;
+  set countryCode(String? countryCode) => _$this._countryCode = countryCode;
+
+  String? _languageCode;
+  String? get languageCode => _$this._languageCode;
+  set languageCode(String? languageCode) => _$this._languageCode = languageCode;
+
+  String? _promptType;
+  String? get promptType => _$this._promptType;
+  set promptType(String? promptType) => _$this._promptType = promptType;
+
+  String? _brandKind;
+  String? get brandKind => _$this._brandKind;
+  set brandKind(String? brandKind) => _$this._brandKind = brandKind;
+
+  ListBuilder<TagRef>? _tags;
+  ListBuilder<TagRef> get tags => _$this._tags ??= ListBuilder<TagRef>();
+  set tags(ListBuilder<TagRef>? tags) => _$this._tags = tags;
+
+  int? _sentimentResponses;
+  int? get sentimentResponses => _$this._sentimentResponses;
+  set sentimentResponses(int? sentimentResponses) =>
+      _$this._sentimentResponses = sentimentResponses;
+
+  num? _sentimentVeryPositive;
+  num? get sentimentVeryPositive => _$this._sentimentVeryPositive;
+  set sentimentVeryPositive(num? sentimentVeryPositive) =>
+      _$this._sentimentVeryPositive = sentimentVeryPositive;
+
+  num? _sentimentPositive;
+  num? get sentimentPositive => _$this._sentimentPositive;
+  set sentimentPositive(num? sentimentPositive) =>
+      _$this._sentimentPositive = sentimentPositive;
+
+  num? _sentimentNeutral;
+  num? get sentimentNeutral => _$this._sentimentNeutral;
+  set sentimentNeutral(num? sentimentNeutral) =>
+      _$this._sentimentNeutral = sentimentNeutral;
+
+  num? _sentimentNegative;
+  num? get sentimentNegative => _$this._sentimentNegative;
+  set sentimentNegative(num? sentimentNegative) =>
+      _$this._sentimentNegative = sentimentNegative;
+
+  num? _sentimentVeryNegative;
+  num? get sentimentVeryNegative => _$this._sentimentVeryNegative;
+  set sentimentVeryNegative(num? sentimentVeryNegative) =>
+      _$this._sentimentVeryNegative = sentimentVeryNegative;
+
+  num? _netSentiment;
+  num? get netSentiment => _$this._netSentiment;
+  set netSentiment(num? netSentiment) => _$this._netSentiment = netSentiment;
+
   PromptSummaryRowBuilder() {
     PromptSummaryRow._defaults(this);
   }
@@ -186,6 +312,18 @@ class PromptSummaryRowBuilder
       _avgMentionPosition = $v.avgMentionPosition;
       _avgPosition = $v.avgPosition;
       _appUrl = $v.appUrl;
+      _countryCode = $v.countryCode;
+      _languageCode = $v.languageCode;
+      _promptType = $v.promptType;
+      _brandKind = $v.brandKind;
+      _tags = $v.tags?.toBuilder();
+      _sentimentResponses = $v.sentimentResponses;
+      _sentimentVeryPositive = $v.sentimentVeryPositive;
+      _sentimentPositive = $v.sentimentPositive;
+      _sentimentNeutral = $v.sentimentNeutral;
+      _sentimentNegative = $v.sentimentNegative;
+      _sentimentVeryNegative = $v.sentimentVeryNegative;
+      _netSentiment = $v.netSentiment;
       _$v = null;
     }
     return this;
@@ -205,21 +343,46 @@ class PromptSummaryRowBuilder
   PromptSummaryRow build() => _build();
 
   _$PromptSummaryRow _build() {
-    final _$result = _$v ??
-        _$PromptSummaryRow._(
-          promptId: promptId,
-          promptText: promptText,
-          model: model,
-          responses: responses,
-          mentions: mentions,
-          citations: citations,
-          visibility: visibility,
-          mentionRate: mentionRate,
-          citationRate: citationRate,
-          avgMentionPosition: avgMentionPosition,
-          avgPosition: avgPosition,
-          appUrl: appUrl,
-        );
+    _$PromptSummaryRow _$result;
+    try {
+      _$result = _$v ??
+          _$PromptSummaryRow._(
+            promptId: promptId,
+            promptText: promptText,
+            model: model,
+            responses: responses,
+            mentions: mentions,
+            citations: citations,
+            visibility: visibility,
+            mentionRate: mentionRate,
+            citationRate: citationRate,
+            avgMentionPosition: avgMentionPosition,
+            avgPosition: avgPosition,
+            appUrl: appUrl,
+            countryCode: countryCode,
+            languageCode: languageCode,
+            promptType: promptType,
+            brandKind: brandKind,
+            tags: _tags?.build(),
+            sentimentResponses: sentimentResponses,
+            sentimentVeryPositive: sentimentVeryPositive,
+            sentimentPositive: sentimentPositive,
+            sentimentNeutral: sentimentNeutral,
+            sentimentNegative: sentimentNegative,
+            sentimentVeryNegative: sentimentVeryNegative,
+            netSentiment: netSentiment,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'tags';
+        _tags?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'PromptSummaryRow', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -61,6 +61,8 @@ import 'package:llmpulse/src/model/create_annotation_request.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
 import 'package:llmpulse/src/model/create_project_draft_request.dart';
+import 'package:llmpulse/src/model/create_team_invitation201_response.dart';
+import 'package:llmpulse/src/model/create_team_invitation_request.dart';
 import 'package:llmpulse/src/model/create_technical_geo_reports_request.dart';
 import 'package:llmpulse/src/model/create_webhook201_response.dart';
 import 'package:llmpulse/src/model/create_webhook_request.dart';
@@ -104,6 +106,8 @@ import 'package:llmpulse/src/model/intelligence_tasks_response.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
 import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/list_projects200_response.dart';
+import 'package:llmpulse/src/model/list_team_invitations200_response.dart';
+import 'package:llmpulse/src/model/list_team_members200_response.dart';
 import 'package:llmpulse/src/model/list_webhooks200_response.dart';
 import 'package:llmpulse/src/model/list_webhooks200_response_data_inner.dart';
 import 'package:llmpulse/src/model/llms_txt_technical_geo_report.dart';
@@ -132,6 +136,7 @@ import 'package:llmpulse/src/model/project_create_response_prompts.dart';
 import 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
 import 'package:llmpulse/src/model/project_details.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
+import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
 import 'package:llmpulse/src/model/prompt_execution_record.dart';
@@ -148,9 +153,21 @@ import 'package:llmpulse/src/model/query_web_analytics_request.dart';
 import 'package:llmpulse/src/model/recommendation_summary.dart';
 import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
+import 'package:llmpulse/src/model/remove_team_member200_response.dart';
+import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_filters_inner.dart';
+import 'package:llmpulse/src/model/search_console_list_response.dart';
+import 'package:llmpulse/src/model/search_console_list_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_metrics.dart';
+import 'package:llmpulse/src/model/search_console_property.dart';
+import 'package:llmpulse/src/model/search_console_rows_response.dart';
+import 'package:llmpulse/src/model/search_console_rows_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_summary_response.dart';
+import 'package:llmpulse/src/model/search_console_summary_response_breakdown_inner.dart';
+import 'package:llmpulse/src/model/search_console_timeseries_response.dart';
+import 'package:llmpulse/src/model/search_console_timeseries_response_data_inner.dart';
 import 'package:llmpulse/src/model/sentiment_record.dart';
 import 'package:llmpulse/src/model/sentiments_response.dart';
 import 'package:llmpulse/src/model/sov_response.dart';
@@ -168,6 +185,9 @@ import 'package:llmpulse/src/model/summary_response.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
 import 'package:llmpulse/src/model/tag_ref.dart';
+import 'package:llmpulse/src/model/team_account_role.dart';
+import 'package:llmpulse/src/model/team_invitation.dart';
+import 'package:llmpulse/src/model/team_member.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_revert_request.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_request.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_request_edits.dart';
@@ -236,6 +256,8 @@ part 'serializers.g.dart';
   CreateCollectionRequest,
   CreateCompetitorRequest,
   CreateProjectDraftRequest,
+  CreateTeamInvitation201Response,
+  CreateTeamInvitationRequest,
   CreateTechnicalGeoReportsRequest,
   CreateWebhook201Response,
   CreateWebhookRequest,
@@ -279,6 +301,8 @@ part 'serializers.g.dart';
   LaunchRecommendationsRequest,
   ListCompetitors200Response,
   ListProjects200Response,
+  ListTeamInvitations200Response,
+  ListTeamMembers200Response,
   ListWebhooks200Response,
   ListWebhooks200ResponseDataInner,
   LlmsTxtTechnicalGeoReport,$LlmsTxtTechnicalGeoReport,
@@ -307,6 +331,7 @@ part 'serializers.g.dart';
   ProjectCreateResponseSameDomainProjectsInner,
   ProjectDetails,
   ProjectDetailsAllOfDataCoverage,
+  ProjectDetailsAllOfSearchConsole,
   ProjectDetailsAllOfStats,
   ProjectDetailsAllOfStatsPromptsByBrandKind,
   PromptExecutionRecord,
@@ -323,9 +348,21 @@ part 'serializers.g.dart';
   RecommendationSummary,
   RecommendationSummarySummary,
   RecommendationsResponse,
+  RemoveTeamMember200Response,
+  RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
   SampleWebhookPayloads200ResponseDataInner,
   SearchConsoleFiltersInner,
+  SearchConsoleListResponse,
+  SearchConsoleListResponseDataInner,
+  SearchConsoleMetrics,
+  SearchConsoleProperty,
+  SearchConsoleRowsResponse,
+  SearchConsoleRowsResponseDataInner,
+  SearchConsoleSummaryResponse,
+  SearchConsoleSummaryResponseBreakdownInner,
+  SearchConsoleTimeseriesResponse,
+  SearchConsoleTimeseriesResponseDataInner,
   SentimentRecord,
   SentimentsResponse,
   SovResponse,
@@ -343,6 +380,9 @@ part 'serializers.g.dart';
   SummaryResponseAllOfPositionDistribution,
   SummaryResponseAllOfSummaryValueInner,
   TagRef,
+  TeamAccountRole,
+  TeamInvitation,$TeamInvitation,
+  TeamMember,
   TechnicalGeoReportContentRevertRequest,
   TechnicalGeoReportContentUpdateRequest,
   TechnicalGeoReportContentUpdateRequestEdits,
@@ -373,6 +413,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptSummaryRow)]),
         () => ListBuilder<PromptSummaryRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TeamMember)]),
+        () => ListBuilder<TeamMember>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
@@ -407,6 +451,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<TopSourcesResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleRowsResponseDataInner)]),
+        () => ListBuilder<SearchConsoleRowsResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TimeseriesSeries)]),
         () => ListBuilder<TimeseriesSeries>(),
       )
@@ -421,6 +469,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseAcceptedInner)]),
         () => ListBuilder<CatalogPromptSuggestionsAcceptResponseAcceptedInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(String)])]),
+        () => MapBuilder<String, BuiltList<String>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
+        () => ListBuilder<SearchConsoleListResponseDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
@@ -439,6 +495,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<BuiltList<JsonObject>>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleSummaryResponseBreakdownInner)]),
+        () => ListBuilder<SearchConsoleSummaryResponseBreakdownInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SampleWebhookPayloads200ResponseDataInner)]),
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
@@ -449,6 +509,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAudit)]),
         () => ListBuilder<GeoAudit>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TeamInvitation)]),
+        () => ListBuilder<TeamInvitation>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(String)]),
@@ -567,6 +631,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleTimeseriesResponseDataInner)]),
+        () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseOverTimeInner)]),
         () => ListBuilder<SovResponseOverTimeInner>(),
       )
@@ -605,6 +673,7 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(LlmsTxtTechnicalGeoReport.serializer)
       ..add(PaginatedEnvelope.serializer)
       ..add(Project.serializer)
+      ..add(TeamInvitation.serializer)
       ..add(TimeseriesResponse.serializer)
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

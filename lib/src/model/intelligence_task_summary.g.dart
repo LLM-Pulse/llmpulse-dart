@@ -29,6 +29,8 @@ class _$IntelligenceTaskSummary extends IntelligenceTaskSummary {
   final DateTime createdAt;
   @override
   final DateTime? processedAt;
+  @override
+  final String resultVersion;
 
   factory _$IntelligenceTaskSummary(
           [void Function(IntelligenceTaskSummaryBuilder)? updates]) =>
@@ -45,7 +47,8 @@ class _$IntelligenceTaskSummary extends IntelligenceTaskSummary {
       this.wordCount,
       this.manuallyEditedAt,
       required this.createdAt,
-      this.processedAt})
+      this.processedAt,
+      required this.resultVersion})
       : super._();
   @override
   IntelligenceTaskSummary rebuild(
@@ -70,7 +73,8 @@ class _$IntelligenceTaskSummary extends IntelligenceTaskSummary {
         wordCount == other.wordCount &&
         manuallyEditedAt == other.manuallyEditedAt &&
         createdAt == other.createdAt &&
-        processedAt == other.processedAt;
+        processedAt == other.processedAt &&
+        resultVersion == other.resultVersion;
   }
 
   @override
@@ -87,6 +91,7 @@ class _$IntelligenceTaskSummary extends IntelligenceTaskSummary {
     _$hash = $jc(_$hash, manuallyEditedAt.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, processedAt.hashCode);
+    _$hash = $jc(_$hash, resultVersion.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -104,7 +109,8 @@ class _$IntelligenceTaskSummary extends IntelligenceTaskSummary {
           ..add('wordCount', wordCount)
           ..add('manuallyEditedAt', manuallyEditedAt)
           ..add('createdAt', createdAt)
-          ..add('processedAt', processedAt))
+          ..add('processedAt', processedAt)
+          ..add('resultVersion', resultVersion))
         .toString();
   }
 }
@@ -159,6 +165,11 @@ class IntelligenceTaskSummaryBuilder
   DateTime? get processedAt => _$this._processedAt;
   set processedAt(DateTime? processedAt) => _$this._processedAt = processedAt;
 
+  String? _resultVersion;
+  String? get resultVersion => _$this._resultVersion;
+  set resultVersion(String? resultVersion) =>
+      _$this._resultVersion = resultVersion;
+
   IntelligenceTaskSummaryBuilder() {
     IntelligenceTaskSummary._defaults(this);
   }
@@ -177,6 +188,7 @@ class IntelligenceTaskSummaryBuilder
       _manuallyEditedAt = $v.manuallyEditedAt;
       _createdAt = $v.createdAt;
       _processedAt = $v.processedAt;
+      _resultVersion = $v.resultVersion;
       _$v = null;
     }
     return this;
@@ -215,6 +227,8 @@ class IntelligenceTaskSummaryBuilder
           createdAt: BuiltValueNullFieldError.checkNotNull(
               createdAt, r'IntelligenceTaskSummary', 'createdAt'),
           processedAt: processedAt,
+          resultVersion: BuiltValueNullFieldError.checkNotNull(
+              resultVersion, r'IntelligenceTaskSummary', 'resultVersion'),
         );
     replace(_$result);
     return _$result;

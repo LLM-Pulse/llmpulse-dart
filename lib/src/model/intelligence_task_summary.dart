@@ -22,6 +22,7 @@ part 'intelligence_task_summary.g.dart';
 /// * [manuallyEditedAt] - When the content was last edited by hand; null while the output is as generated
 /// * [createdAt] 
 /// * [processedAt] 
+/// * [resultVersion] - Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
 @BuiltValue()
 abstract class IntelligenceTaskSummary implements Built<IntelligenceTaskSummary, IntelligenceTaskSummaryBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -57,6 +58,10 @@ abstract class IntelligenceTaskSummary implements Built<IntelligenceTaskSummary,
 
   @BuiltValueField(wireName: r'processed_at')
   DateTime? get processedAt;
+
+  /// Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
+  @BuiltValueField(wireName: r'result_version')
+  String get resultVersion;
 
   IntelligenceTaskSummary._();
 
@@ -135,6 +140,11 @@ class _$IntelligenceTaskSummarySerializer implements PrimitiveSerializer<Intelli
     yield object.processedAt == null ? null : serializers.serialize(
       object.processedAt,
       specifiedType: const FullType.nullable(DateTime),
+    );
+    yield r'result_version';
+    yield serializers.serialize(
+      object.resultVersion,
+      specifiedType: const FullType(String),
     );
   }
 
@@ -240,6 +250,13 @@ class _$IntelligenceTaskSummarySerializer implements PrimitiveSerializer<Intelli
           ) as DateTime?;
           if (valueDes == null) continue;
           result.processedAt = valueDes;
+          break;
+        case r'result_version':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.resultVersion = valueDes;
           break;
         default:
           unhandled.add(key);

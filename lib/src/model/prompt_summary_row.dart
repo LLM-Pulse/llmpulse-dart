@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/tag_ref.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -23,6 +25,18 @@ part 'prompt_summary_row.g.dart';
 /// * [avgMentionPosition] 
 /// * [avgPosition] 
 /// * [appUrl] - Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
+/// * [countryCode] - Country of the prompt, as in /dimensions/prompts
+/// * [languageCode] - Language of the prompt, as in /dimensions/prompts
+/// * [promptType] - Search intent: informational, navigational, commercial or transactional. Null until the prompt is classified
+/// * [brandKind] - Brand focus: brand, brand_other or non_brand. Null until the prompt is classified
+/// * [tags] - Every tag the prompt belongs to
+/// * [sentimentResponses] - Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries)
+/// * [sentimentVeryPositive] - Percentage (0-100) of sentiment_responses whose brand verdict is very positive; null when sentiment_responses is 0
+/// * [sentimentPositive] - Percentage (0-100) of sentiment_responses whose brand verdict is positive; null when sentiment_responses is 0
+/// * [sentimentNeutral] - Percentage (0-100) of sentiment_responses whose brand verdict is neutral; null when sentiment_responses is 0
+/// * [sentimentNegative] - Percentage (0-100) of sentiment_responses whose brand verdict is negative; null when sentiment_responses is 0
+/// * [sentimentVeryNegative] - Percentage (0-100) of sentiment_responses whose brand verdict is very negative; null when sentiment_responses is 0
+/// * [netSentiment] - Positive minus negative percentages (-100 to 100), neutral counted in the base; null when sentiment_responses is 0
 @BuiltValue()
 abstract class PromptSummaryRow implements Built<PromptSummaryRow, PromptSummaryRowBuilder> {
   @BuiltValueField(wireName: r'prompt_id')
@@ -62,6 +76,54 @@ abstract class PromptSummaryRow implements Built<PromptSummaryRow, PromptSummary
   /// Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
   @BuiltValueField(wireName: r'app_url')
   String? get appUrl;
+
+  /// Country of the prompt, as in /dimensions/prompts
+  @BuiltValueField(wireName: r'country_code')
+  String? get countryCode;
+
+  /// Language of the prompt, as in /dimensions/prompts
+  @BuiltValueField(wireName: r'language_code')
+  String? get languageCode;
+
+  /// Search intent: informational, navigational, commercial or transactional. Null until the prompt is classified
+  @BuiltValueField(wireName: r'prompt_type')
+  String? get promptType;
+
+  /// Brand focus: brand, brand_other or non_brand. Null until the prompt is classified
+  @BuiltValueField(wireName: r'brand_kind')
+  String? get brandKind;
+
+  /// Every tag the prompt belongs to
+  @BuiltValueField(wireName: r'tags')
+  BuiltList<TagRef>? get tags;
+
+  /// Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries)
+  @BuiltValueField(wireName: r'sentiment_responses')
+  int? get sentimentResponses;
+
+  /// Percentage (0-100) of sentiment_responses whose brand verdict is very positive; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'sentiment_very_positive')
+  num? get sentimentVeryPositive;
+
+  /// Percentage (0-100) of sentiment_responses whose brand verdict is positive; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'sentiment_positive')
+  num? get sentimentPositive;
+
+  /// Percentage (0-100) of sentiment_responses whose brand verdict is neutral; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'sentiment_neutral')
+  num? get sentimentNeutral;
+
+  /// Percentage (0-100) of sentiment_responses whose brand verdict is negative; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'sentiment_negative')
+  num? get sentimentNegative;
+
+  /// Percentage (0-100) of sentiment_responses whose brand verdict is very negative; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'sentiment_very_negative')
+  num? get sentimentVeryNegative;
+
+  /// Positive minus negative percentages (-100 to 100), neutral counted in the base; null when sentiment_responses is 0
+  @BuiltValueField(wireName: r'net_sentiment')
+  num? get netSentiment;
 
   PromptSummaryRow._();
 
@@ -168,6 +230,90 @@ class _$PromptSummaryRowSerializer implements PrimitiveSerializer<PromptSummaryR
       yield serializers.serialize(
         object.appUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.countryCode != null) {
+      yield r'country_code';
+      yield serializers.serialize(
+        object.countryCode,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.languageCode != null) {
+      yield r'language_code';
+      yield serializers.serialize(
+        object.languageCode,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.promptType != null) {
+      yield r'prompt_type';
+      yield serializers.serialize(
+        object.promptType,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.brandKind != null) {
+      yield r'brand_kind';
+      yield serializers.serialize(
+        object.brandKind,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.tags != null) {
+      yield r'tags';
+      yield serializers.serialize(
+        object.tags,
+        specifiedType: const FullType(BuiltList, [FullType(TagRef)]),
+      );
+    }
+    if (object.sentimentResponses != null) {
+      yield r'sentiment_responses';
+      yield serializers.serialize(
+        object.sentimentResponses,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.sentimentVeryPositive != null) {
+      yield r'sentiment_very_positive';
+      yield serializers.serialize(
+        object.sentimentVeryPositive,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.sentimentPositive != null) {
+      yield r'sentiment_positive';
+      yield serializers.serialize(
+        object.sentimentPositive,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.sentimentNeutral != null) {
+      yield r'sentiment_neutral';
+      yield serializers.serialize(
+        object.sentimentNeutral,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.sentimentNegative != null) {
+      yield r'sentiment_negative';
+      yield serializers.serialize(
+        object.sentimentNegative,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.sentimentVeryNegative != null) {
+      yield r'sentiment_very_negative';
+      yield serializers.serialize(
+        object.sentimentVeryNegative,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.netSentiment != null) {
+      yield r'net_sentiment';
+      yield serializers.serialize(
+        object.netSentiment,
+        specifiedType: const FullType.nullable(num),
       );
     }
   }
@@ -288,6 +434,102 @@ class _$PromptSummaryRowSerializer implements PrimitiveSerializer<PromptSummaryR
           ) as String?;
           if (valueDes == null) continue;
           result.appUrl = valueDes;
+          break;
+        case r'country_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.countryCode = valueDes;
+          break;
+        case r'language_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.languageCode = valueDes;
+          break;
+        case r'prompt_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.promptType = valueDes;
+          break;
+        case r'brand_kind':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.brandKind = valueDes;
+          break;
+        case r'tags':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(TagRef)]),
+          ) as BuiltList<TagRef>?;
+          if (valueDes == null) continue;
+          result.tags.replace(valueDes);
+          break;
+        case r'sentiment_responses':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.sentimentResponses = valueDes;
+          break;
+        case r'sentiment_very_positive':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.sentimentVeryPositive = valueDes;
+          break;
+        case r'sentiment_positive':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.sentimentPositive = valueDes;
+          break;
+        case r'sentiment_neutral':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.sentimentNeutral = valueDes;
+          break;
+        case r'sentiment_negative':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.sentimentNegative = valueDes;
+          break;
+        case r'sentiment_very_negative':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.sentimentVeryNegative = valueDes;
+          break;
+        case r'net_sentiment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.netSentiment = valueDes;
           break;
         default:
           unhandled.add(key);
