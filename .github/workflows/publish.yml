@@ -1,0 +1,17 @@
+# Publishes this package to pub.dev when its release tag is pushed. pub.dev only
+# trusts GitHub after the first manual `dart pub publish` and after automated
+# publishing is enabled on the package's admin page with tag pattern v{{version}}.
+# Until then this stays switched off: set the repository variable
+# REGISTRY_PUBLISH=true afterwards.
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  pub-dev:
+    if: vars.REGISTRY_PUBLISH == 'true'
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
