@@ -33,7 +33,7 @@ class MetricsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [breakdown] - Add per-(prompt, model) rows to the output
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -168,7 +168,7 @@ class MetricsApi {
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -291,7 +291,7 @@ class MetricsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [prompt] - Filter by prompt ID
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -413,7 +413,7 @@ class MetricsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -541,7 +541,7 @@ class MetricsApi {
   /// * [range] - Number of days to look back (alternative to from/to)
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)

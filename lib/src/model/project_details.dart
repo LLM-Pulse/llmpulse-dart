@@ -23,6 +23,7 @@ part 'project_details.g.dart';
 /// * [url] 
 /// * [description] 
 /// * [matchingNames] 
+/// * [additionalOwnedDomains] - Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
 /// * [industry] - Industry as stored: one key as a string (e.g. SAAS), or an array of key strings when the project was created with a list or the in-app multi-select. Deliberately untyped so generated clients decode either shape
 /// * [businessModel] 
 /// * [businessModelOther] - Set only when business_model is OTHER
@@ -81,6 +82,10 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
 
   @BuiltValueField(wireName: r'stats')
   ProjectDetailsAllOfStats? get stats;
+
+  /// Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
+  @BuiltValueField(wireName: r'additional_owned_domains')
+  BuiltList<String>? get additionalOwnedDomains;
 
   /// Set only when business_model is OTHER
   @BuiltValueField(wireName: r'business_model_other')
@@ -223,6 +228,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.stats,
         specifiedType: const FullType(ProjectDetailsAllOfStats),
+      );
+    }
+    if (object.additionalOwnedDomains != null) {
+      yield r'additional_owned_domains';
+      yield serializers.serialize(
+        object.additionalOwnedDomains,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.businessModelOther != null) {
@@ -422,6 +434,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as ProjectDetailsAllOfStats?;
           if (valueDes == null) continue;
           result.stats.replace(valueDes);
+          break;
+        case r'additional_owned_domains':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
+          result.additionalOwnedDomains.replace(valueDes);
           break;
         case r'business_model_other':
           final valueDes = serializers.deserialize(

@@ -34,6 +34,8 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final ProjectDetailsAllOfStats? stats;
   @override
+  final BuiltList<String>? additionalOwnedDomains;
+  @override
   final String? businessModelOther;
   @override
   final String? countryCode;
@@ -71,6 +73,7 @@ class _$ProjectDetails extends ProjectDetails {
       this.googlePlayId,
       this.targetAudience,
       this.stats,
+      this.additionalOwnedDomains,
       this.businessModelOther,
       this.countryCode,
       this.dataCoverage,
@@ -106,6 +109,7 @@ class _$ProjectDetails extends ProjectDetails {
         googlePlayId == other.googlePlayId &&
         targetAudience == other.targetAudience &&
         stats == other.stats &&
+        additionalOwnedDomains == other.additionalOwnedDomains &&
         businessModelOther == other.businessModelOther &&
         countryCode == other.countryCode &&
         dataCoverage == other.dataCoverage &&
@@ -134,6 +138,7 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, googlePlayId.hashCode);
     _$hash = $jc(_$hash, targetAudience.hashCode);
     _$hash = $jc(_$hash, stats.hashCode);
+    _$hash = $jc(_$hash, additionalOwnedDomains.hashCode);
     _$hash = $jc(_$hash, businessModelOther.hashCode);
     _$hash = $jc(_$hash, countryCode.hashCode);
     _$hash = $jc(_$hash, dataCoverage.hashCode);
@@ -164,6 +169,7 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('googlePlayId', googlePlayId)
           ..add('targetAudience', targetAudience)
           ..add('stats', stats)
+          ..add('additionalOwnedDomains', additionalOwnedDomains)
           ..add('businessModelOther', businessModelOther)
           ..add('countryCode', countryCode)
           ..add('dataCoverage', dataCoverage)
@@ -246,6 +252,13 @@ class ProjectDetailsBuilder
   set stats(covariant ProjectDetailsAllOfStatsBuilder? stats) =>
       _$this._stats = stats;
 
+  ListBuilder<String>? _additionalOwnedDomains;
+  ListBuilder<String> get additionalOwnedDomains =>
+      _$this._additionalOwnedDomains ??= ListBuilder<String>();
+  set additionalOwnedDomains(
+          covariant ListBuilder<String>? additionalOwnedDomains) =>
+      _$this._additionalOwnedDomains = additionalOwnedDomains;
+
   String? _businessModelOther;
   String? get businessModelOther => _$this._businessModelOther;
   set businessModelOther(covariant String? businessModelOther) =>
@@ -315,6 +328,7 @@ class ProjectDetailsBuilder
       _googlePlayId = $v.googlePlayId;
       _targetAudience = $v.targetAudience;
       _stats = $v.stats?.toBuilder();
+      _additionalOwnedDomains = $v.additionalOwnedDomains?.toBuilder();
       _businessModelOther = $v.businessModelOther;
       _countryCode = $v.countryCode;
       _dataCoverage = $v.dataCoverage?.toBuilder();
@@ -361,6 +375,7 @@ class ProjectDetailsBuilder
             googlePlayId: googlePlayId,
             targetAudience: targetAudience,
             stats: _stats?.build(),
+            additionalOwnedDomains: _additionalOwnedDomains?.build(),
             businessModelOther: businessModelOther,
             countryCode: countryCode,
             dataCoverage: _dataCoverage?.build(),
@@ -380,6 +395,8 @@ class ProjectDetailsBuilder
 
         _$failedField = 'stats';
         _stats?.build();
+        _$failedField = 'additionalOwnedDomains';
+        _additionalOwnedDomains?.build();
 
         _$failedField = 'dataCoverage';
         _dataCoverage?.build();

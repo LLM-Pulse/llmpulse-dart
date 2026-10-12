@@ -29,6 +29,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
   final BuiltList<String>? primaryProducts;
   @override
   final BuiltList<String>? matchingNames;
+  @override
+  final BuiltList<String>? additionalOwnedDomains;
 
   factory _$UpdateProjectRequest(
           [void Function(UpdateProjectRequestBuilder)? updates]) =>
@@ -45,7 +47,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
       this.brandVoice,
       this.goals,
       this.primaryProducts,
-      this.matchingNames})
+      this.matchingNames,
+      this.additionalOwnedDomains})
       : super._();
   @override
   UpdateProjectRequest rebuild(
@@ -70,7 +73,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
         brandVoice == other.brandVoice &&
         goals == other.goals &&
         primaryProducts == other.primaryProducts &&
-        matchingNames == other.matchingNames;
+        matchingNames == other.matchingNames &&
+        additionalOwnedDomains == other.additionalOwnedDomains;
   }
 
   @override
@@ -87,6 +91,7 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
     _$hash = $jc(_$hash, goals.hashCode);
     _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
+    _$hash = $jc(_$hash, additionalOwnedDomains.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -104,7 +109,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
           ..add('brandVoice', brandVoice)
           ..add('goals', goals)
           ..add('primaryProducts', primaryProducts)
-          ..add('matchingNames', matchingNames))
+          ..add('matchingNames', matchingNames)
+          ..add('additionalOwnedDomains', additionalOwnedDomains))
         .toString();
   }
 }
@@ -164,6 +170,12 @@ class UpdateProjectRequestBuilder
   set matchingNames(ListBuilder<String>? matchingNames) =>
       _$this._matchingNames = matchingNames;
 
+  ListBuilder<String>? _additionalOwnedDomains;
+  ListBuilder<String> get additionalOwnedDomains =>
+      _$this._additionalOwnedDomains ??= ListBuilder<String>();
+  set additionalOwnedDomains(ListBuilder<String>? additionalOwnedDomains) =>
+      _$this._additionalOwnedDomains = additionalOwnedDomains;
+
   UpdateProjectRequestBuilder() {
     UpdateProjectRequest._defaults(this);
   }
@@ -182,6 +194,7 @@ class UpdateProjectRequestBuilder
       _goals = $v.goals;
       _primaryProducts = $v.primaryProducts?.toBuilder();
       _matchingNames = $v.matchingNames?.toBuilder();
+      _additionalOwnedDomains = $v.additionalOwnedDomains?.toBuilder();
       _$v = null;
     }
     return this;
@@ -216,6 +229,7 @@ class UpdateProjectRequestBuilder
             goals: goals,
             primaryProducts: _primaryProducts?.build(),
             matchingNames: _matchingNames?.build(),
+            additionalOwnedDomains: _additionalOwnedDomains?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -224,6 +238,8 @@ class UpdateProjectRequestBuilder
         _primaryProducts?.build();
         _$failedField = 'matchingNames';
         _matchingNames?.build();
+        _$failedField = 'additionalOwnedDomains';
+        _additionalOwnedDomains?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'UpdateProjectRequest', _$failedField, e.toString());

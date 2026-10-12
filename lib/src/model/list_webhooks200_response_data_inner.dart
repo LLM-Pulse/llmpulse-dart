@@ -16,7 +16,7 @@ part 'list_webhooks200_response_data_inner.g.dart';
 /// * [projectId] 
 /// * [eventType] 
 /// * [targetUrl] 
-/// * [disabled] 
+/// * [disabled] - True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
 /// * [failureCount] 
 /// * [lastDeliveredAt] 
 /// * [createdAt] 
@@ -35,6 +35,7 @@ abstract class ListWebhooks200ResponseDataInner implements Built<ListWebhooks200
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
 
+  /// True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
   @BuiltValueField(wireName: r'disabled')
   bool? get disabled;
 

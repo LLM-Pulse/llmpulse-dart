@@ -168,6 +168,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProjectDetailsAllOfSearchConsoleStatusEnum.serializer)
       ..add(ProjectDetailsAllOfStats.serializer)
       ..add(ProjectDetailsAllOfStatsPromptsByBrandKind.serializer)
+      ..add(ProjectProfile.serializer)
+      ..add(ProjectUpdateResponse.serializer)
       ..add(PromptExecutionRecord.serializer)
       ..add(PromptExecutionRecordModelEnum.serializer)
       ..add(PromptExecutionsResponse.serializer)
@@ -470,6 +472,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(JsonObject)]),
           () => ListBuilder<JsonObject>())
       ..addBuilderFactory(
@@ -503,6 +508,21 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(SearchConsoleRowsResponseDataInner)]),
           () => ListBuilder<SearchConsoleRowsResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())

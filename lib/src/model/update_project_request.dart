@@ -23,6 +23,7 @@ part 'update_project_request.g.dart';
 /// * [goals] - What the brand wants to achieve. Context for GEO Writer and prompt suggestions
 /// * [primaryProducts] - Full replacement list of the main products or services
 /// * [matchingNames] - FULL replacement list of the brand-name variants used to detect mentions; send every variant to keep
+/// * [additionalOwnedDomains] - FULL replacement list (at most 10) of other domains the brand owns, such as a blog or a country site; [] clears it. Citations from them count as owned, like the project website. Each entry is a website's own domain and covers its subdomains; a pasted URL is stored as its domain (https://www.acme.co.uk/x becomes acme.co.uk). A list the domain editor would refuse (a subdomain such as blog.acme.com, a platform many companies share such as youtube.com, amazon.com or wordpress.com, the project website, a tracked competitor domain, a duplicate or an entry that is not a domain) is rejected with ERR_INVALID_PARAM and the reason. Order does not matter, and an unchanged list starts nothing. Account owner only, on every plan
 @BuiltValue()
 abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, UpdateProjectRequestBuilder> {
   /// Project name shown in the app. A label: it does not change mention detection unless brand_name is empty. Cannot be blank
@@ -68,6 +69,10 @@ abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, Updat
   /// FULL replacement list of the brand-name variants used to detect mentions; send every variant to keep
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
+
+  /// FULL replacement list (at most 10) of other domains the brand owns, such as a blog or a country site; [] clears it. Citations from them count as owned, like the project website. Each entry is a website's own domain and covers its subdomains; a pasted URL is stored as its domain (https://www.acme.co.uk/x becomes acme.co.uk). A list the domain editor would refuse (a subdomain such as blog.acme.com, a platform many companies share such as youtube.com, amazon.com or wordpress.com, the project website, a tracked competitor domain, a duplicate or an entry that is not a domain) is rejected with ERR_INVALID_PARAM and the reason. Order does not matter, and an unchanged list starts nothing. Account owner only, on every plan
+  @BuiltValueField(wireName: r'additional_owned_domains')
+  BuiltList<String>? get additionalOwnedDomains;
 
   UpdateProjectRequest._();
 
@@ -166,6 +171,13 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
       yield r'matching_names';
       yield serializers.serialize(
         object.matchingNames,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.additionalOwnedDomains != null) {
+      yield r'additional_owned_domains';
+      yield serializers.serialize(
+        object.additionalOwnedDomains,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
@@ -279,6 +291,14 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
           ) as BuiltList<String>?;
           if (valueDes == null) continue;
           result.matchingNames.replace(valueDes);
+          break;
+        case r'additional_owned_domains':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
+          result.additionalOwnedDomains.replace(valueDes);
           break;
         default:
           unhandled.add(key);

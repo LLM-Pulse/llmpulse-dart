@@ -161,6 +161,8 @@ export 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 export 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 export 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 export 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
+export 'package:llmpulse/src/model/project_profile.dart';
+export 'package:llmpulse/src/model/project_update_response.dart';
 export 'package:llmpulse/src/model/prompt_execution_record.dart';
 export 'package:llmpulse/src/model/prompt_executions_response.dart';
 export 'package:llmpulse/src/model/prompt_record.dart';

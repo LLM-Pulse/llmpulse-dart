@@ -18,6 +18,7 @@ import 'package:llmpulse/src/model/models_response.dart';
 import 'package:llmpulse/src/model/project_create_request.dart';
 import 'package:llmpulse/src/model/project_create_response.dart';
 import 'package:llmpulse/src/model/project_details.dart';
+import 'package:llmpulse/src/model/project_update_response.dart';
 import 'package:llmpulse/src/model/update_project_draft_request.dart';
 import 'package:llmpulse/src/model/update_project_request.dart';
 
@@ -279,7 +280,7 @@ class ProjectsApi {
   }
 
   /// Project details
-  /// Detailed info for one project: matching_names, industry, business model, primary products, target audience, brand voice, locale, app store IDs, stats (incl. prompts_by_brand_kind counts) and data_coverage (models, countries and languages with data).
+  /// Detailed info for one project: matching_names, additional_owned_domains, industry, business model, primary products, target audience, brand voice, locale, app store IDs, stats (incl. prompts_by_brand_kind counts) and data_coverage (models, countries and languages with data).
   ///
   /// Parameters:
   /// * [id] 
@@ -678,7 +679,7 @@ class ProjectsApi {
   }
 
   /// Update a project profile (Brand Book)
-  /// Updates the project name and profile, the same fields as Project Settings: name, brand_name, description, industry, business_model (plus business_model_other when it is OTHER), target_audience, brand_voice, goals, primary_products, matching_names. Send only the fields to change; unknown fields are rejected. All seven Brand Book fields feed every GEO Writer task and prompt suggestions; only industry, description, and target_audience help Recommendations. A matching_names change re-runs mention/citation matching over the project history in the background (rematching&#x3D;true); further edits are rejected while that runs. Requires a &#x60;read_write&#x60; scope API key.
+  /// Updates the project name and profile, the same fields as Project Settings: name, brand_name, description, industry, business_model (plus business_model_other when it is OTHER), target_audience, brand_voice, goals, primary_products, matching_names, and the additional owned domains (additional_owned_domains). Send only the fields to change; unknown fields are rejected, and a request is applied whole or not at all. All seven Brand Book fields feed every GEO Writer task and prompt suggestions; only industry, description, and target_audience help Recommendations. A matching_names change re-runs mention/citation matching over the project history in the background, and an additional_owned_domains change reprocesses the past answers that cite an added or removed domain (rematching&#x3D;true); further edits are rejected while that runs. Only the account owner can send additional_owned_domains: a team member key gets ERR_INSUFFICIENT_PERMISSION and nothing is applied. Requires a &#x60;read_write&#x60; scope API key.
   ///
   /// Parameters:
   /// * [id] 
@@ -690,9 +691,9 @@ class ProjectsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ProjectUpdateResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> updateProject({ 
+  Future<Response<ProjectUpdateResponse>> updateProject({ 
     required int id,
     required UpdateProjectRequest updateProjectRequest,
     CancelToken? cancelToken,
@@ -749,7 +750,35 @@ class ProjectsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ProjectUpdateResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ProjectUpdateResponse),
+      ) as ProjectUpdateResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ProjectUpdateResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Submit a wizard step

@@ -16,7 +16,7 @@ part 'create_webhook201_response.g.dart';
 /// * [projectId] 
 /// * [eventType] 
 /// * [targetUrl] 
-/// * [disabled] 
+/// * [disabled] - True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
 /// * [failureCount] 
 /// * [lastDeliveredAt] 
 /// * [createdAt] 
@@ -37,6 +37,7 @@ abstract class CreateWebhook201Response implements Built<CreateWebhook201Respons
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
 
+  /// True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
   @BuiltValueField(wireName: r'disabled')
   bool? get disabled;
 

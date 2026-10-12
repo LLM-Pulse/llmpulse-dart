@@ -30,7 +30,7 @@ class OwnedMediaCommunitiesApi {
   /// * [view] - Row shape; the allowed set depends on provider
   /// * [store] - provider=mobile_apps only
   /// * [owned] - Return only rows belonging to the account's own connected profile
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -137,7 +137,7 @@ class OwnedMediaCommunitiesApi {
   /// * [brand] - Filter to citations whose scraped Reddit content mentions a brand: 'brand' for the tracked brand, or a competitor id. Reads the page content, not the AI answer.
   /// * [order] - Sort field; the allowed set depends on view
   /// * [direction] 
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)

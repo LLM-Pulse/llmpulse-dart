@@ -191,7 +191,7 @@ class PromptsApi {
   /// * [projectId] - Project ID
   /// * [page] 
   /// * [perPage] 
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -316,10 +316,11 @@ class PromptsApi {
   /// * [projectId] - Project ID
   /// * [page] 
   /// * [perPage] 
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Keep only the prompts with at least one execution on this AI model, of any outcome and date (the prompts /dimensions/prompt_executions lists for the same model). Prompts have no model of their own, so a prompt with no execution on this model yet (a newly enabled model, or a locale the model does not cover) is left out. An unknown value, or a model the API key's user has not enabled, returns 422 ERR_INVALID_PARAM. from and to still filter prompt creation.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [prompt] - Filter by prompt ID
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [from] 
@@ -342,6 +343,7 @@ class PromptsApi {
     String? collectionId,
     String? countryCode,
     String? languageCode,
+    int? prompt,
     String? promptType,
     String? brandKind,
     DateTime? from,
@@ -381,6 +383,7 @@ class PromptsApi {
       if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
@@ -439,7 +442,7 @@ class PromptsApi {
   /// * [order] - Sort field; the allowed set depends on view
   /// * [direction] 
   /// * [query] - Case-insensitive substring filter on the sub-query text
-  /// * [model] - Filter by AI model. Models the API key's user has not enabled are silently dropped.
+  /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)

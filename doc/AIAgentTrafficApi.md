@@ -180,7 +180,7 @@ Static catalog of AI bots that Agent Analytics can identify. Useful for renderin
 import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIAgentTrafficApi();
-final int projectId = 56; // int | Project ID
+final int projectId = 56; // int | Accepted for compatibility and ignored. The catalog is the same for every project, so any value returns the same list and the project is not checked.
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
@@ -195,7 +195,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **int**| Project ID | 
+ **projectId** | **int**| Accepted for compatibility and ignored. The catalog is the same for every project, so any value returns the same list and the project is not checked. | 
  **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
 
 ### Return type

@@ -33,7 +33,7 @@ final int projectId = 56; // int | Project ID
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final int prompt = 56; // int | Filter by prompt ID
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
  **from** | **DateTime**|  | [optional] 
@@ -93,7 +93,7 @@ final int projectId = 56; // int | Project ID
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final int prompt = 56; // int | Filter by prompt ID
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
  **from** | **DateTime**|  | [optional] 
@@ -152,7 +152,7 @@ final api = Llmpulse().getMentionsCitationsApi();
 final int projectId = 56; // int | Project ID
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
@@ -216,7 +216,7 @@ final int projectId = 56; // int | Project ID
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final int prompt = 56; // int | Filter by prompt ID
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
  **from** | **DateTime**|  | [optional] 
@@ -274,7 +274,7 @@ final int projectId = 56; // int | Project ID
 final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final int prompt = 56; // int | Filter by prompt ID
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
  **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **prompt** | **int**| Filter by prompt ID | [optional] 
  **from** | **DateTime**|  | [optional] 
@@ -332,7 +332,7 @@ final api = Llmpulse().getMentionsCitationsApi();
 final int projectId = 56; // int | Project ID
 final int page = 56; // int | 
 final int perPage = 56; // int | 
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 

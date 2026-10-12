@@ -73,7 +73,7 @@ final int projectId = 56; // int | Project ID
 final int competitorId = 56; // int | 
 final bool brandOnly = true; // bool | 
 final String analysis = analysis_example; // String | One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Filter by one AI model. Here an unknown value, or a model the API key's user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
  **competitorId** | **int**|  | [optional] 
  **brandOnly** | **bool**|  | [optional] 
  **analysis** | **String**| One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative | [optional] 
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Filter by one AI model. Here an unknown value, or a model the API key's user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 

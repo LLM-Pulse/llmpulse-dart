@@ -139,6 +139,8 @@ import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
+import 'package:llmpulse/src/model/project_profile.dart';
+import 'package:llmpulse/src/model/project_update_response.dart';
 import 'package:llmpulse/src/model/prompt_execution_record.dart';
 import 'package:llmpulse/src/model/prompt_executions_response.dart';
 import 'package:llmpulse/src/model/prompt_record.dart';
@@ -334,6 +336,8 @@ part 'serializers.g.dart';
   ProjectDetailsAllOfSearchConsole,
   ProjectDetailsAllOfStats,
   ProjectDetailsAllOfStatsPromptsByBrandKind,
+  ProjectProfile,
+  ProjectUpdateResponse,
   PromptExecutionRecord,
   PromptExecutionsResponse,
   PromptRecord,

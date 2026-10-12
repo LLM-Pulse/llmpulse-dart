@@ -96,7 +96,7 @@ final String countryCode = countryCode_example; // String | One ISO country code
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-final String model = model_example; // String | Filter by AI model. Models the API key's user has not enabled are silently dropped.
+final String model = model_example; // String | Restrict the comparison to one AI model: chatgpt, ai_mode, ai_overview, perplexity, gemini, naver_ai or baidu_ai, whether or not that model is enabled for the API key's user. Any other value returns 422 ERR_INVALID_PARAM (invalid model).
 final int brand1 = 56; // int | Competitor ID for the first comparison brand (omit to compare project brand)
 final int brand2 = 56; // int | 
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
- **model** | **String**| Filter by AI model. Models the API key's user has not enabled are silently dropped. | [optional] 
+ **model** | **String**| Restrict the comparison to one AI model: chatgpt, ai_mode, ai_overview, perplexity, gemini, naver_ai or baidu_ai, whether or not that model is enabled for the API key's user. Any other value returns 422 ERR_INVALID_PARAM (invalid model). | [optional] 
  **brand1** | **int**| Competitor ID for the first comparison brand (omit to compare project brand) | [optional] 
  **brand2** | **int**|  | [optional] 
 
