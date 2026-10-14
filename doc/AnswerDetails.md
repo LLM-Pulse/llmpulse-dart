@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **executedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **durationMs** | **num** | Milliseconds, rounded to one decimal place | [optional] 
 **success** | **bool** | Null while the answer is still pending | [optional] 
-**noResult** | **bool** | True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics | [optional] 
+**noResult** | **bool** | True for a sentinel non-answer (the provider returned nothing after all retries, or the model declined to answer, today only Gemini); excluded from platform metrics | [optional] 
 **fanOutQueries** | **BuiltList&lt;String&gt;** |  | [optional] 
 **mentions** | [**BuiltList&lt;JsonObject&gt;**](JsonObject.md) |  | [optional] 
 **citations** | [**BuiltList&lt;JsonObject&gt;**](JsonObject.md) |  | [optional] 

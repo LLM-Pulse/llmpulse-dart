@@ -23,7 +23,7 @@ part 'answer_details.g.dart';
 /// * [executedAt] 
 /// * [durationMs] - Milliseconds, rounded to one decimal place
 /// * [success] - Null while the answer is still pending
-/// * [noResult] - True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics
+/// * [noResult] - True for a sentinel non-answer (the provider returned nothing after all retries, or the model declined to answer, today only Gemini); excluded from platform metrics
 /// * [fanOutQueries] 
 /// * [mentions] 
 /// * [citations] 
@@ -68,7 +68,7 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   @BuiltValueField(wireName: r'success')
   bool? get success;
 
-  /// True for a sentinel non-answer (the provider returned nothing after retries); excluded from platform metrics
+  /// True for a sentinel non-answer (the provider returned nothing after all retries, or the model declined to answer, today only Gemini); excluded from platform metrics
   @BuiltValueField(wireName: r'no_result')
   bool? get noResult;
 

@@ -86,7 +86,7 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final int page = 56; // int | 
 final int perPage = 56; // int | 
 final String query = query_example; // String | Case-insensitive full-text search inside AI response texts. Switches items to snippet + match_count mode.
-final bool noResult = true; // bool | Filter sentinel non-answers (provider returned nothing after retries; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag.
+final bool noResult = true; // bool | Filter sentinel non-answers (the provider returned nothing after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag.
 
 try {
     api.listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult);
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
  **query** | **String**| Case-insensitive full-text search inside AI response texts. Switches items to snippet + match_count mode. | [optional] 
- **noResult** | **bool**| Filter sentinel non-answers (provider returned nothing after retries; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag. | [optional] 
+ **noResult** | **bool**| Filter sentinel non-answers (the provider returned nothing after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag. | [optional] 
 
 ### Return type
 

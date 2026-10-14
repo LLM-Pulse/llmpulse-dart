@@ -81,11 +81,23 @@ class SourcesCitationIntelligenceApi {
   }
 
   /// Cited URL detail
-  /// Unavailable page content keeps the cited URL and citation metrics. Page metadata/content and unknown brand_mentioned/competitor_mentioned return null. content_gap_status is content_unavailable (or missing_page_cache) without usable content, and mentions_not_processed when the page has usable content but its mention analysis has not completed for this project. Mention fields (brand_mentioned, competitor_mentioned, brand_position, brands, mentions, content_gap_status) describe the analysis for the requesting project: a page not yet analyzed for it returns null (never false) brand_mentioned, competitor_mentioned and brand_position, empty brands and mentions arrays and page_cache.mentions_processed false. page_cache.mentions_processed is true exactly when brand_mentioned is not null. An analyzed page keeps its last result until a newer analysis replaces it. status_code shows a saved successful response or observed 404/410; other crawl failures and error_message are hidden. last_crawled_at dates the saved copy. Domain/host crawled_urls_count counts usable copies; brand_mentioned_urls_count and competitor_mentioned_urls_count count only URLs analyzed for the project and are null when none is.
+  /// Unavailable page content keeps the cited URL and citation metrics. Page metadata/content and unknown brand_mentioned/competitor_mentioned return null. content_gap_status is content_unavailable (or missing_page_cache) without usable content, and mentions_not_processed when the page has usable content but its mention analysis has not completed for this project. Mention fields (brand_mentioned, competitor_mentioned, brand_position, brands, mentions, content_gap_status) describe the analysis for the requesting project: a page not yet analyzed for it returns null (never false) brand_mentioned, competitor_mentioned and brand_position, empty brands and mentions arrays and page_cache.mentions_processed false. page_cache.mentions_processed is true exactly when brand_mentioned is not null. An analyzed page keeps its last result until a newer analysis replaces it. status_code shows a saved successful response or observed 404/410; other crawl failures and error_message are hidden. last_crawled_at dates the saved copy. Domain/host crawled_urls_count counts usable copies; brand_mentioned_urls_count and competitor_mentioned_urls_count count only URLs analyzed for the project and are null when none is. The filters narrow stats and citation_series alike. citation_series (with include_series&#x3D;true) holds the answers citing the URL under the same filters: granularity (day, week or month, from the account tracking cadence, with weeks when a daily account spans more than 60 days, starting on Monday), total (equal to total_responses), by_model (answers per AI model, largest first, which can include enabled models outside the seven the model filter accepts) and data, one { date, value } point per period that holds a filtered answer, so a zero means answers ran and none cited it. Periods date each answer by its executed_at in Europe/Madrid time, the column from and to filter.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
   /// * [urlSha256] - 64-character hex SHA-256 of the cited URL
+  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [prompt] - Filter by prompt ID
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [from] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [sourceType] 
+  /// * [sentiment] 
+  /// * [contentGap] - mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
+  /// * [includeSeries] - Adds citation_series. Without it the response is unchanged.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -98,6 +110,18 @@ class SourcesCitationIntelligenceApi {
   Future<Response<void>> getCitedUrlDetail({ 
     required int projectId,
     required String urlSha256,
+    String? model,
+    String? collectionId,
+    String? countryCode,
+    String? languageCode,
+    int? prompt,
+    String? brandKind,
+    DateTime? from,
+    DateTime? to,
+    String? sourceType,
+    String? sentiment,
+    String? contentGap,
+    bool? includeSeries = false,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -126,6 +150,18 @@ class SourcesCitationIntelligenceApi {
 
     final _queryParameters = <String, dynamic>{
       r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
+      if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+      if (sourceType != null) r'source_type': encodeQueryParameter(_serializers, sourceType, const FullType(String)),
+      if (sentiment != null) r'sentiment': encodeQueryParameter(_serializers, sentiment, const FullType(String)),
+      if (contentGap != null) r'content_gap': encodeQueryParameter(_serializers, contentGap, const FullType(String)),
+      if (includeSeries != null) r'include_series': encodeQueryParameter(_serializers, includeSeries, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -226,7 +262,7 @@ class SourcesCitationIntelligenceApi {
   }
 
   /// Grouped citation intelligence
-  /// Grouped citation intelligence by url / domain / host with per-model breakdown, citation rate, and avg citation position. Counts and citation rate include visible citations and background source references. Average position ignores rows with position&#x3D;0. Owned and competitor source matching honor the project&#39;s exact-subdomain setting. Filter vocabulary aligns with &#x60;source_type&#x60; returned by the API. Unavailable page content keeps the cited URL and citation metrics. Page metadata/content and unknown brand_mentioned/competitor_mentioned return null. content_gap_status is content_unavailable (or missing_page_cache) without usable content, and mentions_not_processed when the page has usable content but its mention analysis has not completed for this project. Mention fields (brand_mentioned, competitor_mentioned, brand_position, brands, mentions, content_gap_status) describe the analysis for the requesting project: a page not yet analyzed for it returns null (never false) brand_mentioned, competitor_mentioned and brand_position, empty brands and mentions arrays and page_cache.mentions_processed false. page_cache.mentions_processed is true exactly when brand_mentioned is not null. An analyzed page keeps its last result until a newer analysis replaces it. status_code shows a saved successful response or observed 404/410; other crawl failures and error_message are hidden. last_crawled_at dates the saved copy. Domain/host crawled_urls_count counts usable copies; brand_mentioned_urls_count and competitor_mentioned_urls_count count only URLs analyzed for the project and are null when none is.
+  /// Grouped citation intelligence by url / domain / host with per-model breakdown, citation rate, and avg citation position. Counts and citation rate include visible citations and background source references. Average position ignores rows with position&#x3D;0. Owned and competitor source matching honor the project&#39;s exact-subdomain setting. Filter vocabulary aligns with &#x60;source_type&#x60; returned by the API. Unavailable page content keeps the cited URL and citation metrics. Page metadata/content and unknown brand_mentioned/competitor_mentioned return null. content_gap_status is content_unavailable (or missing_page_cache) without usable content, and mentions_not_processed when the page has usable content but its mention analysis has not completed for this project. Mention fields (brand_mentioned, competitor_mentioned, brand_position, brands, mentions, content_gap_status) describe the analysis for the requesting project: a page not yet analyzed for it returns null (never false) brand_mentioned, competitor_mentioned and brand_position, empty brands and mentions arrays and page_cache.mentions_processed false. page_cache.mentions_processed is true exactly when brand_mentioned is not null. An analyzed page keeps its last result until a newer analysis replaces it. status_code shows a saved successful response or observed 404/410; other crawl failures and error_message are hidden. last_crawled_at dates the saved copy. Domain/host crawled_urls_count counts usable copies; brand_mentioned_urls_count and competitor_mentioned_urls_count count only URLs analyzed for the project and are null when none is. Pass key to read one group; brand_kind filters by the brand focus of the prompts, like the source page. citation_series (with include_series&#x3D;true) holds the answers citing the URL, domain or host under the same filters: granularity (day, week or month, from the account tracking cadence, with weeks when a daily account spans more than 60 days, starting on Monday), total (equal to total_responses), by_model (answers per AI model, largest first, which can include enabled models outside the seven the model filter accepts) and data, one { date, value } point per period that holds a filtered answer, so a zero means answers ran and none cited it. Periods date each answer by its executed_at in Europe/Madrid time, the column from and to filter.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
@@ -240,8 +276,11 @@ class SourcesCitationIntelligenceApi {
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [key] - Return only this group of the chosen view: a domain (view=domain), a host (view=host) or a cited URL exactly as listed (view=url). Domains and hosts match case-insensitively, without www. A view=url key is one raw URL, so its variants (a tracking parameter, a trailing slash) stay separate rows; GET /citation_intelligence/urls/{url_sha256} merges them, as the app does. No match returns an empty list (total 0), not an error.
+  /// * [includeSeries] - Requires key, else 422 ERR_INVALID_PARAM. Adds citation_series to the group's row.
   /// * [query] 
   /// * [sourceType] 
   /// * [sentiment] 
@@ -267,8 +306,11 @@ class SourcesCitationIntelligenceApi {
     String? countryCode,
     String? languageCode,
     int? prompt,
+    String? brandKind,
     DateTime? from,
     DateTime? to,
+    String? key,
+    bool? includeSeries = false,
     String? query,
     String? sourceType,
     String? sentiment,
@@ -311,8 +353,11 @@ class SourcesCitationIntelligenceApi {
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
       if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
       if (prompt != null) r'prompt': encodeQueryParameter(_serializers, prompt, const FullType(int)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+      if (key != null) r'key': encodeQueryParameter(_serializers, key, const FullType(String)),
+      if (includeSeries != null) r'include_series': encodeQueryParameter(_serializers, includeSeries, const FullType(bool)),
       if (query != null) r'query': encodeQueryParameter(_serializers, query, const FullType(String)),
       if (sourceType != null) r'source_type': encodeQueryParameter(_serializers, sourceType, const FullType(String)),
       if (sentiment != null) r'sentiment': encodeQueryParameter(_serializers, sentiment, const FullType(String)),
