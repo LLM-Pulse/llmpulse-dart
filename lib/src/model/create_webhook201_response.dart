@@ -20,7 +20,7 @@ part 'create_webhook201_response.g.dart';
 /// * [failureCount] 
 /// * [lastDeliveredAt] 
 /// * [createdAt] 
-/// * [secret] - HMAC signing secret (whsec_...). Only returned on create.
+/// * [secret] - HMAC signing secret (whsec_...). Returned when the subscription is created, and on a re-post only to the API key or OAuth connection that created it; absent for any other credential.
 /// * [requestId] 
 @BuiltValue()
 abstract class CreateWebhook201Response implements Built<CreateWebhook201Response, CreateWebhook201ResponseBuilder> {
@@ -50,7 +50,7 @@ abstract class CreateWebhook201Response implements Built<CreateWebhook201Respons
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
-  /// HMAC signing secret (whsec_...). Only returned on create.
+  /// HMAC signing secret (whsec_...). Returned when the subscription is created, and on a re-post only to the API key or OAuth connection that created it; absent for any other credential.
   @BuiltValueField(wireName: r'secret')
   String? get secret;
 
