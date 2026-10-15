@@ -15,6 +15,8 @@ import 'package:llmpulse/src/model/collection_create_response.dart';
 import 'package:llmpulse/src/model/collections_response.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/prompt_tags_assign_response.dart';
+import 'package:llmpulse/src/model/prompt_tags_remove_response.dart';
+import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/update_collection_request.dart';
 
 class CollectionsTagsApi {
@@ -454,6 +456,107 @@ class CollectionsTagsApi {
     }
 
     return Response<CollectionsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Bulk-detach tags from prompts
+  /// Idempotent bulk removal of tags (Collections) from existing prompts: up to 500 prompt_ids and 50 tags, resolved by id or by name (case-insensitive). Only the prompt-tag links are removed; tags and prompts stay. Links that did not exist are counted in skipped_not_linked. Requires a &#x60;read_write&#x60; scope API key and, for team members, update access to Prompts.
+  ///
+  /// Parameters:
+  /// * [removePromptTagsRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PromptTagsRemoveResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PromptTagsRemoveResponse>> removePromptTags({ 
+    required RemovePromptTagsRequest removePromptTagsRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/prompts/remove_tags';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'BearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(RemovePromptTagsRequest);
+      _bodyData = _serializers.serialize(removePromptTagsRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PromptTagsRemoveResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PromptTagsRemoveResponse),
+      ) as PromptTagsRemoveResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PromptTagsRemoveResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

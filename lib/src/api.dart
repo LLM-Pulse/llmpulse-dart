@@ -16,6 +16,7 @@ import 'package:llmpulse/src/api/annotations_api.dart';
 import 'package:llmpulse/src/api/answers_api.dart';
 import 'package:llmpulse/src/api/collections_tags_api.dart';
 import 'package:llmpulse/src/api/competitors_api.dart';
+import 'package:llmpulse/src/api/custom_reports_api.dart';
 import 'package:llmpulse/src/api/geo_audits_api.dart';
 import 'package:llmpulse/src/api/geo_writer_api.dart';
 import 'package:llmpulse/src/api/health_api.dart';
@@ -169,6 +170,12 @@ class Llmpulse {
   /// by doing that all interceptors will not be executed
   CompetitorsApi getCompetitorsApi() {
     return CompetitorsApi(dio, serializers);
+  }
+
+  /// Get CustomReportsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  CustomReportsApi getCustomReportsApi() {
+    return CustomReportsApi(dio, serializers);
   }
 
   /// Get GEOAuditsApi instance, base route and serializer can be overridden by a given but be careful,

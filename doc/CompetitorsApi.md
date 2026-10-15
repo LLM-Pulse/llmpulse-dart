@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**createCompetitor**](CompetitorsApi.md#createcompetitor) | **POST** /competitors | Add a competitor
 [**deleteCompetitor**](CompetitorsApi.md#deletecompetitor) | **DELETE** /competitors/{id} | Delete a competitor
 [**getCompetitorDetails**](CompetitorsApi.md#getcompetitordetails) | **GET** /dimensions/competitors/{id} | Competitor details
+[**listCompetitorSuggestions**](CompetitorsApi.md#listcompetitorsuggestions) | **GET** /competitors/suggestions | List competitor suggestions
 [**listCompetitors**](CompetitorsApi.md#listcompetitors) | **GET** /dimensions/competitors | List competitors
 [**updateCompetitor**](CompetitorsApi.md#updatecompetitor) | **PATCH** /competitors/{id} | Update a competitor
 
@@ -134,6 +135,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompetitorDetails**](CompetitorDetails.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listCompetitorSuggestions**
+> CompetitorSuggestionsResponse listCompetitorSuggestions(projectId, basis, query, page, perPage, output)
+
+List competitor suggestions
+
+The two lists of the Suggested tab of the Competitors page. `basis=brands` (default) returns the competing brands the AI discovery proposed that are not tracked or rejected yet, with the names it would match and, when counted, how many answers name it (`mentions`). `basis=citations` returns the domains AI answers cite most that are not your own or tracked yet, with how many answers cite each (`citations`). `discovery` tells whether a discovery run is still loading. Read-only: it never starts a discovery run, which the page starts from its Discover button. Add a suggestion with POST /competitors.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getCompetitorsApi();
+final int projectId = 56; // int | Project ID
+final String basis = basis_example; // String | 
+final String query = query_example; // String | Only suggestions whose brand name or domain contains this text
+final int page = 56; // int | 
+final int perPage = 56; // int | 
+final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+
+try {
+    final response = api.listCompetitorSuggestions(projectId, basis, query, page, perPage, output);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CompetitorsApi->listCompetitorSuggestions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **basis** | **String**|  | [optional] [default to 'brands']
+ **query** | **String**| Only suggestions whose brand name or domain contains this text | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **perPage** | **int**|  | [optional] [default to 20]
+ **output** | **String**| Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON. | [optional] 
+
+### Return type
+
+[**CompetitorSuggestionsResponse**](CompetitorSuggestionsResponse.md)
 
 ### Authorization
 

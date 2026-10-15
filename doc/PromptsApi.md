@@ -9,12 +9,105 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**acceptSuggestedPrompts**](PromptsApi.md#acceptsuggestedprompts) | **POST** /suggested_prompts/accept | Accept suggested prompts
+[**createPromptGeneration**](PromptsApi.md#createpromptgeneration) | **POST** /prompt_generations | Generate prompt suggestions
 [**createPrompts**](PromptsApi.md#createprompts) | **POST** /prompts | Bulk-create prompts
 [**deletePrompt**](PromptsApi.md#deleteprompt) | **DELETE** /prompts/{id} | Delete a prompt
+[**getPromptGeneration**](PromptsApi.md#getpromptgeneration) | **GET** /prompt_generations/{id} | Get a prompt generation run
+[**importPrompts**](PromptsApi.md#importprompts) | **POST** /prompts/import | Import prompts
 [**listPromptExecutions**](PromptsApi.md#listpromptexecutions) | **GET** /dimensions/prompt_executions | List prompt executions
 [**listPrompts**](PromptsApi.md#listprompts) | **GET** /dimensions/prompts | List prompts
 [**listQueryFanOuts**](PromptsApi.md#listqueryfanouts) | **GET** /dimensions/query_fan_outs | List query fan-out
+[**listSuggestedPrompts**](PromptsApi.md#listsuggestedprompts) | **GET** /suggested_prompts | List suggested prompts
+[**rejectSuggestedPrompts**](PromptsApi.md#rejectsuggestedprompts) | **POST** /suggested_prompts/reject | Reject suggested prompts
+[**updatePrompt**](PromptsApi.md#updateprompt) | **PATCH** /prompts/{id} | Edit a prompt&#39;s categorization
 
+
+# **acceptSuggestedPrompts**
+> SuggestedPromptsAcceptResponse acceptSuggestedPrompts(suggestedPromptsAcceptRequest)
+
+Accept suggested prompts
+
+Starts tracking up to 100 pending suggestions: each becomes a prompt in its own country and language, optionally put in one tag (tag_ids or tag_names; create_missing creates a missing name when the team member may create tags). Suggestions that are no longer pending come back in skipped. When the new prompts would exceed the plan the call returns ERR_LIMIT_REACHED and accepts nothing. Requires a `read_write` scope API key and, for team members, create access to Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final SuggestedPromptsAcceptRequest suggestedPromptsAcceptRequest = ; // SuggestedPromptsAcceptRequest | 
+
+try {
+    final response = api.acceptSuggestedPrompts(suggestedPromptsAcceptRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->acceptSuggestedPrompts: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **suggestedPromptsAcceptRequest** | [**SuggestedPromptsAcceptRequest**](SuggestedPromptsAcceptRequest.md)|  | 
+
+### Return type
+
+[**SuggestedPromptsAcceptResponse**](SuggestedPromptsAcceptResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createPromptGeneration**
+> PromptGenerationResponse createPromptGeneration(promptGenerationRequest)
+
+Generate prompt suggestions
+
+Starts a suggestion run with one of the generators behind the app's Add prompts wizards and answers 202 with the run. website writes suggestions from the scraped website (80% non-brand, 20% brand), keyword from a keyword or the project profile (optionally around a competitor), topic from a topic, reddit from Reddit discussions of a topic or brand, paa from Google People Also Ask (up to 5 keywords, counted against the account's 24-hour lookup allowance), reputational from brand reputation questions, translate from the project's prompts of another locale, search_console from the connected property's top queries of the last 28 days (Growth plan or above, ERR_PLAN_REQUIRED). The suggestions land in the Suggested prompts queue; poll GET /prompt_generations/{id}, then accept the ones you want with POST /suggested_prompts/accept. Nothing is tracked until accepted. The request is validated before the run starts, and refused with ERR_LIMIT_REACHED when the plan has no prompt slot left. Requires a `read_write` scope API key and, for team members, create access to Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final PromptGenerationRequest promptGenerationRequest = ; // PromptGenerationRequest | 
+
+try {
+    final response = api.createPromptGeneration(promptGenerationRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->createPromptGeneration: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **promptGenerationRequest** | [**PromptGenerationRequest**](PromptGenerationRequest.md)|  | 
+
+### Return type
+
+[**PromptGenerationResponse**](PromptGenerationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createPrompts**
 > PromptsCreateResponse createPrompts(promptsCreateRequest)
@@ -99,6 +192,94 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getPromptGeneration**
+> PromptGenerationResponse getPromptGeneration(projectId, id)
+
+Get a prompt generation run
+
+Returns a run started with POST /prompt_generations: processing while the generator works, then completed with the suggestions it saved to the Suggested prompts queue, or failed with an error code and message. Poll every few seconds; most runs finish within a minute. Runs are kept for 24 hours, their suggestions stay in the queue.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final int projectId = 56; // int | Project ID
+final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.getPromptGeneration(projectId, id);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->getPromptGeneration: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **id** | **String**|  | 
+
+### Return type
+
+[**PromptGenerationResponse**](PromptGenerationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **importPrompts**
+> PromptsImportResponse importPrompts(promptsImportRequest)
+
+Import prompts
+
+The app's CSV import as JSON: up to 500 rows, each with its own prompt, country_code, language_code (codes or names; both default to the project's) and tags, created when missing. Duplicates are skipped and existing prompts still get the row's tags. The prompt limits are checked before anything is written: when the new prompts would exceed the plan the call returns ERR_LIMIT_REACHED and imports nothing. Rows with an unknown country or language come back in row_errors. Responds 201 when it created prompts, 200 otherwise. Requires a `read_write` scope API key and, for team members, create access to Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final PromptsImportRequest promptsImportRequest = ; // PromptsImportRequest | 
+
+try {
+    final response = api.importPrompts(promptsImportRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->importPrompts: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **promptsImportRequest** | [**PromptsImportRequest**](PromptsImportRequest.md)|  | 
+
+### Return type
+
+[**PromptsImportResponse**](PromptsImportResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -307,6 +488,145 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listSuggestedPrompts**
+> SuggestedPromptsResponse listSuggestedPrompts(projectId, source_, status, page, perPage)
+
+List suggested prompts
+
+Lists the project's Suggested prompts queue, the same list the app's Suggested Prompts tab shows, oldest first. It holds the suggestions of every generator (website, magic for keyword runs, topic, reddit, paa, reputational, translate, gsc for Search Console, catalog). Pending suggestions by default; status=all also returns accepted (with the prompt they became) and rejected ones. Team members need create access to Prompts, like the app's tab.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final int projectId = 56; // int | Project ID
+final String source_ = source__example; // String | Only suggestions from this generator
+final String status = status_example; // String | Only suggestions in this status
+final int page = 56; // int | 
+final int perPage = 56; // int | 
+
+try {
+    final response = api.listSuggestedPrompts(projectId, source_, status, page, perPage);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->listSuggestedPrompts: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **source_** | **String**| Only suggestions from this generator | [optional] 
+ **status** | **String**| Only suggestions in this status | [optional] [default to 'pending']
+ **page** | **int**|  | [optional] [default to 1]
+ **perPage** | **int**|  | [optional] [default to 50]
+
+### Return type
+
+[**SuggestedPromptsResponse**](SuggestedPromptsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **rejectSuggestedPrompts**
+> SuggestedPromptsRejectResponse rejectSuggestedPrompts(suggestedPromptIdsRequest)
+
+Reject suggested prompts
+
+Marks up to 100 pending suggestions as rejected, so they leave the pending list; suggestions that are no longer pending stay as they are. Tracks and deletes nothing. Requires a `read_write` scope API key and, for team members, create access to Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final SuggestedPromptIdsRequest suggestedPromptIdsRequest = ; // SuggestedPromptIdsRequest | 
+
+try {
+    final response = api.rejectSuggestedPrompts(suggestedPromptIdsRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->rejectSuggestedPrompts: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **suggestedPromptIdsRequest** | [**SuggestedPromptIdsRequest**](SuggestedPromptIdsRequest.md)|  | 
+
+### Return type
+
+[**SuggestedPromptsRejectResponse**](SuggestedPromptsRejectResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updatePrompt**
+> PromptCategorizationResponse updatePrompt(id, updatePromptRequest)
+
+Edit a prompt's categorization
+
+Manual categorization, exactly like editing the intent and brand badges on the prompt page: send `prompt_type`, `brand_kind` or both. The prompt is marked as manually categorized (`categorization_source` becomes `manual`), so automatic categorization no longer changes it; the prompt page can revert it to automatic. Any other field returns ERR_INVALID_PARAM. Not available from a white-label portal (ERR_INTEGRATION_UNAVAILABLE), where the page hides the editor. Requires a `read_write` scope API key and, for team members, update permission on Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getPromptsApi();
+final int id = 56; // int | 
+final UpdatePromptRequest updatePromptRequest = ; // UpdatePromptRequest | 
+
+try {
+    final response = api.updatePrompt(id, updatePromptRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PromptsApi->updatePrompt: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **updatePromptRequest** | [**UpdatePromptRequest**](UpdatePromptRequest.md)|  | 
+
+### Return type
+
+[**PromptCategorizationResponse**](PromptCategorizationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

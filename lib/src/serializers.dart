@@ -55,8 +55,11 @@ import 'package:llmpulse/src/model/competitor.dart';
 import 'package:llmpulse/src/model/competitor_create_response.dart';
 import 'package:llmpulse/src/model/competitor_create_response_competitor.dart';
 import 'package:llmpulse/src/model/competitor_details.dart';
+import 'package:llmpulse/src/model/competitor_discovery_state.dart';
 import 'package:llmpulse/src/model/competitor_mention_record.dart';
 import 'package:llmpulse/src/model/competitor_mentions_response.dart';
+import 'package:llmpulse/src/model/competitor_suggestion.dart';
+import 'package:llmpulse/src/model/competitor_suggestions_response.dart';
 import 'package:llmpulse/src/model/create_annotation_request.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
@@ -66,6 +69,16 @@ import 'package:llmpulse/src/model/create_team_invitation_request.dart';
 import 'package:llmpulse/src/model/create_technical_geo_reports_request.dart';
 import 'package:llmpulse/src/model/create_webhook201_response.dart';
 import 'package:llmpulse/src/model/create_webhook_request.dart';
+import 'package:llmpulse/src/model/custom_report_block.dart';
+import 'package:llmpulse/src/model/custom_report_date_range.dart';
+import 'package:llmpulse/src/model/custom_report_detail_response.dart';
+import 'package:llmpulse/src/model/custom_report_filters.dart';
+import 'package:llmpulse/src/model/custom_report_schedule.dart';
+import 'package:llmpulse/src/model/custom_report_send_response.dart';
+import 'package:llmpulse/src/model/custom_report_summary.dart';
+import 'package:llmpulse/src/model/custom_report_widget.dart';
+import 'package:llmpulse/src/model/custom_report_widget_ref.dart';
+import 'package:llmpulse/src/model/custom_reports_response.dart';
 import 'package:llmpulse/src/model/delete_webhook200_response.dart';
 import 'package:llmpulse/src/model/finalize_project_draft_request.dart';
 import 'package:llmpulse/src/model/geo_alert.dart';
@@ -120,6 +133,29 @@ import 'package:llmpulse/src/model/mention_record.dart';
 import 'package:llmpulse/src/model/mentions_response.dart';
 import 'package:llmpulse/src/model/metrics_filters_echo.dart';
 import 'package:llmpulse/src/model/models_response.dart';
+import 'package:llmpulse/src/model/owned_media_age_bucket_share.dart';
+import 'package:llmpulse/src/model/owned_media_cited_item.dart';
+import 'package:llmpulse/src/model/owned_media_cited_item_stats.dart';
+import 'package:llmpulse/src/model/owned_media_citing_answer.dart';
+import 'package:llmpulse/src/model/owned_media_citing_prompts_response.dart';
+import 'package:llmpulse/src/model/owned_media_content_type_share.dart';
+import 'package:llmpulse/src/model/owned_media_country_share.dart';
+import 'package:llmpulse/src/model/owned_media_kpi_changes.dart';
+import 'package:llmpulse/src/model/owned_media_kpis.dart';
+import 'package:llmpulse/src/model/owned_media_list_response.dart';
+import 'package:llmpulse/src/model/owned_media_model_share.dart';
+import 'package:llmpulse/src/model/owned_media_platform_profiles.dart';
+import 'package:llmpulse/src/model/owned_media_platform_rollup.dart';
+import 'package:llmpulse/src/model/owned_media_platform_rollup_weekly_inner.dart';
+import 'package:llmpulse/src/model/owned_media_profile.dart';
+import 'package:llmpulse/src/model/owned_media_profile_settings.dart';
+import 'package:llmpulse/src/model/owned_media_profiles_response.dart';
+import 'package:llmpulse/src/model/owned_media_profiles_update_response.dart';
+import 'package:llmpulse/src/model/owned_media_row.dart';
+import 'package:llmpulse/src/model/owned_media_store_totals.dart';
+import 'package:llmpulse/src/model/owned_media_summary_response.dart';
+import 'package:llmpulse/src/model/owned_media_summary_response_previous.dart';
+import 'package:llmpulse/src/model/owned_media_week.dart';
 import 'package:llmpulse/src/model/paginated_envelope.dart';
 import 'package:llmpulse/src/model/ping200_response.dart';
 import 'package:llmpulse/src/model/project.dart';
@@ -141,20 +177,34 @@ import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
 import 'package:llmpulse/src/model/project_profile.dart';
 import 'package:llmpulse/src/model/project_update_response.dart';
+import 'package:llmpulse/src/model/prompt_categorization.dart';
+import 'package:llmpulse/src/model/prompt_categorization_response.dart';
 import 'package:llmpulse/src/model/prompt_execution_record.dart';
 import 'package:llmpulse/src/model/prompt_executions_response.dart';
+import 'package:llmpulse/src/model/prompt_generation_request.dart';
+import 'package:llmpulse/src/model/prompt_generation_response.dart';
+import 'package:llmpulse/src/model/prompt_generation_response_error.dart';
+import 'package:llmpulse/src/model/prompt_generation_response_params.dart';
 import 'package:llmpulse/src/model/prompt_record.dart';
 import 'package:llmpulse/src/model/prompt_summary_response.dart';
 import 'package:llmpulse/src/model/prompt_summary_row.dart';
 import 'package:llmpulse/src/model/prompt_tags_assign_response.dart';
+import 'package:llmpulse/src/model/prompt_tags_remove_response.dart';
 import 'package:llmpulse/src/model/prompts_create_request.dart';
 import 'package:llmpulse/src/model/prompts_create_response.dart';
 import 'package:llmpulse/src/model/prompts_create_response_data_inner.dart';
+import 'package:llmpulse/src/model/prompts_import_request.dart';
+import 'package:llmpulse/src/model/prompts_import_request_rows_inner.dart';
+import 'package:llmpulse/src/model/prompts_import_response.dart';
+import 'package:llmpulse/src/model/prompts_import_response_row_errors_inner.dart';
 import 'package:llmpulse/src/model/prompts_response.dart';
 import 'package:llmpulse/src/model/query_web_analytics_request.dart';
+import 'package:llmpulse/src/model/recommendation_item.dart';
+import 'package:llmpulse/src/model/recommendation_item_update_response.dart';
 import 'package:llmpulse/src/model/recommendation_summary.dart';
 import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
+import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/remove_team_member200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
@@ -170,7 +220,15 @@ import 'package:llmpulse/src/model/search_console_summary_response.dart';
 import 'package:llmpulse/src/model/search_console_summary_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/search_console_timeseries_response.dart';
 import 'package:llmpulse/src/model/search_console_timeseries_response_data_inner.dart';
+import 'package:llmpulse/src/model/send_custom_report_request.dart';
+import 'package:llmpulse/src/model/sentiment_breakdown_brand.dart';
+import 'package:llmpulse/src/model/sentiment_breakdown_counts.dart';
+import 'package:llmpulse/src/model/sentiment_breakdown_envelope.dart';
 import 'package:llmpulse/src/model/sentiment_record.dart';
+import 'package:llmpulse/src/model/sentiment_tag_row.dart';
+import 'package:llmpulse/src/model/sentiment_tags_response.dart';
+import 'package:llmpulse/src/model/sentiment_topic_row.dart';
+import 'package:llmpulse/src/model/sentiment_topics_response.dart';
 import 'package:llmpulse/src/model/sentiments_response.dart';
 import 'package:llmpulse/src/model/sov_response.dart';
 import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
@@ -183,6 +241,13 @@ import 'package:llmpulse/src/model/store_connection_response.dart';
 import 'package:llmpulse/src/model/store_connection_response_account.dart';
 import 'package:llmpulse/src/model/store_connection_response_candidates_inner.dart';
 import 'package:llmpulse/src/model/store_connection_response_project.dart';
+import 'package:llmpulse/src/model/suggested_prompt.dart';
+import 'package:llmpulse/src/model/suggested_prompt_ids_request.dart';
+import 'package:llmpulse/src/model/suggested_prompts_accept_request.dart';
+import 'package:llmpulse/src/model/suggested_prompts_accept_response.dart';
+import 'package:llmpulse/src/model/suggested_prompts_accept_response_accepted_inner.dart';
+import 'package:llmpulse/src/model/suggested_prompts_reject_response.dart';
+import 'package:llmpulse/src/model/suggested_prompts_response.dart';
 import 'package:llmpulse/src/model/summary_response.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_position_distribution.dart';
 import 'package:llmpulse/src/model/summary_response_all_of_summary_value_inner.dart';
@@ -202,8 +267,11 @@ import 'package:llmpulse/src/model/top_sources_response_data_inner.dart';
 import 'package:llmpulse/src/model/update_annotation_request.dart';
 import 'package:llmpulse/src/model/update_collection_request.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
+import 'package:llmpulse/src/model/update_owned_media_profiles_request.dart';
 import 'package:llmpulse/src/model/update_project_draft_request.dart';
 import 'package:llmpulse/src/model/update_project_request.dart';
+import 'package:llmpulse/src/model/update_prompt_request.dart';
+import 'package:llmpulse/src/model/update_recommendation_item_request.dart';
 import 'package:llmpulse/src/model/web_analytics_query_response.dart';
 import 'package:llmpulse/src/model/web_analytics_query_response_columns_inner.dart';
 import 'package:llmpulse/src/model/web_analytics_schema_response.dart';
@@ -252,8 +320,11 @@ part 'serializers.g.dart';
   CompetitorCreateResponse,
   CompetitorCreateResponseCompetitor,
   CompetitorDetails,
+  CompetitorDiscoveryState,
   CompetitorMentionRecord,
   CompetitorMentionsResponse,
+  CompetitorSuggestion,
+  CompetitorSuggestionsResponse,
   CreateAnnotationRequest,
   CreateCollectionRequest,
   CreateCompetitorRequest,
@@ -263,6 +334,16 @@ part 'serializers.g.dart';
   CreateTechnicalGeoReportsRequest,
   CreateWebhook201Response,
   CreateWebhookRequest,
+  CustomReportBlock,
+  CustomReportDateRange,
+  CustomReportDetailResponse,
+  CustomReportFilters,
+  CustomReportSchedule,
+  CustomReportSendResponse,
+  CustomReportSummary,
+  CustomReportWidget,
+  CustomReportWidgetRef,
+  CustomReportsResponse,
   DeleteWebhook200Response,
   FinalizeProjectDraftRequest,
   GeoAlert,
@@ -317,6 +398,29 @@ part 'serializers.g.dart';
   MentionsResponse,
   MetricsFiltersEcho,
   ModelsResponse,
+  OwnedMediaAgeBucketShare,
+  OwnedMediaCitedItem,
+  OwnedMediaCitedItemStats,
+  OwnedMediaCitingAnswer,
+  OwnedMediaCitingPromptsResponse,
+  OwnedMediaContentTypeShare,
+  OwnedMediaCountryShare,
+  OwnedMediaKpiChanges,
+  OwnedMediaKpis,
+  OwnedMediaListResponse,
+  OwnedMediaModelShare,
+  OwnedMediaPlatformProfiles,
+  OwnedMediaPlatformRollup,
+  OwnedMediaPlatformRollupWeeklyInner,
+  OwnedMediaProfile,
+  OwnedMediaProfileSettings,
+  OwnedMediaProfilesResponse,$OwnedMediaProfilesResponse,
+  OwnedMediaProfilesUpdateResponse,
+  OwnedMediaRow,
+  OwnedMediaStoreTotals,
+  OwnedMediaSummaryResponse,
+  OwnedMediaSummaryResponsePrevious,
+  OwnedMediaWeek,
   PaginatedEnvelope,$PaginatedEnvelope,
   Ping200Response,
   Project,$Project,
@@ -338,20 +442,34 @@ part 'serializers.g.dart';
   ProjectDetailsAllOfStatsPromptsByBrandKind,
   ProjectProfile,
   ProjectUpdateResponse,
+  PromptCategorization,
+  PromptCategorizationResponse,
   PromptExecutionRecord,
   PromptExecutionsResponse,
+  PromptGenerationRequest,
+  PromptGenerationResponse,
+  PromptGenerationResponseError,
+  PromptGenerationResponseParams,
   PromptRecord,
   PromptSummaryResponse,
   PromptSummaryRow,
   PromptTagsAssignResponse,
+  PromptTagsRemoveResponse,
   PromptsCreateRequest,
   PromptsCreateResponse,
   PromptsCreateResponseDataInner,
+  PromptsImportRequest,
+  PromptsImportRequestRowsInner,
+  PromptsImportResponse,
+  PromptsImportResponseRowErrorsInner,
   PromptsResponse,
   QueryWebAnalyticsRequest,
+  RecommendationItem,
+  RecommendationItemUpdateResponse,
   RecommendationSummary,
   RecommendationSummarySummary,
   RecommendationsResponse,
+  RemovePromptTagsRequest,
   RemoveTeamMember200Response,
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
@@ -367,7 +485,15 @@ part 'serializers.g.dart';
   SearchConsoleSummaryResponseBreakdownInner,
   SearchConsoleTimeseriesResponse,
   SearchConsoleTimeseriesResponseDataInner,
+  SendCustomReportRequest,
+  SentimentBreakdownBrand,
+  SentimentBreakdownCounts,$SentimentBreakdownCounts,
+  SentimentBreakdownEnvelope,$SentimentBreakdownEnvelope,
   SentimentRecord,
+  SentimentTagRow,
+  SentimentTagsResponse,
+  SentimentTopicRow,
+  SentimentTopicsResponse,
   SentimentsResponse,
   SovResponse,
   SovResponseBreakdownInner,
@@ -380,6 +506,13 @@ part 'serializers.g.dart';
   StoreConnectionResponseAccount,
   StoreConnectionResponseCandidatesInner,
   StoreConnectionResponseProject,
+  SuggestedPrompt,
+  SuggestedPromptIdsRequest,
+  SuggestedPromptsAcceptRequest,
+  SuggestedPromptsAcceptResponse,
+  SuggestedPromptsAcceptResponseAcceptedInner,
+  SuggestedPromptsRejectResponse,
+  SuggestedPromptsResponse,
   SummaryResponse,
   SummaryResponseAllOfPositionDistribution,
   SummaryResponseAllOfSummaryValueInner,
@@ -399,8 +532,11 @@ part 'serializers.g.dart';
   UpdateAnnotationRequest,
   UpdateCollectionRequest,
   UpdateCompetitorRequest,
+  UpdateOwnedMediaProfilesRequest,
   UpdateProjectDraftRequest,
   UpdateProjectRequest,
+  UpdatePromptRequest,
+  UpdateRecommendationItemRequest,
   WebAnalyticsQueryResponse,
   WebAnalyticsQueryResponseColumnsInner,
   WebAnalyticsSchemaResponse,
@@ -409,6 +545,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(MentionRecord)]),
         () => ListBuilder<MentionRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaCitingAnswer)]),
+        () => ListBuilder<OwnedMediaCitingAnswer>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseCurrentInner)]),
@@ -431,6 +571,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<TagRef>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaContentTypeShare)]),
+        () => ListBuilder<OwnedMediaContentTypeShare>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiOrdersResponseSeriesInner)]),
         () => ListBuilder<AiOrdersResponseSeriesInner>(),
       )
@@ -439,12 +583,40 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SovResponseOthersInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaModelShare)]),
+        () => ListBuilder<OwnedMediaModelShare>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
         () => ListBuilder<ProjectCreateRequestCollectionsInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaWeek)]),
+        () => ListBuilder<OwnedMediaWeek>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogProduct)]),
         () => ListBuilder<CatalogProduct>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])]),
+        () => ListBuilder<BuiltMap<String, JsonObject>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformProfiles)]),
+        () => ListBuilder<OwnedMediaPlatformProfiles>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SentimentTagRow)]),
+        () => ListBuilder<SentimentTagRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CustomReportWidgetRef)]),
+        () => ListBuilder<CustomReportWidgetRef>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaAgeBucketShare)]),
+        () => ListBuilder<OwnedMediaAgeBucketShare>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditComparisonChangesInner)]),
@@ -455,8 +627,16 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<TopSourcesResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaStoreTotals)]),
+        () => ListBuilder<OwnedMediaStoreTotals>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleRowsResponseDataInner)]),
         () => ListBuilder<SearchConsoleRowsResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CompetitorSuggestion)]),
+        () => ListBuilder<CompetitorSuggestion>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TimeseriesSeries)]),
@@ -465,6 +645,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptExecutionRecord)]),
         () => ListBuilder<PromptExecutionRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformRollup)]),
+        () => ListBuilder<OwnedMediaPlatformRollup>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SentimentTopicRow)]),
+        () => ListBuilder<SentimentTopicRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType.nullable(JsonObject)]),
@@ -481,6 +669,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
         () => ListBuilder<SearchConsoleListResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PromptsImportRequestRowsInner)]),
+        () => ListBuilder<PromptsImportRequestRowsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
@@ -511,8 +703,16 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<CatalogPromptSuggestion>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaRow)]),
+        () => ListBuilder<OwnedMediaRow>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAudit)]),
         () => ListBuilder<GeoAudit>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CustomReportBlock)]),
+        () => ListBuilder<CustomReportBlock>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TeamInvitation)]),
@@ -539,12 +739,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<LocalBusiness>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CustomReportWidget)]),
+        () => ListBuilder<CustomReportWidget>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(StoreConnectionResponseCandidatesInner)]),
         () => ListBuilder<StoreConnectionResponseCandidatesInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(num)]),
         () => MapBuilder<String, num>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SuggestedPrompt)]),
+        () => ListBuilder<SuggestedPrompt>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CitationRecord)]),
@@ -557,6 +765,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(TimeseriesSeries)])]),
         () => MapBuilder<String, BuiltList<TimeseriesSeries>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaProfile)]),
+        () => ListBuilder<OwnedMediaProfile>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(int)])]),
@@ -573,6 +785,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(RecommendationSummary)]),
         () => ListBuilder<RecommendationSummary>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SuggestedPromptsAcceptResponseAcceptedInner)]),
+        () => ListBuilder<SuggestedPromptsAcceptResponseAcceptedInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Project)]),
@@ -607,6 +823,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AiOrdersResponseBySourceInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PromptsImportResponseRowErrorsInner)]),
+        () => ListBuilder<PromptsImportResponseRowErrorsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponsePeriodsInner)]),
         () => ListBuilder<SovResponsePeriodsInner>(),
       )
@@ -631,6 +851,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Competitor>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformRollupWeeklyInner)]),
+        () => ListBuilder<OwnedMediaPlatformRollupWeeklyInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
         () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
       )
@@ -641,6 +865,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseOverTimeInner)]),
         () => ListBuilder<SovResponseOverTimeInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CustomReportSummary)]),
+        () => ListBuilder<CustomReportSummary>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(int)]),
@@ -663,6 +891,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<IntelligenceTaskSummary>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaCountryShare)]),
+        () => ListBuilder<OwnedMediaCountryShare>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
       )
@@ -675,8 +907,11 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(GeoAuditRun.serializer)
       ..add(IntelligenceTask.serializer)
       ..add(LlmsTxtTechnicalGeoReport.serializer)
+      ..add(OwnedMediaProfilesResponse.serializer)
       ..add(PaginatedEnvelope.serializer)
       ..add(Project.serializer)
+      ..add(SentimentBreakdownCounts.serializer)
+      ..add(SentimentBreakdownEnvelope.serializer)
       ..add(TeamInvitation.serializer)
       ..add(TimeseriesResponse.serializer)
       ..add(const OneOfSerializer())

@@ -12,6 +12,7 @@ import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/competitor_create_response.dart';
 import 'package:llmpulse/src/model/competitor_details.dart';
+import 'package:llmpulse/src/model/competitor_suggestions_response.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
 import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
@@ -262,6 +263,107 @@ class CompetitorsApi {
     }
 
     return Response<CompetitorDetails>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// List competitor suggestions
+  /// The two lists of the Suggested tab of the Competitors page. &#x60;basis&#x3D;brands&#x60; (default) returns the competing brands the AI discovery proposed that are not tracked or rejected yet, with the names it would match and, when counted, how many answers name it (&#x60;mentions&#x60;). &#x60;basis&#x3D;citations&#x60; returns the domains AI answers cite most that are not your own or tracked yet, with how many answers cite each (&#x60;citations&#x60;). &#x60;discovery&#x60; tells whether a discovery run is still loading. Read-only: it never starts a discovery run, which the page starts from its Discover button. Add a suggestion with POST /competitors.
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID
+  /// * [basis] 
+  /// * [query] - Only suggestions whose brand name or domain contains this text
+  /// * [page] 
+  /// * [perPage] 
+  /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [CompetitorSuggestionsResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<CompetitorSuggestionsResponse>> listCompetitorSuggestions({ 
+    required int projectId,
+    String? basis = 'brands',
+    String? query,
+    int? page = 1,
+    int? perPage = 20,
+    String? output,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/competitors/suggestions';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'BearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
+      if (basis != null) r'basis': encodeQueryParameter(_serializers, basis, const FullType(String)),
+      if (query != null) r'query': encodeQueryParameter(_serializers, query, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
+      if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    CompetitorSuggestionsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CompetitorSuggestionsResponse),
+      ) as CompetitorSuggestionsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CompetitorSuggestionsResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

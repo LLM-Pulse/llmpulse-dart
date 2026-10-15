@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**deleteCollection**](CollectionsTagsApi.md#deletecollection) | **DELETE** /collections/{id} | Delete a tag
 [**listCollections**](CollectionsTagsApi.md#listcollections) | **GET** /dimensions/collections | List tags/collections
 [**listTags**](CollectionsTagsApi.md#listtags) | **GET** /dimensions/tags | List tags (alias for /collections)
+[**removePromptTags**](CollectionsTagsApi.md#removeprompttags) | **POST** /prompts/remove_tags | Bulk-detach tags from prompts
 [**updateCollection**](CollectionsTagsApi.md#updatecollection) | **PATCH** /collections/{id} | Update a tag
 
 
@@ -229,6 +230,49 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **removePromptTags**
+> PromptTagsRemoveResponse removePromptTags(removePromptTagsRequest)
+
+Bulk-detach tags from prompts
+
+Idempotent bulk removal of tags (Collections) from existing prompts: up to 500 prompt_ids and 50 tags, resolved by id or by name (case-insensitive). Only the prompt-tag links are removed; tags and prompts stay. Links that did not exist are counted in skipped_not_linked. Requires a `read_write` scope API key and, for team members, update access to Prompts.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getCollectionsTagsApi();
+final RemovePromptTagsRequest removePromptTagsRequest = ; // RemovePromptTagsRequest | 
+
+try {
+    final response = api.removePromptTags(removePromptTagsRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CollectionsTagsApi->removePromptTags: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **removePromptTagsRequest** | [**RemovePromptTagsRequest**](RemovePromptTagsRequest.md)|  | 
+
+### Return type
+
+[**PromptTagsRemoveResponse**](PromptTagsRemoveResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

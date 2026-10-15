@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**getRecommendation**](RecommendationsApi.md#getrecommendation) | **GET** /recommendations/{id} | Get recommendation run with items
 [**launchRecommendations**](RecommendationsApi.md#launchrecommendations) | **POST** /recommendations | Launch a recommendations generation
 [**listRecommendations**](RecommendationsApi.md#listrecommendations) | **GET** /recommendations | List recommendation runs
+[**updateRecommendationItem**](RecommendationsApi.md#updaterecommendationitem) | **PATCH** /recommendations/{id}/items/{item_id} | Complete, archive or restore a recommendation item
 
 
 # **getRecommendation**
@@ -147,6 +148,53 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateRecommendationItem**
+> RecommendationItemUpdateResponse updateRecommendationItem(id, itemId, updateRecommendationItemRequest)
+
+Complete, archive or restore a recommendation item
+
+Moves one item of a recommendation run between `active`, `completed` and `archived`, exactly like the complete, archive and restore buttons on the Recommendations page, and stamps `status_changed_at`. Returns the item in the shape `GET /recommendations/{id}` lists items. Requires a `read_write` scope API key and, for team members, create permission on Recommendations (the permission the page uses for these buttons).
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getRecommendationsApi();
+final int id = 56; // int | Recommendation run id
+final int itemId = 56; // int | Item id, from the items of GET /recommendations/{id}
+final UpdateRecommendationItemRequest updateRecommendationItemRequest = ; // UpdateRecommendationItemRequest | 
+
+try {
+    final response = api.updateRecommendationItem(id, itemId, updateRecommendationItemRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling RecommendationsApi->updateRecommendationItem: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Recommendation run id | 
+ **itemId** | **int**| Item id, from the items of GET /recommendations/{id} | 
+ **updateRecommendationItemRequest** | [**UpdateRecommendationItemRequest**](UpdateRecommendationItemRequest.md)|  | 
+
+### Return type
+
+[**RecommendationItemUpdateResponse**](RecommendationItemUpdateResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
