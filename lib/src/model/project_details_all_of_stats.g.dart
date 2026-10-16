@@ -15,6 +15,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   final int? competitorsCount;
   @override
   final int? collectionsCount;
+  @override
+  final int? promptsAvailable;
 
   factory _$ProjectDetailsAllOfStats(
           [void Function(ProjectDetailsAllOfStatsBuilder)? updates]) =>
@@ -24,7 +26,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
       {this.promptsCount,
       this.promptsByBrandKind,
       this.competitorsCount,
-      this.collectionsCount})
+      this.collectionsCount,
+      this.promptsAvailable})
       : super._();
   @override
   ProjectDetailsAllOfStats rebuild(
@@ -42,7 +45,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
         promptsCount == other.promptsCount &&
         promptsByBrandKind == other.promptsByBrandKind &&
         competitorsCount == other.competitorsCount &&
-        collectionsCount == other.collectionsCount;
+        collectionsCount == other.collectionsCount &&
+        promptsAvailable == other.promptsAvailable;
   }
 
   @override
@@ -52,6 +56,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
     _$hash = $jc(_$hash, promptsByBrandKind.hashCode);
     _$hash = $jc(_$hash, competitorsCount.hashCode);
     _$hash = $jc(_$hash, collectionsCount.hashCode);
+    _$hash = $jc(_$hash, promptsAvailable.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -62,7 +67,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
           ..add('promptsCount', promptsCount)
           ..add('promptsByBrandKind', promptsByBrandKind)
           ..add('competitorsCount', competitorsCount)
-          ..add('collectionsCount', collectionsCount))
+          ..add('collectionsCount', collectionsCount)
+          ..add('promptsAvailable', promptsAvailable))
         .toString();
   }
 }
@@ -95,6 +101,11 @@ class ProjectDetailsAllOfStatsBuilder
   set collectionsCount(int? collectionsCount) =>
       _$this._collectionsCount = collectionsCount;
 
+  int? _promptsAvailable;
+  int? get promptsAvailable => _$this._promptsAvailable;
+  set promptsAvailable(int? promptsAvailable) =>
+      _$this._promptsAvailable = promptsAvailable;
+
   ProjectDetailsAllOfStatsBuilder() {
     ProjectDetailsAllOfStats._defaults(this);
   }
@@ -106,6 +117,7 @@ class ProjectDetailsAllOfStatsBuilder
       _promptsByBrandKind = $v.promptsByBrandKind?.toBuilder();
       _competitorsCount = $v.competitorsCount;
       _collectionsCount = $v.collectionsCount;
+      _promptsAvailable = $v.promptsAvailable;
       _$v = null;
     }
     return this;
@@ -133,6 +145,7 @@ class ProjectDetailsAllOfStatsBuilder
             promptsByBrandKind: _promptsByBrandKind?.build(),
             competitorsCount: competitorsCount,
             collectionsCount: collectionsCount,
+            promptsAvailable: promptsAvailable,
           );
     } catch (_) {
       late String _$failedField;

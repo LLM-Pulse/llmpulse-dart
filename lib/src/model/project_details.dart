@@ -37,6 +37,7 @@ part 'project_details.g.dart';
 /// * [googlePlayId] 
 /// * [appStoreId] 
 /// * [createdAt] 
+/// * [promptLimit] - The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
 /// * [stats] 
 /// * [dataCoverage] 
 /// * [searchConsole] 
@@ -67,6 +68,10 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
 
   @BuiltValueField(wireName: r'language_code')
   String? get languageCode;
+
+  /// The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
+  @BuiltValueField(wireName: r'prompt_limit')
+  int? get promptLimit;
 
   @BuiltValueField(wireName: r'url')
   String? get url;
@@ -139,25 +144,11 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType.nullable(String),
       );
     }
-    if (object.searchConsole != null) {
-      yield r'search_console';
-      yield serializers.serialize(
-        object.searchConsole,
-        specifiedType: const FullType(ProjectDetailsAllOfSearchConsole),
-      );
-    }
     if (object.paused != null) {
       yield r'paused';
       yield serializers.serialize(
         object.paused,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.brandName != null) {
-      yield r'brand_name';
-      yield serializers.serialize(
-        object.brandName,
-        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.businessModel != null) {
@@ -188,39 +179,11 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType.nullable(String),
       );
     }
-    if (object.languageCode != null) {
-      yield r'language_code';
-      yield serializers.serialize(
-        object.languageCode,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.url != null) {
-      yield r'url';
-      yield serializers.serialize(
-        object.url,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.googlePlayId != null) {
-      yield r'google_play_id';
-      yield serializers.serialize(
-        object.googlePlayId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.targetAudience != null) {
-      yield r'target_audience';
-      yield serializers.serialize(
-        object.targetAudience,
-        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.stats != null) {
@@ -235,13 +198,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.additionalOwnedDomains,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.businessModelOther != null) {
-      yield r'business_model_other';
-      yield serializers.serialize(
-        object.businessModelOther,
-        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.countryCode != null) {
@@ -265,25 +221,11 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType(String),
       );
     }
-    if (object.matchingNames != null) {
-      yield r'matching_names';
-      yield serializers.serialize(
-        object.matchingNames,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
     if (object.primaryProducts != null) {
       yield r'primary_products';
       yield serializers.serialize(
         object.primaryProducts,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
       );
     }
     if (object.id != null) {
@@ -298,6 +240,76 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.goals,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.searchConsole != null) {
+      yield r'search_console';
+      yield serializers.serialize(
+        object.searchConsole,
+        specifiedType: const FullType(ProjectDetailsAllOfSearchConsole),
+      );
+    }
+    if (object.brandName != null) {
+      yield r'brand_name';
+      yield serializers.serialize(
+        object.brandName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.languageCode != null) {
+      yield r'language_code';
+      yield serializers.serialize(
+        object.languageCode,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.promptLimit != null) {
+      yield r'prompt_limit';
+      yield serializers.serialize(
+        object.promptLimit,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.url != null) {
+      yield r'url';
+      yield serializers.serialize(
+        object.url,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.googlePlayId != null) {
+      yield r'google_play_id';
+      yield serializers.serialize(
+        object.googlePlayId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.targetAudience != null) {
+      yield r'target_audience';
+      yield serializers.serialize(
+        object.targetAudience,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.businessModelOther != null) {
+      yield r'business_model_other';
+      yield serializers.serialize(
+        object.businessModelOther,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.matchingNames != null) {
+      yield r'matching_names';
+      yield serializers.serialize(
+        object.matchingNames,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -331,14 +343,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.brandVoice = valueDes;
           break;
-        case r'search_console':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(ProjectDetailsAllOfSearchConsole),
-          ) as ProjectDetailsAllOfSearchConsole?;
-          if (valueDes == null) continue;
-          result.searchConsole.replace(valueDes);
-          break;
         case r'paused':
           final valueDes = serializers.deserialize(
             value,
@@ -346,14 +350,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as bool?;
           if (valueDes == null) continue;
           result.paused = valueDes;
-          break;
-        case r'brand_name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.brandName = valueDes;
           break;
         case r'business_model':
           final valueDes = serializers.deserialize(
@@ -387,22 +383,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.appStoreId = valueDes;
           break;
-        case r'language_code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.languageCode = valueDes;
-          break;
-        case r'url':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.url = valueDes;
-          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
@@ -410,22 +390,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as DateTime?;
           if (valueDes == null) continue;
           result.createdAt = valueDes;
-          break;
-        case r'google_play_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.googlePlayId = valueDes;
-          break;
-        case r'target_audience':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.targetAudience = valueDes;
           break;
         case r'stats':
           final valueDes = serializers.deserialize(
@@ -442,14 +406,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as BuiltList<String>?;
           if (valueDes == null) continue;
           result.additionalOwnedDomains.replace(valueDes);
-          break;
-        case r'business_model_other':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.businessModelOther = valueDes;
           break;
         case r'country_code':
           final valueDes = serializers.deserialize(
@@ -475,14 +431,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.requestId = valueDes;
           break;
-        case r'matching_names':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>?;
-          if (valueDes == null) continue;
-          result.matchingNames.replace(valueDes);
-          break;
         case r'primary_products':
           final valueDes = serializers.deserialize(
             value,
@@ -490,14 +438,6 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as BuiltList<String>?;
           if (valueDes == null) continue;
           result.primaryProducts.replace(valueDes);
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.name = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
@@ -514,6 +454,86 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.goals = valueDes;
+          break;
+        case r'search_console':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfSearchConsole),
+          ) as ProjectDetailsAllOfSearchConsole?;
+          if (valueDes == null) continue;
+          result.searchConsole.replace(valueDes);
+          break;
+        case r'brand_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.brandName = valueDes;
+          break;
+        case r'language_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.languageCode = valueDes;
+          break;
+        case r'prompt_limit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.promptLimit = valueDes;
+          break;
+        case r'url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.url = valueDes;
+          break;
+        case r'google_play_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.googlePlayId = valueDes;
+          break;
+        case r'target_audience':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.targetAudience = valueDes;
+          break;
+        case r'business_model_other':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.businessModelOther = valueDes;
+          break;
+        case r'matching_names':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
+          result.matchingNames.replace(valueDes);
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.name = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -31,6 +31,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
   final BuiltList<String>? matchingNames;
   @override
   final BuiltList<String>? additionalOwnedDomains;
+  @override
+  final int? promptLimit;
 
   factory _$UpdateProjectRequest(
           [void Function(UpdateProjectRequestBuilder)? updates]) =>
@@ -48,7 +50,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
       this.goals,
       this.primaryProducts,
       this.matchingNames,
-      this.additionalOwnedDomains})
+      this.additionalOwnedDomains,
+      this.promptLimit})
       : super._();
   @override
   UpdateProjectRequest rebuild(
@@ -74,7 +77,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
         goals == other.goals &&
         primaryProducts == other.primaryProducts &&
         matchingNames == other.matchingNames &&
-        additionalOwnedDomains == other.additionalOwnedDomains;
+        additionalOwnedDomains == other.additionalOwnedDomains &&
+        promptLimit == other.promptLimit;
   }
 
   @override
@@ -92,6 +96,7 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
     _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, additionalOwnedDomains.hashCode);
+    _$hash = $jc(_$hash, promptLimit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -110,7 +115,8 @@ class _$UpdateProjectRequest extends UpdateProjectRequest {
           ..add('goals', goals)
           ..add('primaryProducts', primaryProducts)
           ..add('matchingNames', matchingNames)
-          ..add('additionalOwnedDomains', additionalOwnedDomains))
+          ..add('additionalOwnedDomains', additionalOwnedDomains)
+          ..add('promptLimit', promptLimit))
         .toString();
   }
 }
@@ -176,6 +182,10 @@ class UpdateProjectRequestBuilder
   set additionalOwnedDomains(ListBuilder<String>? additionalOwnedDomains) =>
       _$this._additionalOwnedDomains = additionalOwnedDomains;
 
+  int? _promptLimit;
+  int? get promptLimit => _$this._promptLimit;
+  set promptLimit(int? promptLimit) => _$this._promptLimit = promptLimit;
+
   UpdateProjectRequestBuilder() {
     UpdateProjectRequest._defaults(this);
   }
@@ -195,6 +205,7 @@ class UpdateProjectRequestBuilder
       _primaryProducts = $v.primaryProducts?.toBuilder();
       _matchingNames = $v.matchingNames?.toBuilder();
       _additionalOwnedDomains = $v.additionalOwnedDomains?.toBuilder();
+      _promptLimit = $v.promptLimit;
       _$v = null;
     }
     return this;
@@ -230,6 +241,7 @@ class UpdateProjectRequestBuilder
             primaryProducts: _primaryProducts?.build(),
             matchingNames: _matchingNames?.build(),
             additionalOwnedDomains: _additionalOwnedDomains?.build(),
+            promptLimit: promptLimit,
           );
     } catch (_) {
       late String _$failedField;

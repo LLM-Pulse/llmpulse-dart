@@ -16,6 +16,7 @@ part 'project_details_all_of_stats.g.dart';
 /// * [promptsByBrandKind] 
 /// * [competitorsCount] 
 /// * [collectionsCount] 
+/// * [promptsAvailable] - How many prompts can still be added to this project now, the same number the Prompts page offers. The lower of the project's free slots under prompt_limit and the account's remaining prompts; 0 when either is full (a project over its limit keeps its prompts). Null when neither caps it
 @BuiltValue()
 abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStats, ProjectDetailsAllOfStatsBuilder> {
   @BuiltValueField(wireName: r'prompts_count')
@@ -29,6 +30,10 @@ abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStat
 
   @BuiltValueField(wireName: r'collections_count')
   int? get collectionsCount;
+
+  /// How many prompts can still be added to this project now, the same number the Prompts page offers. The lower of the project's free slots under prompt_limit and the account's remaining prompts; 0 when either is full (a project over its limit keeps its prompts). Null when neither caps it
+  @BuiltValueField(wireName: r'prompts_available')
+  int? get promptsAvailable;
 
   ProjectDetailsAllOfStats._();
 
@@ -79,6 +84,13 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
       yield serializers.serialize(
         object.collectionsCount,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.promptsAvailable != null) {
+      yield r'prompts_available';
+      yield serializers.serialize(
+        object.promptsAvailable,
+        specifiedType: const FullType.nullable(int),
       );
     }
   }
@@ -135,6 +147,14 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
           ) as int?;
           if (valueDes == null) continue;
           result.collectionsCount = valueDes;
+          break;
+        case r'prompts_available':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.promptsAvailable = valueDes;
           break;
         default:
           unhandled.add(key);
