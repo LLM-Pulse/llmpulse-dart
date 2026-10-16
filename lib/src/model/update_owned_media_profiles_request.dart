@@ -18,13 +18,13 @@ part 'update_owned_media_profiles_request.g.dart';
 /// * [instagramProfileUrl] - The main Instagram profile URL. An empty string or null clears it
 /// * [facebookPageUrl] - The main Facebook Page URL. An empty string or null clears it
 /// * [tiktokProfileUrl] - The main TikTok profile URL. An empty string or null clears it
-/// * [linkedinCompanyUrl] - The main LinkedIn Company Page URL (/company/...). An empty string or null clears it
+/// * [linkedinCompanyUrl] - The main LinkedIn page URL: a company (/company/...), school (/school/...) or showcase (/showcase/...) page. An empty string or null clears it
 /// * [youtubeExtraProfileUrls] - FULL replacement list of extra YouTube channel URLs (at most 10); [] clears it
 /// * [mobileAppsExtraProfileUrls] - FULL replacement list of extra App Store or Google Play app URLs (at most 10); [] clears it
 /// * [instagramExtraProfileUrls] - FULL replacement list of extra Instagram profile URLs (at most 10); [] clears it
 /// * [facebookExtraProfileUrls] - FULL replacement list of extra Facebook Page URLs (at most 10); [] clears it
 /// * [tiktokExtraProfileUrls] - FULL replacement list of extra TikTok profile URLs (at most 10); [] clears it
-/// * [linkedinExtraProfileUrls] - FULL replacement list of extra LinkedIn Company Page URLs (at most 10); [] clears it
+/// * [linkedinExtraProfileUrls] - FULL replacement list of extra LinkedIn company, school or showcase page URLs (at most 10); [] clears it
 /// * [redditSubreddits] - FULL replacement list (at most 10) of subreddit names the brand owns, without r/; [] clears it
 /// * [redditUsernames] - FULL replacement list (at most 25) of Reddit usernames the brand owns, without u/; [] clears it
 @BuiltValue()
@@ -53,7 +53,7 @@ abstract class UpdateOwnedMediaProfilesRequest implements Built<UpdateOwnedMedia
   @BuiltValueField(wireName: r'tiktok_profile_url')
   String? get tiktokProfileUrl;
 
-  /// The main LinkedIn Company Page URL (/company/...). An empty string or null clears it
+  /// The main LinkedIn page URL: a company (/company/...), school (/school/...) or showcase (/showcase/...) page. An empty string or null clears it
   @BuiltValueField(wireName: r'linkedin_company_url')
   String? get linkedinCompanyUrl;
 
@@ -77,7 +77,7 @@ abstract class UpdateOwnedMediaProfilesRequest implements Built<UpdateOwnedMedia
   @BuiltValueField(wireName: r'tiktok_extra_profile_urls')
   BuiltList<String>? get tiktokExtraProfileUrls;
 
-  /// FULL replacement list of extra LinkedIn Company Page URLs (at most 10); [] clears it
+  /// FULL replacement list of extra LinkedIn company, school or showcase page URLs (at most 10); [] clears it
   @BuiltValueField(wireName: r'linkedin_extra_profile_urls')
   BuiltList<String>? get linkedinExtraProfileUrls;
 

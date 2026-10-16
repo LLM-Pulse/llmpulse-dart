@@ -10,13 +10,13 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   @override
   final int? promptsCount;
   @override
-  final int? promptsAvailable;
-  @override
   final ProjectDetailsAllOfStatsPromptsByBrandKind? promptsByBrandKind;
   @override
   final int? competitorsCount;
   @override
   final int? collectionsCount;
+  @override
+  final int? promptsAvailable;
 
   factory _$ProjectDetailsAllOfStats(
           [void Function(ProjectDetailsAllOfStatsBuilder)? updates]) =>
@@ -24,10 +24,10 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
 
   _$ProjectDetailsAllOfStats._(
       {this.promptsCount,
-      this.promptsAvailable,
       this.promptsByBrandKind,
       this.competitorsCount,
-      this.collectionsCount})
+      this.collectionsCount,
+      this.promptsAvailable})
       : super._();
   @override
   ProjectDetailsAllOfStats rebuild(
@@ -43,20 +43,20 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
     if (identical(other, this)) return true;
     return other is ProjectDetailsAllOfStats &&
         promptsCount == other.promptsCount &&
-        promptsAvailable == other.promptsAvailable &&
         promptsByBrandKind == other.promptsByBrandKind &&
         competitorsCount == other.competitorsCount &&
-        collectionsCount == other.collectionsCount;
+        collectionsCount == other.collectionsCount &&
+        promptsAvailable == other.promptsAvailable;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, promptsCount.hashCode);
-    _$hash = $jc(_$hash, promptsAvailable.hashCode);
     _$hash = $jc(_$hash, promptsByBrandKind.hashCode);
     _$hash = $jc(_$hash, competitorsCount.hashCode);
     _$hash = $jc(_$hash, collectionsCount.hashCode);
+    _$hash = $jc(_$hash, promptsAvailable.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -65,10 +65,10 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetailsAllOfStats')
           ..add('promptsCount', promptsCount)
-          ..add('promptsAvailable', promptsAvailable)
           ..add('promptsByBrandKind', promptsByBrandKind)
           ..add('competitorsCount', competitorsCount)
-          ..add('collectionsCount', collectionsCount))
+          ..add('collectionsCount', collectionsCount)
+          ..add('promptsAvailable', promptsAvailable))
         .toString();
   }
 }
@@ -81,11 +81,6 @@ class ProjectDetailsAllOfStatsBuilder
   int? _promptsCount;
   int? get promptsCount => _$this._promptsCount;
   set promptsCount(int? promptsCount) => _$this._promptsCount = promptsCount;
-
-  int? _promptsAvailable;
-  int? get promptsAvailable => _$this._promptsAvailable;
-  set promptsAvailable(int? promptsAvailable) =>
-      _$this._promptsAvailable = promptsAvailable;
 
   ProjectDetailsAllOfStatsPromptsByBrandKindBuilder? _promptsByBrandKind;
   ProjectDetailsAllOfStatsPromptsByBrandKindBuilder get promptsByBrandKind =>
@@ -106,6 +101,11 @@ class ProjectDetailsAllOfStatsBuilder
   set collectionsCount(int? collectionsCount) =>
       _$this._collectionsCount = collectionsCount;
 
+  int? _promptsAvailable;
+  int? get promptsAvailable => _$this._promptsAvailable;
+  set promptsAvailable(int? promptsAvailable) =>
+      _$this._promptsAvailable = promptsAvailable;
+
   ProjectDetailsAllOfStatsBuilder() {
     ProjectDetailsAllOfStats._defaults(this);
   }
@@ -114,10 +114,10 @@ class ProjectDetailsAllOfStatsBuilder
     final $v = _$v;
     if ($v != null) {
       _promptsCount = $v.promptsCount;
-      _promptsAvailable = $v.promptsAvailable;
       _promptsByBrandKind = $v.promptsByBrandKind?.toBuilder();
       _competitorsCount = $v.competitorsCount;
       _collectionsCount = $v.collectionsCount;
+      _promptsAvailable = $v.promptsAvailable;
       _$v = null;
     }
     return this;
@@ -142,10 +142,10 @@ class ProjectDetailsAllOfStatsBuilder
       _$result = _$v ??
           _$ProjectDetailsAllOfStats._(
             promptsCount: promptsCount,
-            promptsAvailable: promptsAvailable,
             promptsByBrandKind: _promptsByBrandKind?.build(),
             competitorsCount: competitorsCount,
             collectionsCount: collectionsCount,
+            promptsAvailable: promptsAvailable,
           );
     } catch (_) {
       late String _$failedField;

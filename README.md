@@ -148,7 +148,7 @@ Class | Method | HTTP request | Description
 [*ProjectsApi*](doc/ProjectsApi.md) | [**listLocales**](doc/ProjectsApi.md#listlocales) | **GET** /dimensions/locales | List locales with data
 [*ProjectsApi*](doc/ProjectsApi.md) | [**listModels**](doc/ProjectsApi.md#listmodels) | **GET** /dimensions/models | List models with data
 [*ProjectsApi*](doc/ProjectsApi.md) | [**listProjects**](doc/ProjectsApi.md#listprojects) | **GET** /dimensions/projects | List projects
-[*ProjectsApi*](doc/ProjectsApi.md) | [**updateProject**](doc/ProjectsApi.md#updateproject) | **PATCH** /projects/{id} | Update a project profile (Brand Book) or prompt limit
+[*ProjectsApi*](doc/ProjectsApi.md) | [**updateProject**](doc/ProjectsApi.md#updateproject) | **PATCH** /projects/{id} | Update a project profile (Brand Book)
 [*ProjectsApi*](doc/ProjectsApi.md) | [**updateProjectDraft**](doc/ProjectsApi.md#updateprojectdraft) | **PATCH** /project_drafts/{id} | Submit a wizard step
 [*PromptsApi*](doc/PromptsApi.md) | [**acceptSuggestedPrompts**](doc/PromptsApi.md#acceptsuggestedprompts) | **POST** /suggested_prompts/accept | Accept suggested prompts
 [*PromptsApi*](doc/PromptsApi.md) | [**createPromptGeneration**](doc/PromptsApi.md#createpromptgeneration) | **POST** /prompt_generations | Generate prompt suggestions

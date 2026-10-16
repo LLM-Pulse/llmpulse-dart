@@ -12,20 +12,15 @@ part 'project_details_all_of_stats.g.dart';
 /// ProjectDetailsAllOfStats
 ///
 /// Properties:
-/// * [promptsCount] - Active prompts in the project
-/// * [promptsAvailable] - Prompts that can still be added to this project, the lower of its free slots under prompt_limit and the prompts left in the account quota; null when neither caps it
+/// * [promptsCount] 
 /// * [promptsByBrandKind] 
 /// * [competitorsCount] 
 /// * [collectionsCount] 
+/// * [promptsAvailable] - How many prompts can still be added to this project now, the same number the Prompts page offers. The lower of the project's free slots under prompt_limit and the account's remaining prompts; 0 when either is full (a project over its limit keeps its prompts). Null when neither caps it
 @BuiltValue()
 abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStats, ProjectDetailsAllOfStatsBuilder> {
-  /// Active prompts in the project
   @BuiltValueField(wireName: r'prompts_count')
   int? get promptsCount;
-
-  /// Prompts that can still be added to this project, the lower of its free slots under prompt_limit and the prompts left in the account quota; null when neither caps it
-  @BuiltValueField(wireName: r'prompts_available')
-  int? get promptsAvailable;
 
   @BuiltValueField(wireName: r'prompts_by_brand_kind')
   ProjectDetailsAllOfStatsPromptsByBrandKind? get promptsByBrandKind;
@@ -35,6 +30,10 @@ abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStat
 
   @BuiltValueField(wireName: r'collections_count')
   int? get collectionsCount;
+
+  /// How many prompts can still be added to this project now, the same number the Prompts page offers. The lower of the project's free slots under prompt_limit and the account's remaining prompts; 0 when either is full (a project over its limit keeps its prompts). Null when neither caps it
+  @BuiltValueField(wireName: r'prompts_available')
+  int? get promptsAvailable;
 
   ProjectDetailsAllOfStats._();
 
@@ -66,13 +65,6 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
         specifiedType: const FullType(int),
       );
     }
-    if (object.promptsAvailable != null) {
-      yield r'prompts_available';
-      yield serializers.serialize(
-        object.promptsAvailable,
-        specifiedType: const FullType.nullable(int),
-      );
-    }
     if (object.promptsByBrandKind != null) {
       yield r'prompts_by_brand_kind';
       yield serializers.serialize(
@@ -92,6 +84,13 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
       yield serializers.serialize(
         object.collectionsCount,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.promptsAvailable != null) {
+      yield r'prompts_available';
+      yield serializers.serialize(
+        object.promptsAvailable,
+        specifiedType: const FullType.nullable(int),
       );
     }
   }
@@ -125,14 +124,6 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
           if (valueDes == null) continue;
           result.promptsCount = valueDes;
           break;
-        case r'prompts_available':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.promptsAvailable = valueDes;
-          break;
         case r'prompts_by_brand_kind':
           final valueDes = serializers.deserialize(
             value,
@@ -156,6 +147,14 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
           ) as int?;
           if (valueDes == null) continue;
           result.collectionsCount = valueDes;
+          break;
+        case r'prompts_available':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.promptsAvailable = valueDes;
           break;
         default:
           unhandled.add(key);

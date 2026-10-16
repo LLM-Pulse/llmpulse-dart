@@ -26,7 +26,7 @@ part 'project_profile.g.dart';
 /// * [goals] 
 /// * [matchingNames] 
 /// * [additionalOwnedDomains] - Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
-/// * [promptLimit] - Maximum number of active prompts this project may hold; null when only the account quota applies
+/// * [promptLimit] - The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
 @BuiltValue()
 abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -71,7 +71,7 @@ abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBui
   @BuiltValueField(wireName: r'additional_owned_domains')
   BuiltList<String> get additionalOwnedDomains;
 
-  /// Maximum number of active prompts this project may hold; null when only the account quota applies
+  /// The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
   @BuiltValueField(wireName: r'prompt_limit')
   int? get promptLimit;
 
