@@ -10,6 +10,8 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   @override
   final int? promptsCount;
   @override
+  final int? promptsAvailable;
+  @override
   final ProjectDetailsAllOfStatsPromptsByBrandKind? promptsByBrandKind;
   @override
   final int? competitorsCount;
@@ -22,6 +24,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
 
   _$ProjectDetailsAllOfStats._(
       {this.promptsCount,
+      this.promptsAvailable,
       this.promptsByBrandKind,
       this.competitorsCount,
       this.collectionsCount})
@@ -40,6 +43,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
     if (identical(other, this)) return true;
     return other is ProjectDetailsAllOfStats &&
         promptsCount == other.promptsCount &&
+        promptsAvailable == other.promptsAvailable &&
         promptsByBrandKind == other.promptsByBrandKind &&
         competitorsCount == other.competitorsCount &&
         collectionsCount == other.collectionsCount;
@@ -49,6 +53,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, promptsCount.hashCode);
+    _$hash = $jc(_$hash, promptsAvailable.hashCode);
     _$hash = $jc(_$hash, promptsByBrandKind.hashCode);
     _$hash = $jc(_$hash, competitorsCount.hashCode);
     _$hash = $jc(_$hash, collectionsCount.hashCode);
@@ -60,6 +65,7 @@ class _$ProjectDetailsAllOfStats extends ProjectDetailsAllOfStats {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetailsAllOfStats')
           ..add('promptsCount', promptsCount)
+          ..add('promptsAvailable', promptsAvailable)
           ..add('promptsByBrandKind', promptsByBrandKind)
           ..add('competitorsCount', competitorsCount)
           ..add('collectionsCount', collectionsCount))
@@ -75,6 +81,11 @@ class ProjectDetailsAllOfStatsBuilder
   int? _promptsCount;
   int? get promptsCount => _$this._promptsCount;
   set promptsCount(int? promptsCount) => _$this._promptsCount = promptsCount;
+
+  int? _promptsAvailable;
+  int? get promptsAvailable => _$this._promptsAvailable;
+  set promptsAvailable(int? promptsAvailable) =>
+      _$this._promptsAvailable = promptsAvailable;
 
   ProjectDetailsAllOfStatsPromptsByBrandKindBuilder? _promptsByBrandKind;
   ProjectDetailsAllOfStatsPromptsByBrandKindBuilder get promptsByBrandKind =>
@@ -103,6 +114,7 @@ class ProjectDetailsAllOfStatsBuilder
     final $v = _$v;
     if ($v != null) {
       _promptsCount = $v.promptsCount;
+      _promptsAvailable = $v.promptsAvailable;
       _promptsByBrandKind = $v.promptsByBrandKind?.toBuilder();
       _competitorsCount = $v.competitorsCount;
       _collectionsCount = $v.collectionsCount;
@@ -130,6 +142,7 @@ class ProjectDetailsAllOfStatsBuilder
       _$result = _$v ??
           _$ProjectDetailsAllOfStats._(
             promptsCount: promptsCount,
+            promptsAvailable: promptsAvailable,
             promptsByBrandKind: _promptsByBrandKind?.build(),
             competitorsCount: competitorsCount,
             collectionsCount: collectionsCount,

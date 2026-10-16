@@ -12,14 +12,20 @@ part 'project_details_all_of_stats.g.dart';
 /// ProjectDetailsAllOfStats
 ///
 /// Properties:
-/// * [promptsCount] 
+/// * [promptsCount] - Active prompts in the project
+/// * [promptsAvailable] - Prompts that can still be added to this project, the lower of its free slots under prompt_limit and the prompts left in the account quota; null when neither caps it
 /// * [promptsByBrandKind] 
 /// * [competitorsCount] 
 /// * [collectionsCount] 
 @BuiltValue()
 abstract class ProjectDetailsAllOfStats implements Built<ProjectDetailsAllOfStats, ProjectDetailsAllOfStatsBuilder> {
+  /// Active prompts in the project
   @BuiltValueField(wireName: r'prompts_count')
   int? get promptsCount;
+
+  /// Prompts that can still be added to this project, the lower of its free slots under prompt_limit and the prompts left in the account quota; null when neither caps it
+  @BuiltValueField(wireName: r'prompts_available')
+  int? get promptsAvailable;
 
   @BuiltValueField(wireName: r'prompts_by_brand_kind')
   ProjectDetailsAllOfStatsPromptsByBrandKind? get promptsByBrandKind;
@@ -58,6 +64,13 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
       yield serializers.serialize(
         object.promptsCount,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.promptsAvailable != null) {
+      yield r'prompts_available';
+      yield serializers.serialize(
+        object.promptsAvailable,
+        specifiedType: const FullType.nullable(int),
       );
     }
     if (object.promptsByBrandKind != null) {
@@ -111,6 +124,14 @@ class _$ProjectDetailsAllOfStatsSerializer implements PrimitiveSerializer<Projec
           ) as int?;
           if (valueDes == null) continue;
           result.promptsCount = valueDes;
+          break;
+        case r'prompts_available':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.promptsAvailable = valueDes;
           break;
         case r'prompts_by_brand_kind':
           final valueDes = serializers.deserialize(

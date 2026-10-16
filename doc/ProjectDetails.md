@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **googlePlayId** | **String** |  | [optional] 
 **appStoreId** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**promptLimit** | **int** | Maximum number of active prompts this project may hold, set by the account owner or a co-owner in Account Settings > Prompt Limits; null when the project has no limit of its own and only the account quota applies | [optional] 
 **stats** | [**ProjectDetailsAllOfStats**](ProjectDetailsAllOfStats.md) |  | [optional] 
 **dataCoverage** | [**ProjectDetailsAllOfDataCoverage**](ProjectDetailsAllOfDataCoverage.md) |  | [optional] 
 **searchConsole** | [**ProjectDetailsAllOfSearchConsole**](ProjectDetailsAllOfSearchConsole.md) |  | [optional] 

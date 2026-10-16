@@ -26,6 +26,7 @@ part 'project_profile.g.dart';
 /// * [goals] 
 /// * [matchingNames] 
 /// * [additionalOwnedDomains] - Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
+/// * [promptLimit] - Maximum number of active prompts this project may hold; null when only the account quota applies
 @BuiltValue()
 abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -69,6 +70,10 @@ abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBui
   /// Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
   @BuiltValueField(wireName: r'additional_owned_domains')
   BuiltList<String> get additionalOwnedDomains;
+
+  /// Maximum number of active prompts this project may hold; null when only the account quota applies
+  @BuiltValueField(wireName: r'prompt_limit')
+  int? get promptLimit;
 
   ProjectProfile._();
 
@@ -175,6 +180,11 @@ class _$ProjectProfileSerializer implements PrimitiveSerializer<ProjectProfile> 
     yield serializers.serialize(
       object.additionalOwnedDomains,
       specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
+    yield r'prompt_limit';
+    yield object.promptLimit == null ? null : serializers.serialize(
+      object.promptLimit,
+      specifiedType: const FullType.nullable(int),
     );
   }
 
@@ -298,6 +308,14 @@ class _$ProjectProfileSerializer implements PrimitiveSerializer<ProjectProfile> 
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.additionalOwnedDomains.replace(valueDes);
+          break;
+        case r'prompt_limit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.promptLimit = valueDes;
           break;
         default:
           unhandled.add(key);

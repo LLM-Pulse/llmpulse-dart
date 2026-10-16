@@ -24,6 +24,8 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? languageCode;
   @override
+  final int? promptLimit;
+  @override
   final String? url;
   @override
   final DateTime? createdAt;
@@ -68,6 +70,7 @@ class _$ProjectDetails extends ProjectDetails {
       this.industry,
       this.appStoreId,
       this.languageCode,
+      this.promptLimit,
       this.url,
       this.createdAt,
       this.googlePlayId,
@@ -104,6 +107,7 @@ class _$ProjectDetails extends ProjectDetails {
         industry == other.industry &&
         appStoreId == other.appStoreId &&
         languageCode == other.languageCode &&
+        promptLimit == other.promptLimit &&
         url == other.url &&
         createdAt == other.createdAt &&
         googlePlayId == other.googlePlayId &&
@@ -133,6 +137,7 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, industry.hashCode);
     _$hash = $jc(_$hash, appStoreId.hashCode);
     _$hash = $jc(_$hash, languageCode.hashCode);
+    _$hash = $jc(_$hash, promptLimit.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, googlePlayId.hashCode);
@@ -164,6 +169,7 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('industry', industry)
           ..add('appStoreId', appStoreId)
           ..add('languageCode', languageCode)
+          ..add('promptLimit', promptLimit)
           ..add('url', url)
           ..add('createdAt', createdAt)
           ..add('googlePlayId', googlePlayId)
@@ -227,6 +233,11 @@ class ProjectDetailsBuilder
   String? get languageCode => _$this._languageCode;
   set languageCode(covariant String? languageCode) =>
       _$this._languageCode = languageCode;
+
+  int? _promptLimit;
+  int? get promptLimit => _$this._promptLimit;
+  set promptLimit(covariant int? promptLimit) =>
+      _$this._promptLimit = promptLimit;
 
   String? _url;
   String? get url => _$this._url;
@@ -323,6 +334,7 @@ class ProjectDetailsBuilder
       _industry = $v.industry;
       _appStoreId = $v.appStoreId;
       _languageCode = $v.languageCode;
+      _promptLimit = $v.promptLimit;
       _url = $v.url;
       _createdAt = $v.createdAt;
       _googlePlayId = $v.googlePlayId;
@@ -370,6 +382,7 @@ class ProjectDetailsBuilder
             industry: industry,
             appStoreId: appStoreId,
             languageCode: languageCode,
+            promptLimit: promptLimit,
             url: url,
             createdAt: createdAt,
             googlePlayId: googlePlayId,

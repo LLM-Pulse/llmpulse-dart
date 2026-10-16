@@ -16,7 +16,7 @@ part 'project_update_response.g.dart';
 /// * [project] 
 /// * [updatedFields] - The fields the request sent
 /// * [rematching] - True when a matching_names or additional_owned_domains change started a background recalculation of past answers; further edits are rejected until it finishes
-/// * [note] - What the change does to mention detection, citation ownership and historical numbers
+/// * [note] - What the change does to mention detection, citation ownership, historical numbers and the prompts the project can hold
 /// * [requestId] 
 @BuiltValue()
 abstract class ProjectUpdateResponse implements Built<ProjectUpdateResponse, ProjectUpdateResponseBuilder> {
@@ -31,7 +31,7 @@ abstract class ProjectUpdateResponse implements Built<ProjectUpdateResponse, Pro
   @BuiltValueField(wireName: r'rematching')
   bool get rematching;
 
-  /// What the change does to mention detection, citation ownership and historical numbers
+  /// What the change does to mention detection, citation ownership, historical numbers and the prompts the project can hold
   @BuiltValueField(wireName: r'note')
   String get note;
 

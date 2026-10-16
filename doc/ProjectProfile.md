@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **goals** | **String** |  | [optional] 
 **matchingNames** | **BuiltList&lt;String&gt;** |  | 
 **additionalOwnedDomains** | **BuiltList&lt;String&gt;** | Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none | 
+**promptLimit** | **int** | Maximum number of active prompts this project may hold; null when only the account quota applies | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
