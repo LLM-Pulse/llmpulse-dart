@@ -15,7 +15,7 @@ part 'update_competitor_request.g.dart';
 /// * [projectId] 
 /// * [brandName] 
 /// * [domain] - Website domain or host used for citation matching. A full URL is accepted and normalised to its host.
-/// * [matchingNames] 
+/// * [matchingNames] - FULL replacement list of the names this competitor is matched by; brand_name is added automatically. At most 50 names in all, brand_name included, of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422) and nothing in the request is applied
 /// * [color] - Hex color, e.g. #1a2b3c
 /// * [citationMatchMode] 
 /// * [citationMatchPath] - Required when changing citation_match_mode to path_prefix
@@ -31,6 +31,7 @@ abstract class UpdateCompetitorRequest implements Built<UpdateCompetitorRequest,
   @BuiltValueField(wireName: r'domain')
   String? get domain;
 
+  /// FULL replacement list of the names this competitor is matched by; brand_name is added automatically. At most 50 names in all, brand_name included, of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422) and nothing in the request is applied
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 

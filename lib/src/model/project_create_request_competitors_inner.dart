@@ -14,7 +14,7 @@ part 'project_create_request_competitors_inner.g.dart';
 /// Properties:
 /// * [domain] 
 /// * [brandName] 
-/// * [matchingNames] 
+/// * [matchingNames] - Names this competitor is matched by. At most 50 names of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422) and nothing is created
 @BuiltValue()
 abstract class ProjectCreateRequestCompetitorsInner implements Built<ProjectCreateRequestCompetitorsInner, ProjectCreateRequestCompetitorsInnerBuilder> {
   @BuiltValueField(wireName: r'domain')
@@ -23,6 +23,7 @@ abstract class ProjectCreateRequestCompetitorsInner implements Built<ProjectCrea
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 
+  /// Names this competitor is matched by. At most 50 names of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422) and nothing is created
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 

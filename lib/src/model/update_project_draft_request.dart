@@ -18,10 +18,10 @@ part 'update_project_draft_request.g.dart';
 /// * [brandName] 
 /// * [description] 
 /// * [industry] 
-/// * [matchingNames] 
+/// * [matchingNames] - Brand-name variants used to detect mentions (details step). At most 50 names of up to 100 characters each; the step stores the list as sent, and finalize refuses a longer list or name with ERR_INVALID_PARAM (422)
 /// * [externalIdentifier] 
 /// * [prompts] 
-/// * [competitors] 
+/// * [competitors] - Competitors step: objects {domain, brand_name, matching_names}, capped by plan. Each competitor's matching_names takes at most 50 names of up to 100 characters, checked at finalize like POST /projects
 /// * [youtubeChannelUrl] 
 /// * [instagramProfileUrl] 
 /// * [facebookPageUrl] 
@@ -47,6 +47,7 @@ abstract class UpdateProjectDraftRequest implements Built<UpdateProjectDraftRequ
   @BuiltValueField(wireName: r'industry')
   BuiltList<String>? get industry;
 
+  /// Brand-name variants used to detect mentions (details step). At most 50 names of up to 100 characters each; the step stores the list as sent, and finalize refuses a longer list or name with ERR_INVALID_PARAM (422)
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 
@@ -56,6 +57,7 @@ abstract class UpdateProjectDraftRequest implements Built<UpdateProjectDraftRequ
   @BuiltValueField(wireName: r'prompts')
   BuiltList<String>? get prompts;
 
+  /// Competitors step: objects {domain, brand_name, matching_names}, capped by plan. Each competitor's matching_names takes at most 50 names of up to 100 characters, checked at finalize like POST /projects
   @BuiltValueField(wireName: r'competitors')
   BuiltList<JsonObject>? get competitors;
 

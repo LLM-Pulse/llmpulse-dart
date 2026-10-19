@@ -15,7 +15,7 @@ part 'create_competitor_request.g.dart';
 /// * [projectId] 
 /// * [brandName] 
 /// * [domain] - URL is accepted and normalised to host (e.g. https://www.openai.com → openai.com)
-/// * [matchingNames] 
+/// * [matchingNames] - Extra names this competitor is matched by; brand_name is added automatically. At most 50 names in all, brand_name included, of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422)
 /// * [citationMatchMode] - domain includes the registrable domain and all subdomains; host requires the exact hostname; path_prefix also requires citation_match_path
 /// * [citationMatchPath] - Required when citation_match_mode=path_prefix, e.g. /es. Case-sensitive; trailing slash is optional; query and fragment are ignored
 @BuiltValue()
@@ -30,6 +30,7 @@ abstract class CreateCompetitorRequest implements Built<CreateCompetitorRequest,
   @BuiltValueField(wireName: r'domain')
   String get domain;
 
+  /// Extra names this competitor is matched by; brand_name is added automatically. At most 50 names in all, brand_name included, of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422)
   @BuiltValueField(wireName: r'matching_names')
   BuiltList<String>? get matchingNames;
 
