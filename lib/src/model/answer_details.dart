@@ -29,12 +29,13 @@ part 'answer_details.g.dart';
 /// * [citations] 
 /// * [competitorMentions] 
 /// * [competitorCitations] 
-/// * [sentiments] 
+/// * [sentiments] - Needs the Growth plan or above; left out below it and named in plan_required_fields
 /// * [sources] 
-/// * [shoppingProducts] 
+/// * [shoppingProducts] - Needs the Scale plan or above; left out below it and named in plan_required_fields
 /// * [brandEntities] 
 /// * [localBusinesses] 
 /// * [locale] 
+/// * [planRequiredFields] - The fields left out of this answer because the account's plan does not include them (sentiments below Growth, shopping_products below Scale). Always present, empty when nothing is left out
 /// * [appUrl] - Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
 /// * [requestId] 
 @BuiltValue()
@@ -87,12 +88,14 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   @BuiltValueField(wireName: r'competitor_citations')
   BuiltList<JsonObject>? get competitorCitations;
 
+  /// Needs the Growth plan or above; left out below it and named in plan_required_fields
   @BuiltValueField(wireName: r'sentiments')
   BuiltList<JsonObject>? get sentiments;
 
   @BuiltValueField(wireName: r'sources')
   BuiltList<JsonObject>? get sources;
 
+  /// Needs the Scale plan or above; left out below it and named in plan_required_fields
   @BuiltValueField(wireName: r'shopping_products')
   BuiltList<JsonObject>? get shoppingProducts;
 
@@ -104,6 +107,10 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
 
   @BuiltValueField(wireName: r'locale')
   AnswerDetailsLocale? get locale;
+
+  /// The fields left out of this answer because the account's plan does not include them (sentiments below Growth, shopping_products below Scale). Always present, empty when nothing is left out
+  @BuiltValueField(wireName: r'plan_required_fields')
+  BuiltList<String> get planRequiredFields;
 
   /// Opens this answer in the app. The link names its project, so it opens there for any user with access to that project
   @BuiltValueField(wireName: r'app_url')
@@ -282,6 +289,11 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
         specifiedType: const FullType(AnswerDetailsLocale),
       );
     }
+    yield r'plan_required_fields';
+    yield serializers.serialize(
+      object.planRequiredFields,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
     if (object.appUrl != null) {
       yield r'app_url';
       yield serializers.serialize(
@@ -486,6 +498,13 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
           ) as AnswerDetailsLocale?;
           if (valueDes == null) continue;
           result.locale.replace(valueDes);
+          break;
+        case r'plan_required_fields':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.planRequiredFields.replace(valueDes);
           break;
         case r'app_url':
           final valueDes = serializers.deserialize(

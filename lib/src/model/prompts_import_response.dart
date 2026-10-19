@@ -16,10 +16,10 @@ part 'prompts_import_response.g.dart';
 /// * [projectId] 
 /// * [processedRows] - Distinct rows imported or matched to an existing prompt
 /// * [created] 
-/// * [duplicates] - Rows that matched an existing prompt (they still get the row's tags)
+/// * [duplicates] - Rows that matched an existing prompt (they still get the row's tags, unless a team member lacks update access to Prompts)
 /// * [tagged] - New prompt-tag links
 /// * [createdTags] 
-/// * [rowErrors] - Rows that were skipped, by their index in rows
+/// * [rowErrors] - Rows that were skipped or whose tags were not added, by their index in rows
 /// * [lengthWarning] - Which tracked AI models will skip new prompts that are too long for them
 /// * [promptsAvailable] - Prompt slots left on the plan; null when unlimited
 /// * [requestId] 
@@ -35,7 +35,7 @@ abstract class PromptsImportResponse implements Built<PromptsImportResponse, Pro
   @BuiltValueField(wireName: r'created')
   int get created;
 
-  /// Rows that matched an existing prompt (they still get the row's tags)
+  /// Rows that matched an existing prompt (they still get the row's tags, unless a team member lacks update access to Prompts)
   @BuiltValueField(wireName: r'duplicates')
   int get duplicates;
 
@@ -46,7 +46,7 @@ abstract class PromptsImportResponse implements Built<PromptsImportResponse, Pro
   @BuiltValueField(wireName: r'created_tags')
   int get createdTags;
 
-  /// Rows that were skipped, by their index in rows
+  /// Rows that were skipped or whose tags were not added, by their index in rows
   @BuiltValueField(wireName: r'row_errors')
   BuiltList<PromptsImportResponseRowErrorsInner> get rowErrors;
 

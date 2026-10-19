@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **projectId** | **int** |  | [optional] 
 **eventType** | **String** |  | [optional] 
 **targetUrl** | **String** |  | [optional] 
-**disabled** | **bool** | True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret. | [optional] 
+**disabled** | **bool** | True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked, or when that API key is limited to some projects and no longer covers the subscription's project. Creating it again with the same project, event and URL replaces it with a new subscription and secret. | [optional] 
 **failureCount** | **int** |  | [optional] 
 **lastDeliveredAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 

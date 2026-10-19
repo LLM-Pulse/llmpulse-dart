@@ -50,6 +50,8 @@ class _$AnswerDetails extends AnswerDetails {
   @override
   final AnswerDetailsLocale? locale;
   @override
+  final BuiltList<String> planRequiredFields;
+  @override
   final String? appUrl;
   @override
   final String? requestId;
@@ -79,6 +81,7 @@ class _$AnswerDetails extends AnswerDetails {
       this.brandEntities,
       this.localBusinesses,
       this.locale,
+      required this.planRequiredFields,
       this.appUrl,
       this.requestId})
       : super._();
@@ -114,6 +117,7 @@ class _$AnswerDetails extends AnswerDetails {
         brandEntities == other.brandEntities &&
         localBusinesses == other.localBusinesses &&
         locale == other.locale &&
+        planRequiredFields == other.planRequiredFields &&
         appUrl == other.appUrl &&
         requestId == other.requestId;
   }
@@ -142,6 +146,7 @@ class _$AnswerDetails extends AnswerDetails {
     _$hash = $jc(_$hash, brandEntities.hashCode);
     _$hash = $jc(_$hash, localBusinesses.hashCode);
     _$hash = $jc(_$hash, locale.hashCode);
+    _$hash = $jc(_$hash, planRequiredFields.hashCode);
     _$hash = $jc(_$hash, appUrl.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
@@ -172,6 +177,7 @@ class _$AnswerDetails extends AnswerDetails {
           ..add('brandEntities', brandEntities)
           ..add('localBusinesses', localBusinesses)
           ..add('locale', locale)
+          ..add('planRequiredFields', planRequiredFields)
           ..add('appUrl', appUrl)
           ..add('requestId', requestId))
         .toString();
@@ -287,6 +293,12 @@ class AnswerDetailsBuilder
       _$this._locale ??= AnswerDetailsLocaleBuilder();
   set locale(AnswerDetailsLocaleBuilder? locale) => _$this._locale = locale;
 
+  ListBuilder<String>? _planRequiredFields;
+  ListBuilder<String> get planRequiredFields =>
+      _$this._planRequiredFields ??= ListBuilder<String>();
+  set planRequiredFields(ListBuilder<String>? planRequiredFields) =>
+      _$this._planRequiredFields = planRequiredFields;
+
   String? _appUrl;
   String? get appUrl => _$this._appUrl;
   set appUrl(String? appUrl) => _$this._appUrl = appUrl;
@@ -323,6 +335,7 @@ class AnswerDetailsBuilder
       _brandEntities = $v.brandEntities?.toBuilder();
       _localBusinesses = $v.localBusinesses?.toBuilder();
       _locale = $v.locale?.toBuilder();
+      _planRequiredFields = $v.planRequiredFields.toBuilder();
       _appUrl = $v.appUrl;
       _requestId = $v.requestId;
       _$v = null;
@@ -369,6 +382,7 @@ class AnswerDetailsBuilder
             brandEntities: _brandEntities?.build(),
             localBusinesses: _localBusinesses?.build(),
             locale: _locale?.build(),
+            planRequiredFields: planRequiredFields.build(),
             appUrl: appUrl,
             requestId: requestId,
           );
@@ -397,6 +411,8 @@ class AnswerDetailsBuilder
         _localBusinesses?.build();
         _$failedField = 'locale';
         _locale?.build();
+        _$failedField = 'planRequiredFields';
+        planRequiredFields.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'AnswerDetails', _$failedField, e.toString());

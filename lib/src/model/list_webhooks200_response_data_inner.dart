@@ -15,8 +15,8 @@ part 'list_webhooks200_response_data_inner.g.dart';
 /// * [id] 
 /// * [projectId] 
 /// * [eventType] 
-/// * [targetUrl] 
-/// * [disabled] - True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
+/// * [targetUrl] - The URL deliveries are sent to. A read-only API key receives only its scheme, host and any non-default port followed by `/…` (for example `https://hook.eu1.make.com/…`); a `read_write` scope key receives the full URL.
+/// * [disabled] - True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked, or when that API key is limited to some projects and no longer covers the subscription's project. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
 /// * [failureCount] 
 /// * [lastDeliveredAt] 
 /// * [createdAt] 
@@ -32,10 +32,11 @@ abstract class ListWebhooks200ResponseDataInner implements Built<ListWebhooks200
   ListWebhooks200ResponseDataInnerEventTypeEnum? get eventType;
   // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  };
 
+  /// The URL deliveries are sent to. A read-only API key receives only its scheme, host and any non-default port followed by `/…` (for example `https://hook.eu1.make.com/…`); a `read_write` scope key receives the full URL.
   @BuiltValueField(wireName: r'target_url')
   String? get targetUrl;
 
-  /// True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
+  /// True when the subscription receives no more events, including when the API key or OAuth connection that created it was revoked, or when that API key is limited to some projects and no longer covers the subscription's project. Creating it again with the same project, event and URL replaces it with a new subscription and secret.
   @BuiltValueField(wireName: r'disabled')
   bool? get disabled;
 
