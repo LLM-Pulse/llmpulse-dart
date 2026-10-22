@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **sourceLanguageCode** | **String** |  | [optional] 
 **minWords** | **int** |  | [optional] 
 **allCountries** | **bool** |  | [optional] 
+**property** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

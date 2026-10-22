@@ -23,6 +23,7 @@ part 'prompt_generation_response_params.g.dart';
 /// * [sourceLanguageCode] 
 /// * [minWords] 
 /// * [allCountries] 
+/// * [property] 
 @BuiltValue()
 abstract class PromptGenerationResponseParams implements Built<PromptGenerationResponseParams, PromptGenerationResponseParamsBuilder> {
   @BuiltValueField(wireName: r'country_code')
@@ -57,6 +58,9 @@ abstract class PromptGenerationResponseParams implements Built<PromptGenerationR
 
   @BuiltValueField(wireName: r'all_countries')
   bool? get allCountries;
+
+  @BuiltValueField(wireName: r'property')
+  String? get property;
 
   PromptGenerationResponseParams._();
 
@@ -156,6 +160,13 @@ class _$PromptGenerationResponseParamsSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.allCountries,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.property != null) {
+      yield r'property';
+      yield serializers.serialize(
+        object.property,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -268,6 +279,14 @@ class _$PromptGenerationResponseParamsSerializer implements PrimitiveSerializer<
           ) as bool?;
           if (valueDes == null) continue;
           result.allCountries = valueDes;
+          break;
+        case r'property':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.property = valueDes;
           break;
         default:
           unhandled.add(key);

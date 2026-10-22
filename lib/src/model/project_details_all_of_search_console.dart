@@ -9,25 +9,30 @@ import 'package:built_value/serializer.dart';
 
 part 'project_details_all_of_search_console.g.dart';
 
-/// Google Search Console connection of the project. connected means the Search Console endpoints can answer; reconnect_required means Google refused the stored access, so the endpoints return ERR_SEARCH_CONSOLE_ACCESS_REVOKED until the property is reconnected at connect_url; not_connected means the endpoints return ERR_SEARCH_CONSOLE_NOT_CONNECTED.
+/// Google Search Console connection of the project, judged by its primary property. connected means the Search Console endpoints can answer; reconnect_required means Google refused the primary property's stored access, so reads without property return ERR_SEARCH_CONSOLE_ACCESS_REVOKED until it is reconnected at connect_url, while a property GET /search_console/properties lists as connected, or property=all, still answers; not_connected means the endpoints return ERR_SEARCH_CONSOLE_NOT_CONNECTED.
 ///
 /// Properties:
 /// * [status] 
-/// * [property] - The connected property (e.g. sc-domain:example.com), null when not connected
+/// * [property] - The primary property (e.g. sc-domain:example.com), null when not connected
 /// * [connectUrl] - The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
+/// * [propertiesCount] - Connected properties Google still accepts (reconnect_required ones excluded); GET /search_console/properties lists every property with its status
 @BuiltValue()
 abstract class ProjectDetailsAllOfSearchConsole implements Built<ProjectDetailsAllOfSearchConsole, ProjectDetailsAllOfSearchConsoleBuilder> {
   @BuiltValueField(wireName: r'status')
   ProjectDetailsAllOfSearchConsoleStatusEnum? get status;
   // enum statusEnum {  connected,  reconnect_required,  not_connected,  };
 
-  /// The connected property (e.g. sc-domain:example.com), null when not connected
+  /// The primary property (e.g. sc-domain:example.com), null when not connected
   @BuiltValueField(wireName: r'property')
   String? get property;
 
   /// The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
   @BuiltValueField(wireName: r'connect_url')
   String? get connectUrl;
+
+  /// Connected properties Google still accepts (reconnect_required ones excluded); GET /search_console/properties lists every property with its status
+  @BuiltValueField(wireName: r'properties_count')
+  int? get propertiesCount;
 
   ProjectDetailsAllOfSearchConsole._();
 
@@ -71,6 +76,13 @@ class _$ProjectDetailsAllOfSearchConsoleSerializer implements PrimitiveSerialize
       yield serializers.serialize(
         object.connectUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.propertiesCount != null) {
+      yield r'properties_count';
+      yield serializers.serialize(
+        object.propertiesCount,
+        specifiedType: const FullType(int),
       );
     }
   }
@@ -119,6 +131,14 @@ class _$ProjectDetailsAllOfSearchConsoleSerializer implements PrimitiveSerialize
           ) as String?;
           if (valueDes == null) continue;
           result.connectUrl = valueDes;
+          break;
+        case r'properties_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.propertiesCount = valueDes;
           break;
         default:
           unhandled.add(key);

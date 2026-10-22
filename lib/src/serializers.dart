@@ -211,11 +211,15 @@ import 'package:llmpulse/src/model/remove_team_member200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_excluded_property.dart';
 import 'package:llmpulse/src/model/search_console_filters_inner.dart';
 import 'package:llmpulse/src/model/search_console_list_response.dart';
 import 'package:llmpulse/src/model/search_console_list_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_metrics.dart';
+import 'package:llmpulse/src/model/search_console_properties_response.dart';
+import 'package:llmpulse/src/model/search_console_properties_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_property.dart';
+import 'package:llmpulse/src/model/search_console_property_error.dart';
 import 'package:llmpulse/src/model/search_console_rows_response.dart';
 import 'package:llmpulse/src/model/search_console_rows_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_summary_response.dart';
@@ -478,11 +482,15 @@ part 'serializers.g.dart';
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
   SampleWebhookPayloads200ResponseDataInner,
+  SearchConsoleExcludedProperty,
   SearchConsoleFiltersInner,
   SearchConsoleListResponse,
   SearchConsoleListResponseDataInner,
   SearchConsoleMetrics,
+  SearchConsolePropertiesResponse,
+  SearchConsolePropertiesResponseDataInner,
   SearchConsoleProperty,
+  SearchConsolePropertyError,
   SearchConsoleRowsResponse,
   SearchConsoleRowsResponseDataInner,
   SearchConsoleSummaryResponse,
@@ -607,6 +615,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<BuiltMap<String, JsonObject>>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleProperty)]),
+        () => ListBuilder<SearchConsoleProperty>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaPlatformProfiles)]),
         () => ListBuilder<OwnedMediaPlatformProfiles>(),
       )
@@ -617,6 +629,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CustomReportWidgetRef)]),
         () => ListBuilder<CustomReportWidgetRef>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
+        () => ListBuilder<SearchConsolePropertyError>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaAgeBucketShare)]),
@@ -787,6 +803,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsolePropertiesResponseDataInner)]),
+        () => ListBuilder<SearchConsolePropertiesResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(RecommendationSummary)]),
         () => ListBuilder<RecommendationSummary>(),
       )
@@ -905,6 +925,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseSkippedInner)]),
         () => ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
+        () => ListBuilder<SearchConsoleExcludedProperty>(),
       )
       ..add(GeoAudit.serializer)
       ..add(GeoAuditIssue.serializer)

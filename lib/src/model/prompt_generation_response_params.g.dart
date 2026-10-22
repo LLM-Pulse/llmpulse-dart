@@ -29,6 +29,8 @@ class _$PromptGenerationResponseParams extends PromptGenerationResponseParams {
   final int? minWords;
   @override
   final bool? allCountries;
+  @override
+  final String? property;
 
   factory _$PromptGenerationResponseParams(
           [void Function(PromptGenerationResponseParamsBuilder)? updates]) =>
@@ -45,7 +47,8 @@ class _$PromptGenerationResponseParams extends PromptGenerationResponseParams {
       this.sourceCountryCode,
       this.sourceLanguageCode,
       this.minWords,
-      this.allCountries})
+      this.allCountries,
+      this.property})
       : super._();
   @override
   PromptGenerationResponseParams rebuild(
@@ -70,7 +73,8 @@ class _$PromptGenerationResponseParams extends PromptGenerationResponseParams {
         sourceCountryCode == other.sourceCountryCode &&
         sourceLanguageCode == other.sourceLanguageCode &&
         minWords == other.minWords &&
-        allCountries == other.allCountries;
+        allCountries == other.allCountries &&
+        property == other.property;
   }
 
   @override
@@ -87,6 +91,7 @@ class _$PromptGenerationResponseParams extends PromptGenerationResponseParams {
     _$hash = $jc(_$hash, sourceLanguageCode.hashCode);
     _$hash = $jc(_$hash, minWords.hashCode);
     _$hash = $jc(_$hash, allCountries.hashCode);
+    _$hash = $jc(_$hash, property.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -104,7 +109,8 @@ class _$PromptGenerationResponseParams extends PromptGenerationResponseParams {
           ..add('sourceCountryCode', sourceCountryCode)
           ..add('sourceLanguageCode', sourceLanguageCode)
           ..add('minWords', minWords)
-          ..add('allCountries', allCountries))
+          ..add('allCountries', allCountries)
+          ..add('property', property))
         .toString();
   }
 }
@@ -162,6 +168,10 @@ class PromptGenerationResponseParamsBuilder
   bool? get allCountries => _$this._allCountries;
   set allCountries(bool? allCountries) => _$this._allCountries = allCountries;
 
+  String? _property;
+  String? get property => _$this._property;
+  set property(String? property) => _$this._property = property;
+
   PromptGenerationResponseParamsBuilder() {
     PromptGenerationResponseParams._defaults(this);
   }
@@ -180,6 +190,7 @@ class PromptGenerationResponseParamsBuilder
       _sourceLanguageCode = $v.sourceLanguageCode;
       _minWords = $v.minWords;
       _allCountries = $v.allCountries;
+      _property = $v.property;
       _$v = null;
     }
     return this;
@@ -214,6 +225,7 @@ class PromptGenerationResponseParamsBuilder
             sourceLanguageCode: sourceLanguageCode,
             minWords: minWords,
             allCountries: allCountries,
+            property: property,
           );
     } catch (_) {
       late String _$failedField;

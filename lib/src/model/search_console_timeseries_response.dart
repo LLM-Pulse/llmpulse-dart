@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/search_console_excluded_property.dart';
+import 'package:llmpulse/src/model/search_console_property_error.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/date.dart';
 import 'package:llmpulse/src/model/search_console_timeseries_response_data_inner.dart';
@@ -19,10 +21,13 @@ part 'search_console_timeseries_response.g.dart';
 /// * [property] 
 /// * [from] 
 /// * [to] 
-/// * [dataThrough] - Latest date Google has published for the property (it lags 2-3 days). Later days are missing, not zero.
+/// * [dataThrough] - Latest date Google has published for the property, or for every combined property (it lags 2-3 days). Later days are missing, not zero.
 /// * [granularity] 
 /// * [data] 
 /// * [requestId] 
+/// * [properties] - With a list or all in the property parameter, the properties whose data the response holds (instead of property)
+/// * [excludedProperties] - With a list or all, selected properties left out because another selected property already counts them
+/// * [propertyErrors] - With a list or all, selected properties Google refused, left out of the figures
 @BuiltValue()
 abstract class SearchConsoleTimeseriesResponse implements Built<SearchConsoleTimeseriesResponse, SearchConsoleTimeseriesResponseBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -37,7 +42,7 @@ abstract class SearchConsoleTimeseriesResponse implements Built<SearchConsoleTim
   @BuiltValueField(wireName: r'to')
   Date? get to;
 
-  /// Latest date Google has published for the property (it lags 2-3 days). Later days are missing, not zero.
+  /// Latest date Google has published for the property, or for every combined property (it lags 2-3 days). Later days are missing, not zero.
   @BuiltValueField(wireName: r'data_through')
   Date? get dataThrough;
 
@@ -49,6 +54,18 @@ abstract class SearchConsoleTimeseriesResponse implements Built<SearchConsoleTim
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
+
+  /// With a list or all in the property parameter, the properties whose data the response holds (instead of property)
+  @BuiltValueField(wireName: r'properties')
+  BuiltList<SearchConsoleProperty>? get properties;
+
+  /// With a list or all, selected properties left out because another selected property already counts them
+  @BuiltValueField(wireName: r'excluded_properties')
+  BuiltList<SearchConsoleExcludedProperty>? get excludedProperties;
+
+  /// With a list or all, selected properties Google refused, left out of the figures
+  @BuiltValueField(wireName: r'property_errors')
+  BuiltList<SearchConsolePropertyError>? get propertyErrors;
 
   SearchConsoleTimeseriesResponse._();
 
@@ -127,6 +144,27 @@ class _$SearchConsoleTimeseriesResponseSerializer implements PrimitiveSerializer
       yield serializers.serialize(
         object.requestId,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.properties != null) {
+      yield r'properties';
+      yield serializers.serialize(
+        object.properties,
+        specifiedType: const FullType(BuiltList, [FullType(SearchConsoleProperty)]),
+      );
+    }
+    if (object.excludedProperties != null) {
+      yield r'excluded_properties';
+      yield serializers.serialize(
+        object.excludedProperties,
+        specifiedType: const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
+      );
+    }
+    if (object.propertyErrors != null) {
+      yield r'property_errors';
+      yield serializers.serialize(
+        object.propertyErrors,
+        specifiedType: const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
       );
     }
   }
@@ -215,6 +253,30 @@ class _$SearchConsoleTimeseriesResponseSerializer implements PrimitiveSerializer
           ) as String?;
           if (valueDes == null) continue;
           result.requestId = valueDes;
+          break;
+        case r'properties':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(SearchConsoleProperty)]),
+          ) as BuiltList<SearchConsoleProperty>?;
+          if (valueDes == null) continue;
+          result.properties.replace(valueDes);
+          break;
+        case r'excluded_properties':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
+          ) as BuiltList<SearchConsoleExcludedProperty>?;
+          if (valueDes == null) continue;
+          result.excludedProperties.replace(valueDes);
+          break;
+        case r'property_errors':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(SearchConsolePropertyError)]),
+          ) as BuiltList<SearchConsolePropertyError>?;
+          if (valueDes == null) continue;
+          result.propertyErrors.replace(valueDes);
           break;
         default:
           unhandled.add(key);

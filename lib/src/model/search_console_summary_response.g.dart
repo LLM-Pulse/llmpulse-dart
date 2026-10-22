@@ -27,6 +27,12 @@ class _$SearchConsoleSummaryResponse extends SearchConsoleSummaryResponse {
   final bool? breakdownTruncated;
   @override
   final String? requestId;
+  @override
+  final BuiltList<SearchConsoleProperty>? properties;
+  @override
+  final BuiltList<SearchConsoleExcludedProperty>? excludedProperties;
+  @override
+  final BuiltList<SearchConsolePropertyError>? propertyErrors;
 
   factory _$SearchConsoleSummaryResponse(
           [void Function(SearchConsoleSummaryResponseBuilder)? updates]) =>
@@ -42,7 +48,10 @@ class _$SearchConsoleSummaryResponse extends SearchConsoleSummaryResponse {
       this.dimension,
       this.breakdown,
       this.breakdownTruncated,
-      this.requestId})
+      this.requestId,
+      this.properties,
+      this.excludedProperties,
+      this.propertyErrors})
       : super._();
   @override
   SearchConsoleSummaryResponse rebuild(
@@ -66,7 +75,10 @@ class _$SearchConsoleSummaryResponse extends SearchConsoleSummaryResponse {
         dimension == other.dimension &&
         breakdown == other.breakdown &&
         breakdownTruncated == other.breakdownTruncated &&
-        requestId == other.requestId;
+        requestId == other.requestId &&
+        properties == other.properties &&
+        excludedProperties == other.excludedProperties &&
+        propertyErrors == other.propertyErrors;
   }
 
   @override
@@ -82,6 +94,9 @@ class _$SearchConsoleSummaryResponse extends SearchConsoleSummaryResponse {
     _$hash = $jc(_$hash, breakdown.hashCode);
     _$hash = $jc(_$hash, breakdownTruncated.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, properties.hashCode);
+    _$hash = $jc(_$hash, excludedProperties.hashCode);
+    _$hash = $jc(_$hash, propertyErrors.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -98,7 +113,10 @@ class _$SearchConsoleSummaryResponse extends SearchConsoleSummaryResponse {
           ..add('dimension', dimension)
           ..add('breakdown', breakdown)
           ..add('breakdownTruncated', breakdownTruncated)
-          ..add('requestId', requestId))
+          ..add('requestId', requestId)
+          ..add('properties', properties)
+          ..add('excludedProperties', excludedProperties)
+          ..add('propertyErrors', propertyErrors))
         .toString();
   }
 }
@@ -157,6 +175,26 @@ class SearchConsoleSummaryResponseBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
+  ListBuilder<SearchConsoleProperty>? _properties;
+  ListBuilder<SearchConsoleProperty> get properties =>
+      _$this._properties ??= ListBuilder<SearchConsoleProperty>();
+  set properties(ListBuilder<SearchConsoleProperty>? properties) =>
+      _$this._properties = properties;
+
+  ListBuilder<SearchConsoleExcludedProperty>? _excludedProperties;
+  ListBuilder<SearchConsoleExcludedProperty> get excludedProperties =>
+      _$this._excludedProperties ??=
+          ListBuilder<SearchConsoleExcludedProperty>();
+  set excludedProperties(
+          ListBuilder<SearchConsoleExcludedProperty>? excludedProperties) =>
+      _$this._excludedProperties = excludedProperties;
+
+  ListBuilder<SearchConsolePropertyError>? _propertyErrors;
+  ListBuilder<SearchConsolePropertyError> get propertyErrors =>
+      _$this._propertyErrors ??= ListBuilder<SearchConsolePropertyError>();
+  set propertyErrors(ListBuilder<SearchConsolePropertyError>? propertyErrors) =>
+      _$this._propertyErrors = propertyErrors;
+
   SearchConsoleSummaryResponseBuilder() {
     SearchConsoleSummaryResponse._defaults(this);
   }
@@ -174,6 +212,9 @@ class SearchConsoleSummaryResponseBuilder
       _breakdown = $v.breakdown?.toBuilder();
       _breakdownTruncated = $v.breakdownTruncated;
       _requestId = $v.requestId;
+      _properties = $v.properties?.toBuilder();
+      _excludedProperties = $v.excludedProperties?.toBuilder();
+      _propertyErrors = $v.propertyErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -207,6 +248,9 @@ class SearchConsoleSummaryResponseBuilder
             breakdown: _breakdown?.build(),
             breakdownTruncated: breakdownTruncated,
             requestId: requestId,
+            properties: _properties?.build(),
+            excludedProperties: _excludedProperties?.build(),
+            propertyErrors: _propertyErrors?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -219,6 +263,13 @@ class SearchConsoleSummaryResponseBuilder
 
         _$failedField = 'breakdown';
         _breakdown?.build();
+
+        _$failedField = 'properties';
+        _properties?.build();
+        _$failedField = 'excludedProperties';
+        _excludedProperties?.build();
+        _$failedField = 'propertyErrors';
+        _propertyErrors?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'SearchConsoleSummaryResponse', _$failedField, e.toString());

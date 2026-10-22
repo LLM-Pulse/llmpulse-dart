@@ -24,6 +24,12 @@ class _$SearchConsoleTimeseriesResponse
   final BuiltList<SearchConsoleTimeseriesResponseDataInner>? data;
   @override
   final String? requestId;
+  @override
+  final BuiltList<SearchConsoleProperty>? properties;
+  @override
+  final BuiltList<SearchConsoleExcludedProperty>? excludedProperties;
+  @override
+  final BuiltList<SearchConsolePropertyError>? propertyErrors;
 
   factory _$SearchConsoleTimeseriesResponse(
           [void Function(SearchConsoleTimeseriesResponseBuilder)? updates]) =>
@@ -37,7 +43,10 @@ class _$SearchConsoleTimeseriesResponse
       this.dataThrough,
       this.granularity,
       this.data,
-      this.requestId})
+      this.requestId,
+      this.properties,
+      this.excludedProperties,
+      this.propertyErrors})
       : super._();
   @override
   SearchConsoleTimeseriesResponse rebuild(
@@ -59,7 +68,10 @@ class _$SearchConsoleTimeseriesResponse
         dataThrough == other.dataThrough &&
         granularity == other.granularity &&
         data == other.data &&
-        requestId == other.requestId;
+        requestId == other.requestId &&
+        properties == other.properties &&
+        excludedProperties == other.excludedProperties &&
+        propertyErrors == other.propertyErrors;
   }
 
   @override
@@ -73,6 +85,9 @@ class _$SearchConsoleTimeseriesResponse
     _$hash = $jc(_$hash, granularity.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, properties.hashCode);
+    _$hash = $jc(_$hash, excludedProperties.hashCode);
+    _$hash = $jc(_$hash, propertyErrors.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -87,7 +102,10 @@ class _$SearchConsoleTimeseriesResponse
           ..add('dataThrough', dataThrough)
           ..add('granularity', granularity)
           ..add('data', data)
-          ..add('requestId', requestId))
+          ..add('requestId', requestId)
+          ..add('properties', properties)
+          ..add('excludedProperties', excludedProperties)
+          ..add('propertyErrors', propertyErrors))
         .toString();
   }
 }
@@ -134,6 +152,26 @@ class SearchConsoleTimeseriesResponseBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
+  ListBuilder<SearchConsoleProperty>? _properties;
+  ListBuilder<SearchConsoleProperty> get properties =>
+      _$this._properties ??= ListBuilder<SearchConsoleProperty>();
+  set properties(ListBuilder<SearchConsoleProperty>? properties) =>
+      _$this._properties = properties;
+
+  ListBuilder<SearchConsoleExcludedProperty>? _excludedProperties;
+  ListBuilder<SearchConsoleExcludedProperty> get excludedProperties =>
+      _$this._excludedProperties ??=
+          ListBuilder<SearchConsoleExcludedProperty>();
+  set excludedProperties(
+          ListBuilder<SearchConsoleExcludedProperty>? excludedProperties) =>
+      _$this._excludedProperties = excludedProperties;
+
+  ListBuilder<SearchConsolePropertyError>? _propertyErrors;
+  ListBuilder<SearchConsolePropertyError> get propertyErrors =>
+      _$this._propertyErrors ??= ListBuilder<SearchConsolePropertyError>();
+  set propertyErrors(ListBuilder<SearchConsolePropertyError>? propertyErrors) =>
+      _$this._propertyErrors = propertyErrors;
+
   SearchConsoleTimeseriesResponseBuilder() {
     SearchConsoleTimeseriesResponse._defaults(this);
   }
@@ -149,6 +187,9 @@ class SearchConsoleTimeseriesResponseBuilder
       _granularity = $v.granularity;
       _data = $v.data?.toBuilder();
       _requestId = $v.requestId;
+      _properties = $v.properties?.toBuilder();
+      _excludedProperties = $v.excludedProperties?.toBuilder();
+      _propertyErrors = $v.propertyErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -180,6 +221,9 @@ class SearchConsoleTimeseriesResponseBuilder
             granularity: granularity,
             data: _data?.build(),
             requestId: requestId,
+            properties: _properties?.build(),
+            excludedProperties: _excludedProperties?.build(),
+            propertyErrors: _propertyErrors?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -189,6 +233,13 @@ class SearchConsoleTimeseriesResponseBuilder
 
         _$failedField = 'data';
         _data?.build();
+
+        _$failedField = 'properties';
+        _properties?.build();
+        _$failedField = 'excludedProperties';
+        _excludedProperties?.build();
+        _$failedField = 'propertyErrors';
+        _propertyErrors?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'SearchConsoleTimeseriesResponse', _$failedField, e.toString());

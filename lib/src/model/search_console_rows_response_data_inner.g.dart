@@ -28,6 +28,8 @@ class _$SearchConsoleRowsResponseDataInner
   final num? ctr;
   @override
   final num? position;
+  @override
+  final String? property;
 
   factory _$SearchConsoleRowsResponseDataInner(
           [void Function(SearchConsoleRowsResponseDataInnerBuilder)?
@@ -44,7 +46,8 @@ class _$SearchConsoleRowsResponseDataInner
       this.impressions,
       this.clicks,
       this.ctr,
-      this.position})
+      this.position,
+      this.property})
       : super._();
   @override
   SearchConsoleRowsResponseDataInner rebuild(
@@ -68,7 +71,8 @@ class _$SearchConsoleRowsResponseDataInner
         impressions == other.impressions &&
         clicks == other.clicks &&
         ctr == other.ctr &&
-        position == other.position;
+        position == other.position &&
+        property == other.property;
   }
 
   @override
@@ -84,6 +88,7 @@ class _$SearchConsoleRowsResponseDataInner
     _$hash = $jc(_$hash, clicks.hashCode);
     _$hash = $jc(_$hash, ctr.hashCode);
     _$hash = $jc(_$hash, position.hashCode);
+    _$hash = $jc(_$hash, property.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -100,7 +105,8 @@ class _$SearchConsoleRowsResponseDataInner
           ..add('impressions', impressions)
           ..add('clicks', clicks)
           ..add('ctr', ctr)
-          ..add('position', position))
+          ..add('position', position)
+          ..add('property', property))
         .toString();
   }
 }
@@ -152,6 +158,10 @@ class SearchConsoleRowsResponseDataInnerBuilder
   num? get position => _$this._position;
   set position(num? position) => _$this._position = position;
 
+  String? _property;
+  String? get property => _$this._property;
+  set property(String? property) => _$this._property = property;
+
   SearchConsoleRowsResponseDataInnerBuilder() {
     SearchConsoleRowsResponseDataInner._defaults(this);
   }
@@ -169,6 +179,7 @@ class SearchConsoleRowsResponseDataInnerBuilder
       _clicks = $v.clicks;
       _ctr = $v.ctr;
       _position = $v.position;
+      _property = $v.property;
       _$v = null;
     }
     return this;
@@ -201,6 +212,7 @@ class SearchConsoleRowsResponseDataInnerBuilder
           clicks: clicks,
           ctr: ctr,
           position: position,
+          property: property,
         );
     replace(_$result);
     return _$result;

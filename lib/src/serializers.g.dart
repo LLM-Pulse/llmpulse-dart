@@ -266,13 +266,20 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(RevokeTeamInvitation200Response.serializer)
       ..add(SampleWebhookPayloads200Response.serializer)
       ..add(SampleWebhookPayloads200ResponseDataInner.serializer)
+      ..add(SearchConsoleExcludedProperty.serializer)
       ..add(SearchConsoleFiltersInner.serializer)
       ..add(SearchConsoleFiltersInnerDimensionEnum.serializer)
       ..add(SearchConsoleFiltersInnerOperator_Enum.serializer)
       ..add(SearchConsoleListResponse.serializer)
       ..add(SearchConsoleListResponseDataInner.serializer)
       ..add(SearchConsoleMetrics.serializer)
+      ..add(SearchConsolePropertiesResponse.serializer)
+      ..add(SearchConsolePropertiesResponseDataInner.serializer)
+      ..add(SearchConsolePropertiesResponseDataInnerStatusEnum.serializer)
+      ..add(SearchConsolePropertiesResponseDataInnerTypeEnum.serializer)
       ..add(SearchConsoleProperty.serializer)
+      ..add(SearchConsolePropertyError.serializer)
+      ..add(SearchConsolePropertyErrorCodeEnum.serializer)
       ..add(SearchConsoleRowsResponse.serializer)
       ..add(SearchConsoleRowsResponseDataInner.serializer)
       ..add(SearchConsoleSummaryResponse.serializer)
@@ -565,14 +572,54 @@ Serializers _$serializers = (Serializers().toBuilder()
               const [const FullType(SearchConsoleListResponseDataInner)]),
           () => ListBuilder<SearchConsoleListResponseDataInner>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleProperty)]),
+          () => ListBuilder<SearchConsoleProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleExcludedProperty)]),
+          () => ListBuilder<SearchConsoleExcludedProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsolePropertyError)]),
+          () => ListBuilder<SearchConsolePropertyError>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(SearchConsolePropertiesResponseDataInner)]),
+          () => ListBuilder<SearchConsolePropertiesResponseDataInner>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(SearchConsoleSummaryResponseBreakdownInner)
           ]),
           () => ListBuilder<SearchConsoleSummaryResponseBreakdownInner>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleProperty)]),
+          () => ListBuilder<SearchConsoleProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleExcludedProperty)]),
+          () => ListBuilder<SearchConsoleExcludedProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsolePropertyError)]),
+          () => ListBuilder<SearchConsolePropertyError>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(SearchConsoleTimeseriesResponseDataInner)]),
           () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleProperty)]),
+          () => ListBuilder<SearchConsoleProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleExcludedProperty)]),
+          () => ListBuilder<SearchConsoleExcludedProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsolePropertyError)]),
+          () => ListBuilder<SearchConsolePropertyError>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SentimentRecord)]),
           () => ListBuilder<SentimentRecord>())
@@ -694,6 +741,18 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(SearchConsoleRowsResponseDataInner)]),
           () => ListBuilder<SearchConsoleRowsResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleProperty)]),
+          () => ListBuilder<SearchConsoleProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsoleExcludedProperty)]),
+          () => ListBuilder<SearchConsoleExcludedProperty>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SearchConsolePropertyError)]),
+          () => ListBuilder<SearchConsolePropertyError>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())

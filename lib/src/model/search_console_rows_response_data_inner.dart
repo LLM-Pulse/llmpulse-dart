@@ -22,6 +22,7 @@ part 'search_console_rows_response_data_inner.g.dart';
 /// * [clicks] 
 /// * [ctr] - 0..1 fraction
 /// * [position] - Impression-weighted average position
+/// * [property] - Present when grouped by property
 @BuiltValue()
 abstract class SearchConsoleRowsResponseDataInner implements Built<SearchConsoleRowsResponseDataInner, SearchConsoleRowsResponseDataInnerBuilder> {
   @BuiltValueField(wireName: r'date')
@@ -55,6 +56,10 @@ abstract class SearchConsoleRowsResponseDataInner implements Built<SearchConsole
   /// Impression-weighted average position
   @BuiltValueField(wireName: r'position')
   num? get position;
+
+  /// Present when grouped by property
+  @BuiltValueField(wireName: r'property')
+  String? get property;
 
   SearchConsoleRowsResponseDataInner._();
 
@@ -147,6 +152,13 @@ class _$SearchConsoleRowsResponseDataInnerSerializer implements PrimitiveSeriali
       yield serializers.serialize(
         object.position,
         specifiedType: const FullType(num),
+      );
+    }
+    if (object.property != null) {
+      yield r'property';
+      yield serializers.serialize(
+        object.property,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -251,6 +263,14 @@ class _$SearchConsoleRowsResponseDataInnerSerializer implements PrimitiveSeriali
           ) as num?;
           if (valueDes == null) continue;
           result.position = valueDes;
+          break;
+        case r'property':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.property = valueDes;
           break;
         default:
           unhandled.add(key);

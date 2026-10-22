@@ -25,6 +25,7 @@ part 'prompt_generation_request.g.dart';
 /// * [sourceLanguageCode] - translate: language of the prompts to translate
 /// * [minWords] - search_console: skip queries shorter than this many words
 /// * [allCountries] - search_console: include queries from every country instead of country_code only
+/// * [property] - search_console: the property id to read queries from (GET /search_console/properties lists them); the primary property when omitted
 @BuiltValue()
 abstract class PromptGenerationRequest implements Built<PromptGenerationRequest, PromptGenerationRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -79,6 +80,10 @@ abstract class PromptGenerationRequest implements Built<PromptGenerationRequest,
   /// search_console: include queries from every country instead of country_code only
   @BuiltValueField(wireName: r'all_countries')
   bool? get allCountries;
+
+  /// search_console: the property id to read queries from (GET /search_console/properties lists them); the primary property when omitted
+  @BuiltValueField(wireName: r'property')
+  String? get property;
 
   PromptGenerationRequest._();
 
@@ -192,6 +197,13 @@ class _$PromptGenerationRequestSerializer implements PrimitiveSerializer<PromptG
       yield serializers.serialize(
         object.allCountries,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.property != null) {
+      yield r'property';
+      yield serializers.serialize(
+        object.property,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -318,6 +330,14 @@ class _$PromptGenerationRequestSerializer implements PrimitiveSerializer<PromptG
           ) as bool?;
           if (valueDes == null) continue;
           result.allCountries = valueDes;
+          break;
+        case r'property':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.property = valueDes;
           break;
         default:
           unhandled.add(key);

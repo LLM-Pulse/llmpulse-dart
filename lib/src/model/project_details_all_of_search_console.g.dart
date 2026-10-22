@@ -84,13 +84,15 @@ class _$ProjectDetailsAllOfSearchConsole
   final String? property;
   @override
   final String? connectUrl;
+  @override
+  final int? propertiesCount;
 
   factory _$ProjectDetailsAllOfSearchConsole(
           [void Function(ProjectDetailsAllOfSearchConsoleBuilder)? updates]) =>
       (ProjectDetailsAllOfSearchConsoleBuilder()..update(updates))._build();
 
   _$ProjectDetailsAllOfSearchConsole._(
-      {this.status, this.property, this.connectUrl})
+      {this.status, this.property, this.connectUrl, this.propertiesCount})
       : super._();
   @override
   ProjectDetailsAllOfSearchConsole rebuild(
@@ -107,7 +109,8 @@ class _$ProjectDetailsAllOfSearchConsole
     return other is ProjectDetailsAllOfSearchConsole &&
         status == other.status &&
         property == other.property &&
-        connectUrl == other.connectUrl;
+        connectUrl == other.connectUrl &&
+        propertiesCount == other.propertiesCount;
   }
 
   @override
@@ -116,6 +119,7 @@ class _$ProjectDetailsAllOfSearchConsole
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, property.hashCode);
     _$hash = $jc(_$hash, connectUrl.hashCode);
+    _$hash = $jc(_$hash, propertiesCount.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -125,7 +129,8 @@ class _$ProjectDetailsAllOfSearchConsole
     return (newBuiltValueToStringHelper(r'ProjectDetailsAllOfSearchConsole')
           ..add('status', status)
           ..add('property', property)
-          ..add('connectUrl', connectUrl))
+          ..add('connectUrl', connectUrl)
+          ..add('propertiesCount', propertiesCount))
         .toString();
   }
 }
@@ -149,6 +154,11 @@ class ProjectDetailsAllOfSearchConsoleBuilder
   String? get connectUrl => _$this._connectUrl;
   set connectUrl(String? connectUrl) => _$this._connectUrl = connectUrl;
 
+  int? _propertiesCount;
+  int? get propertiesCount => _$this._propertiesCount;
+  set propertiesCount(int? propertiesCount) =>
+      _$this._propertiesCount = propertiesCount;
+
   ProjectDetailsAllOfSearchConsoleBuilder() {
     ProjectDetailsAllOfSearchConsole._defaults(this);
   }
@@ -159,6 +169,7 @@ class ProjectDetailsAllOfSearchConsoleBuilder
       _status = $v.status;
       _property = $v.property;
       _connectUrl = $v.connectUrl;
+      _propertiesCount = $v.propertiesCount;
       _$v = null;
     }
     return this;
@@ -183,6 +194,7 @@ class ProjectDetailsAllOfSearchConsoleBuilder
           status: status,
           property: property,
           connectUrl: connectUrl,
+          propertiesCount: propertiesCount,
         );
     replace(_$result);
     return _$result;

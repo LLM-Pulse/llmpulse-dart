@@ -33,6 +33,12 @@ class _$SearchConsoleListResponse extends SearchConsoleListResponse {
   final BuiltList<SearchConsoleListResponseDataInner>? data;
   @override
   final String? requestId;
+  @override
+  final BuiltList<SearchConsoleProperty>? properties;
+  @override
+  final BuiltList<SearchConsoleExcludedProperty>? excludedProperties;
+  @override
+  final BuiltList<SearchConsolePropertyError>? propertyErrors;
 
   factory _$SearchConsoleListResponse(
           [void Function(SearchConsoleListResponseBuilder)? updates]) =>
@@ -51,7 +57,10 @@ class _$SearchConsoleListResponse extends SearchConsoleListResponse {
       this.startRow,
       this.truncated,
       this.data,
-      this.requestId})
+      this.requestId,
+      this.properties,
+      this.excludedProperties,
+      this.propertyErrors})
       : super._();
   @override
   SearchConsoleListResponse rebuild(
@@ -78,7 +87,10 @@ class _$SearchConsoleListResponse extends SearchConsoleListResponse {
         startRow == other.startRow &&
         truncated == other.truncated &&
         data == other.data &&
-        requestId == other.requestId;
+        requestId == other.requestId &&
+        properties == other.properties &&
+        excludedProperties == other.excludedProperties &&
+        propertyErrors == other.propertyErrors;
   }
 
   @override
@@ -97,6 +109,9 @@ class _$SearchConsoleListResponse extends SearchConsoleListResponse {
     _$hash = $jc(_$hash, truncated.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, properties.hashCode);
+    _$hash = $jc(_$hash, excludedProperties.hashCode);
+    _$hash = $jc(_$hash, propertyErrors.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -116,7 +131,10 @@ class _$SearchConsoleListResponse extends SearchConsoleListResponse {
           ..add('startRow', startRow)
           ..add('truncated', truncated)
           ..add('data', data)
-          ..add('requestId', requestId))
+          ..add('requestId', requestId)
+          ..add('properties', properties)
+          ..add('excludedProperties', excludedProperties)
+          ..add('propertyErrors', propertyErrors))
         .toString();
   }
 }
@@ -182,6 +200,26 @@ class SearchConsoleListResponseBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
+  ListBuilder<SearchConsoleProperty>? _properties;
+  ListBuilder<SearchConsoleProperty> get properties =>
+      _$this._properties ??= ListBuilder<SearchConsoleProperty>();
+  set properties(ListBuilder<SearchConsoleProperty>? properties) =>
+      _$this._properties = properties;
+
+  ListBuilder<SearchConsoleExcludedProperty>? _excludedProperties;
+  ListBuilder<SearchConsoleExcludedProperty> get excludedProperties =>
+      _$this._excludedProperties ??=
+          ListBuilder<SearchConsoleExcludedProperty>();
+  set excludedProperties(
+          ListBuilder<SearchConsoleExcludedProperty>? excludedProperties) =>
+      _$this._excludedProperties = excludedProperties;
+
+  ListBuilder<SearchConsolePropertyError>? _propertyErrors;
+  ListBuilder<SearchConsolePropertyError> get propertyErrors =>
+      _$this._propertyErrors ??= ListBuilder<SearchConsolePropertyError>();
+  set propertyErrors(ListBuilder<SearchConsolePropertyError>? propertyErrors) =>
+      _$this._propertyErrors = propertyErrors;
+
   SearchConsoleListResponseBuilder() {
     SearchConsoleListResponse._defaults(this);
   }
@@ -202,6 +240,9 @@ class SearchConsoleListResponseBuilder
       _truncated = $v.truncated;
       _data = $v.data?.toBuilder();
       _requestId = $v.requestId;
+      _properties = $v.properties?.toBuilder();
+      _excludedProperties = $v.excludedProperties?.toBuilder();
+      _propertyErrors = $v.propertyErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -238,6 +279,9 @@ class SearchConsoleListResponseBuilder
             truncated: truncated,
             data: _data?.build(),
             requestId: requestId,
+            properties: _properties?.build(),
+            excludedProperties: _excludedProperties?.build(),
+            propertyErrors: _propertyErrors?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -247,6 +291,13 @@ class SearchConsoleListResponseBuilder
 
         _$failedField = 'data';
         _data?.build();
+
+        _$failedField = 'properties';
+        _properties?.build();
+        _$failedField = 'excludedProperties';
+        _excludedProperties?.build();
+        _$failedField = 'propertyErrors';
+        _propertyErrors?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'SearchConsoleListResponse', _$failedField, e.toString());
