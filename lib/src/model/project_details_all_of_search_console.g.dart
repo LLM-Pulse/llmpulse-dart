@@ -82,12 +82,15 @@ class _$ProjectDetailsAllOfSearchConsole
   final ProjectDetailsAllOfSearchConsoleStatusEnum? status;
   @override
   final String? property;
+  @override
+  final String? connectUrl;
 
   factory _$ProjectDetailsAllOfSearchConsole(
           [void Function(ProjectDetailsAllOfSearchConsoleBuilder)? updates]) =>
       (ProjectDetailsAllOfSearchConsoleBuilder()..update(updates))._build();
 
-  _$ProjectDetailsAllOfSearchConsole._({this.status, this.property})
+  _$ProjectDetailsAllOfSearchConsole._(
+      {this.status, this.property, this.connectUrl})
       : super._();
   @override
   ProjectDetailsAllOfSearchConsole rebuild(
@@ -103,7 +106,8 @@ class _$ProjectDetailsAllOfSearchConsole
     if (identical(other, this)) return true;
     return other is ProjectDetailsAllOfSearchConsole &&
         status == other.status &&
-        property == other.property;
+        property == other.property &&
+        connectUrl == other.connectUrl;
   }
 
   @override
@@ -111,6 +115,7 @@ class _$ProjectDetailsAllOfSearchConsole
     var _$hash = 0;
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, property.hashCode);
+    _$hash = $jc(_$hash, connectUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -119,7 +124,8 @@ class _$ProjectDetailsAllOfSearchConsole
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetailsAllOfSearchConsole')
           ..add('status', status)
-          ..add('property', property))
+          ..add('property', property)
+          ..add('connectUrl', connectUrl))
         .toString();
   }
 }
@@ -139,6 +145,10 @@ class ProjectDetailsAllOfSearchConsoleBuilder
   String? get property => _$this._property;
   set property(String? property) => _$this._property = property;
 
+  String? _connectUrl;
+  String? get connectUrl => _$this._connectUrl;
+  set connectUrl(String? connectUrl) => _$this._connectUrl = connectUrl;
+
   ProjectDetailsAllOfSearchConsoleBuilder() {
     ProjectDetailsAllOfSearchConsole._defaults(this);
   }
@@ -148,6 +158,7 @@ class ProjectDetailsAllOfSearchConsoleBuilder
     if ($v != null) {
       _status = $v.status;
       _property = $v.property;
+      _connectUrl = $v.connectUrl;
       _$v = null;
     }
     return this;
@@ -171,6 +182,7 @@ class ProjectDetailsAllOfSearchConsoleBuilder
         _$ProjectDetailsAllOfSearchConsole._(
           status: status,
           property: property,
+          connectUrl: connectUrl,
         );
     replace(_$result);
     return _$result;

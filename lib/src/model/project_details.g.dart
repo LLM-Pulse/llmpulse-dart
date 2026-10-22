@@ -28,7 +28,11 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? url;
   @override
+  final ProjectDetailsAllOfAgentTraffic? agentTraffic;
+  @override
   final DateTime? createdAt;
+  @override
+  final ProjectDetailsAllOfAiTraffic? aiTraffic;
   @override
   final String? googlePlayId;
   @override
@@ -72,7 +76,9 @@ class _$ProjectDetails extends ProjectDetails {
       this.languageCode,
       this.promptLimit,
       this.url,
+      this.agentTraffic,
       this.createdAt,
+      this.aiTraffic,
       this.googlePlayId,
       this.targetAudience,
       this.stats,
@@ -109,7 +115,9 @@ class _$ProjectDetails extends ProjectDetails {
         languageCode == other.languageCode &&
         promptLimit == other.promptLimit &&
         url == other.url &&
+        agentTraffic == other.agentTraffic &&
         createdAt == other.createdAt &&
+        aiTraffic == other.aiTraffic &&
         googlePlayId == other.googlePlayId &&
         targetAudience == other.targetAudience &&
         stats == other.stats &&
@@ -139,7 +147,9 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, languageCode.hashCode);
     _$hash = $jc(_$hash, promptLimit.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
+    _$hash = $jc(_$hash, agentTraffic.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, aiTraffic.hashCode);
     _$hash = $jc(_$hash, googlePlayId.hashCode);
     _$hash = $jc(_$hash, targetAudience.hashCode);
     _$hash = $jc(_$hash, stats.hashCode);
@@ -171,7 +181,9 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('languageCode', languageCode)
           ..add('promptLimit', promptLimit)
           ..add('url', url)
+          ..add('agentTraffic', agentTraffic)
           ..add('createdAt', createdAt)
+          ..add('aiTraffic', aiTraffic)
           ..add('googlePlayId', googlePlayId)
           ..add('targetAudience', targetAudience)
           ..add('stats', stats)
@@ -243,9 +255,22 @@ class ProjectDetailsBuilder
   String? get url => _$this._url;
   set url(covariant String? url) => _$this._url = url;
 
+  ProjectDetailsAllOfAgentTrafficBuilder? _agentTraffic;
+  ProjectDetailsAllOfAgentTrafficBuilder get agentTraffic =>
+      _$this._agentTraffic ??= ProjectDetailsAllOfAgentTrafficBuilder();
+  set agentTraffic(
+          covariant ProjectDetailsAllOfAgentTrafficBuilder? agentTraffic) =>
+      _$this._agentTraffic = agentTraffic;
+
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(covariant DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  ProjectDetailsAllOfAiTrafficBuilder? _aiTraffic;
+  ProjectDetailsAllOfAiTrafficBuilder get aiTraffic =>
+      _$this._aiTraffic ??= ProjectDetailsAllOfAiTrafficBuilder();
+  set aiTraffic(covariant ProjectDetailsAllOfAiTrafficBuilder? aiTraffic) =>
+      _$this._aiTraffic = aiTraffic;
 
   String? _googlePlayId;
   String? get googlePlayId => _$this._googlePlayId;
@@ -336,7 +361,9 @@ class ProjectDetailsBuilder
       _languageCode = $v.languageCode;
       _promptLimit = $v.promptLimit;
       _url = $v.url;
+      _agentTraffic = $v.agentTraffic?.toBuilder();
       _createdAt = $v.createdAt;
+      _aiTraffic = $v.aiTraffic?.toBuilder();
       _googlePlayId = $v.googlePlayId;
       _targetAudience = $v.targetAudience;
       _stats = $v.stats?.toBuilder();
@@ -384,7 +411,9 @@ class ProjectDetailsBuilder
             languageCode: languageCode,
             promptLimit: promptLimit,
             url: url,
+            agentTraffic: _agentTraffic?.build(),
             createdAt: createdAt,
+            aiTraffic: _aiTraffic?.build(),
             googlePlayId: googlePlayId,
             targetAudience: targetAudience,
             stats: _stats?.build(),
@@ -405,6 +434,12 @@ class ProjectDetailsBuilder
       try {
         _$failedField = 'searchConsole';
         _searchConsole?.build();
+
+        _$failedField = 'agentTraffic';
+        _agentTraffic?.build();
+
+        _$failedField = 'aiTraffic';
+        _aiTraffic?.build();
 
         _$failedField = 'stats';
         _stats?.build();

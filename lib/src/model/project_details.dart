@@ -6,6 +6,8 @@
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
+import 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:built_value/json_object.dart';
@@ -41,6 +43,8 @@ part 'project_details.g.dart';
 /// * [stats] 
 /// * [dataCoverage] 
 /// * [searchConsole] 
+/// * [aiTraffic] 
+/// * [agentTraffic] 
 /// * [requestId] 
 @BuiltValue()
 abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectDetailsBuilder> {
@@ -76,8 +80,14 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   @BuiltValueField(wireName: r'url')
   String? get url;
 
+  @BuiltValueField(wireName: r'agent_traffic')
+  ProjectDetailsAllOfAgentTraffic? get agentTraffic;
+
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'ai_traffic')
+  ProjectDetailsAllOfAiTraffic? get aiTraffic;
 
   @BuiltValueField(wireName: r'google_play_id')
   String? get googlePlayId;
@@ -186,6 +196,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.aiTraffic != null) {
+      yield r'ai_traffic';
+      yield serializers.serialize(
+        object.aiTraffic,
+        specifiedType: const FullType(ProjectDetailsAllOfAiTraffic),
+      );
+    }
     if (object.stats != null) {
       yield r'stats';
       yield serializers.serialize(
@@ -275,6 +292,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.url,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.agentTraffic != null) {
+      yield r'agent_traffic';
+      yield serializers.serialize(
+        object.agentTraffic,
+        specifiedType: const FullType(ProjectDetailsAllOfAgentTraffic),
       );
     }
     if (object.googlePlayId != null) {
@@ -391,6 +415,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
+        case r'ai_traffic':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfAiTraffic),
+          ) as ProjectDetailsAllOfAiTraffic?;
+          if (valueDes == null) continue;
+          result.aiTraffic.replace(valueDes);
+          break;
         case r'stats':
           final valueDes = serializers.deserialize(
             value,
@@ -494,6 +526,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.url = valueDes;
+          break;
+        case r'agent_traffic':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfAgentTraffic),
+          ) as ProjectDetailsAllOfAgentTraffic?;
+          if (valueDes == null) continue;
+          result.agentTraffic.replace(valueDes);
           break;
         case r'google_play_id':
           final valueDes = serializers.deserialize(

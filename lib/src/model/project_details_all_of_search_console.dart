@@ -9,11 +9,12 @@ import 'package:built_value/serializer.dart';
 
 part 'project_details_all_of_search_console.g.dart';
 
-/// Google Search Console connection of the project. connected means the Search Console endpoints can answer; reconnect_required means Google refused the stored access and the property must be reconnected in Preferences > Project Settings > Data Connections.
+/// Google Search Console connection of the project. connected means the Search Console endpoints can answer; reconnect_required means Google refused the stored access, so the endpoints return ERR_SEARCH_CONSOLE_ACCESS_REVOKED until the property is reconnected at connect_url; not_connected means the endpoints return ERR_SEARCH_CONSOLE_NOT_CONNECTED.
 ///
 /// Properties:
 /// * [status] 
 /// * [property] - The connected property (e.g. sc-domain:example.com), null when not connected
+/// * [connectUrl] - The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
 @BuiltValue()
 abstract class ProjectDetailsAllOfSearchConsole implements Built<ProjectDetailsAllOfSearchConsole, ProjectDetailsAllOfSearchConsoleBuilder> {
   @BuiltValueField(wireName: r'status')
@@ -23,6 +24,10 @@ abstract class ProjectDetailsAllOfSearchConsole implements Built<ProjectDetailsA
   /// The connected property (e.g. sc-domain:example.com), null when not connected
   @BuiltValueField(wireName: r'property')
   String? get property;
+
+  /// The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
+  @BuiltValueField(wireName: r'connect_url')
+  String? get connectUrl;
 
   ProjectDetailsAllOfSearchConsole._();
 
@@ -59,6 +64,13 @@ class _$ProjectDetailsAllOfSearchConsoleSerializer implements PrimitiveSerialize
       yield serializers.serialize(
         object.property,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.connectUrl != null) {
+      yield r'connect_url';
+      yield serializers.serialize(
+        object.connectUrl,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -99,6 +111,14 @@ class _$ProjectDetailsAllOfSearchConsoleSerializer implements PrimitiveSerialize
           ) as String?;
           if (valueDes == null) continue;
           result.property = valueDes;
+          break;
+        case r'connect_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.connectUrl = valueDes;
           break;
         default:
           unhandled.add(key);

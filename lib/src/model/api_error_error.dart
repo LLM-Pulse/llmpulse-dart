@@ -15,7 +15,7 @@ part 'api_error_error.g.dart';
 /// Properties:
 /// * [code] 
 /// * [message] 
-/// * [meta] 
+/// * [meta] - Extra detail for some codes. A not-connected or access-revoked error from the Search Console, AI traffic, web analytics or agent traffic endpoints carries connect_url, the in-app page where the user connects or reconnects the source.
 @BuiltValue()
 abstract class ApiErrorError implements Built<ApiErrorError, ApiErrorErrorBuilder> {
   @BuiltValueField(wireName: r'code')
@@ -25,6 +25,7 @@ abstract class ApiErrorError implements Built<ApiErrorError, ApiErrorErrorBuilde
   @BuiltValueField(wireName: r'message')
   String? get message;
 
+  /// Extra detail for some codes. A not-connected or access-revoked error from the Search Console, AI traffic, web analytics or agent traffic endpoints carries connect_url, the in-app page where the user connects or reconnects the source.
   @BuiltValueField(wireName: r'meta')
   JsonObject? get meta;
 

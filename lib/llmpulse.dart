@@ -194,6 +194,8 @@ export 'package:llmpulse/src/model/project_create_response_limits.dart';
 export 'package:llmpulse/src/model/project_create_response_prompts.dart';
 export 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
 export 'package:llmpulse/src/model/project_details.dart';
+export 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
+export 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
 export 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 export 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 export 'package:llmpulse/src/model/project_details_all_of_stats.dart';

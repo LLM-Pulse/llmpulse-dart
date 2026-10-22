@@ -173,6 +173,8 @@ doc/ProjectCreateResponseLimits.md
 doc/ProjectCreateResponsePrompts.md
 doc/ProjectCreateResponseSameDomainProjectsInner.md
 doc/ProjectDetails.md
+doc/ProjectDetailsAllOfAgentTraffic.md
+doc/ProjectDetailsAllOfAiTraffic.md
 doc/ProjectDetailsAllOfDataCoverage.md
 doc/ProjectDetailsAllOfSearchConsole.md
 doc/ProjectDetailsAllOfStats.md
@@ -482,6 +484,8 @@ lib/src/model/project_create_response_limits.dart
 lib/src/model/project_create_response_prompts.dart
 lib/src/model/project_create_response_same_domain_projects_inner.dart
 lib/src/model/project_details.dart
+lib/src/model/project_details_all_of_agent_traffic.dart
+lib/src/model/project_details_all_of_ai_traffic.dart
 lib/src/model/project_details_all_of_data_coverage.dart
 lib/src/model/project_details_all_of_search_console.dart
 lib/src/model/project_details_all_of_stats.dart
