@@ -219,7 +219,7 @@ class GEOWriterApi {
   /// Parameters:
   /// * [projectId] - Project ID
   /// * [taskType] 
-  /// * [status] 
+  /// * [status] - Keep only the tasks in this status. Discarded tasks are never listed, so discarded returns an empty page.
   /// * [page] 
   /// * [perPage] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation

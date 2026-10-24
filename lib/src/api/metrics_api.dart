@@ -8,6 +8,7 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/prompt_summary_response.dart';
@@ -175,6 +176,9 @@ class MetricsApi {
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [view] - Which Share of Voice projection to flatten. Only valid together with 'output'. 'over_time' (default) is one row per date and actor, 'current' the ranked snapshot, 'breakdown' the Top 4 plus Others.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [includeProject] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -198,6 +202,9 @@ class MetricsApi {
     String? brandKind,
     String? output,
     String? view = 'over_time',
+    String? countryCode,
+    String? languageCode,
+    bool? includeProject = true,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -238,6 +245,9 @@ class MetricsApi {
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
       if (view != null) r'view': encodeQueryParameter(_serializers, view, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (includeProject != null) r'include_project': encodeQueryParameter(_serializers, includeProject, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -297,6 +307,9 @@ class MetricsApi {
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [includeProject] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -320,6 +333,9 @@ class MetricsApi {
     String? promptType,
     String? brandKind,
     String? output,
+    String? countryCode,
+    String? languageCode,
+    bool? includeProject = true,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -360,6 +376,9 @@ class MetricsApi {
       if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
       if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (includeProject != null) r'include_project': encodeQueryParameter(_serializers, includeProject, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -553,6 +572,8 @@ class MetricsApi {
   /// * [page] 
   /// * [perPage] 
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [collectionIds] - Tags (collections) to include at once, as a union: one ID or a comma-separated list, e.g. collection_ids=12,15 (collection_ids[]=12&collection_ids[]=15 is also accepted). Combines with collection_id. An ID outside the project returns 422 ERR_INVALID_PARAM.
+  /// * [domains] - Restrict the result to these exact domains, case-insensitive: one domain or a comma-separated list, e.g. domains=wikipedia.org,reddit.com. The bracket form domains[]=wikipedia.org&domains[]=reddit.com is also accepted.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -579,6 +600,8 @@ class MetricsApi {
     int? page = 1,
     int? perPage = 20,
     String? output,
+    BuiltList<int>? collectionIds,
+    BuiltList<String>? domains,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -622,6 +645,8 @@ class MetricsApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (collectionIds != null) r'collection_ids': encodeCollectionQueryParameter<int>(_serializers, collectionIds, const FullType(BuiltList, [FullType(int)]), format: ListFormat.csv,),
+      if (domains != null) r'domains': encodeCollectionQueryParameter<String>(_serializers, domains, const FullType(BuiltList, [FullType(String)]), format: ListFormat.csv,),
     };
 
     final _response = await _dio.request<Object>(

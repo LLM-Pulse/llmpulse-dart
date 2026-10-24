@@ -181,7 +181,7 @@ class SourcesCitationIntelligenceApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [domains] - Source domains to analyze, e.g. domains[]=gmac.com&domains[]=educaweb.com
+  /// * [domains] - Source domains to analyze: one domain or a comma-separated list, e.g. domains=gmac.com,educaweb.com. The bracket form domains[]=gmac.com&domains[]=educaweb.com is also accepted.
   /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
@@ -238,7 +238,7 @@ class SourcesCitationIntelligenceApi {
 
     final _queryParameters = <String, dynamic>{
       r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
-      r'domains': encodeCollectionQueryParameter<String>(_serializers, domains, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      r'domains': encodeCollectionQueryParameter<String>(_serializers, domains, const FullType(BuiltList, [FullType(String)]), format: ListFormat.csv,),
       if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
       if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
@@ -460,6 +460,9 @@ class SourcesCitationIntelligenceApi {
   /// * [mentionFilter] - Filter by which brands are mentioned, as a two-axis matrix (your brand x competitors): mentions_you / not_mentions_you, mentions_competitor / not_mentions_competitor, and the four combined cells you_and_competitor, competitor_not_you (a rival wins and you are absent), you_not_competitor, no_brands (no tracked brand appears, i.e. open space). Combine with 'competitors' to narrow the competitor side to specific rivals; on a negative cell that reads 'none of these'. On /dimensions/sources it applies to the crawled content of each cited page instead of the answer text. The legacy value 'competitors_only' is still accepted as an alias of competitor_not_you.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -484,6 +487,9 @@ class SourcesCitationIntelligenceApi {
     String? mentionFilter,
     String? competitors,
     String? output,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -525,6 +531,9 @@ class SourcesCitationIntelligenceApi {
       if (mentionFilter != null) r'mention_filter': encodeQueryParameter(_serializers, mentionFilter, const FullType(String)),
       if (competitors != null) r'competitors': encodeQueryParameter(_serializers, competitors, const FullType(String)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(

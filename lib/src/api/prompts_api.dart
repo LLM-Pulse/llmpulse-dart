@@ -604,6 +604,8 @@ class PromptsApi {
   /// * [citationFilter] - Same two-axis matrix applied to the domains cited in the answer instead of the brands named in it. Independent of mention_filter; pass both to intersect them (e.g. mentions_you + not_cites_you finds answers that talk about you without linking to you).
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -628,6 +630,8 @@ class PromptsApi {
     String? citationFilter,
     String? competitors,
     String? output,
+    String? promptType,
+    String? brandKind,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -669,6 +673,8 @@ class PromptsApi {
       if (citationFilter != null) r'citation_filter': encodeQueryParameter(_serializers, citationFilter, const FullType(String)),
       if (competitors != null) r'competitors': encodeQueryParameter(_serializers, competitors, const FullType(String)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

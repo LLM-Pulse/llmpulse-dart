@@ -35,6 +35,11 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -55,6 +60,11 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? countryCode,
+    String? languageCode,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -92,6 +102,11 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -120,6 +135,11 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -140,6 +160,11 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? countryCode,
+    String? languageCode,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -177,6 +202,11 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -206,6 +236,9 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -227,6 +260,9 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -265,6 +301,9 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -321,6 +360,11 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -341,6 +385,11 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? countryCode,
+    String? languageCode,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -378,6 +427,11 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -406,6 +460,11 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -426,6 +485,11 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? countryCode,
+    String? languageCode,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -463,6 +527,11 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -520,6 +589,9 @@ class MentionsCitationsApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [range] - Number of days to look back (alternative to from/to)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -541,6 +613,9 @@ class MentionsCitationsApi {
     DateTime? from,
     DateTime? to,
     String? output,
+    String? promptType,
+    String? brandKind,
+    int? range,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -579,6 +654,9 @@ class MentionsCitationsApi {
       if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
       if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
       if (output != null) r'output': encodeQueryParameter(_serializers, output, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(

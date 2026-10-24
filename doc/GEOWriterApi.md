@@ -114,7 +114,7 @@ import 'package:llmpulse/api.dart';
 final api = Llmpulse().getGEOWriterApi();
 final int projectId = 56; // int | Project ID
 final String taskType = taskType_example; // String | 
-final String status = status_example; // String | 
+final String status = status_example; // String | Keep only the tasks in this status. Discarded tasks are never listed, so discarded returns an empty page.
 final int page = 56; // int | 
 final int perPage = 56; // int | 
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
  **taskType** | **String**|  | [optional] 
- **status** | **String**|  | [optional] 
+ **status** | **String**| Keep only the tasks in this status. Discarded tasks are never listed, so discarded returns an empty page. | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
 
