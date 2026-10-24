@@ -38,9 +38,44 @@ final BuiltSet<UpdateRecommendationItemRequestStatusEnum>
   _$updateRecommendationItemRequestStatusEnum_archived,
 ]);
 
+const UpdateRecommendationItemRequestReasonEnum
+    _$updateRecommendationItemRequestReasonEnum_notRelevant =
+    const UpdateRecommendationItemRequestReasonEnum._('notRelevant');
+const UpdateRecommendationItemRequestReasonEnum
+    _$updateRecommendationItemRequestReasonEnum_tooComplex =
+    const UpdateRecommendationItemRequestReasonEnum._('tooComplex');
+const UpdateRecommendationItemRequestReasonEnum
+    _$updateRecommendationItemRequestReasonEnum_competitor =
+    const UpdateRecommendationItemRequestReasonEnum._('competitor');
+
+UpdateRecommendationItemRequestReasonEnum
+    _$updateRecommendationItemRequestReasonEnumValueOf(String name) {
+  switch (name) {
+    case 'notRelevant':
+      return _$updateRecommendationItemRequestReasonEnum_notRelevant;
+    case 'tooComplex':
+      return _$updateRecommendationItemRequestReasonEnum_tooComplex;
+    case 'competitor':
+      return _$updateRecommendationItemRequestReasonEnum_competitor;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateRecommendationItemRequestReasonEnum>
+    _$updateRecommendationItemRequestReasonEnumValues = BuiltSet<
+        UpdateRecommendationItemRequestReasonEnum>(const <UpdateRecommendationItemRequestReasonEnum>[
+  _$updateRecommendationItemRequestReasonEnum_notRelevant,
+  _$updateRecommendationItemRequestReasonEnum_tooComplex,
+  _$updateRecommendationItemRequestReasonEnum_competitor,
+]);
+
 Serializer<UpdateRecommendationItemRequestStatusEnum>
     _$updateRecommendationItemRequestStatusEnumSerializer =
     _$UpdateRecommendationItemRequestStatusEnumSerializer();
+Serializer<UpdateRecommendationItemRequestReasonEnum>
+    _$updateRecommendationItemRequestReasonEnumSerializer =
+    _$UpdateRecommendationItemRequestReasonEnumSerializer();
 
 class _$UpdateRecommendationItemRequestStatusEnumSerializer
     implements PrimitiveSerializer<UpdateRecommendationItemRequestStatusEnum> {
@@ -76,19 +111,55 @@ class _$UpdateRecommendationItemRequestStatusEnumSerializer
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
+class _$UpdateRecommendationItemRequestReasonEnumSerializer
+    implements PrimitiveSerializer<UpdateRecommendationItemRequestReasonEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'notRelevant': 'not_relevant',
+    'tooComplex': 'too_complex',
+    'competitor': 'competitor',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'not_relevant': 'notRelevant',
+    'too_complex': 'tooComplex',
+    'competitor': 'competitor',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateRecommendationItemRequestReasonEnum
+  ];
+  @override
+  final String wireName = 'UpdateRecommendationItemRequestReasonEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateRecommendationItemRequestReasonEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateRecommendationItemRequestReasonEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateRecommendationItemRequestReasonEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateRecommendationItemRequest
     extends UpdateRecommendationItemRequest {
   @override
   final int projectId;
   @override
   final UpdateRecommendationItemRequestStatusEnum status;
+  @override
+  final UpdateRecommendationItemRequestReasonEnum? reason;
 
   factory _$UpdateRecommendationItemRequest(
           [void Function(UpdateRecommendationItemRequestBuilder)? updates]) =>
       (UpdateRecommendationItemRequestBuilder()..update(updates))._build();
 
   _$UpdateRecommendationItemRequest._(
-      {required this.projectId, required this.status})
+      {required this.projectId, required this.status, this.reason})
       : super._();
   @override
   UpdateRecommendationItemRequest rebuild(
@@ -104,7 +175,8 @@ class _$UpdateRecommendationItemRequest
     if (identical(other, this)) return true;
     return other is UpdateRecommendationItemRequest &&
         projectId == other.projectId &&
-        status == other.status;
+        status == other.status &&
+        reason == other.reason;
   }
 
   @override
@@ -112,6 +184,7 @@ class _$UpdateRecommendationItemRequest
     var _$hash = 0;
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, reason.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -120,7 +193,8 @@ class _$UpdateRecommendationItemRequest
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateRecommendationItemRequest')
           ..add('projectId', projectId)
-          ..add('status', status))
+          ..add('status', status)
+          ..add('reason', reason))
         .toString();
   }
 }
@@ -140,6 +214,11 @@ class UpdateRecommendationItemRequestBuilder
   set status(UpdateRecommendationItemRequestStatusEnum? status) =>
       _$this._status = status;
 
+  UpdateRecommendationItemRequestReasonEnum? _reason;
+  UpdateRecommendationItemRequestReasonEnum? get reason => _$this._reason;
+  set reason(UpdateRecommendationItemRequestReasonEnum? reason) =>
+      _$this._reason = reason;
+
   UpdateRecommendationItemRequestBuilder() {
     UpdateRecommendationItemRequest._defaults(this);
   }
@@ -149,6 +228,7 @@ class UpdateRecommendationItemRequestBuilder
     if ($v != null) {
       _projectId = $v.projectId;
       _status = $v.status;
+      _reason = $v.reason;
       _$v = null;
     }
     return this;
@@ -174,6 +254,7 @@ class UpdateRecommendationItemRequestBuilder
               projectId, r'UpdateRecommendationItemRequest', 'projectId'),
           status: BuiltValueNullFieldError.checkNotNull(
               status, r'UpdateRecommendationItemRequest', 'status'),
+          reason: reason,
         );
     replace(_$result);
     return _$result;

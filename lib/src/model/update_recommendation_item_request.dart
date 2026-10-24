@@ -14,6 +14,7 @@ part 'update_recommendation_item_request.g.dart';
 /// Properties:
 /// * [projectId] 
 /// * [status] - completed, archived, or active to restore the item
+/// * [reason] - Optional, with status archived only. competitor only on a PR & Citation Building item that targets a domain.
 @BuiltValue()
 abstract class UpdateRecommendationItemRequest implements Built<UpdateRecommendationItemRequest, UpdateRecommendationItemRequestBuilder> {
   @BuiltValueField(wireName: r'project_id')
@@ -23,6 +24,11 @@ abstract class UpdateRecommendationItemRequest implements Built<UpdateRecommenda
   @BuiltValueField(wireName: r'status')
   UpdateRecommendationItemRequestStatusEnum get status;
   // enum statusEnum {  active,  completed,  archived,  };
+
+  /// Optional, with status archived only. competitor only on a PR & Citation Building item that targets a domain.
+  @BuiltValueField(wireName: r'reason')
+  UpdateRecommendationItemRequestReasonEnum? get reason;
+  // enum reasonEnum {  not_relevant,  too_complex,  competitor,  };
 
   UpdateRecommendationItemRequest._();
 
@@ -57,6 +63,13 @@ class _$UpdateRecommendationItemRequestSerializer implements PrimitiveSerializer
       object.status,
       specifiedType: const FullType(UpdateRecommendationItemRequestStatusEnum),
     );
+    if (object.reason != null) {
+      yield r'reason';
+      yield serializers.serialize(
+        object.reason,
+        specifiedType: const FullType(UpdateRecommendationItemRequestReasonEnum),
+      );
+    }
   }
 
   @override
@@ -93,6 +106,14 @@ class _$UpdateRecommendationItemRequestSerializer implements PrimitiveSerializer
             specifiedType: const FullType(UpdateRecommendationItemRequestStatusEnum),
           ) as UpdateRecommendationItemRequestStatusEnum;
           result.status = valueDes;
+          break;
+        case r'reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(UpdateRecommendationItemRequestReasonEnum),
+          ) as UpdateRecommendationItemRequestReasonEnum?;
+          if (valueDes == null) continue;
+          result.reason = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -141,5 +162,25 @@ class UpdateRecommendationItemRequestStatusEnum extends EnumClass {
 
   static BuiltSet<UpdateRecommendationItemRequestStatusEnum> get values => _$updateRecommendationItemRequestStatusEnumValues;
   static UpdateRecommendationItemRequestStatusEnum valueOf(String name) => _$updateRecommendationItemRequestStatusEnumValueOf(name);
+}
+
+class UpdateRecommendationItemRequestReasonEnum extends EnumClass {
+
+  /// Optional, with status archived only. competitor only on a PR & Citation Building item that targets a domain.
+  @BuiltValueEnumConst(wireName: r'not_relevant')
+  static const UpdateRecommendationItemRequestReasonEnum notRelevant = _$updateRecommendationItemRequestReasonEnum_notRelevant;
+  /// Optional, with status archived only. competitor only on a PR & Citation Building item that targets a domain.
+  @BuiltValueEnumConst(wireName: r'too_complex')
+  static const UpdateRecommendationItemRequestReasonEnum tooComplex = _$updateRecommendationItemRequestReasonEnum_tooComplex;
+  /// Optional, with status archived only. competitor only on a PR & Citation Building item that targets a domain.
+  @BuiltValueEnumConst(wireName: r'competitor')
+  static const UpdateRecommendationItemRequestReasonEnum competitor = _$updateRecommendationItemRequestReasonEnum_competitor;
+
+  static Serializer<UpdateRecommendationItemRequestReasonEnum> get serializer => _$updateRecommendationItemRequestReasonEnumSerializer;
+
+  const UpdateRecommendationItemRequestReasonEnum._(String name): super(name);
+
+  static BuiltSet<UpdateRecommendationItemRequestReasonEnum> get values => _$updateRecommendationItemRequestReasonEnumValues;
+  static UpdateRecommendationItemRequestReasonEnum valueOf(String name) => _$updateRecommendationItemRequestReasonEnumValueOf(name);
 }
 

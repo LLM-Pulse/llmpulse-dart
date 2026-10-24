@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **status** | **String** |  | 
 **statusChangedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **position** | **int** |  | 
-**metadata** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md) |  | [optional] 
+**metadata** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md) | Free-form details. Carries effort (low, medium or high) when the generator rated it, archive_reason (not_relevant, too_complex or competitor) on an item archived with a reason, and domain on PR & Citation Building items. | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
 **resolvedSourceRefs** | [**BuiltList&lt;BuiltMap&lt;String, JsonObject&gt;&gt;**](BuiltMap.md) | The evidence each source_refs code points to (prompt, citation or own page) | [optional] 

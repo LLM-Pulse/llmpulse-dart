@@ -26,7 +26,7 @@ part 'recommendation_item.g.dart';
 /// * [status] 
 /// * [statusChangedAt] 
 /// * [position] 
-/// * [metadata] 
+/// * [metadata] - Free-form details. Carries effort (low, medium or high) when the generator rated it, archive_reason (not_relevant, too_complex or competitor) on an item archived with a reason, and domain on PR & Citation Building items.
 /// * [createdAt] 
 /// * [updatedAt] 
 /// * [resolvedSourceRefs] - The evidence each source_refs code points to (prompt, citation or own page)
@@ -75,6 +75,7 @@ abstract class RecommendationItem implements Built<RecommendationItem, Recommend
   @BuiltValueField(wireName: r'position')
   int get position;
 
+  /// Free-form details. Carries effort (low, medium or high) when the generator rated it, archive_reason (not_relevant, too_complex or competitor) on an item archived with a reason, and domain on PR & Citation Building items.
   @BuiltValueField(wireName: r'metadata')
   BuiltMap<String, JsonObject?>? get metadata;
 
