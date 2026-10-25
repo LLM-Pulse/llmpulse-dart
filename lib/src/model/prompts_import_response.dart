@@ -22,6 +22,9 @@ part 'prompts_import_response.g.dart';
 /// * [rowErrors] - Rows that were skipped or whose tags were not added, by their index in rows
 /// * [lengthWarning] - Which tracked AI models will skip new prompts that are too long for them
 /// * [promptsAvailable] - Prompt slots left on the plan; null when unlimited
+/// * [tracked] - Whether scheduled runs include the project the prompts were imported into. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
+/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [warning] - What to do when tracked is false. Null when tracked
 /// * [requestId] 
 @BuiltValue()
 abstract class PromptsImportResponse implements Built<PromptsImportResponse, PromptsImportResponseBuilder> {
@@ -57,6 +60,18 @@ abstract class PromptsImportResponse implements Built<PromptsImportResponse, Pro
   /// Prompt slots left on the plan; null when unlimited
   @BuiltValueField(wireName: r'prompts_available')
   int? get promptsAvailable;
+
+  /// Whether scheduled runs include the project the prompts were imported into. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
+  @BuiltValueField(wireName: r'tracked')
+  bool get tracked;
+
+  /// Why tracked is false: paused or project_limit. Null when tracked
+  @BuiltValueField(wireName: r'untracked_reason')
+  String? get untrackedReason;
+
+  /// What to do when tracked is false. Null when tracked
+  @BuiltValueField(wireName: r'warning')
+  String? get warning;
 
   @BuiltValueField(wireName: r'request_id')
   String get requestId;
@@ -128,6 +143,21 @@ class _$PromptsImportResponseSerializer implements PrimitiveSerializer<PromptsIm
     yield object.promptsAvailable == null ? null : serializers.serialize(
       object.promptsAvailable,
       specifiedType: const FullType.nullable(int),
+    );
+    yield r'tracked';
+    yield serializers.serialize(
+      object.tracked,
+      specifiedType: const FullType(bool),
+    );
+    yield r'untracked_reason';
+    yield object.untrackedReason == null ? null : serializers.serialize(
+      object.untrackedReason,
+      specifiedType: const FullType.nullable(String),
+    );
+    yield r'warning';
+    yield object.warning == null ? null : serializers.serialize(
+      object.warning,
+      specifiedType: const FullType.nullable(String),
     );
     yield r'request_id';
     yield serializers.serialize(
@@ -221,6 +251,29 @@ class _$PromptsImportResponseSerializer implements PrimitiveSerializer<PromptsIm
           ) as int?;
           if (valueDes == null) continue;
           result.promptsAvailable = valueDes;
+          break;
+        case r'tracked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.tracked = valueDes;
+          break;
+        case r'untracked_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.untrackedReason = valueDes;
+          break;
+        case r'warning':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.warning = valueDes;
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

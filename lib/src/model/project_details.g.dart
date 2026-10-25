@@ -61,6 +61,10 @@ class _$ProjectDetails extends ProjectDetails {
   final String? name;
   @override
   final String? brandName;
+  @override
+  final bool? tracked;
+  @override
+  final String? untrackedReason;
 
   factory _$ProjectDetails([void Function(ProjectDetailsBuilder)? updates]) =>
       (ProjectDetailsBuilder()..update(updates))._build();
@@ -92,7 +96,9 @@ class _$ProjectDetails extends ProjectDetails {
       this.goals,
       this.id,
       this.name,
-      this.brandName})
+      this.brandName,
+      this.tracked,
+      this.untrackedReason})
       : super._();
   @override
   ProjectDetails rebuild(void Function(ProjectDetailsBuilder) updates) =>
@@ -131,7 +137,9 @@ class _$ProjectDetails extends ProjectDetails {
         goals == other.goals &&
         id == other.id &&
         name == other.name &&
-        brandName == other.brandName;
+        brandName == other.brandName &&
+        tracked == other.tracked &&
+        untrackedReason == other.untrackedReason;
   }
 
   @override
@@ -164,6 +172,8 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
+    _$hash = $jc(_$hash, tracked.hashCode);
+    _$hash = $jc(_$hash, untrackedReason.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -197,7 +207,9 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('goals', goals)
           ..add('id', id)
           ..add('name', name)
-          ..add('brandName', brandName))
+          ..add('brandName', brandName)
+          ..add('tracked', tracked)
+          ..add('untrackedReason', untrackedReason))
         .toString();
   }
 }
@@ -344,6 +356,15 @@ class ProjectDetailsBuilder
   String? get brandName => _$this._brandName;
   set brandName(covariant String? brandName) => _$this._brandName = brandName;
 
+  bool? _tracked;
+  bool? get tracked => _$this._tracked;
+  set tracked(covariant bool? tracked) => _$this._tracked = tracked;
+
+  String? _untrackedReason;
+  String? get untrackedReason => _$this._untrackedReason;
+  set untrackedReason(covariant String? untrackedReason) =>
+      _$this._untrackedReason = untrackedReason;
+
   ProjectDetailsBuilder() {
     ProjectDetails._defaults(this);
   }
@@ -378,6 +399,8 @@ class ProjectDetailsBuilder
       _id = $v.id;
       _name = $v.name;
       _brandName = $v.brandName;
+      _tracked = $v.tracked;
+      _untrackedReason = $v.untrackedReason;
       _$v = null;
     }
     return this;
@@ -428,6 +451,8 @@ class ProjectDetailsBuilder
             id: id,
             name: name,
             brandName: brandName,
+            tracked: tracked,
+            untrackedReason: untrackedReason,
           );
     } catch (_) {
       late String _$failedField;

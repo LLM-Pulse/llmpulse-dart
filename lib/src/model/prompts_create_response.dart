@@ -18,6 +18,9 @@ part 'prompts_create_response.g.dart';
 /// * [skipped] 
 /// * [totalAfter] 
 /// * [promptsAvailable] 
+/// * [tracked] - Whether scheduled runs include the project the prompts were added to. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
+/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [warning] - What to do when tracked is false. Null when tracked
 /// * [data] 
 /// * [requestId] 
 @BuiltValue()
@@ -36,6 +39,18 @@ abstract class PromptsCreateResponse implements Built<PromptsCreateResponse, Pro
 
   @BuiltValueField(wireName: r'prompts_available')
   int? get promptsAvailable;
+
+  /// Whether scheduled runs include the project the prompts were added to. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
+  @BuiltValueField(wireName: r'tracked')
+  bool? get tracked;
+
+  /// Why tracked is false: paused or project_limit. Null when tracked
+  @BuiltValueField(wireName: r'untracked_reason')
+  String? get untrackedReason;
+
+  /// What to do when tracked is false. Null when tracked
+  @BuiltValueField(wireName: r'warning')
+  String? get warning;
 
   @BuiltValueField(wireName: r'data')
   BuiltList<PromptsCreateResponseDataInner>? get data;
@@ -99,6 +114,27 @@ class _$PromptsCreateResponseSerializer implements PrimitiveSerializer<PromptsCr
       yield serializers.serialize(
         object.promptsAvailable,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.tracked != null) {
+      yield r'tracked';
+      yield serializers.serialize(
+        object.tracked,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.untrackedReason != null) {
+      yield r'untracked_reason';
+      yield serializers.serialize(
+        object.untrackedReason,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.warning != null) {
+      yield r'warning';
+      yield serializers.serialize(
+        object.warning,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.data != null) {
@@ -177,6 +213,30 @@ class _$PromptsCreateResponseSerializer implements PrimitiveSerializer<PromptsCr
           ) as int?;
           if (valueDes == null) continue;
           result.promptsAvailable = valueDes;
+          break;
+        case r'tracked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.tracked = valueDes;
+          break;
+        case r'untracked_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.untrackedReason = valueDes;
+          break;
+        case r'warning':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.warning = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(

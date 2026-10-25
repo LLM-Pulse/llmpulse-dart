@@ -14,6 +14,8 @@ part 'project.g.dart';
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
 /// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
+/// * [tracked] - Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
 @BuiltValue(instantiable: false)
 abstract class Project  {
   @BuiltValueField(wireName: r'id')
@@ -26,6 +28,14 @@ abstract class Project  {
   /// LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
+
+  /// Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+  @BuiltValueField(wireName: r'tracked')
+  bool? get tracked;
+
+  /// Why tracked is false: paused or project_limit. Null when tracked
+  @BuiltValueField(wireName: r'untracked_reason')
+  String? get untrackedReason;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Project> get serializer => _$ProjectSerializer();
@@ -61,6 +71,20 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       yield r'brand_name';
       yield serializers.serialize(
         object.brandName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.tracked != null) {
+      yield r'tracked';
+      yield serializers.serialize(
+        object.tracked,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.untrackedReason != null) {
+      yield r'untracked_reason';
+      yield serializers.serialize(
+        object.untrackedReason,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -150,6 +174,22 @@ class _$$ProjectSerializer implements PrimitiveSerializer<$Project> {
           ) as String?;
           if (valueDes == null) continue;
           result.brandName = valueDes;
+          break;
+        case r'tracked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.tracked = valueDes;
+          break;
+        case r'untracked_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.untrackedReason = valueDes;
           break;
         default:
           unhandled.add(key);

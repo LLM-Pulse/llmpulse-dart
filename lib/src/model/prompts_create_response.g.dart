@@ -18,6 +18,12 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
   @override
   final int? promptsAvailable;
   @override
+  final bool? tracked;
+  @override
+  final String? untrackedReason;
+  @override
+  final String? warning;
+  @override
   final BuiltList<PromptsCreateResponseDataInner>? data;
   @override
   final String? requestId;
@@ -32,6 +38,9 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
       this.skipped,
       this.totalAfter,
       this.promptsAvailable,
+      this.tracked,
+      this.untrackedReason,
+      this.warning,
       this.data,
       this.requestId})
       : super._();
@@ -53,6 +62,9 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
         skipped == other.skipped &&
         totalAfter == other.totalAfter &&
         promptsAvailable == other.promptsAvailable &&
+        tracked == other.tracked &&
+        untrackedReason == other.untrackedReason &&
+        warning == other.warning &&
         data == other.data &&
         requestId == other.requestId;
   }
@@ -65,6 +77,9 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
     _$hash = $jc(_$hash, skipped.hashCode);
     _$hash = $jc(_$hash, totalAfter.hashCode);
     _$hash = $jc(_$hash, promptsAvailable.hashCode);
+    _$hash = $jc(_$hash, tracked.hashCode);
+    _$hash = $jc(_$hash, untrackedReason.hashCode);
+    _$hash = $jc(_$hash, warning.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
@@ -79,6 +94,9 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
           ..add('skipped', skipped)
           ..add('totalAfter', totalAfter)
           ..add('promptsAvailable', promptsAvailable)
+          ..add('tracked', tracked)
+          ..add('untrackedReason', untrackedReason)
+          ..add('warning', warning)
           ..add('data', data)
           ..add('requestId', requestId))
         .toString();
@@ -110,6 +128,19 @@ class PromptsCreateResponseBuilder
   set promptsAvailable(int? promptsAvailable) =>
       _$this._promptsAvailable = promptsAvailable;
 
+  bool? _tracked;
+  bool? get tracked => _$this._tracked;
+  set tracked(bool? tracked) => _$this._tracked = tracked;
+
+  String? _untrackedReason;
+  String? get untrackedReason => _$this._untrackedReason;
+  set untrackedReason(String? untrackedReason) =>
+      _$this._untrackedReason = untrackedReason;
+
+  String? _warning;
+  String? get warning => _$this._warning;
+  set warning(String? warning) => _$this._warning = warning;
+
   ListBuilder<PromptsCreateResponseDataInner>? _data;
   ListBuilder<PromptsCreateResponseDataInner> get data =>
       _$this._data ??= ListBuilder<PromptsCreateResponseDataInner>();
@@ -132,6 +163,9 @@ class PromptsCreateResponseBuilder
       _skipped = $v.skipped;
       _totalAfter = $v.totalAfter;
       _promptsAvailable = $v.promptsAvailable;
+      _tracked = $v.tracked;
+      _untrackedReason = $v.untrackedReason;
+      _warning = $v.warning;
       _data = $v.data?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
@@ -162,6 +196,9 @@ class PromptsCreateResponseBuilder
             skipped: skipped,
             totalAfter: totalAfter,
             promptsAvailable: promptsAvailable,
+            tracked: tracked,
+            untrackedReason: untrackedReason,
+            warning: warning,
             data: _data?.build(),
             requestId: requestId,
           );

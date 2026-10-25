@@ -22,6 +22,8 @@ part 'project_details.g.dart';
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
 /// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
+/// * [tracked] - Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
 /// * [url] 
 /// * [description] 
 /// * [matchingNames] 
@@ -182,6 +184,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
+    if (object.tracked != null) {
+      yield r'tracked';
+      yield serializers.serialize(
+        object.tracked,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.appStoreId != null) {
       yield r'app_store_id';
       yield serializers.serialize(
@@ -336,6 +345,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType(String),
       );
     }
+    if (object.untrackedReason != null) {
+      yield r'untracked_reason';
+      yield serializers.serialize(
+        object.untrackedReason,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -398,6 +414,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.industry = valueDes;
+          break;
+        case r'tracked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.tracked = valueDes;
           break;
         case r'app_store_id':
           final valueDes = serializers.deserialize(
@@ -574,6 +598,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.name = valueDes;
+          break;
+        case r'untracked_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.untrackedReason = valueDes;
           break;
         default:
           unhandled.add(key);

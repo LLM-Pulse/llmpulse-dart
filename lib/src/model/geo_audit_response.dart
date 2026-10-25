@@ -21,7 +21,7 @@ part 'geo_audit_response.g.dart';
 /// * [countryCode] 
 /// * [cadence] 
 /// * [status] 
-/// * [pausedReason] - user, or unreachable when three runs in a row could not reach the site
+/// * [pausedReason] - Null unless status is paused. user (paused by hand), unreachable (three runs in a row could not reach the site) or quota (the account has more active recurring audits than its plan allows; resume it once there is room)
 /// * [schedule] 
 /// * [nextRunAt] 
 /// * [emailAlerts] 

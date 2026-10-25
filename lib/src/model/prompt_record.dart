@@ -23,6 +23,8 @@ part 'prompt_record.g.dart';
 /// * [promptType] - Search intent: informational, navigational, commercial or transactional. Null until the prompt is classified
 /// * [brandKind] - Brand focus: brand, brand_other or non_brand. Null until the prompt is classified
 /// * [lastExecutedAt] - Null until the prompt has run
+/// * [tracked] - Whether scheduled runs include this prompt. False when its project is paused or beyond the plan's project limit, or when the prompt is beyond the plan's prompt limit (the oldest prompts up to the limit run)
+/// * [untrackedReason] - Why tracked is false: paused, project_limit or prompt_limit. Null when tracked
 /// * [appUrl] - Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
 @BuiltValue()
 abstract class PromptRecord implements Built<PromptRecord, PromptRecordBuilder> {
@@ -60,6 +62,14 @@ abstract class PromptRecord implements Built<PromptRecord, PromptRecordBuilder> 
   /// Null until the prompt has run
   @BuiltValueField(wireName: r'last_executed_at')
   DateTime? get lastExecutedAt;
+
+  /// Whether scheduled runs include this prompt. False when its project is paused or beyond the plan's project limit, or when the prompt is beyond the plan's prompt limit (the oldest prompts up to the limit run)
+  @BuiltValueField(wireName: r'tracked')
+  bool get tracked;
+
+  /// Why tracked is false: paused, project_limit or prompt_limit. Null when tracked
+  @BuiltValueField(wireName: r'untracked_reason')
+  String? get untrackedReason;
 
   /// Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
   @BuiltValueField(wireName: r'app_url')
@@ -137,6 +147,16 @@ class _$PromptRecordSerializer implements PrimitiveSerializer<PromptRecord> {
     yield object.lastExecutedAt == null ? null : serializers.serialize(
       object.lastExecutedAt,
       specifiedType: const FullType.nullable(DateTime),
+    );
+    yield r'tracked';
+    yield serializers.serialize(
+      object.tracked,
+      specifiedType: const FullType(bool),
+    );
+    yield r'untracked_reason';
+    yield object.untrackedReason == null ? null : serializers.serialize(
+      object.untrackedReason,
+      specifiedType: const FullType.nullable(String),
     );
     yield r'app_url';
     yield serializers.serialize(
@@ -241,6 +261,21 @@ class _$PromptRecordSerializer implements PrimitiveSerializer<PromptRecord> {
           ) as DateTime?;
           if (valueDes == null) continue;
           result.lastExecutedAt = valueDes;
+          break;
+        case r'tracked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.tracked = valueDes;
+          break;
+        case r'untracked_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.untrackedReason = valueDes;
           break;
         case r'app_url':
           final valueDes = serializers.deserialize(

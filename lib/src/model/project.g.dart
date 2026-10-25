@@ -17,6 +17,12 @@ abstract class ProjectBuilder {
 
   String? get brandName;
   set brandName(String? brandName);
+
+  bool? get tracked;
+  set tracked(bool? tracked);
+
+  String? get untrackedReason;
+  set untrackedReason(String? untrackedReason);
 }
 
 class _$$Project extends $Project {
@@ -26,11 +32,17 @@ class _$$Project extends $Project {
   final String? name;
   @override
   final String? brandName;
+  @override
+  final bool? tracked;
+  @override
+  final String? untrackedReason;
 
   factory _$$Project([void Function($ProjectBuilder)? updates]) =>
       ($ProjectBuilder()..update(updates))._build();
 
-  _$$Project._({this.id, this.name, this.brandName}) : super._();
+  _$$Project._(
+      {this.id, this.name, this.brandName, this.tracked, this.untrackedReason})
+      : super._();
   @override
   $Project rebuild(void Function($ProjectBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -44,7 +56,9 @@ class _$$Project extends $Project {
     return other is $Project &&
         id == other.id &&
         name == other.name &&
-        brandName == other.brandName;
+        brandName == other.brandName &&
+        tracked == other.tracked &&
+        untrackedReason == other.untrackedReason;
   }
 
   @override
@@ -53,6 +67,8 @@ class _$$Project extends $Project {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
+    _$hash = $jc(_$hash, tracked.hashCode);
+    _$hash = $jc(_$hash, untrackedReason.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -62,7 +78,9 @@ class _$$Project extends $Project {
     return (newBuiltValueToStringHelper(r'$Project')
           ..add('id', id)
           ..add('name', name)
-          ..add('brandName', brandName))
+          ..add('brandName', brandName)
+          ..add('tracked', tracked)
+          ..add('untrackedReason', untrackedReason))
         .toString();
   }
 }
@@ -83,6 +101,15 @@ class $ProjectBuilder
   String? get brandName => _$this._brandName;
   set brandName(covariant String? brandName) => _$this._brandName = brandName;
 
+  bool? _tracked;
+  bool? get tracked => _$this._tracked;
+  set tracked(covariant bool? tracked) => _$this._tracked = tracked;
+
+  String? _untrackedReason;
+  String? get untrackedReason => _$this._untrackedReason;
+  set untrackedReason(covariant String? untrackedReason) =>
+      _$this._untrackedReason = untrackedReason;
+
   $ProjectBuilder() {
     $Project._defaults(this);
   }
@@ -93,6 +120,8 @@ class $ProjectBuilder
       _id = $v.id;
       _name = $v.name;
       _brandName = $v.brandName;
+      _tracked = $v.tracked;
+      _untrackedReason = $v.untrackedReason;
       _$v = null;
     }
     return this;
@@ -117,6 +146,8 @@ class $ProjectBuilder
           id: id,
           name: name,
           brandName: brandName,
+          tracked: tracked,
+          untrackedReason: untrackedReason,
         );
     replace(_$result);
     return _$result;

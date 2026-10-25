@@ -26,6 +26,12 @@ class _$PromptsImportResponse extends PromptsImportResponse {
   @override
   final int? promptsAvailable;
   @override
+  final bool tracked;
+  @override
+  final String? untrackedReason;
+  @override
+  final String? warning;
+  @override
   final String requestId;
 
   factory _$PromptsImportResponse(
@@ -42,6 +48,9 @@ class _$PromptsImportResponse extends PromptsImportResponse {
       required this.rowErrors,
       this.lengthWarning,
       this.promptsAvailable,
+      required this.tracked,
+      this.untrackedReason,
+      this.warning,
       required this.requestId})
       : super._();
   @override
@@ -66,6 +75,9 @@ class _$PromptsImportResponse extends PromptsImportResponse {
         rowErrors == other.rowErrors &&
         lengthWarning == other.lengthWarning &&
         promptsAvailable == other.promptsAvailable &&
+        tracked == other.tracked &&
+        untrackedReason == other.untrackedReason &&
+        warning == other.warning &&
         requestId == other.requestId;
   }
 
@@ -81,6 +93,9 @@ class _$PromptsImportResponse extends PromptsImportResponse {
     _$hash = $jc(_$hash, rowErrors.hashCode);
     _$hash = $jc(_$hash, lengthWarning.hashCode);
     _$hash = $jc(_$hash, promptsAvailable.hashCode);
+    _$hash = $jc(_$hash, tracked.hashCode);
+    _$hash = $jc(_$hash, untrackedReason.hashCode);
+    _$hash = $jc(_$hash, warning.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -98,6 +113,9 @@ class _$PromptsImportResponse extends PromptsImportResponse {
           ..add('rowErrors', rowErrors)
           ..add('lengthWarning', lengthWarning)
           ..add('promptsAvailable', promptsAvailable)
+          ..add('tracked', tracked)
+          ..add('untrackedReason', untrackedReason)
+          ..add('warning', warning)
           ..add('requestId', requestId))
         .toString();
   }
@@ -148,6 +166,19 @@ class PromptsImportResponseBuilder
   set promptsAvailable(int? promptsAvailable) =>
       _$this._promptsAvailable = promptsAvailable;
 
+  bool? _tracked;
+  bool? get tracked => _$this._tracked;
+  set tracked(bool? tracked) => _$this._tracked = tracked;
+
+  String? _untrackedReason;
+  String? get untrackedReason => _$this._untrackedReason;
+  set untrackedReason(String? untrackedReason) =>
+      _$this._untrackedReason = untrackedReason;
+
+  String? _warning;
+  String? get warning => _$this._warning;
+  set warning(String? warning) => _$this._warning = warning;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -168,6 +199,9 @@ class PromptsImportResponseBuilder
       _rowErrors = $v.rowErrors.toBuilder();
       _lengthWarning = $v.lengthWarning;
       _promptsAvailable = $v.promptsAvailable;
+      _tracked = $v.tracked;
+      _untrackedReason = $v.untrackedReason;
+      _warning = $v.warning;
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -207,6 +241,10 @@ class PromptsImportResponseBuilder
             rowErrors: rowErrors.build(),
             lengthWarning: lengthWarning,
             promptsAvailable: promptsAvailable,
+            tracked: BuiltValueNullFieldError.checkNotNull(
+                tracked, r'PromptsImportResponse', 'tracked'),
+            untrackedReason: untrackedReason,
+            warning: warning,
             requestId: BuiltValueNullFieldError.checkNotNull(
                 requestId, r'PromptsImportResponse', 'requestId'),
           );

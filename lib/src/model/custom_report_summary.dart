@@ -21,7 +21,7 @@ part 'custom_report_summary.g.dart';
 /// * [schedule] 
 /// * [recipientsCount] 
 /// * [published] - Whether the shared link is published
-/// * [publicLinkActive] - Whether the shared link opens (published and not made inside a client portal)
+/// * [publicLinkActive] - Whether the shared link opens (published, not made inside a client portal, and the account is active on the Scale tier or higher)
 /// * [passwordProtected] 
 /// * [portalOnly] - Made inside a client portal, so it cannot be shared or emailed
 /// * [widgetCount] 
@@ -50,7 +50,7 @@ abstract class CustomReportSummary implements Built<CustomReportSummary, CustomR
   @BuiltValueField(wireName: r'published')
   bool get published;
 
-  /// Whether the shared link opens (published and not made inside a client portal)
+  /// Whether the shared link opens (published, not made inside a client portal, and the account is active on the Scale tier or higher)
   @BuiltValueField(wireName: r'public_link_active')
   bool get publicLinkActive;
 

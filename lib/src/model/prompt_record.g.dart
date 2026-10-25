@@ -28,6 +28,10 @@ class _$PromptRecord extends PromptRecord {
   @override
   final DateTime? lastExecutedAt;
   @override
+  final bool tracked;
+  @override
+  final String? untrackedReason;
+  @override
   final String appUrl;
 
   factory _$PromptRecord([void Function(PromptRecordBuilder)? updates]) =>
@@ -44,6 +48,8 @@ class _$PromptRecord extends PromptRecord {
       this.promptType,
       this.brandKind,
       this.lastExecutedAt,
+      required this.tracked,
+      this.untrackedReason,
       required this.appUrl})
       : super._();
   @override
@@ -67,6 +73,8 @@ class _$PromptRecord extends PromptRecord {
         promptType == other.promptType &&
         brandKind == other.brandKind &&
         lastExecutedAt == other.lastExecutedAt &&
+        tracked == other.tracked &&
+        untrackedReason == other.untrackedReason &&
         appUrl == other.appUrl;
   }
 
@@ -83,6 +91,8 @@ class _$PromptRecord extends PromptRecord {
     _$hash = $jc(_$hash, promptType.hashCode);
     _$hash = $jc(_$hash, brandKind.hashCode);
     _$hash = $jc(_$hash, lastExecutedAt.hashCode);
+    _$hash = $jc(_$hash, tracked.hashCode);
+    _$hash = $jc(_$hash, untrackedReason.hashCode);
     _$hash = $jc(_$hash, appUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -101,6 +111,8 @@ class _$PromptRecord extends PromptRecord {
           ..add('promptType', promptType)
           ..add('brandKind', brandKind)
           ..add('lastExecutedAt', lastExecutedAt)
+          ..add('tracked', tracked)
+          ..add('untrackedReason', untrackedReason)
           ..add('appUrl', appUrl))
         .toString();
   }
@@ -153,6 +165,15 @@ class PromptRecordBuilder
   set lastExecutedAt(DateTime? lastExecutedAt) =>
       _$this._lastExecutedAt = lastExecutedAt;
 
+  bool? _tracked;
+  bool? get tracked => _$this._tracked;
+  set tracked(bool? tracked) => _$this._tracked = tracked;
+
+  String? _untrackedReason;
+  String? get untrackedReason => _$this._untrackedReason;
+  set untrackedReason(String? untrackedReason) =>
+      _$this._untrackedReason = untrackedReason;
+
   String? _appUrl;
   String? get appUrl => _$this._appUrl;
   set appUrl(String? appUrl) => _$this._appUrl = appUrl;
@@ -174,6 +195,8 @@ class PromptRecordBuilder
       _promptType = $v.promptType;
       _brandKind = $v.brandKind;
       _lastExecutedAt = $v.lastExecutedAt;
+      _tracked = $v.tracked;
+      _untrackedReason = $v.untrackedReason;
       _appUrl = $v.appUrl;
       _$v = null;
     }
@@ -210,6 +233,9 @@ class PromptRecordBuilder
             promptType: promptType,
             brandKind: brandKind,
             lastExecutedAt: lastExecutedAt,
+            tracked: BuiltValueNullFieldError.checkNotNull(
+                tracked, r'PromptRecord', 'tracked'),
+            untrackedReason: untrackedReason,
             appUrl: BuiltValueNullFieldError.checkNotNull(
                 appUrl, r'PromptRecord', 'appUrl'),
           );
