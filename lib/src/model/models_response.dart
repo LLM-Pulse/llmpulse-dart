@@ -22,7 +22,7 @@ abstract class ModelsResponse implements Built<ModelsResponse, ModelsResponseBui
 
   @BuiltValueField(wireName: r'models')
   BuiltList<ModelsResponseModelsEnum> get models;
-  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  };
+  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  };
 
   @BuiltValueField(wireName: r'request_id')
   String get requestId;
@@ -166,6 +166,12 @@ class ModelsResponseModelsEnum extends EnumClass {
   static const ModelsResponseModelsEnum baiduAi = _$modelsResponseModelsEnum_baiduAi;
   @BuiltValueEnumConst(wireName: r'meta_ai')
   static const ModelsResponseModelsEnum metaAi = _$modelsResponseModelsEnum_metaAi;
+  @BuiltValueEnumConst(wireName: r'naver_ai_tab')
+  static const ModelsResponseModelsEnum naverAiTab = _$modelsResponseModelsEnum_naverAiTab;
+  @BuiltValueEnumConst(wireName: r'qwen')
+  static const ModelsResponseModelsEnum qwen = _$modelsResponseModelsEnum_qwen;
+  @BuiltValueEnumConst(wireName: r'doubao')
+  static const ModelsResponseModelsEnum doubao = _$modelsResponseModelsEnum_doubao;
 
   static Serializer<ModelsResponseModelsEnum> get serializer => _$modelsResponseModelsEnumSerializer;
 

@@ -45,6 +45,15 @@ const ProjectDetailsAllOfDataCoverageModelsEnum
 const ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnum_metaAi =
     const ProjectDetailsAllOfDataCoverageModelsEnum._('metaAi');
+const ProjectDetailsAllOfDataCoverageModelsEnum
+    _$projectDetailsAllOfDataCoverageModelsEnum_naverAiTab =
+    const ProjectDetailsAllOfDataCoverageModelsEnum._('naverAiTab');
+const ProjectDetailsAllOfDataCoverageModelsEnum
+    _$projectDetailsAllOfDataCoverageModelsEnum_qwen =
+    const ProjectDetailsAllOfDataCoverageModelsEnum._('qwen');
+const ProjectDetailsAllOfDataCoverageModelsEnum
+    _$projectDetailsAllOfDataCoverageModelsEnum_doubao =
+    const ProjectDetailsAllOfDataCoverageModelsEnum._('doubao');
 
 ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnumValueOf(String name) {
@@ -75,6 +84,12 @@ ProjectDetailsAllOfDataCoverageModelsEnum
       return _$projectDetailsAllOfDataCoverageModelsEnum_baiduAi;
     case 'metaAi':
       return _$projectDetailsAllOfDataCoverageModelsEnum_metaAi;
+    case 'naverAiTab':
+      return _$projectDetailsAllOfDataCoverageModelsEnum_naverAiTab;
+    case 'qwen':
+      return _$projectDetailsAllOfDataCoverageModelsEnum_qwen;
+    case 'doubao':
+      return _$projectDetailsAllOfDataCoverageModelsEnum_doubao;
     default:
       throw ArgumentError(name);
   }
@@ -96,6 +111,9 @@ final BuiltSet<ProjectDetailsAllOfDataCoverageModelsEnum>
   _$projectDetailsAllOfDataCoverageModelsEnum_naverAi,
   _$projectDetailsAllOfDataCoverageModelsEnum_baiduAi,
   _$projectDetailsAllOfDataCoverageModelsEnum_metaAi,
+  _$projectDetailsAllOfDataCoverageModelsEnum_naverAiTab,
+  _$projectDetailsAllOfDataCoverageModelsEnum_qwen,
+  _$projectDetailsAllOfDataCoverageModelsEnum_doubao,
 ]);
 
 Serializer<ProjectDetailsAllOfDataCoverageModelsEnum>
@@ -118,6 +136,9 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'naverAi': 'naver_ai',
     'baiduAi': 'baidu_ai',
     'metaAi': 'meta_ai',
+    'naverAiTab': 'naver_ai_tab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -133,6 +154,9 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'naver_ai': 'naverAi',
     'baidu_ai': 'baiduAi',
     'meta_ai': 'metaAi',
+    'naver_ai_tab': 'naverAiTab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
 
   @override

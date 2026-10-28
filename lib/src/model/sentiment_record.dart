@@ -38,7 +38,7 @@ abstract class SentimentRecord implements Built<SentimentRecord, SentimentRecord
 
   @BuiltValueField(wireName: r'model')
   SentimentRecordModelEnum get model;
-  // enum modelEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  };
+  // enum modelEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  };
 
   @BuiltValueField(wireName: r'analysis')
   SentimentRecordAnalysisEnum get analysis;
@@ -337,6 +337,12 @@ class SentimentRecordModelEnum extends EnumClass {
   static const SentimentRecordModelEnum baiduAi = _$sentimentRecordModelEnum_baiduAi;
   @BuiltValueEnumConst(wireName: r'meta_ai')
   static const SentimentRecordModelEnum metaAi = _$sentimentRecordModelEnum_metaAi;
+  @BuiltValueEnumConst(wireName: r'naver_ai_tab')
+  static const SentimentRecordModelEnum naverAiTab = _$sentimentRecordModelEnum_naverAiTab;
+  @BuiltValueEnumConst(wireName: r'qwen')
+  static const SentimentRecordModelEnum qwen = _$sentimentRecordModelEnum_qwen;
+  @BuiltValueEnumConst(wireName: r'doubao')
+  static const SentimentRecordModelEnum doubao = _$sentimentRecordModelEnum_doubao;
 
   static Serializer<SentimentRecordModelEnum> get serializer => _$sentimentRecordModelEnumSerializer;
 

@@ -32,6 +32,12 @@ const SentimentRecordModelEnum _$sentimentRecordModelEnum_baiduAi =
     const SentimentRecordModelEnum._('baiduAi');
 const SentimentRecordModelEnum _$sentimentRecordModelEnum_metaAi =
     const SentimentRecordModelEnum._('metaAi');
+const SentimentRecordModelEnum _$sentimentRecordModelEnum_naverAiTab =
+    const SentimentRecordModelEnum._('naverAiTab');
+const SentimentRecordModelEnum _$sentimentRecordModelEnum_qwen =
+    const SentimentRecordModelEnum._('qwen');
+const SentimentRecordModelEnum _$sentimentRecordModelEnum_doubao =
+    const SentimentRecordModelEnum._('doubao');
 
 SentimentRecordModelEnum _$sentimentRecordModelEnumValueOf(String name) {
   switch (name) {
@@ -61,6 +67,12 @@ SentimentRecordModelEnum _$sentimentRecordModelEnumValueOf(String name) {
       return _$sentimentRecordModelEnum_baiduAi;
     case 'metaAi':
       return _$sentimentRecordModelEnum_metaAi;
+    case 'naverAiTab':
+      return _$sentimentRecordModelEnum_naverAiTab;
+    case 'qwen':
+      return _$sentimentRecordModelEnum_qwen;
+    case 'doubao':
+      return _$sentimentRecordModelEnum_doubao;
     default:
       throw ArgumentError(name);
   }
@@ -81,6 +93,9 @@ final BuiltSet<SentimentRecordModelEnum> _$sentimentRecordModelEnumValues =
   _$sentimentRecordModelEnum_naverAi,
   _$sentimentRecordModelEnum_baiduAi,
   _$sentimentRecordModelEnum_metaAi,
+  _$sentimentRecordModelEnum_naverAiTab,
+  _$sentimentRecordModelEnum_qwen,
+  _$sentimentRecordModelEnum_doubao,
 ]);
 
 const SentimentRecordAnalysisEnum _$sentimentRecordAnalysisEnum_veryPositive =
@@ -143,6 +158,9 @@ class _$SentimentRecordModelEnumSerializer
     'naverAi': 'naver_ai',
     'baiduAi': 'baidu_ai',
     'metaAi': 'meta_ai',
+    'naverAiTab': 'naver_ai_tab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -158,6 +176,9 @@ class _$SentimentRecordModelEnumSerializer
     'naver_ai': 'naverAi',
     'baidu_ai': 'baiduAi',
     'meta_ai': 'metaAi',
+    'naver_ai_tab': 'naverAiTab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
 
   @override

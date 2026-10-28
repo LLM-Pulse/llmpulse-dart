@@ -32,6 +32,12 @@ const ModelsResponseModelsEnum _$modelsResponseModelsEnum_baiduAi =
     const ModelsResponseModelsEnum._('baiduAi');
 const ModelsResponseModelsEnum _$modelsResponseModelsEnum_metaAi =
     const ModelsResponseModelsEnum._('metaAi');
+const ModelsResponseModelsEnum _$modelsResponseModelsEnum_naverAiTab =
+    const ModelsResponseModelsEnum._('naverAiTab');
+const ModelsResponseModelsEnum _$modelsResponseModelsEnum_qwen =
+    const ModelsResponseModelsEnum._('qwen');
+const ModelsResponseModelsEnum _$modelsResponseModelsEnum_doubao =
+    const ModelsResponseModelsEnum._('doubao');
 
 ModelsResponseModelsEnum _$modelsResponseModelsEnumValueOf(String name) {
   switch (name) {
@@ -61,6 +67,12 @@ ModelsResponseModelsEnum _$modelsResponseModelsEnumValueOf(String name) {
       return _$modelsResponseModelsEnum_baiduAi;
     case 'metaAi':
       return _$modelsResponseModelsEnum_metaAi;
+    case 'naverAiTab':
+      return _$modelsResponseModelsEnum_naverAiTab;
+    case 'qwen':
+      return _$modelsResponseModelsEnum_qwen;
+    case 'doubao':
+      return _$modelsResponseModelsEnum_doubao;
     default:
       throw ArgumentError(name);
   }
@@ -81,6 +93,9 @@ final BuiltSet<ModelsResponseModelsEnum> _$modelsResponseModelsEnumValues =
   _$modelsResponseModelsEnum_naverAi,
   _$modelsResponseModelsEnum_baiduAi,
   _$modelsResponseModelsEnum_metaAi,
+  _$modelsResponseModelsEnum_naverAiTab,
+  _$modelsResponseModelsEnum_qwen,
+  _$modelsResponseModelsEnum_doubao,
 ]);
 
 Serializer<ModelsResponseModelsEnum> _$modelsResponseModelsEnumSerializer =
@@ -102,6 +117,9 @@ class _$ModelsResponseModelsEnumSerializer
     'naverAi': 'naver_ai',
     'baiduAi': 'baidu_ai',
     'metaAi': 'meta_ai',
+    'naverAiTab': 'naver_ai_tab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -117,6 +135,9 @@ class _$ModelsResponseModelsEnumSerializer
     'naver_ai': 'naverAi',
     'baidu_ai': 'baiduAi',
     'meta_ai': 'metaAi',
+    'naver_ai_tab': 'naverAiTab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
 
   @override

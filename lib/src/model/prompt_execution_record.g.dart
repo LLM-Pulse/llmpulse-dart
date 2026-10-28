@@ -35,6 +35,13 @@ const PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnum_baiduAi =
     const PromptExecutionRecordModelEnum._('baiduAi');
 const PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnum_metaAi =
     const PromptExecutionRecordModelEnum._('metaAi');
+const PromptExecutionRecordModelEnum
+    _$promptExecutionRecordModelEnum_naverAiTab =
+    const PromptExecutionRecordModelEnum._('naverAiTab');
+const PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnum_qwen =
+    const PromptExecutionRecordModelEnum._('qwen');
+const PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnum_doubao =
+    const PromptExecutionRecordModelEnum._('doubao');
 
 PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnumValueOf(
     String name) {
@@ -65,6 +72,12 @@ PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnumValueOf(
       return _$promptExecutionRecordModelEnum_baiduAi;
     case 'metaAi':
       return _$promptExecutionRecordModelEnum_metaAi;
+    case 'naverAiTab':
+      return _$promptExecutionRecordModelEnum_naverAiTab;
+    case 'qwen':
+      return _$promptExecutionRecordModelEnum_qwen;
+    case 'doubao':
+      return _$promptExecutionRecordModelEnum_doubao;
     default:
       throw ArgumentError(name);
   }
@@ -86,6 +99,9 @@ final BuiltSet<PromptExecutionRecordModelEnum>
   _$promptExecutionRecordModelEnum_naverAi,
   _$promptExecutionRecordModelEnum_baiduAi,
   _$promptExecutionRecordModelEnum_metaAi,
+  _$promptExecutionRecordModelEnum_naverAiTab,
+  _$promptExecutionRecordModelEnum_qwen,
+  _$promptExecutionRecordModelEnum_doubao,
 ]);
 
 Serializer<PromptExecutionRecordModelEnum>
@@ -108,6 +124,9 @@ class _$PromptExecutionRecordModelEnumSerializer
     'naverAi': 'naver_ai',
     'baiduAi': 'baidu_ai',
     'metaAi': 'meta_ai',
+    'naverAiTab': 'naver_ai_tab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -123,6 +142,9 @@ class _$PromptExecutionRecordModelEnumSerializer
     'naver_ai': 'naverAi',
     'baidu_ai': 'baiduAi',
     'meta_ai': 'metaAi',
+    'naver_ai_tab': 'naverAiTab',
+    'qwen': 'qwen',
+    'doubao': 'doubao',
   };
 
   @override

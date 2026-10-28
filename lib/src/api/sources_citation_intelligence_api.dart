@@ -86,7 +86,7 @@ class SourcesCitationIntelligenceApi {
   /// Parameters:
   /// * [projectId] - Project ID
   /// * [urlSha256] - 64-character hex SHA-256 of the cited URL
-  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -182,7 +182,7 @@ class SourcesCitationIntelligenceApi {
   /// Parameters:
   /// * [projectId] - Project ID
   /// * [domains] - Source domains to analyze: one domain or a comma-separated list, e.g. domains=gmac.com,educaweb.com. The bracket form domains[]=gmac.com&domains[]=educaweb.com is also accepted.
-  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -271,7 +271,7 @@ class SourcesCitationIntelligenceApi {
   /// * [perPage] 
   /// * [order] 
   /// * [direction] 
-  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+  /// * [model] - Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)

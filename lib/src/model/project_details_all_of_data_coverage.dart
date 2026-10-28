@@ -19,7 +19,7 @@ part 'project_details_all_of_data_coverage.g.dart';
 abstract class ProjectDetailsAllOfDataCoverage implements Built<ProjectDetailsAllOfDataCoverage, ProjectDetailsAllOfDataCoverageBuilder> {
   @BuiltValueField(wireName: r'models')
   BuiltList<ProjectDetailsAllOfDataCoverageModelsEnum>? get models;
-  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  };
+  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  };
 
   @BuiltValueField(wireName: r'countries')
   BuiltList<String>? get countries;
@@ -175,6 +175,12 @@ class ProjectDetailsAllOfDataCoverageModelsEnum extends EnumClass {
   static const ProjectDetailsAllOfDataCoverageModelsEnum baiduAi = _$projectDetailsAllOfDataCoverageModelsEnum_baiduAi;
   @BuiltValueEnumConst(wireName: r'meta_ai')
   static const ProjectDetailsAllOfDataCoverageModelsEnum metaAi = _$projectDetailsAllOfDataCoverageModelsEnum_metaAi;
+  @BuiltValueEnumConst(wireName: r'naver_ai_tab')
+  static const ProjectDetailsAllOfDataCoverageModelsEnum naverAiTab = _$projectDetailsAllOfDataCoverageModelsEnum_naverAiTab;
+  @BuiltValueEnumConst(wireName: r'qwen')
+  static const ProjectDetailsAllOfDataCoverageModelsEnum qwen = _$projectDetailsAllOfDataCoverageModelsEnum_qwen;
+  @BuiltValueEnumConst(wireName: r'doubao')
+  static const ProjectDetailsAllOfDataCoverageModelsEnum doubao = _$projectDetailsAllOfDataCoverageModelsEnum_doubao;
 
   static Serializer<ProjectDetailsAllOfDataCoverageModelsEnum> get serializer => _$projectDetailsAllOfDataCoverageModelsEnumSerializer;
 

@@ -75,7 +75,7 @@ import 'package:llmpulse/api.dart';
 final api = Llmpulse().getSourcesCitationIntelligenceApi();
 final int projectId = 56; // int | Project ID
 final String urlSha256 = urlSha256_example; // String | 64-character hex SHA-256 of the cited URL
-final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
  **urlSha256** | **String**| 64-character hex SHA-256 of the cited URL | 
- **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
+ **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
@@ -143,7 +143,7 @@ import 'package:llmpulse/api.dart';
 final api = Llmpulse().getSourcesCitationIntelligenceApi();
 final int projectId = 56; // int | Project ID
 final BuiltList<String> domains = ; // BuiltList<String> | Source domains to analyze: one domain or a comma-separated list, e.g. domains=gmac.com,educaweb.com. The bracket form domains[]=gmac.com&domains[]=educaweb.com is also accepted.
-final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
  **domains** | [**BuiltList&lt;String&gt;**](String.md)| Source domains to analyze: one domain or a comma-separated list, e.g. domains=gmac.com,educaweb.com. The bracket form domains[]=gmac.com&domains[]=educaweb.com is also accepted. | 
- **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
+ **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
@@ -207,7 +207,7 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 final String order = order_example; // String | 
 final String direction = direction_example; // String | 
-final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
  **perPage** | **int**|  | [optional] [default to 20]
  **order** | **String**|  | [optional] 
  **direction** | **String**|  | [optional] 
- **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai and baidu_ai are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those seven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
+ **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen and doubao are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those ten that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 

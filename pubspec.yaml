@@ -1,5 +1,5 @@
 name: llmpulse
-version: 1.73.0
+version: 1.74.0
 description: LLM Pulse API client for Dart and Flutter
 homepage: https://github.com/LLM-Pulse/llmpulse-dart
 
