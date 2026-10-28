@@ -177,6 +177,7 @@ doc/ProjectCreateResponseEmailSubscription.md
 doc/ProjectCreateResponseLimits.md
 doc/ProjectCreateResponsePrompts.md
 doc/ProjectCreateResponseSameDomainProjectsInner.md
+doc/ProjectDeleteResponse.md
 doc/ProjectDetails.md
 doc/ProjectDetailsAllOfAgentTraffic.md
 doc/ProjectDetailsAllOfAiTraffic.md
@@ -498,6 +499,7 @@ lib/src/model/project_create_response_email_subscription.dart
 lib/src/model/project_create_response_limits.dart
 lib/src/model/project_create_response_prompts.dart
 lib/src/model/project_create_response_same_domain_projects_inner.dart
+lib/src/model/project_delete_response.dart
 lib/src/model/project_details.dart
 lib/src/model/project_details_all_of_agent_traffic.dart
 lib/src/model/project_details_all_of_ai_traffic.dart

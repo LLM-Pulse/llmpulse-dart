@@ -174,6 +174,7 @@ import 'package:llmpulse/src/model/project_create_response_email_subscription.da
 import 'package:llmpulse/src/model/project_create_response_limits.dart';
 import 'package:llmpulse/src/model/project_create_response_prompts.dart';
 import 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
+import 'package:llmpulse/src/model/project_delete_response.dart';
 import 'package:llmpulse/src/model/project_details.dart';
 import 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
@@ -450,6 +451,7 @@ part 'serializers.g.dart';
   ProjectCreateResponseLimits,
   ProjectCreateResponsePrompts,
   ProjectCreateResponseSameDomainProjectsInner,
+  ProjectDeleteResponse,
   ProjectDetails,
   ProjectDetailsAllOfAgentTraffic,
   ProjectDetailsAllOfAiTraffic,

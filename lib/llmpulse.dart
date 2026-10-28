@@ -198,6 +198,7 @@ export 'package:llmpulse/src/model/project_create_response_email_subscription.da
 export 'package:llmpulse/src/model/project_create_response_limits.dart';
 export 'package:llmpulse/src/model/project_create_response_prompts.dart';
 export 'package:llmpulse/src/model/project_create_response_same_domain_projects_inner.dart';
+export 'package:llmpulse/src/model/project_delete_response.dart';
 export 'package:llmpulse/src/model/project_details.dart';
 export 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 export 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
