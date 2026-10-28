@@ -33,6 +33,7 @@ import 'package:llmpulse/src/model/answer_details.dart';
 import 'package:llmpulse/src/model/answer_details_locale.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/api_error_error.dart';
+import 'package:llmpulse/src/model/api_key_info.dart';
 import 'package:llmpulse/src/model/assign_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/catalog_product.dart';
 import 'package:llmpulse/src/model/catalog_prompt_suggestion.dart';
@@ -61,6 +62,8 @@ import 'package:llmpulse/src/model/competitor_mentions_response.dart';
 import 'package:llmpulse/src/model/competitor_suggestion.dart';
 import 'package:llmpulse/src/model/competitor_suggestions_response.dart';
 import 'package:llmpulse/src/model/create_annotation_request.dart';
+import 'package:llmpulse/src/model/create_api_key201_response.dart';
+import 'package:llmpulse/src/model/create_api_key_request.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
 import 'package:llmpulse/src/model/create_project_draft_request.dart';
@@ -117,6 +120,7 @@ import 'package:llmpulse/src/model/intelligence_task_update_request.dart';
 import 'package:llmpulse/src/model/intelligence_task_update_response.dart';
 import 'package:llmpulse/src/model/intelligence_tasks_response.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
+import 'package:llmpulse/src/model/list_api_keys200_response.dart';
 import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/list_projects200_response.dart';
 import 'package:llmpulse/src/model/list_team_invitations200_response.dart';
@@ -208,6 +212,7 @@ import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
 import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/remove_team_member200_response.dart';
+import 'package:llmpulse/src/model/revoke_api_key200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response_data_inner.dart';
@@ -304,6 +309,7 @@ part 'serializers.g.dart';
   AnswerDetailsLocale,
   ApiError,
   ApiErrorError,
+  ApiKeyInfo,$ApiKeyInfo,
   AssignPromptTagsRequest,
   CatalogProduct,
   CatalogPromptSuggestion,
@@ -332,6 +338,8 @@ part 'serializers.g.dart';
   CompetitorSuggestion,
   CompetitorSuggestionsResponse,
   CreateAnnotationRequest,
+  CreateApiKey201Response,
+  CreateApiKeyRequest,
   CreateCollectionRequest,
   CreateCompetitorRequest,
   CreateProjectDraftRequest,
@@ -388,6 +396,7 @@ part 'serializers.g.dart';
   IntelligenceTaskUpdateResponse,
   IntelligenceTasksResponse,
   LaunchRecommendationsRequest,
+  ListApiKeys200Response,
   ListCompetitors200Response,
   ListProjects200Response,
   ListTeamInvitations200Response,
@@ -479,6 +488,7 @@ part 'serializers.g.dart';
   RecommendationsResponse,
   RemovePromptTagsRequest,
   RemoveTeamMember200Response,
+  RevokeApiKey200Response,
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
   SampleWebhookPayloads200ResponseDataInner,
@@ -871,6 +881,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<JsonObject>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ApiKeyInfo)]),
+        () => ListBuilder<ApiKeyInfo>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Competitor)]),
         () => ListBuilder<Competitor>(),
       )
@@ -930,6 +944,7 @@ Serializers serializers = (_$serializers.toBuilder()
         const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
         () => ListBuilder<SearchConsoleExcludedProperty>(),
       )
+      ..add(ApiKeyInfo.serializer)
       ..add(GeoAudit.serializer)
       ..add(GeoAuditIssue.serializer)
       ..add(GeoAuditRun.serializer)

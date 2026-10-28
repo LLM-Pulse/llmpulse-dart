@@ -11,6 +11,7 @@ import 'package:llmpulse/src/auth/bearer_auth.dart';
 import 'package:llmpulse/src/auth/oauth.dart';
 import 'package:llmpulse/src/api/ai_agent_traffic_api.dart';
 import 'package:llmpulse/src/api/ai_model_insights_api.dart';
+import 'package:llmpulse/src/api/api_keys_api.dart';
 import 'package:llmpulse/src/api/account_api.dart';
 import 'package:llmpulse/src/api/annotations_api.dart';
 import 'package:llmpulse/src/api/answers_api.dart';
@@ -140,6 +141,12 @@ class Llmpulse {
   /// by doing that all interceptors will not be executed
   AIModelInsightsApi getAIModelInsightsApi() {
     return AIModelInsightsApi(dio, serializers);
+  }
+
+  /// Get APIKeysApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  APIKeysApi getAPIKeysApi() {
+    return APIKeysApi(dio, serializers);
   }
 
   /// Get AccountApi instance, base route and serializer can be overridden by a given but be careful,

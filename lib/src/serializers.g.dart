@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (Serializers().toBuilder()
+      ..add($ApiKeyInfo.serializer)
       ..add($GeoAudit.serializer)
       ..add($GeoAuditIssue.serializer)
       ..add($GeoAuditRun.serializer)
@@ -43,6 +44,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ApiError.serializer)
       ..add(ApiErrorError.serializer)
       ..add(ApiErrorErrorCodeEnum.serializer)
+      ..add(ApiKeyInfoScopeEnum.serializer)
       ..add(AssignPromptTagsRequest.serializer)
       ..add(CatalogProduct.serializer)
       ..add(CatalogPromptSuggestion.serializer)
@@ -74,6 +76,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CompetitorSuggestionsResponse.serializer)
       ..add(CompetitorSuggestionsResponseBasisEnum.serializer)
       ..add(CreateAnnotationRequest.serializer)
+      ..add(CreateApiKey201Response.serializer)
+      ..add(CreateApiKeyRequest.serializer)
+      ..add(CreateApiKeyRequestScopeEnum.serializer)
       ..add(CreateCollectionRequest.serializer)
       ..add(CreateCompetitorRequest.serializer)
       ..add(CreateCompetitorRequestCitationMatchModeEnum.serializer)
@@ -154,6 +159,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(IntelligenceTasksResponse.serializer)
       ..add(LaunchRecommendationsRequest.serializer)
       ..add(LaunchRecommendationsRequestRecommendationTypeEnum.serializer)
+      ..add(ListApiKeys200Response.serializer)
       ..add(ListCompetitors200Response.serializer)
       ..add(ListProjects200Response.serializer)
       ..add(ListTeamInvitations200Response.serializer)
@@ -263,6 +269,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(RecommendationsResponse.serializer)
       ..add(RemovePromptTagsRequest.serializer)
       ..add(RemoveTeamMember200Response.serializer)
+      ..add(RevokeApiKey200Response.serializer)
       ..add(RevokeTeamInvitation200Response.serializer)
       ..add(SampleWebhookPayloads200Response.serializer)
       ..add(SampleWebhookPayloads200ResponseDataInner.serializer)
@@ -373,6 +380,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(AiOrdersUpdateRequestDaysInner)]),
           () => ListBuilder<AiOrdersUpdateRequestDaysInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ApiKeyInfo)]),
+          () => ListBuilder<ApiKeyInfo>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CatalogProduct)]),
           () => ListBuilder<CatalogProduct>())
@@ -1040,6 +1050,15 @@ Serializers _$serializers = (Serializers().toBuilder()
             const FullType.nullable(JsonObject)
           ]),
           () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())

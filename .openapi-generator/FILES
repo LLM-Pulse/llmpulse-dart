@@ -4,6 +4,7 @@ README.md
 analysis_options.yaml
 doc/AIAgentTrafficApi.md
 doc/AIModelInsightsApi.md
+doc/APIKeysApi.md
 doc/AccountApi.md
 doc/AccountCapacity.md
 doc/AccountQuota.md
@@ -26,6 +27,7 @@ doc/AnswerDetailsLocale.md
 doc/AnswersApi.md
 doc/ApiError.md
 doc/ApiErrorError.md
+doc/ApiKeyInfo.md
 doc/AssignPromptTagsRequest.md
 doc/CatalogProduct.md
 doc/CatalogPromptSuggestion.md
@@ -56,6 +58,8 @@ doc/CompetitorSuggestion.md
 doc/CompetitorSuggestionsResponse.md
 doc/CompetitorsApi.md
 doc/CreateAnnotationRequest.md
+doc/CreateApiKey201Response.md
+doc/CreateApiKeyRequest.md
 doc/CreateCollectionRequest.md
 doc/CreateCompetitorRequest.md
 doc/CreateProjectDraftRequest.md
@@ -116,6 +120,7 @@ doc/IntelligenceTaskUpdateRequest.md
 doc/IntelligenceTaskUpdateResponse.md
 doc/IntelligenceTasksResponse.md
 doc/LaunchRecommendationsRequest.md
+doc/ListApiKeys200Response.md
 doc/ListCompetitors200Response.md
 doc/ListProjects200Response.md
 doc/ListTeamInvitations200Response.md
@@ -214,6 +219,7 @@ doc/RecommendationsResponse.md
 doc/RemovePromptTagsRequest.md
 doc/RemoveTeamMember200Response.md
 doc/ReputationStudiesApi.md
+doc/RevokeApiKey200Response.md
 doc/RevokeTeamInvitation200Response.md
 doc/SampleWebhookPayloads200Response.md
 doc/SampleWebhookPayloads200ResponseDataInner.md
@@ -302,6 +308,7 @@ lib/src/api/ai_agent_traffic_api.dart
 lib/src/api/ai_model_insights_api.dart
 lib/src/api/annotations_api.dart
 lib/src/api/answers_api.dart
+lib/src/api/api_keys_api.dart
 lib/src/api/collections_tags_api.dart
 lib/src/api/competitors_api.dart
 lib/src/api/custom_reports_api.dart
@@ -349,6 +356,7 @@ lib/src/model/answer_details.dart
 lib/src/model/answer_details_locale.dart
 lib/src/model/api_error.dart
 lib/src/model/api_error_error.dart
+lib/src/model/api_key_info.dart
 lib/src/model/assign_prompt_tags_request.dart
 lib/src/model/catalog_product.dart
 lib/src/model/catalog_prompt_suggestion.dart
@@ -377,6 +385,8 @@ lib/src/model/competitor_mentions_response.dart
 lib/src/model/competitor_suggestion.dart
 lib/src/model/competitor_suggestions_response.dart
 lib/src/model/create_annotation_request.dart
+lib/src/model/create_api_key201_response.dart
+lib/src/model/create_api_key_request.dart
 lib/src/model/create_collection_request.dart
 lib/src/model/create_competitor_request.dart
 lib/src/model/create_project_draft_request.dart
@@ -434,6 +444,7 @@ lib/src/model/intelligence_task_update_request.dart
 lib/src/model/intelligence_task_update_response.dart
 lib/src/model/intelligence_tasks_response.dart
 lib/src/model/launch_recommendations_request.dart
+lib/src/model/list_api_keys200_response.dart
 lib/src/model/list_competitors200_response.dart
 lib/src/model/list_projects200_response.dart
 lib/src/model/list_team_invitations200_response.dart
@@ -525,6 +536,7 @@ lib/src/model/recommendation_summary_summary.dart
 lib/src/model/recommendations_response.dart
 lib/src/model/remove_prompt_tags_request.dart
 lib/src/model/remove_team_member200_response.dart
+lib/src/model/revoke_api_key200_response.dart
 lib/src/model/revoke_team_invitation200_response.dart
 lib/src/model/sample_webhook_payloads200_response.dart
 lib/src/model/sample_webhook_payloads200_response_data_inner.dart
