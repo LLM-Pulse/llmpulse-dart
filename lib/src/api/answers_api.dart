@@ -121,15 +121,15 @@ class AnswersApi {
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [prompt] - Filter by prompt ID
-  /// * [mentionFilter] - Filter by which brands are mentioned, as a two-axis matrix (your brand x competitors): mentions_you / not_mentions_you, mentions_competitor / not_mentions_competitor, and the four combined cells you_and_competitor, competitor_not_you (a rival wins and you are absent), you_not_competitor, no_brands (no tracked brand appears, i.e. open space). Combine with 'competitors' to narrow the competitor side to specific rivals; on a negative cell that reads 'none of these'. On /dimensions/sources it applies to the crawled content of each cited page instead of the answer text. The legacy value 'competitors_only' is still accepted as an alias of competitor_not_you.
-  /// * [citationFilter] - Same two-axis matrix applied to the domains cited in the answer instead of the brands named in it. Independent of mention_filter; pass both to intersect them (e.g. mentions_you + not_cites_you finds answers that talk about you without linking to you).
+  /// * [mentionFilter] - Filter by which brands are mentioned, as a two-axis matrix (your brand x competitors): mentions_you / not_mentions_you, mentions_competitor / not_mentions_competitor, and the four combined cells you_and_competitor, competitor_not_you (a rival wins and you are absent), you_not_competitor, no_brands (no tracked brand appears, i.e. open space; on answers, finished answers only). Combine with 'competitors' to narrow the competitor side to specific rivals; on a negative cell that reads 'none of these'. On /dimensions/sources it applies to the crawled content of each cited page instead of the answer text. The legacy value 'competitors_only' is still accepted as an alias of competitor_not_you.
+  /// * [citationFilter] - Same two-axis matrix applied to the domains cited in the answer instead of the brands named in it (cites_no_brands still allows other domains), plus no_citations, finished answers that cite no source at all. Independent of mention_filter; pass both to intersect them (e.g. mentions_you + not_cites_you finds answers that talk about you without linking to you).
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [page] 
   /// * [perPage] 
   /// * [query] - Case-insensitive full-text search inside AI response texts. Switches items to snippet + match_count mode.
-  /// * [noResult] - Filter sentinel non-answers (the provider returned nothing after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag.
+  /// * [noResult] - Filter sentinel non-answers (no answer could be collected after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
