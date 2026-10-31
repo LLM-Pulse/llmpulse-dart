@@ -479,7 +479,7 @@ class OwnedMediaCommunitiesApi {
   }
 
   /// List cited Reddit content
-  /// Which Reddit content AI answers cite for your tracked prompts. view&#x3D;subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view&#x3D;authors returns one row per author; view&#x3D;threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. Requires the Growth plan or above.
+  /// Which Reddit content AI answers cite for your tracked prompts. view&#x3D;subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view&#x3D;authors returns one row per author; view&#x3D;threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. view&#x3D;breakdowns returns the figures behind Reddit Intelligence &gt; Sentiment and breakdowns: citations is the number of Reddit citations after the filters, and each row is one slice, with breakdown (sentiment, model or country), key, count and pct, the share within its breakdown as the page charts it. Sentiment is that of the AI answer that cited Reddit, with all five labels (very_positive to very_negative) listed, zero included; order and direction do not apply. Requires the Growth plan or above.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
@@ -491,7 +491,7 @@ class OwnedMediaCommunitiesApi {
   /// * [status] - view=threads only
   /// * [owned] - Return only subreddits/authors the account has claimed as its own
   /// * [brand] - Filter to citations whose scraped Reddit content mentions a brand: 'brand' for the tracked brand, or a competitor id. Reads the page content, not the AI answer.
-  /// * [order] - Sort field; the allowed set depends on view
+  /// * [order] - Sort field; the allowed set depends on view, and view=breakdowns accepts none
   /// * [direction] 
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.

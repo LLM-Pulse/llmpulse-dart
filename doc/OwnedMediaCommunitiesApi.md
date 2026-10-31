@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 List cited Reddit content
 
-Which Reddit content AI answers cite for your tracked prompts. view=subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view=authors returns one row per author; view=threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. Requires the Growth plan or above.
+Which Reddit content AI answers cite for your tracked prompts. view=subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view=authors returns one row per author; view=threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. view=breakdowns returns the figures behind Reddit Intelligence > Sentiment and breakdowns: citations is the number of Reddit citations after the filters, and each row is one slice, with breakdown (sentiment, model or country), key, count and pct, the share within its breakdown as the page charts it. Sentiment is that of the AI answer that cited Reddit, with all five labels (very_positive to very_negative) listed, zero included; order and direction do not apply. Requires the Growth plan or above.
 
 ### Example
 ```dart
@@ -286,7 +286,7 @@ final String author = author_example; // String | Filter to one Reddit author
 final String status = status_example; // String | view=threads only
 final bool owned = true; // bool | Return only subreddits/authors the account has claimed as its own
 final String brand = brand_example; // String | Filter to citations whose scraped Reddit content mentions a brand: 'brand' for the tracked brand, or a competitor id. Reads the page content, not the AI answer.
-final String order = order_example; // String | Sort field; the allowed set depends on view
+final String order = order_example; // String | Sort field; the allowed set depends on view, and view=breakdowns accepts none
 final String direction = direction_example; // String | 
 final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
  **status** | **String**| view=threads only | [optional] 
  **owned** | **bool**| Return only subreddits/authors the account has claimed as its own | [optional] 
  **brand** | **String**| Filter to citations whose scraped Reddit content mentions a brand: 'brand' for the tracked brand, or a competitor id. Reads the page content, not the AI answer. | [optional] 
- **order** | **String**| Sort field; the allowed set depends on view | [optional] 
+ **order** | **String**| Sort field; the allowed set depends on view, and view=breakdowns accepts none | [optional] 
  **direction** | **String**|  | [optional] [default to 'desc']
  **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
