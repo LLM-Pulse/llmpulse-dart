@@ -230,7 +230,7 @@ class GEOAuditsApi {
   }
 
   /// Delete (archive) a GEO audit
-  /// Archives the audit. Requires a &#x60;read_write&#x60; scope API key and, for team members, delete permission on GEO Optimization.
+  /// Archives the audit. Requires a &#x60;read_write&#x60; scope API key and, for team members, delete permission on GEO Audits.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
@@ -1073,7 +1073,7 @@ class GEOAuditsApi {
   }
 
   /// Update a GEO audit
-  /// Updates the schedule, the email alerts or the status. Making an audit recurring or resuming it counts against the plan limit of active recurring audits (ERR_LIMIT_REACHED). Requires a &#x60;read_write&#x60; scope API key and, for team members, update permission on GEO Optimization.
+  /// Updates the schedule, the email alerts or the status. Making an audit recurring or resuming it counts against the plan limit of active recurring audits (ERR_LIMIT_REACHED). Requires a &#x60;read_write&#x60; scope API key and, for team members, update permission on GEO Audits.
   ///
   /// Parameters:
   /// * [id] - Audit id
@@ -1176,7 +1176,7 @@ class GEOAuditsApi {
   }
 
   /// Accept or reopen a GEO audit issue
-  /// Requires a &#x60;read_write&#x60; scope API key and, for team members, update permission on GEO Optimization.
+  /// Requires a &#x60;read_write&#x60; scope API key and, for team members, update permission on GEO Audits.
   ///
   /// Parameters:
   /// * [geoAuditId] - Audit id
