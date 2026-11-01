@@ -23,6 +23,12 @@ abstract class ProjectBuilder {
 
   String? get untrackedReason;
   set untrackedReason(String? untrackedReason);
+
+  bool? get pitch;
+  set pitch(bool? pitch);
+
+  DateTime? get pitchExpiresAt;
+  set pitchExpiresAt(DateTime? pitchExpiresAt);
 }
 
 class _$$Project extends $Project {
@@ -36,12 +42,22 @@ class _$$Project extends $Project {
   final bool? tracked;
   @override
   final String? untrackedReason;
+  @override
+  final bool? pitch;
+  @override
+  final DateTime? pitchExpiresAt;
 
   factory _$$Project([void Function($ProjectBuilder)? updates]) =>
       ($ProjectBuilder()..update(updates))._build();
 
   _$$Project._(
-      {this.id, this.name, this.brandName, this.tracked, this.untrackedReason})
+      {this.id,
+      this.name,
+      this.brandName,
+      this.tracked,
+      this.untrackedReason,
+      this.pitch,
+      this.pitchExpiresAt})
       : super._();
   @override
   $Project rebuild(void Function($ProjectBuilder) updates) =>
@@ -58,7 +74,9 @@ class _$$Project extends $Project {
         name == other.name &&
         brandName == other.brandName &&
         tracked == other.tracked &&
-        untrackedReason == other.untrackedReason;
+        untrackedReason == other.untrackedReason &&
+        pitch == other.pitch &&
+        pitchExpiresAt == other.pitchExpiresAt;
   }
 
   @override
@@ -69,6 +87,8 @@ class _$$Project extends $Project {
     _$hash = $jc(_$hash, brandName.hashCode);
     _$hash = $jc(_$hash, tracked.hashCode);
     _$hash = $jc(_$hash, untrackedReason.hashCode);
+    _$hash = $jc(_$hash, pitch.hashCode);
+    _$hash = $jc(_$hash, pitchExpiresAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,7 +100,9 @@ class _$$Project extends $Project {
           ..add('name', name)
           ..add('brandName', brandName)
           ..add('tracked', tracked)
-          ..add('untrackedReason', untrackedReason))
+          ..add('untrackedReason', untrackedReason)
+          ..add('pitch', pitch)
+          ..add('pitchExpiresAt', pitchExpiresAt))
         .toString();
   }
 }
@@ -110,6 +132,15 @@ class $ProjectBuilder
   set untrackedReason(covariant String? untrackedReason) =>
       _$this._untrackedReason = untrackedReason;
 
+  bool? _pitch;
+  bool? get pitch => _$this._pitch;
+  set pitch(covariant bool? pitch) => _$this._pitch = pitch;
+
+  DateTime? _pitchExpiresAt;
+  DateTime? get pitchExpiresAt => _$this._pitchExpiresAt;
+  set pitchExpiresAt(covariant DateTime? pitchExpiresAt) =>
+      _$this._pitchExpiresAt = pitchExpiresAt;
+
   $ProjectBuilder() {
     $Project._defaults(this);
   }
@@ -122,6 +153,8 @@ class $ProjectBuilder
       _brandName = $v.brandName;
       _tracked = $v.tracked;
       _untrackedReason = $v.untrackedReason;
+      _pitch = $v.pitch;
+      _pitchExpiresAt = $v.pitchExpiresAt;
       _$v = null;
     }
     return this;
@@ -148,6 +181,8 @@ class $ProjectBuilder
           brandName: brandName,
           tracked: tracked,
           untrackedReason: untrackedReason,
+          pitch: pitch,
+          pitchExpiresAt: pitchExpiresAt,
         );
     replace(_$result);
     return _$result;

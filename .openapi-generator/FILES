@@ -7,6 +7,7 @@ doc/AIModelInsightsApi.md
 doc/APIKeysApi.md
 doc/AccountApi.md
 doc/AccountCapacity.md
+doc/AccountPitchQuota.md
 doc/AccountQuota.md
 doc/Actor.md
 doc/AgentBot.md
@@ -182,6 +183,7 @@ doc/ProjectDetails.md
 doc/ProjectDetailsAllOfAgentTraffic.md
 doc/ProjectDetailsAllOfAiTraffic.md
 doc/ProjectDetailsAllOfDataCoverage.md
+doc/ProjectDetailsAllOfPitchRun.md
 doc/ProjectDetailsAllOfSearchConsole.md
 doc/ProjectDetailsAllOfStats.md
 doc/ProjectDetailsAllOfStatsPromptsByBrandKind.md
@@ -339,6 +341,7 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/account_capacity.dart
+lib/src/model/account_pitch_quota.dart
 lib/src/model/account_quota.dart
 lib/src/model/actor.dart
 lib/src/model/agent_bot.dart
@@ -504,6 +507,7 @@ lib/src/model/project_details.dart
 lib/src/model/project_details_all_of_agent_traffic.dart
 lib/src/model/project_details_all_of_ai_traffic.dart
 lib/src/model/project_details_all_of_data_coverage.dart
+lib/src/model/project_details_all_of_pitch_run.dart
 lib/src/model/project_details_all_of_search_console.dart
 lib/src/model/project_details_all_of_stats.dart
 lib/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart

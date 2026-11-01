@@ -21,6 +21,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add($TeamInvitation.serializer)
       ..add($TimeseriesResponse.serializer)
       ..add(AccountCapacity.serializer)
+      ..add(AccountPitchQuota.serializer)
+      ..add(AccountPitchQuotaAccessEnum.serializer)
       ..add(AccountQuota.serializer)
       ..add(Actor.serializer)
       ..add(ActorTypeEnum.serializer)
@@ -226,6 +228,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProjectDetailsAllOfAiTrafficStatusEnum.serializer)
       ..add(ProjectDetailsAllOfDataCoverage.serializer)
       ..add(ProjectDetailsAllOfDataCoverageModelsEnum.serializer)
+      ..add(ProjectDetailsAllOfPitchRun.serializer)
+      ..add(ProjectDetailsAllOfPitchRunModelsEnum.serializer)
+      ..add(ProjectDetailsAllOfPitchRunStatusEnum.serializer)
       ..add(ProjectDetailsAllOfSearchConsole.serializer)
       ..add(ProjectDetailsAllOfSearchConsoleStatusEnum.serializer)
       ..add(ProjectDetailsAllOfStats.serializer)
@@ -548,6 +553,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(ProjectDetailsAllOfPitchRunModelsEnum)]),
+          () => ListBuilder<ProjectDetailsAllOfPitchRunModelsEnum>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(PromptExecutionRecord)]),

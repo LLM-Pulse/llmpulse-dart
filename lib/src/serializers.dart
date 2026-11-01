@@ -15,6 +15,7 @@ import 'package:llmpulse/src/date_serializer.dart';
 import 'package:llmpulse/src/model/date.dart';
 
 import 'package:llmpulse/src/model/account_capacity.dart';
+import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:llmpulse/src/model/actor.dart';
 import 'package:llmpulse/src/model/agent_bot.dart';
@@ -179,6 +180,7 @@ import 'package:llmpulse/src/model/project_details.dart';
 import 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
+import 'package:llmpulse/src/model/project_details_all_of_pitch_run.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
@@ -292,6 +294,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   AccountCapacity,
+  AccountPitchQuota,
   AccountQuota,
   Actor,
   AgentBot,
@@ -456,6 +459,7 @@ part 'serializers.g.dart';
   ProjectDetailsAllOfAgentTraffic,
   ProjectDetailsAllOfAiTraffic,
   ProjectDetailsAllOfDataCoverage,
+  ProjectDetailsAllOfPitchRun,
   ProjectDetailsAllOfSearchConsole,
   ProjectDetailsAllOfStats,
   ProjectDetailsAllOfStatsPromptsByBrandKind,

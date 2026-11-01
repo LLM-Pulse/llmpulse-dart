@@ -10,8 +10,6 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? brandVoice;
   @override
-  final ProjectDetailsAllOfSearchConsole? searchConsole;
-  @override
   final bool? paused;
   @override
   final String? businessModel;
@@ -22,27 +20,13 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? appStoreId;
   @override
-  final String? languageCode;
-  @override
-  final int? promptLimit;
-  @override
-  final String? url;
-  @override
-  final ProjectDetailsAllOfAgentTraffic? agentTraffic;
-  @override
   final DateTime? createdAt;
   @override
   final ProjectDetailsAllOfAiTraffic? aiTraffic;
   @override
-  final String? googlePlayId;
-  @override
-  final String? targetAudience;
-  @override
   final ProjectDetailsAllOfStats? stats;
   @override
   final BuiltList<String>? additionalOwnedDomains;
-  @override
-  final String? businessModelOther;
   @override
   final String? countryCode;
   @override
@@ -50,11 +34,29 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? requestId;
   @override
-  final BuiltList<String>? matchingNames;
-  @override
   final BuiltList<String>? primaryProducts;
   @override
   final String? goals;
+  @override
+  final ProjectDetailsAllOfSearchConsole? searchConsole;
+  @override
+  final String? languageCode;
+  @override
+  final int? promptLimit;
+  @override
+  final ProjectDetailsAllOfPitchRun? pitchRun;
+  @override
+  final String? url;
+  @override
+  final ProjectDetailsAllOfAgentTraffic? agentTraffic;
+  @override
+  final String? googlePlayId;
+  @override
+  final String? targetAudience;
+  @override
+  final String? businessModelOther;
+  @override
+  final BuiltList<String>? matchingNames;
   @override
   final int? id;
   @override
@@ -65,40 +67,47 @@ class _$ProjectDetails extends ProjectDetails {
   final bool? tracked;
   @override
   final String? untrackedReason;
+  @override
+  final bool? pitch;
+  @override
+  final DateTime? pitchExpiresAt;
 
   factory _$ProjectDetails([void Function(ProjectDetailsBuilder)? updates]) =>
       (ProjectDetailsBuilder()..update(updates))._build();
 
   _$ProjectDetails._(
       {this.brandVoice,
-      this.searchConsole,
       this.paused,
       this.businessModel,
       this.description,
       this.industry,
       this.appStoreId,
-      this.languageCode,
-      this.promptLimit,
-      this.url,
-      this.agentTraffic,
       this.createdAt,
       this.aiTraffic,
-      this.googlePlayId,
-      this.targetAudience,
       this.stats,
       this.additionalOwnedDomains,
-      this.businessModelOther,
       this.countryCode,
       this.dataCoverage,
       this.requestId,
-      this.matchingNames,
       this.primaryProducts,
       this.goals,
+      this.searchConsole,
+      this.languageCode,
+      this.promptLimit,
+      this.pitchRun,
+      this.url,
+      this.agentTraffic,
+      this.googlePlayId,
+      this.targetAudience,
+      this.businessModelOther,
+      this.matchingNames,
       this.id,
       this.name,
       this.brandName,
       this.tracked,
-      this.untrackedReason})
+      this.untrackedReason,
+      this.pitch,
+      this.pitchExpiresAt})
       : super._();
   @override
   ProjectDetails rebuild(void Function(ProjectDetailsBuilder) updates) =>
@@ -112,68 +121,74 @@ class _$ProjectDetails extends ProjectDetails {
     if (identical(other, this)) return true;
     return other is ProjectDetails &&
         brandVoice == other.brandVoice &&
-        searchConsole == other.searchConsole &&
         paused == other.paused &&
         businessModel == other.businessModel &&
         description == other.description &&
         industry == other.industry &&
         appStoreId == other.appStoreId &&
-        languageCode == other.languageCode &&
-        promptLimit == other.promptLimit &&
-        url == other.url &&
-        agentTraffic == other.agentTraffic &&
         createdAt == other.createdAt &&
         aiTraffic == other.aiTraffic &&
-        googlePlayId == other.googlePlayId &&
-        targetAudience == other.targetAudience &&
         stats == other.stats &&
         additionalOwnedDomains == other.additionalOwnedDomains &&
-        businessModelOther == other.businessModelOther &&
         countryCode == other.countryCode &&
         dataCoverage == other.dataCoverage &&
         requestId == other.requestId &&
-        matchingNames == other.matchingNames &&
         primaryProducts == other.primaryProducts &&
         goals == other.goals &&
+        searchConsole == other.searchConsole &&
+        languageCode == other.languageCode &&
+        promptLimit == other.promptLimit &&
+        pitchRun == other.pitchRun &&
+        url == other.url &&
+        agentTraffic == other.agentTraffic &&
+        googlePlayId == other.googlePlayId &&
+        targetAudience == other.targetAudience &&
+        businessModelOther == other.businessModelOther &&
+        matchingNames == other.matchingNames &&
         id == other.id &&
         name == other.name &&
         brandName == other.brandName &&
         tracked == other.tracked &&
-        untrackedReason == other.untrackedReason;
+        untrackedReason == other.untrackedReason &&
+        pitch == other.pitch &&
+        pitchExpiresAt == other.pitchExpiresAt;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, brandVoice.hashCode);
-    _$hash = $jc(_$hash, searchConsole.hashCode);
     _$hash = $jc(_$hash, paused.hashCode);
     _$hash = $jc(_$hash, businessModel.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, industry.hashCode);
     _$hash = $jc(_$hash, appStoreId.hashCode);
-    _$hash = $jc(_$hash, languageCode.hashCode);
-    _$hash = $jc(_$hash, promptLimit.hashCode);
-    _$hash = $jc(_$hash, url.hashCode);
-    _$hash = $jc(_$hash, agentTraffic.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, aiTraffic.hashCode);
-    _$hash = $jc(_$hash, googlePlayId.hashCode);
-    _$hash = $jc(_$hash, targetAudience.hashCode);
     _$hash = $jc(_$hash, stats.hashCode);
     _$hash = $jc(_$hash, additionalOwnedDomains.hashCode);
-    _$hash = $jc(_$hash, businessModelOther.hashCode);
     _$hash = $jc(_$hash, countryCode.hashCode);
     _$hash = $jc(_$hash, dataCoverage.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
-    _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, primaryProducts.hashCode);
     _$hash = $jc(_$hash, goals.hashCode);
+    _$hash = $jc(_$hash, searchConsole.hashCode);
+    _$hash = $jc(_$hash, languageCode.hashCode);
+    _$hash = $jc(_$hash, promptLimit.hashCode);
+    _$hash = $jc(_$hash, pitchRun.hashCode);
+    _$hash = $jc(_$hash, url.hashCode);
+    _$hash = $jc(_$hash, agentTraffic.hashCode);
+    _$hash = $jc(_$hash, googlePlayId.hashCode);
+    _$hash = $jc(_$hash, targetAudience.hashCode);
+    _$hash = $jc(_$hash, businessModelOther.hashCode);
+    _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, brandName.hashCode);
     _$hash = $jc(_$hash, tracked.hashCode);
     _$hash = $jc(_$hash, untrackedReason.hashCode);
+    _$hash = $jc(_$hash, pitch.hashCode);
+    _$hash = $jc(_$hash, pitchExpiresAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -182,34 +197,37 @@ class _$ProjectDetails extends ProjectDetails {
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectDetails')
           ..add('brandVoice', brandVoice)
-          ..add('searchConsole', searchConsole)
           ..add('paused', paused)
           ..add('businessModel', businessModel)
           ..add('description', description)
           ..add('industry', industry)
           ..add('appStoreId', appStoreId)
-          ..add('languageCode', languageCode)
-          ..add('promptLimit', promptLimit)
-          ..add('url', url)
-          ..add('agentTraffic', agentTraffic)
           ..add('createdAt', createdAt)
           ..add('aiTraffic', aiTraffic)
-          ..add('googlePlayId', googlePlayId)
-          ..add('targetAudience', targetAudience)
           ..add('stats', stats)
           ..add('additionalOwnedDomains', additionalOwnedDomains)
-          ..add('businessModelOther', businessModelOther)
           ..add('countryCode', countryCode)
           ..add('dataCoverage', dataCoverage)
           ..add('requestId', requestId)
-          ..add('matchingNames', matchingNames)
           ..add('primaryProducts', primaryProducts)
           ..add('goals', goals)
+          ..add('searchConsole', searchConsole)
+          ..add('languageCode', languageCode)
+          ..add('promptLimit', promptLimit)
+          ..add('pitchRun', pitchRun)
+          ..add('url', url)
+          ..add('agentTraffic', agentTraffic)
+          ..add('googlePlayId', googlePlayId)
+          ..add('targetAudience', targetAudience)
+          ..add('businessModelOther', businessModelOther)
+          ..add('matchingNames', matchingNames)
           ..add('id', id)
           ..add('name', name)
           ..add('brandName', brandName)
           ..add('tracked', tracked)
-          ..add('untrackedReason', untrackedReason))
+          ..add('untrackedReason', untrackedReason)
+          ..add('pitch', pitch)
+          ..add('pitchExpiresAt', pitchExpiresAt))
         .toString();
   }
 }
@@ -222,13 +240,6 @@ class ProjectDetailsBuilder
   String? get brandVoice => _$this._brandVoice;
   set brandVoice(covariant String? brandVoice) =>
       _$this._brandVoice = brandVoice;
-
-  ProjectDetailsAllOfSearchConsoleBuilder? _searchConsole;
-  ProjectDetailsAllOfSearchConsoleBuilder get searchConsole =>
-      _$this._searchConsole ??= ProjectDetailsAllOfSearchConsoleBuilder();
-  set searchConsole(
-          covariant ProjectDetailsAllOfSearchConsoleBuilder? searchConsole) =>
-      _$this._searchConsole = searchConsole;
 
   bool? _paused;
   bool? get paused => _$this._paused;
@@ -253,27 +264,6 @@ class ProjectDetailsBuilder
   set appStoreId(covariant String? appStoreId) =>
       _$this._appStoreId = appStoreId;
 
-  String? _languageCode;
-  String? get languageCode => _$this._languageCode;
-  set languageCode(covariant String? languageCode) =>
-      _$this._languageCode = languageCode;
-
-  int? _promptLimit;
-  int? get promptLimit => _$this._promptLimit;
-  set promptLimit(covariant int? promptLimit) =>
-      _$this._promptLimit = promptLimit;
-
-  String? _url;
-  String? get url => _$this._url;
-  set url(covariant String? url) => _$this._url = url;
-
-  ProjectDetailsAllOfAgentTrafficBuilder? _agentTraffic;
-  ProjectDetailsAllOfAgentTrafficBuilder get agentTraffic =>
-      _$this._agentTraffic ??= ProjectDetailsAllOfAgentTrafficBuilder();
-  set agentTraffic(
-          covariant ProjectDetailsAllOfAgentTrafficBuilder? agentTraffic) =>
-      _$this._agentTraffic = agentTraffic;
-
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(covariant DateTime? createdAt) => _$this._createdAt = createdAt;
@@ -283,16 +273,6 @@ class ProjectDetailsBuilder
       _$this._aiTraffic ??= ProjectDetailsAllOfAiTrafficBuilder();
   set aiTraffic(covariant ProjectDetailsAllOfAiTrafficBuilder? aiTraffic) =>
       _$this._aiTraffic = aiTraffic;
-
-  String? _googlePlayId;
-  String? get googlePlayId => _$this._googlePlayId;
-  set googlePlayId(covariant String? googlePlayId) =>
-      _$this._googlePlayId = googlePlayId;
-
-  String? _targetAudience;
-  String? get targetAudience => _$this._targetAudience;
-  set targetAudience(covariant String? targetAudience) =>
-      _$this._targetAudience = targetAudience;
 
   ProjectDetailsAllOfStatsBuilder? _stats;
   ProjectDetailsAllOfStatsBuilder get stats =>
@@ -306,11 +286,6 @@ class ProjectDetailsBuilder
   set additionalOwnedDomains(
           covariant ListBuilder<String>? additionalOwnedDomains) =>
       _$this._additionalOwnedDomains = additionalOwnedDomains;
-
-  String? _businessModelOther;
-  String? get businessModelOther => _$this._businessModelOther;
-  set businessModelOther(covariant String? businessModelOther) =>
-      _$this._businessModelOther = businessModelOther;
 
   String? _countryCode;
   String? get countryCode => _$this._countryCode;
@@ -328,12 +303,6 @@ class ProjectDetailsBuilder
   String? get requestId => _$this._requestId;
   set requestId(covariant String? requestId) => _$this._requestId = requestId;
 
-  ListBuilder<String>? _matchingNames;
-  ListBuilder<String> get matchingNames =>
-      _$this._matchingNames ??= ListBuilder<String>();
-  set matchingNames(covariant ListBuilder<String>? matchingNames) =>
-      _$this._matchingNames = matchingNames;
-
   ListBuilder<String>? _primaryProducts;
   ListBuilder<String> get primaryProducts =>
       _$this._primaryProducts ??= ListBuilder<String>();
@@ -343,6 +312,61 @@ class ProjectDetailsBuilder
   String? _goals;
   String? get goals => _$this._goals;
   set goals(covariant String? goals) => _$this._goals = goals;
+
+  ProjectDetailsAllOfSearchConsoleBuilder? _searchConsole;
+  ProjectDetailsAllOfSearchConsoleBuilder get searchConsole =>
+      _$this._searchConsole ??= ProjectDetailsAllOfSearchConsoleBuilder();
+  set searchConsole(
+          covariant ProjectDetailsAllOfSearchConsoleBuilder? searchConsole) =>
+      _$this._searchConsole = searchConsole;
+
+  String? _languageCode;
+  String? get languageCode => _$this._languageCode;
+  set languageCode(covariant String? languageCode) =>
+      _$this._languageCode = languageCode;
+
+  int? _promptLimit;
+  int? get promptLimit => _$this._promptLimit;
+  set promptLimit(covariant int? promptLimit) =>
+      _$this._promptLimit = promptLimit;
+
+  ProjectDetailsAllOfPitchRunBuilder? _pitchRun;
+  ProjectDetailsAllOfPitchRunBuilder get pitchRun =>
+      _$this._pitchRun ??= ProjectDetailsAllOfPitchRunBuilder();
+  set pitchRun(covariant ProjectDetailsAllOfPitchRunBuilder? pitchRun) =>
+      _$this._pitchRun = pitchRun;
+
+  String? _url;
+  String? get url => _$this._url;
+  set url(covariant String? url) => _$this._url = url;
+
+  ProjectDetailsAllOfAgentTrafficBuilder? _agentTraffic;
+  ProjectDetailsAllOfAgentTrafficBuilder get agentTraffic =>
+      _$this._agentTraffic ??= ProjectDetailsAllOfAgentTrafficBuilder();
+  set agentTraffic(
+          covariant ProjectDetailsAllOfAgentTrafficBuilder? agentTraffic) =>
+      _$this._agentTraffic = agentTraffic;
+
+  String? _googlePlayId;
+  String? get googlePlayId => _$this._googlePlayId;
+  set googlePlayId(covariant String? googlePlayId) =>
+      _$this._googlePlayId = googlePlayId;
+
+  String? _targetAudience;
+  String? get targetAudience => _$this._targetAudience;
+  set targetAudience(covariant String? targetAudience) =>
+      _$this._targetAudience = targetAudience;
+
+  String? _businessModelOther;
+  String? get businessModelOther => _$this._businessModelOther;
+  set businessModelOther(covariant String? businessModelOther) =>
+      _$this._businessModelOther = businessModelOther;
+
+  ListBuilder<String>? _matchingNames;
+  ListBuilder<String> get matchingNames =>
+      _$this._matchingNames ??= ListBuilder<String>();
+  set matchingNames(covariant ListBuilder<String>? matchingNames) =>
+      _$this._matchingNames = matchingNames;
 
   int? _id;
   int? get id => _$this._id;
@@ -365,6 +389,15 @@ class ProjectDetailsBuilder
   set untrackedReason(covariant String? untrackedReason) =>
       _$this._untrackedReason = untrackedReason;
 
+  bool? _pitch;
+  bool? get pitch => _$this._pitch;
+  set pitch(covariant bool? pitch) => _$this._pitch = pitch;
+
+  DateTime? _pitchExpiresAt;
+  DateTime? get pitchExpiresAt => _$this._pitchExpiresAt;
+  set pitchExpiresAt(covariant DateTime? pitchExpiresAt) =>
+      _$this._pitchExpiresAt = pitchExpiresAt;
+
   ProjectDetailsBuilder() {
     ProjectDetails._defaults(this);
   }
@@ -373,34 +406,37 @@ class ProjectDetailsBuilder
     final $v = _$v;
     if ($v != null) {
       _brandVoice = $v.brandVoice;
-      _searchConsole = $v.searchConsole?.toBuilder();
       _paused = $v.paused;
       _businessModel = $v.businessModel;
       _description = $v.description;
       _industry = $v.industry;
       _appStoreId = $v.appStoreId;
-      _languageCode = $v.languageCode;
-      _promptLimit = $v.promptLimit;
-      _url = $v.url;
-      _agentTraffic = $v.agentTraffic?.toBuilder();
       _createdAt = $v.createdAt;
       _aiTraffic = $v.aiTraffic?.toBuilder();
-      _googlePlayId = $v.googlePlayId;
-      _targetAudience = $v.targetAudience;
       _stats = $v.stats?.toBuilder();
       _additionalOwnedDomains = $v.additionalOwnedDomains?.toBuilder();
-      _businessModelOther = $v.businessModelOther;
       _countryCode = $v.countryCode;
       _dataCoverage = $v.dataCoverage?.toBuilder();
       _requestId = $v.requestId;
-      _matchingNames = $v.matchingNames?.toBuilder();
       _primaryProducts = $v.primaryProducts?.toBuilder();
       _goals = $v.goals;
+      _searchConsole = $v.searchConsole?.toBuilder();
+      _languageCode = $v.languageCode;
+      _promptLimit = $v.promptLimit;
+      _pitchRun = $v.pitchRun?.toBuilder();
+      _url = $v.url;
+      _agentTraffic = $v.agentTraffic?.toBuilder();
+      _googlePlayId = $v.googlePlayId;
+      _targetAudience = $v.targetAudience;
+      _businessModelOther = $v.businessModelOther;
+      _matchingNames = $v.matchingNames?.toBuilder();
       _id = $v.id;
       _name = $v.name;
       _brandName = $v.brandName;
       _tracked = $v.tracked;
       _untrackedReason = $v.untrackedReason;
+      _pitch = $v.pitch;
+      _pitchExpiresAt = $v.pitchExpiresAt;
       _$v = null;
     }
     return this;
@@ -425,47 +461,43 @@ class ProjectDetailsBuilder
       _$result = _$v ??
           _$ProjectDetails._(
             brandVoice: brandVoice,
-            searchConsole: _searchConsole?.build(),
             paused: paused,
             businessModel: businessModel,
             description: description,
             industry: industry,
             appStoreId: appStoreId,
-            languageCode: languageCode,
-            promptLimit: promptLimit,
-            url: url,
-            agentTraffic: _agentTraffic?.build(),
             createdAt: createdAt,
             aiTraffic: _aiTraffic?.build(),
-            googlePlayId: googlePlayId,
-            targetAudience: targetAudience,
             stats: _stats?.build(),
             additionalOwnedDomains: _additionalOwnedDomains?.build(),
-            businessModelOther: businessModelOther,
             countryCode: countryCode,
             dataCoverage: _dataCoverage?.build(),
             requestId: requestId,
-            matchingNames: _matchingNames?.build(),
             primaryProducts: _primaryProducts?.build(),
             goals: goals,
+            searchConsole: _searchConsole?.build(),
+            languageCode: languageCode,
+            promptLimit: promptLimit,
+            pitchRun: _pitchRun?.build(),
+            url: url,
+            agentTraffic: _agentTraffic?.build(),
+            googlePlayId: googlePlayId,
+            targetAudience: targetAudience,
+            businessModelOther: businessModelOther,
+            matchingNames: _matchingNames?.build(),
             id: id,
             name: name,
             brandName: brandName,
             tracked: tracked,
             untrackedReason: untrackedReason,
+            pitch: pitch,
+            pitchExpiresAt: pitchExpiresAt,
           );
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'searchConsole';
-        _searchConsole?.build();
-
-        _$failedField = 'agentTraffic';
-        _agentTraffic?.build();
-
         _$failedField = 'aiTraffic';
         _aiTraffic?.build();
-
         _$failedField = 'stats';
         _stats?.build();
         _$failedField = 'additionalOwnedDomains';
@@ -474,10 +506,20 @@ class ProjectDetailsBuilder
         _$failedField = 'dataCoverage';
         _dataCoverage?.build();
 
-        _$failedField = 'matchingNames';
-        _matchingNames?.build();
         _$failedField = 'primaryProducts';
         _primaryProducts?.build();
+
+        _$failedField = 'searchConsole';
+        _searchConsole?.build();
+
+        _$failedField = 'pitchRun';
+        _pitchRun?.build();
+
+        _$failedField = 'agentTraffic';
+        _agentTraffic?.build();
+
+        _$failedField = 'matchingNames';
+        _matchingNames?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'ProjectDetails', _$failedField, e.toString());

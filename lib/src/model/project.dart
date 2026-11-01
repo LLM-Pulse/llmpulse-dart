@@ -14,8 +14,10 @@ part 'project.g.dart';
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
 /// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
-/// * [tracked] - Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
-/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [tracked] - Whether scheduled runs include this project. False when it is a pitch project, which runs once, when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+/// * [untrackedReason] - Why tracked is false: pitch_project, paused or project_limit. Null when tracked
+/// * [pitch] - Whether this is a pitch project, a one-off snapshot that runs its prompts once, takes no project slot and is deleted at pitch_expires_at unless it is converted (PATCH /projects/{id} with pitch false)
+/// * [pitchExpiresAt] - When a pitch project is deleted, with its data, unless it is converted first. Null for a tracked project
 @BuiltValue(instantiable: false)
 abstract class Project  {
   @BuiltValueField(wireName: r'id')
@@ -29,13 +31,21 @@ abstract class Project  {
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 
-  /// Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+  /// Whether scheduled runs include this project. False when it is a pitch project, which runs once, when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
   @BuiltValueField(wireName: r'tracked')
   bool? get tracked;
 
-  /// Why tracked is false: paused or project_limit. Null when tracked
+  /// Why tracked is false: pitch_project, paused or project_limit. Null when tracked
   @BuiltValueField(wireName: r'untracked_reason')
   String? get untrackedReason;
+
+  /// Whether this is a pitch project, a one-off snapshot that runs its prompts once, takes no project slot and is deleted at pitch_expires_at unless it is converted (PATCH /projects/{id} with pitch false)
+  @BuiltValueField(wireName: r'pitch')
+  bool? get pitch;
+
+  /// When a pitch project is deleted, with its data, unless it is converted first. Null for a tracked project
+  @BuiltValueField(wireName: r'pitch_expires_at')
+  DateTime? get pitchExpiresAt;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Project> get serializer => _$ProjectSerializer();
@@ -86,6 +96,20 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
       yield serializers.serialize(
         object.untrackedReason,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.pitch != null) {
+      yield r'pitch';
+      yield serializers.serialize(
+        object.pitch,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.pitchExpiresAt != null) {
+      yield r'pitch_expires_at';
+      yield serializers.serialize(
+        object.pitchExpiresAt,
+        specifiedType: const FullType.nullable(DateTime),
       );
     }
   }
@@ -190,6 +214,22 @@ class _$$ProjectSerializer implements PrimitiveSerializer<$Project> {
           ) as String?;
           if (valueDes == null) continue;
           result.untrackedReason = valueDes;
+          break;
+        case r'pitch':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.pitch = valueDes;
+          break;
+        case r'pitch_expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.pitchExpiresAt = valueDes;
           break;
         default:
           unhandled.add(key);

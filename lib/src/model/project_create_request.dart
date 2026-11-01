@@ -37,6 +37,7 @@ part 'project_create_request.g.dart';
 /// * [weeklyEmailSubscribed] 
 /// * [externalIdentifier] - Embed-enabled (Enterprise) accounts only; other accounts receive ERR_PLAN_REQUIRED. Idempotency key and embed-session join key, unique per account
 /// * [executePromptsImmediately] 
+/// * [pitch] - Create a pitch project, a one-off snapshot for a prospect. It runs its prompts once across the account's AI models right away, takes no project slot and its prompts do not count against the prompt quota, and it is deleted 90 days later unless converted by sending pitch false to PATCH /projects/{id}. It uses one of the month's pitch projects (GET /account, limits.pitch_projects), needs access approved for the account and a paid subscription on the Scale tier or higher, takes 1 to 100 prompts, and cannot use a domain the account already tracks or pitched in the last 90 days. execute_prompts_immediately must not be false
 @BuiltValue()
 abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, ProjectCreateRequestBuilder> {
   /// Public HTTP(S) URL with a DNS hostname or public IP address. Credentials, private and special IP addresses, localhost and internal hostnames are rejected.
@@ -117,6 +118,10 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   @BuiltValueField(wireName: r'execute_prompts_immediately')
   bool? get executePromptsImmediately;
 
+  /// Create a pitch project, a one-off snapshot for a prospect. It runs its prompts once across the account's AI models right away, takes no project slot and its prompts do not count against the prompt quota, and it is deleted 90 days later unless converted by sending pitch false to PATCH /projects/{id}. It uses one of the month's pitch projects (GET /account, limits.pitch_projects), needs access approved for the account and a paid subscription on the Scale tier or higher, takes 1 to 100 prompts, and cannot use a domain the account already tracks or pitched in the last 90 days. execute_prompts_immediately must not be false
+  @BuiltValueField(wireName: r'pitch')
+  bool? get pitch;
+
   ProjectCreateRequest._();
 
   factory ProjectCreateRequest([void updates(ProjectCreateRequestBuilder b)]) = _$ProjectCreateRequest;
@@ -125,7 +130,8 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   static void _defaults(ProjectCreateRequestBuilder b) => b
       ..useSubdomain = false
       ..weeklyEmailSubscribed = false
-      ..executePromptsImmediately = true;
+      ..executePromptsImmediately = true
+      ..pitch = false;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<ProjectCreateRequest> get serializer => _$ProjectCreateRequestSerializer();
@@ -286,6 +292,13 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
       yield r'execute_prompts_immediately';
       yield serializers.serialize(
         object.executePromptsImmediately,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.pitch != null) {
+      yield r'pitch';
+      yield serializers.serialize(
+        object.pitch,
         specifiedType: const FullType(bool),
       );
     }
@@ -483,6 +496,14 @@ class _$ProjectCreateRequestSerializer implements PrimitiveSerializer<ProjectCre
           ) as bool?;
           if (valueDes == null) continue;
           result.executePromptsImmediately = valueDes;
+          break;
+        case r'pitch':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.pitch = valueDes;
           break;
         default:
           unhandled.add(key);

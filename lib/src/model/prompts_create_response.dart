@@ -19,7 +19,7 @@ part 'prompts_create_response.g.dart';
 /// * [totalAfter] 
 /// * [promptsAvailable] 
 /// * [tracked] - Whether scheduled runs include the project the prompts were added to. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
-/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [untrackedReason] - Why tracked is false: pitch_project, paused or project_limit. Null when tracked
 /// * [warning] - What to do when tracked is false. Null when tracked
 /// * [data] 
 /// * [requestId] 
@@ -44,7 +44,7 @@ abstract class PromptsCreateResponse implements Built<PromptsCreateResponse, Pro
   @BuiltValueField(wireName: r'tracked')
   bool? get tracked;
 
-  /// Why tracked is false: paused or project_limit. Null when tracked
+  /// Why tracked is false: pitch_project, paused or project_limit. Null when tracked
   @BuiltValueField(wireName: r'untracked_reason')
   String? get untrackedReason;
 

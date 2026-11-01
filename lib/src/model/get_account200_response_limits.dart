@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/account_capacity.dart';
+import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,6 +21,7 @@ part 'get_account200_response_limits.g.dart';
 /// * [teamMembers] 
 /// * [recurringGeoAudits] 
 /// * [geoAuditManualRuns] 
+/// * [pitchProjects] 
 @BuiltValue()
 abstract class GetAccount200ResponseLimits implements Built<GetAccount200ResponseLimits, GetAccount200ResponseLimitsBuilder> {
   @BuiltValueField(wireName: r'prompts')
@@ -42,6 +44,9 @@ abstract class GetAccount200ResponseLimits implements Built<GetAccount200Respons
 
   @BuiltValueField(wireName: r'geo_audit_manual_runs')
   AccountQuota? get geoAuditManualRuns;
+
+  @BuiltValueField(wireName: r'pitch_projects')
+  AccountPitchQuota? get pitchProjects;
 
   GetAccount200ResponseLimits._();
 
@@ -113,6 +118,13 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
       yield serializers.serialize(
         object.geoAuditManualRuns,
         specifiedType: const FullType(AccountQuota),
+      );
+    }
+    if (object.pitchProjects != null) {
+      yield r'pitch_projects';
+      yield serializers.serialize(
+        object.pitchProjects,
+        specifiedType: const FullType(AccountPitchQuota),
       );
     }
   }
@@ -193,6 +205,14 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
           ) as AccountQuota?;
           if (valueDes == null) continue;
           result.geoAuditManualRuns.replace(valueDes);
+          break;
+        case r'pitch_projects':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AccountPitchQuota),
+          ) as AccountPitchQuota?;
+          if (valueDes == null) continue;
+          result.pitchProjects.replace(valueDes);
           break;
         default:
           unhandled.add(key);

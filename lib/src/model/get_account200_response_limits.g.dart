@@ -21,6 +21,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
   final AccountQuota? recurringGeoAudits;
   @override
   final AccountQuota? geoAuditManualRuns;
+  @override
+  final AccountPitchQuota? pitchProjects;
 
   factory _$GetAccount200ResponseLimits(
           [void Function(GetAccount200ResponseLimitsBuilder)? updates]) =>
@@ -33,7 +35,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
       this.intelligenceTasks,
       this.teamMembers,
       this.recurringGeoAudits,
-      this.geoAuditManualRuns})
+      this.geoAuditManualRuns,
+      this.pitchProjects})
       : super._();
   @override
   GetAccount200ResponseLimits rebuild(
@@ -54,7 +57,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
         intelligenceTasks == other.intelligenceTasks &&
         teamMembers == other.teamMembers &&
         recurringGeoAudits == other.recurringGeoAudits &&
-        geoAuditManualRuns == other.geoAuditManualRuns;
+        geoAuditManualRuns == other.geoAuditManualRuns &&
+        pitchProjects == other.pitchProjects;
   }
 
   @override
@@ -67,6 +71,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
     _$hash = $jc(_$hash, teamMembers.hashCode);
     _$hash = $jc(_$hash, recurringGeoAudits.hashCode);
     _$hash = $jc(_$hash, geoAuditManualRuns.hashCode);
+    _$hash = $jc(_$hash, pitchProjects.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,7 +85,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
           ..add('intelligenceTasks', intelligenceTasks)
           ..add('teamMembers', teamMembers)
           ..add('recurringGeoAudits', recurringGeoAudits)
-          ..add('geoAuditManualRuns', geoAuditManualRuns))
+          ..add('geoAuditManualRuns', geoAuditManualRuns)
+          ..add('pitchProjects', pitchProjects))
         .toString();
   }
 }
@@ -130,6 +136,12 @@ class GetAccount200ResponseLimitsBuilder
   set geoAuditManualRuns(AccountQuotaBuilder? geoAuditManualRuns) =>
       _$this._geoAuditManualRuns = geoAuditManualRuns;
 
+  AccountPitchQuotaBuilder? _pitchProjects;
+  AccountPitchQuotaBuilder get pitchProjects =>
+      _$this._pitchProjects ??= AccountPitchQuotaBuilder();
+  set pitchProjects(AccountPitchQuotaBuilder? pitchProjects) =>
+      _$this._pitchProjects = pitchProjects;
+
   GetAccount200ResponseLimitsBuilder() {
     GetAccount200ResponseLimits._defaults(this);
   }
@@ -144,6 +156,7 @@ class GetAccount200ResponseLimitsBuilder
       _teamMembers = $v.teamMembers?.toBuilder();
       _recurringGeoAudits = $v.recurringGeoAudits?.toBuilder();
       _geoAuditManualRuns = $v.geoAuditManualRuns?.toBuilder();
+      _pitchProjects = $v.pitchProjects?.toBuilder();
       _$v = null;
     }
     return this;
@@ -174,6 +187,7 @@ class GetAccount200ResponseLimitsBuilder
             teamMembers: _teamMembers?.build(),
             recurringGeoAudits: _recurringGeoAudits?.build(),
             geoAuditManualRuns: _geoAuditManualRuns?.build(),
+            pitchProjects: _pitchProjects?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -192,6 +206,8 @@ class GetAccount200ResponseLimitsBuilder
         _recurringGeoAudits?.build();
         _$failedField = 'geoAuditManualRuns';
         _geoAuditManualRuns?.build();
+        _$failedField = 'pitchProjects';
+        _pitchProjects?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'GetAccount200ResponseLimits', _$failedField, e.toString());

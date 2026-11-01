@@ -39,6 +39,7 @@ export 'package:llmpulse/src/api/technical_geo_reports_api.dart';
 export 'package:llmpulse/src/api/webhooks_api.dart';
 
 export 'package:llmpulse/src/model/account_capacity.dart';
+export 'package:llmpulse/src/model/account_pitch_quota.dart';
 export 'package:llmpulse/src/model/account_quota.dart';
 export 'package:llmpulse/src/model/actor.dart';
 export 'package:llmpulse/src/model/agent_bot.dart';
@@ -203,6 +204,7 @@ export 'package:llmpulse/src/model/project_details.dart';
 export 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 export 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
 export 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
+export 'package:llmpulse/src/model/project_details_all_of_pitch_run.dart';
 export 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 export 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 export 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';

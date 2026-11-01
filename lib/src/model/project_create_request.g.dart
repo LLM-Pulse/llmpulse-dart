@@ -51,6 +51,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
   final String? externalIdentifier;
   @override
   final bool? executePromptsImmediately;
+  @override
+  final bool? pitch;
 
   factory _$ProjectCreateRequest(
           [void Function(ProjectCreateRequestBuilder)? updates]) =>
@@ -78,7 +80,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
       this.useSubdomain,
       this.weeklyEmailSubscribed,
       this.externalIdentifier,
-      this.executePromptsImmediately})
+      this.executePromptsImmediately,
+      this.pitch})
       : super._();
   @override
   ProjectCreateRequest rebuild(
@@ -114,7 +117,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
         useSubdomain == other.useSubdomain &&
         weeklyEmailSubscribed == other.weeklyEmailSubscribed &&
         externalIdentifier == other.externalIdentifier &&
-        executePromptsImmediately == other.executePromptsImmediately;
+        executePromptsImmediately == other.executePromptsImmediately &&
+        pitch == other.pitch;
   }
 
   @override
@@ -142,6 +146,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
     _$hash = $jc(_$hash, weeklyEmailSubscribed.hashCode);
     _$hash = $jc(_$hash, externalIdentifier.hashCode);
     _$hash = $jc(_$hash, executePromptsImmediately.hashCode);
+    _$hash = $jc(_$hash, pitch.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -170,7 +175,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
           ..add('useSubdomain', useSubdomain)
           ..add('weeklyEmailSubscribed', weeklyEmailSubscribed)
           ..add('externalIdentifier', externalIdentifier)
-          ..add('executePromptsImmediately', executePromptsImmediately))
+          ..add('executePromptsImmediately', executePromptsImmediately)
+          ..add('pitch', pitch))
         .toString();
   }
 }
@@ -288,6 +294,10 @@ class ProjectCreateRequestBuilder
   set executePromptsImmediately(bool? executePromptsImmediately) =>
       _$this._executePromptsImmediately = executePromptsImmediately;
 
+  bool? _pitch;
+  bool? get pitch => _$this._pitch;
+  set pitch(bool? pitch) => _$this._pitch = pitch;
+
   ProjectCreateRequestBuilder() {
     ProjectCreateRequest._defaults(this);
   }
@@ -317,6 +327,7 @@ class ProjectCreateRequestBuilder
       _weeklyEmailSubscribed = $v.weeklyEmailSubscribed;
       _externalIdentifier = $v.externalIdentifier;
       _executePromptsImmediately = $v.executePromptsImmediately;
+      _pitch = $v.pitch;
       _$v = null;
     }
     return this;
@@ -366,6 +377,7 @@ class ProjectCreateRequestBuilder
             weeklyEmailSubscribed: weeklyEmailSubscribed,
             externalIdentifier: externalIdentifier,
             executePromptsImmediately: executePromptsImmediately,
+            pitch: pitch,
           );
     } catch (_) {
       late String _$failedField;

@@ -24,7 +24,7 @@ part 'prompt_record.g.dart';
 /// * [brandKind] - Brand focus: brand, brand_other or non_brand. Null until the prompt is classified
 /// * [lastExecutedAt] - Null until the prompt has run
 /// * [tracked] - Whether scheduled runs include this prompt. False when its project is paused or beyond the plan's project limit, or when the prompt is beyond the plan's prompt limit (the oldest prompts up to the limit run)
-/// * [untrackedReason] - Why tracked is false: paused, project_limit or prompt_limit. Null when tracked
+/// * [untrackedReason] - Why tracked is false: pitch_project, paused, project_limit or prompt_limit. Null when tracked
 /// * [appUrl] - Opens this prompt in the app. The link names its project, so it opens there for any user with access to that project
 @BuiltValue()
 abstract class PromptRecord implements Built<PromptRecord, PromptRecordBuilder> {
@@ -67,7 +67,7 @@ abstract class PromptRecord implements Built<PromptRecord, PromptRecordBuilder> 
   @BuiltValueField(wireName: r'tracked')
   bool get tracked;
 
-  /// Why tracked is false: paused, project_limit or prompt_limit. Null when tracked
+  /// Why tracked is false: pitch_project, paused, project_limit or prompt_limit. Null when tracked
   @BuiltValueField(wireName: r'untracked_reason')
   String? get untrackedReason;
 

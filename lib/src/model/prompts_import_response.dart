@@ -23,7 +23,7 @@ part 'prompts_import_response.g.dart';
 /// * [lengthWarning] - Which tracked AI models will skip new prompts that are too long for them
 /// * [promptsAvailable] - Prompt slots left on the plan; null when unlimited
 /// * [tracked] - Whether scheduled runs include the project the prompts were imported into. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
-/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [untrackedReason] - Why tracked is false: pitch_project, paused or project_limit. Null when tracked
 /// * [warning] - What to do when tracked is false. Null when tracked
 /// * [requestId] 
 @BuiltValue()
@@ -65,7 +65,7 @@ abstract class PromptsImportResponse implements Built<PromptsImportResponse, Pro
   @BuiltValueField(wireName: r'tracked')
   bool get tracked;
 
-  /// Why tracked is false: paused or project_limit. Null when tracked
+  /// Why tracked is false: pitch_project, paused or project_limit. Null when tracked
   @BuiltValueField(wireName: r'untracked_reason')
   String? get untrackedReason;
 

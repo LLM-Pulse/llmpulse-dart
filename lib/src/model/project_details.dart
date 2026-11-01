@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/project_details_all_of_pitch_run.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project.dart';
 import 'package:built_collection/built_collection.dart';
@@ -22,8 +23,10 @@ part 'project_details.g.dart';
 /// * [id] 
 /// * [name] - Internal project label (sidebar, settings, admin)
 /// * [brandName] - LLM-facing brand label (used in prompts and customer-facing charts). Null when not set, in which case prompts and charts use `name`.
-/// * [tracked] - Whether scheduled runs include this project. False when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
-/// * [untrackedReason] - Why tracked is false: paused or project_limit. Null when tracked
+/// * [tracked] - Whether scheduled runs include this project. False when it is a pitch project, which runs once, when it is paused, or when the plan's project limit leaves it out (the oldest projects up to the limit run), so its prompts do not run
+/// * [untrackedReason] - Why tracked is false: pitch_project, paused or project_limit. Null when tracked
+/// * [pitch] - Whether this is a pitch project, a one-off snapshot that runs its prompts once, takes no project slot and is deleted at pitch_expires_at unless it is converted (PATCH /projects/{id} with pitch false)
+/// * [pitchExpiresAt] - When a pitch project is deleted, with its data, unless it is converted first. Null for a tracked project
 /// * [url] 
 /// * [description] 
 /// * [matchingNames] 
@@ -43,6 +46,7 @@ part 'project_details.g.dart';
 /// * [createdAt] 
 /// * [promptLimit] - The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
 /// * [stats] 
+/// * [pitchRun] 
 /// * [dataCoverage] 
 /// * [searchConsole] 
 /// * [aiTraffic] 
@@ -52,9 +56,6 @@ part 'project_details.g.dart';
 abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectDetailsBuilder> {
   @BuiltValueField(wireName: r'brand_voice')
   String? get brandVoice;
-
-  @BuiltValueField(wireName: r'search_console')
-  ProjectDetailsAllOfSearchConsole? get searchConsole;
 
   @BuiltValueField(wireName: r'paused')
   bool? get paused;
@@ -72,30 +73,11 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   @BuiltValueField(wireName: r'app_store_id')
   String? get appStoreId;
 
-  @BuiltValueField(wireName: r'language_code')
-  String? get languageCode;
-
-  /// The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
-  @BuiltValueField(wireName: r'prompt_limit')
-  int? get promptLimit;
-
-  @BuiltValueField(wireName: r'url')
-  String? get url;
-
-  @BuiltValueField(wireName: r'agent_traffic')
-  ProjectDetailsAllOfAgentTraffic? get agentTraffic;
-
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
   @BuiltValueField(wireName: r'ai_traffic')
   ProjectDetailsAllOfAiTraffic? get aiTraffic;
-
-  @BuiltValueField(wireName: r'google_play_id')
-  String? get googlePlayId;
-
-  @BuiltValueField(wireName: r'target_audience')
-  String? get targetAudience;
 
   @BuiltValueField(wireName: r'stats')
   ProjectDetailsAllOfStats? get stats;
@@ -103,10 +85,6 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   /// Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
   @BuiltValueField(wireName: r'additional_owned_domains')
   BuiltList<String>? get additionalOwnedDomains;
-
-  /// Set only when business_model is OTHER
-  @BuiltValueField(wireName: r'business_model_other')
-  String? get businessModelOther;
 
   @BuiltValueField(wireName: r'country_code')
   String? get countryCode;
@@ -117,14 +95,43 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
 
-  @BuiltValueField(wireName: r'matching_names')
-  BuiltList<String>? get matchingNames;
-
   @BuiltValueField(wireName: r'primary_products')
   BuiltList<String>? get primaryProducts;
 
   @BuiltValueField(wireName: r'goals')
   String? get goals;
+
+  @BuiltValueField(wireName: r'search_console')
+  ProjectDetailsAllOfSearchConsole? get searchConsole;
+
+  @BuiltValueField(wireName: r'language_code')
+  String? get languageCode;
+
+  /// The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
+  @BuiltValueField(wireName: r'prompt_limit')
+  int? get promptLimit;
+
+  @BuiltValueField(wireName: r'pitch_run')
+  ProjectDetailsAllOfPitchRun? get pitchRun;
+
+  @BuiltValueField(wireName: r'url')
+  String? get url;
+
+  @BuiltValueField(wireName: r'agent_traffic')
+  ProjectDetailsAllOfAgentTraffic? get agentTraffic;
+
+  @BuiltValueField(wireName: r'google_play_id')
+  String? get googlePlayId;
+
+  @BuiltValueField(wireName: r'target_audience')
+  String? get targetAudience;
+
+  /// Set only when business_model is OTHER
+  @BuiltValueField(wireName: r'business_model_other')
+  String? get businessModelOther;
+
+  @BuiltValueField(wireName: r'matching_names')
+  BuiltList<String>? get matchingNames;
 
   ProjectDetails._();
 
@@ -149,6 +156,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
     ProjectDetails object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.pitchExpiresAt != null) {
+      yield r'pitch_expires_at';
+      yield serializers.serialize(
+        object.pitchExpiresAt,
+        specifiedType: const FullType.nullable(DateTime),
+      );
+    }
     if (object.brandVoice != null) {
       yield r'brand_voice';
       yield serializers.serialize(
@@ -261,6 +275,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
         specifiedType: const FullType(int),
       );
     }
+    if (object.pitch != null) {
+      yield r'pitch';
+      yield serializers.serialize(
+        object.pitch,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.goals != null) {
       yield r'goals';
       yield serializers.serialize(
@@ -294,6 +315,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.promptLimit,
         specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.pitchRun != null) {
+      yield r'pitch_run';
+      yield serializers.serialize(
+        object.pitchRun,
+        specifiedType: const FullType.nullable(ProjectDetailsAllOfPitchRun),
       );
     }
     if (object.url != null) {
@@ -375,6 +403,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'pitch_expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.pitchExpiresAt = valueDes;
+          break;
         case r'brand_voice':
           final valueDes = serializers.deserialize(
             value,
@@ -503,6 +539,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           if (valueDes == null) continue;
           result.id = valueDes;
           break;
+        case r'pitch':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.pitch = valueDes;
+          break;
         case r'goals':
           final valueDes = serializers.deserialize(
             value,
@@ -542,6 +586,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as int?;
           if (valueDes == null) continue;
           result.promptLimit = valueDes;
+          break;
+        case r'pitch_run':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfPitchRun),
+          ) as ProjectDetailsAllOfPitchRun?;
+          if (valueDes == null) continue;
+          result.pitchRun.replace(valueDes);
           break;
         case r'url':
           final valueDes = serializers.deserialize(
