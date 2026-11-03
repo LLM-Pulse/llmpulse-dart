@@ -24,6 +24,8 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
   @override
   final String? warning;
   @override
+  final DateTime? firstRunsWaitUntil;
+  @override
   final BuiltList<PromptsCreateResponseDataInner>? data;
   @override
   final String? requestId;
@@ -41,6 +43,7 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
       this.tracked,
       this.untrackedReason,
       this.warning,
+      this.firstRunsWaitUntil,
       this.data,
       this.requestId})
       : super._();
@@ -65,6 +68,7 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
         tracked == other.tracked &&
         untrackedReason == other.untrackedReason &&
         warning == other.warning &&
+        firstRunsWaitUntil == other.firstRunsWaitUntil &&
         data == other.data &&
         requestId == other.requestId;
   }
@@ -80,6 +84,7 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
     _$hash = $jc(_$hash, tracked.hashCode);
     _$hash = $jc(_$hash, untrackedReason.hashCode);
     _$hash = $jc(_$hash, warning.hashCode);
+    _$hash = $jc(_$hash, firstRunsWaitUntil.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
@@ -97,6 +102,7 @@ class _$PromptsCreateResponse extends PromptsCreateResponse {
           ..add('tracked', tracked)
           ..add('untrackedReason', untrackedReason)
           ..add('warning', warning)
+          ..add('firstRunsWaitUntil', firstRunsWaitUntil)
           ..add('data', data)
           ..add('requestId', requestId))
         .toString();
@@ -141,6 +147,11 @@ class PromptsCreateResponseBuilder
   String? get warning => _$this._warning;
   set warning(String? warning) => _$this._warning = warning;
 
+  DateTime? _firstRunsWaitUntil;
+  DateTime? get firstRunsWaitUntil => _$this._firstRunsWaitUntil;
+  set firstRunsWaitUntil(DateTime? firstRunsWaitUntil) =>
+      _$this._firstRunsWaitUntil = firstRunsWaitUntil;
+
   ListBuilder<PromptsCreateResponseDataInner>? _data;
   ListBuilder<PromptsCreateResponseDataInner> get data =>
       _$this._data ??= ListBuilder<PromptsCreateResponseDataInner>();
@@ -166,6 +177,7 @@ class PromptsCreateResponseBuilder
       _tracked = $v.tracked;
       _untrackedReason = $v.untrackedReason;
       _warning = $v.warning;
+      _firstRunsWaitUntil = $v.firstRunsWaitUntil;
       _data = $v.data?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
@@ -199,6 +211,7 @@ class PromptsCreateResponseBuilder
             tracked: tracked,
             untrackedReason: untrackedReason,
             warning: warning,
+            firstRunsWaitUntil: firstRunsWaitUntil,
             data: _data?.build(),
             requestId: requestId,
           );

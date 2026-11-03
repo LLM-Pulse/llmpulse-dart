@@ -32,6 +32,8 @@ class _$PromptsImportResponse extends PromptsImportResponse {
   @override
   final String? warning;
   @override
+  final DateTime? firstRunsWaitUntil;
+  @override
   final String requestId;
 
   factory _$PromptsImportResponse(
@@ -51,6 +53,7 @@ class _$PromptsImportResponse extends PromptsImportResponse {
       required this.tracked,
       this.untrackedReason,
       this.warning,
+      this.firstRunsWaitUntil,
       required this.requestId})
       : super._();
   @override
@@ -78,6 +81,7 @@ class _$PromptsImportResponse extends PromptsImportResponse {
         tracked == other.tracked &&
         untrackedReason == other.untrackedReason &&
         warning == other.warning &&
+        firstRunsWaitUntil == other.firstRunsWaitUntil &&
         requestId == other.requestId;
   }
 
@@ -96,6 +100,7 @@ class _$PromptsImportResponse extends PromptsImportResponse {
     _$hash = $jc(_$hash, tracked.hashCode);
     _$hash = $jc(_$hash, untrackedReason.hashCode);
     _$hash = $jc(_$hash, warning.hashCode);
+    _$hash = $jc(_$hash, firstRunsWaitUntil.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -116,6 +121,7 @@ class _$PromptsImportResponse extends PromptsImportResponse {
           ..add('tracked', tracked)
           ..add('untrackedReason', untrackedReason)
           ..add('warning', warning)
+          ..add('firstRunsWaitUntil', firstRunsWaitUntil)
           ..add('requestId', requestId))
         .toString();
   }
@@ -179,6 +185,11 @@ class PromptsImportResponseBuilder
   String? get warning => _$this._warning;
   set warning(String? warning) => _$this._warning = warning;
 
+  DateTime? _firstRunsWaitUntil;
+  DateTime? get firstRunsWaitUntil => _$this._firstRunsWaitUntil;
+  set firstRunsWaitUntil(DateTime? firstRunsWaitUntil) =>
+      _$this._firstRunsWaitUntil = firstRunsWaitUntil;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -202,6 +213,7 @@ class PromptsImportResponseBuilder
       _tracked = $v.tracked;
       _untrackedReason = $v.untrackedReason;
       _warning = $v.warning;
+      _firstRunsWaitUntil = $v.firstRunsWaitUntil;
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -245,6 +257,7 @@ class PromptsImportResponseBuilder
                 tracked, r'PromptsImportResponse', 'tracked'),
             untrackedReason: untrackedReason,
             warning: warning,
+            firstRunsWaitUntil: firstRunsWaitUntil,
             requestId: BuiltValueNullFieldError.checkNotNull(
                 requestId, r'PromptsImportResponse', 'requestId'),
           );

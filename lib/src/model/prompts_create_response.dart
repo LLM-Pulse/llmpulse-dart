@@ -20,7 +20,8 @@ part 'prompts_create_response.g.dart';
 /// * [promptsAvailable] 
 /// * [tracked] - Whether scheduled runs include the project the prompts were added to. False when it is paused or beyond the plan's project limit, so the new prompts do not run until that changes
 /// * [untrackedReason] - Why tracked is false: pitch_project, paused or project_limit. Null when tracked
-/// * [warning] - What to do when tracked is false. Null when tracked
+/// * [warning] - What to do when tracked is false, or why some first runs wait when first_runs_wait_until is set. Null otherwise
+/// * [firstRunsWaitUntil] - Set when the account's allowance of AI answers left this cycle cannot give every new prompt one answer per enabled AI model, so the rest run when the allowance resets at this time (00:00 Europe/Madrid). It counts this request's prompts against what was left when it arrived, not first runs other requests queued moments earlier. Null otherwise, when the allowance is unlimited, when tracked is false or when the account is not active
 /// * [data] 
 /// * [requestId] 
 @BuiltValue()
@@ -48,9 +49,13 @@ abstract class PromptsCreateResponse implements Built<PromptsCreateResponse, Pro
   @BuiltValueField(wireName: r'untracked_reason')
   String? get untrackedReason;
 
-  /// What to do when tracked is false. Null when tracked
+  /// What to do when tracked is false, or why some first runs wait when first_runs_wait_until is set. Null otherwise
   @BuiltValueField(wireName: r'warning')
   String? get warning;
+
+  /// Set when the account's allowance of AI answers left this cycle cannot give every new prompt one answer per enabled AI model, so the rest run when the allowance resets at this time (00:00 Europe/Madrid). It counts this request's prompts against what was left when it arrived, not first runs other requests queued moments earlier. Null otherwise, when the allowance is unlimited, when tracked is false or when the account is not active
+  @BuiltValueField(wireName: r'first_runs_wait_until')
+  DateTime? get firstRunsWaitUntil;
 
   @BuiltValueField(wireName: r'data')
   BuiltList<PromptsCreateResponseDataInner>? get data;
@@ -135,6 +140,13 @@ class _$PromptsCreateResponseSerializer implements PrimitiveSerializer<PromptsCr
       yield serializers.serialize(
         object.warning,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.firstRunsWaitUntil != null) {
+      yield r'first_runs_wait_until';
+      yield serializers.serialize(
+        object.firstRunsWaitUntil,
+        specifiedType: const FullType.nullable(DateTime),
       );
     }
     if (object.data != null) {
@@ -237,6 +249,14 @@ class _$PromptsCreateResponseSerializer implements PrimitiveSerializer<PromptsCr
           ) as String?;
           if (valueDes == null) continue;
           result.warning = valueDes;
+          break;
+        case r'first_runs_wait_until':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.firstRunsWaitUntil = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
