@@ -241,11 +241,22 @@ import 'package:llmpulse/src/model/revoke_api_key200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_ai_visibility_gaps_response.dart';
+import 'package:llmpulse/src/model/search_console_ai_visibility_gaps_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_brand_split_response.dart';
+import 'package:llmpulse/src/model/search_console_brand_split_response_unclassified.dart';
+import 'package:llmpulse/src/model/search_console_cannibalization_response.dart';
+import 'package:llmpulse/src/model/search_console_cannibalization_response_data_inner.dart';
+import 'package:llmpulse/src/model/search_console_cannibalization_response_data_inner_pages_inner.dart';
+import 'package:llmpulse/src/model/search_console_decay_response.dart';
+import 'package:llmpulse/src/model/search_console_decay_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_excluded_property.dart';
 import 'package:llmpulse/src/model/search_console_filters_inner.dart';
 import 'package:llmpulse/src/model/search_console_list_response.dart';
 import 'package:llmpulse/src/model/search_console_list_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_metrics.dart';
+import 'package:llmpulse/src/model/search_console_opportunities_response.dart';
+import 'package:llmpulse/src/model/search_console_opportunities_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_properties_response.dart';
 import 'package:llmpulse/src/model/search_console_properties_response_data_inner.dart';
 import 'package:llmpulse/src/model/search_console_property.dart';
@@ -542,11 +553,22 @@ part 'serializers.g.dart';
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
   SampleWebhookPayloads200ResponseDataInner,
+  SearchConsoleAiVisibilityGapsResponse,
+  SearchConsoleAiVisibilityGapsResponseDataInner,
+  SearchConsoleBrandSplitResponse,
+  SearchConsoleBrandSplitResponseUnclassified,
+  SearchConsoleCannibalizationResponse,
+  SearchConsoleCannibalizationResponseDataInner,
+  SearchConsoleCannibalizationResponseDataInnerPagesInner,
+  SearchConsoleDecayResponse,
+  SearchConsoleDecayResponseDataInner,
   SearchConsoleExcludedProperty,
   SearchConsoleFiltersInner,
   SearchConsoleListResponse,
   SearchConsoleListResponseDataInner,
   SearchConsoleMetrics,
+  SearchConsoleOpportunitiesResponse,
+  SearchConsoleOpportunitiesResponseDataInner,
   SearchConsolePropertiesResponse,
   SearchConsolePropertiesResponseDataInner,
   SearchConsoleProperty,
@@ -659,6 +681,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaAgeBucketShare>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleCannibalizationResponseDataInner)]),
+        () => ListBuilder<SearchConsoleCannibalizationResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelMentionsRow)]),
         () => ListBuilder<AiModelMentionsRow>(),
       )
@@ -763,6 +789,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleAiVisibilityGapsResponseDataInner)]),
+        () => ListBuilder<SearchConsoleAiVisibilityGapsResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
         () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
       )
@@ -847,12 +877,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<CatalogProduct>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleDecayResponseDataInner)]),
+        () => ListBuilder<SearchConsoleDecayResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleProperty)]),
         () => ListBuilder<SearchConsoleProperty>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaPlatformProfiles)]),
         () => ListBuilder<OwnedMediaPlatformProfiles>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleOpportunitiesResponseDataInner)]),
+        () => ListBuilder<SearchConsoleOpportunitiesResponseDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SentimentTagRow)]),
@@ -1009,6 +1047,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ApiKeyInfo)]),
         () => ListBuilder<ApiKeyInfo>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleCannibalizationResponseDataInnerPagesInner)]),
+        () => ListBuilder<SearchConsoleCannibalizationResponseDataInnerPagesInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Competitor)]),
