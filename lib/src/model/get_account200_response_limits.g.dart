@@ -22,6 +22,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
   @override
   final AccountQuota? geoAuditManualRuns;
   @override
+  final AccountExecutionQuota? promptExecutions;
+  @override
   final AccountPitchQuota? pitchProjects;
 
   factory _$GetAccount200ResponseLimits(
@@ -36,6 +38,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
       this.teamMembers,
       this.recurringGeoAudits,
       this.geoAuditManualRuns,
+      this.promptExecutions,
       this.pitchProjects})
       : super._();
   @override
@@ -58,6 +61,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
         teamMembers == other.teamMembers &&
         recurringGeoAudits == other.recurringGeoAudits &&
         geoAuditManualRuns == other.geoAuditManualRuns &&
+        promptExecutions == other.promptExecutions &&
         pitchProjects == other.pitchProjects;
   }
 
@@ -71,6 +75,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
     _$hash = $jc(_$hash, teamMembers.hashCode);
     _$hash = $jc(_$hash, recurringGeoAudits.hashCode);
     _$hash = $jc(_$hash, geoAuditManualRuns.hashCode);
+    _$hash = $jc(_$hash, promptExecutions.hashCode);
     _$hash = $jc(_$hash, pitchProjects.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -86,6 +91,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
           ..add('teamMembers', teamMembers)
           ..add('recurringGeoAudits', recurringGeoAudits)
           ..add('geoAuditManualRuns', geoAuditManualRuns)
+          ..add('promptExecutions', promptExecutions)
           ..add('pitchProjects', pitchProjects))
         .toString();
   }
@@ -136,6 +142,12 @@ class GetAccount200ResponseLimitsBuilder
   set geoAuditManualRuns(AccountQuotaBuilder? geoAuditManualRuns) =>
       _$this._geoAuditManualRuns = geoAuditManualRuns;
 
+  AccountExecutionQuotaBuilder? _promptExecutions;
+  AccountExecutionQuotaBuilder get promptExecutions =>
+      _$this._promptExecutions ??= AccountExecutionQuotaBuilder();
+  set promptExecutions(AccountExecutionQuotaBuilder? promptExecutions) =>
+      _$this._promptExecutions = promptExecutions;
+
   AccountPitchQuotaBuilder? _pitchProjects;
   AccountPitchQuotaBuilder get pitchProjects =>
       _$this._pitchProjects ??= AccountPitchQuotaBuilder();
@@ -156,6 +168,7 @@ class GetAccount200ResponseLimitsBuilder
       _teamMembers = $v.teamMembers?.toBuilder();
       _recurringGeoAudits = $v.recurringGeoAudits?.toBuilder();
       _geoAuditManualRuns = $v.geoAuditManualRuns?.toBuilder();
+      _promptExecutions = $v.promptExecutions?.toBuilder();
       _pitchProjects = $v.pitchProjects?.toBuilder();
       _$v = null;
     }
@@ -187,6 +200,7 @@ class GetAccount200ResponseLimitsBuilder
             teamMembers: _teamMembers?.build(),
             recurringGeoAudits: _recurringGeoAudits?.build(),
             geoAuditManualRuns: _geoAuditManualRuns?.build(),
+            promptExecutions: _promptExecutions?.build(),
             pitchProjects: _pitchProjects?.build(),
           );
     } catch (_) {
@@ -206,6 +220,8 @@ class GetAccount200ResponseLimitsBuilder
         _recurringGeoAudits?.build();
         _$failedField = 'geoAuditManualRuns';
         _geoAuditManualRuns?.build();
+        _$failedField = 'promptExecutions';
+        _promptExecutions?.build();
         _$failedField = 'pitchProjects';
         _pitchProjects?.build();
       } catch (e) {

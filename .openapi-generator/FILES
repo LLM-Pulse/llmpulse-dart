@@ -7,6 +7,7 @@ doc/AIModelInsightsApi.md
 doc/APIKeysApi.md
 doc/AccountApi.md
 doc/AccountCapacity.md
+doc/AccountExecutionQuota.md
 doc/AccountPitchQuota.md
 doc/AccountQuota.md
 doc/Actor.md
@@ -362,6 +363,7 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/account_capacity.dart
+lib/src/model/account_execution_quota.dart
 lib/src/model/account_pitch_quota.dart
 lib/src/model/account_quota.dart
 lib/src/model/actor.dart

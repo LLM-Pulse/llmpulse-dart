@@ -39,6 +39,7 @@ export 'package:llmpulse/src/api/technical_geo_reports_api.dart';
 export 'package:llmpulse/src/api/webhooks_api.dart';
 
 export 'package:llmpulse/src/model/account_capacity.dart';
+export 'package:llmpulse/src/model/account_execution_quota.dart';
 export 'package:llmpulse/src/model/account_pitch_quota.dart';
 export 'package:llmpulse/src/model/account_quota.dart';
 export 'package:llmpulse/src/model/actor.dart';

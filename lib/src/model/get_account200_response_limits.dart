@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/account_capacity.dart';
+import 'package:llmpulse/src/model/account_execution_quota.dart';
 import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:built_value/built_value.dart';
@@ -21,6 +22,7 @@ part 'get_account200_response_limits.g.dart';
 /// * [teamMembers] 
 /// * [recurringGeoAudits] 
 /// * [geoAuditManualRuns] 
+/// * [promptExecutions] 
 /// * [pitchProjects] 
 @BuiltValue()
 abstract class GetAccount200ResponseLimits implements Built<GetAccount200ResponseLimits, GetAccount200ResponseLimitsBuilder> {
@@ -44,6 +46,9 @@ abstract class GetAccount200ResponseLimits implements Built<GetAccount200Respons
 
   @BuiltValueField(wireName: r'geo_audit_manual_runs')
   AccountQuota? get geoAuditManualRuns;
+
+  @BuiltValueField(wireName: r'prompt_executions')
+  AccountExecutionQuota? get promptExecutions;
 
   @BuiltValueField(wireName: r'pitch_projects')
   AccountPitchQuota? get pitchProjects;
@@ -118,6 +123,13 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
       yield serializers.serialize(
         object.geoAuditManualRuns,
         specifiedType: const FullType(AccountQuota),
+      );
+    }
+    if (object.promptExecutions != null) {
+      yield r'prompt_executions';
+      yield serializers.serialize(
+        object.promptExecutions,
+        specifiedType: const FullType(AccountExecutionQuota),
       );
     }
     if (object.pitchProjects != null) {
@@ -205,6 +217,14 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
           ) as AccountQuota?;
           if (valueDes == null) continue;
           result.geoAuditManualRuns.replace(valueDes);
+          break;
+        case r'prompt_executions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AccountExecutionQuota),
+          ) as AccountExecutionQuota?;
+          if (valueDes == null) continue;
+          result.promptExecutions.replace(valueDes);
           break;
         case r'pitch_projects':
           final valueDes = serializers.deserialize(

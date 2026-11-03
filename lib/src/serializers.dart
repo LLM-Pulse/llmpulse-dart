@@ -15,6 +15,7 @@ import 'package:llmpulse/src/date_serializer.dart';
 import 'package:llmpulse/src/model/date.dart';
 
 import 'package:llmpulse/src/model/account_capacity.dart';
+import 'package:llmpulse/src/model/account_execution_quota.dart';
 import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:llmpulse/src/model/actor.dart';
@@ -315,6 +316,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   AccountCapacity,
+  AccountExecutionQuota,
   AccountPitchQuota,
   AccountQuota,
   Actor,
