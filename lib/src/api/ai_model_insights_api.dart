@@ -9,6 +9,7 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
 
 class AIModelInsightsApi {
 
@@ -19,7 +20,7 @@ class AIModelInsightsApi {
   const AIModelInsightsApi(this._dio, this._serializers);
 
   /// AI Model Insights summary
-  /// Per-model mentions, citations, brand net sentiment with raw counts, weighted visibility totals/shares, plus actor matrices. All actor entries use the standard shape &#x60;{ type, id, competitor_id, name, domain }&#x60; with bare (scheme-less) domains.
+  /// Per-model mentions, citations, brand net sentiment with raw counts, weighted visibility totals/shares, plus actor matrices. All actor entries use the standard shape &#x60;{ type, id, competitor_id, name, domain }&#x60; with bare (scheme-less) domains. Rows cover the AI models the account has enabled or that answered in the window. A share, net sentiment or market share value with nothing behind it is null; counts, totals and weighted visibility scores stay 0.
   ///
   /// Parameters:
   /// * [projectId] - Project ID
@@ -40,9 +41,9 @@ class AIModelInsightsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AiModelInsightsSummaryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getAiModelInsightsSummary({ 
+  Future<Response<AiModelInsightsSummaryResponse>> getAiModelInsightsSummary({ 
     required int projectId,
     int? range,
     DateTime? from,
@@ -103,7 +104,35 @@ class AIModelInsightsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AiModelInsightsSummaryResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AiModelInsightsSummaryResponse),
+      ) as AiModelInsightsSummaryResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AiModelInsightsSummaryResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Position distribution comparison

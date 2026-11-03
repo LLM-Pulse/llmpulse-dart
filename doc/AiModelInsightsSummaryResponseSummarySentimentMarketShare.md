@@ -1,0 +1,15 @@
+# llmpulse.model.AiModelInsightsSummaryResponseSummarySentimentMarketShare
+
+## Load the model package
+```dart
+import 'package:llmpulse/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**actors** | [**BuiltList&lt;AiModelSentimentMatrixActor&gt;**](AiModelSentimentMatrixActor.md) | The project and each competitor with a sentiment verdict in the window (only the competitors given in competitors, when it is given), by total_sentiments descending | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

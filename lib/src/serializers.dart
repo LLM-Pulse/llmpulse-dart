@@ -21,6 +21,27 @@ import 'package:llmpulse/src/model/actor.dart';
 import 'package:llmpulse/src/model/agent_bot.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
 import 'package:llmpulse/src/model/agent_traffic_response.dart';
+import 'package:llmpulse/src/model/ai_model_citations_row.dart';
+import 'package:llmpulse/src/model/ai_model_insights_filters_echo.dart';
+import 'package:llmpulse/src/model/ai_model_insights_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_brand_net_sentiment_by_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_citations_by_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_mentions_by_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_sentiment_market_share.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_weighted_visibility_by_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_weighted_visibility_market_share.dart';
+import 'package:llmpulse/src/model/ai_model_mentions_row.dart';
+import 'package:llmpulse/src/model/ai_model_rate_cell.dart';
+import 'package:llmpulse/src/model/ai_model_rate_matrix.dart';
+import 'package:llmpulse/src/model/ai_model_rate_matrix_actor.dart';
+import 'package:llmpulse/src/model/ai_model_sentiment_cell.dart';
+import 'package:llmpulse/src/model/ai_model_sentiment_matrix_actor.dart';
+import 'package:llmpulse/src/model/ai_model_sentiment_row.dart';
+import 'package:llmpulse/src/model/ai_model_weighted_visibility_cell.dart';
+import 'package:llmpulse/src/model/ai_model_weighted_visibility_matrix_actor.dart';
+import 'package:llmpulse/src/model/ai_model_weighted_visibility_row.dart';
 import 'package:llmpulse/src/model/ai_orders_response.dart';
 import 'package:llmpulse/src/model/ai_orders_response_by_source_inner.dart';
 import 'package:llmpulse/src/model/ai_orders_response_series_inner.dart';
@@ -300,6 +321,27 @@ part 'serializers.g.dart';
   AgentBot,
   AgentBotsResponse,
   AgentTrafficResponse,
+  AiModelCitationsRow,
+  AiModelInsightsFiltersEcho,
+  AiModelInsightsModel,$AiModelInsightsModel,
+  AiModelInsightsSummaryResponse,
+  AiModelInsightsSummaryResponseSummary,
+  AiModelInsightsSummaryResponseSummaryBrandNetSentimentByModel,
+  AiModelInsightsSummaryResponseSummaryCitationsByModel,
+  AiModelInsightsSummaryResponseSummaryMentionsByModel,
+  AiModelInsightsSummaryResponseSummarySentimentMarketShare,
+  AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel,
+  AiModelInsightsSummaryResponseSummaryWeightedVisibilityMarketShare,
+  AiModelMentionsRow,
+  AiModelRateCell,
+  AiModelRateMatrix,
+  AiModelRateMatrixActor,
+  AiModelSentimentCell,
+  AiModelSentimentMatrixActor,
+  AiModelSentimentRow,
+  AiModelWeightedVisibilityCell,
+  AiModelWeightedVisibilityMatrixActor,
+  AiModelWeightedVisibilityRow,
   AiOrdersResponse,
   AiOrdersResponseBySourceInner,
   AiOrdersResponseSeriesInner,
@@ -575,8 +617,8 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<MentionRecord>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(OwnedMediaCitingAnswer)]),
-        () => ListBuilder<OwnedMediaCitingAnswer>(),
+        const FullType(BuiltMap, [FullType(String), FullType(AiModelWeightedVisibilityCell)]),
+        () => MapBuilder<String, AiModelWeightedVisibilityCell>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseCurrentInner)]),
@@ -585,22 +627,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptSummaryRow)]),
         () => ListBuilder<PromptSummaryRow>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(TeamMember)]),
-        () => ListBuilder<TeamMember>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
-        () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(TagRef)]),
-        () => ListBuilder<TagRef>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(OwnedMediaContentTypeShare)]),
-        () => ListBuilder<OwnedMediaContentTypeShare>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiOrdersResponseSeriesInner)]),
@@ -615,48 +641,24 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaModelShare>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
-        () => ListBuilder<ProjectCreateRequestCollectionsInner>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaWeek)]),
         () => ListBuilder<OwnedMediaWeek>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(CatalogProduct)]),
-        () => ListBuilder<CatalogProduct>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])]),
         () => ListBuilder<BuiltMap<String, JsonObject>>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsoleProperty)]),
-        () => ListBuilder<SearchConsoleProperty>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(OwnedMediaPlatformProfiles)]),
-        () => ListBuilder<OwnedMediaPlatformProfiles>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SentimentTagRow)]),
-        () => ListBuilder<SentimentTagRow>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CustomReportWidgetRef)]),
         () => ListBuilder<CustomReportWidgetRef>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
-        () => ListBuilder<SearchConsolePropertyError>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaAgeBucketShare)]),
         () => ListBuilder<OwnedMediaAgeBucketShare>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(GeoAuditComparisonChangesInner)]),
-        () => ListBuilder<GeoAuditComparisonChangesInner>(),
+        const FullType(BuiltList, [FullType(AiModelMentionsRow)]),
+        () => ListBuilder<AiModelMentionsRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TopSourcesResponseDataInner)]),
@@ -667,32 +669,24 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaStoreTotals>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsoleRowsResponseDataInner)]),
-        () => ListBuilder<SearchConsoleRowsResponseDataInner>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CompetitorSuggestion)]),
         () => ListBuilder<CompetitorSuggestion>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(TimeseriesSeries)]),
-        () => ListBuilder<TimeseriesSeries>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptExecutionRecord)]),
         () => ListBuilder<PromptExecutionRecord>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(OwnedMediaPlatformRollup)]),
-        () => ListBuilder<OwnedMediaPlatformRollup>(),
+        const FullType(BuiltList, [FullType(AiModelRateMatrixActor)]),
+        () => ListBuilder<AiModelRateMatrixActor>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SentimentTopicRow)]),
         () => ListBuilder<SentimentTopicRow>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType.nullable(JsonObject)]),
-        () => ListBuilder<JsonObject>(),
+        const FullType(BuiltList, [FullType(AiModelSentimentMatrixActor)]),
+        () => ListBuilder<AiModelSentimentMatrixActor>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseAcceptedInner)]),
@@ -703,16 +697,8 @@ Serializers serializers = (_$serializers.toBuilder()
         () => MapBuilder<String, BuiltList<String>>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
-        () => ListBuilder<SearchConsoleListResponseDataInner>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptsImportRequestRowsInner)]),
         () => ListBuilder<PromptsImportRequestRowsInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
-        () => ListBuilder<ProjectCreateResponseCollectionsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAlert)]),
@@ -735,6 +721,174 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(String)]),
+        () => MapBuilder<String, String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateRequestCompetitorsInner)]),
+        () => ListBuilder<ProjectCreateRequestCompetitorsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(IntelligenceTaskProductImagesInner)]),
+        () => ListBuilder<IntelligenceTaskProductImagesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GeoAlertEventsInner)]),
+        () => ListBuilder<GeoAlertEventsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(AiModelRateCell)]),
+        () => MapBuilder<String, AiModelRateCell>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelWeightedVisibilityRow)]),
+        () => ListBuilder<AiModelWeightedVisibilityRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CustomReportWidget)]),
+        () => ListBuilder<CustomReportWidget>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(num)]),
+        () => MapBuilder<String, num>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(TimeseriesSeries)])]),
+        () => MapBuilder<String, BuiltList<TimeseriesSeries>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOrdersUpdateRequestDaysInner)]),
+        () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
+        () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelSentimentRow)]),
+        () => ListBuilder<AiModelSentimentRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TimeseriesPoint)]),
+        () => ListBuilder<TimeseriesPoint>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(JsonObject)]),
+        () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
+        () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleTimeseriesResponseDataInner)]),
+        () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(GeoAuditRun)]),
+        () => ListBuilder<GeoAuditRun>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(IntelligenceTaskSummary)]),
+        () => ListBuilder<IntelligenceTaskSummary>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaCountryShare)]),
+        () => ListBuilder<OwnedMediaCountryShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(String)]),
+        () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseSkippedInner)]),
+        () => ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
+        () => ListBuilder<SearchConsoleExcludedProperty>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(AiModelSentimentCell)]),
+        () => MapBuilder<String, AiModelSentimentCell>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaCitingAnswer)]),
+        () => ListBuilder<OwnedMediaCitingAnswer>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TeamMember)]),
+        () => ListBuilder<TeamMember>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)]),
+        () => ListBuilder<SummaryResponseAllOfSummaryValueInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TagRef)]),
+        () => ListBuilder<TagRef>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaContentTypeShare)]),
+        () => ListBuilder<OwnedMediaContentTypeShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
+        () => ListBuilder<ProjectCreateRequestCollectionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CatalogProduct)]),
+        () => ListBuilder<CatalogProduct>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleProperty)]),
+        () => ListBuilder<SearchConsoleProperty>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformProfiles)]),
+        () => ListBuilder<OwnedMediaPlatformProfiles>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SentimentTagRow)]),
+        () => ListBuilder<SentimentTagRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
+        () => ListBuilder<SearchConsolePropertyError>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GeoAuditComparisonChangesInner)]),
+        () => ListBuilder<GeoAuditComparisonChangesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleRowsResponseDataInner)]),
+        () => ListBuilder<SearchConsoleRowsResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TimeseriesSeries)]),
+        () => ListBuilder<TimeseriesSeries>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformRollup)]),
+        () => ListBuilder<OwnedMediaPlatformRollup>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(JsonObject)]),
+        () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
+        () => ListBuilder<SearchConsoleListResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectCreateResponseCollectionsInner)]),
+        () => ListBuilder<ProjectCreateResponseCollectionsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestion)]),
         () => ListBuilder<CatalogPromptSuggestion>(),
       )
@@ -755,36 +909,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<TeamInvitation>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(String)]),
-        () => MapBuilder<String, String>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(ProjectCreateRequestCompetitorsInner)]),
-        () => ListBuilder<ProjectCreateRequestCompetitorsInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(IntelligenceTaskProductImagesInner)]),
-        () => ListBuilder<IntelligenceTaskProductImagesInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(GeoAlertEventsInner)]),
-        () => ListBuilder<GeoAlertEventsInner>(),
+        const FullType(BuiltList, [FullType(AiModelCitationsRow)]),
+        () => ListBuilder<AiModelCitationsRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(LocalBusiness)]),
         () => ListBuilder<LocalBusiness>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(CustomReportWidget)]),
-        () => ListBuilder<CustomReportWidget>(),
+        const FullType(BuiltList, [FullType(AiModelInsightsModel)]),
+        () => ListBuilder<AiModelInsightsModel>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(StoreConnectionResponseCandidatesInner)]),
         () => ListBuilder<StoreConnectionResponseCandidatesInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(num)]),
-        () => MapBuilder<String, num>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SuggestedPrompt)]),
@@ -799,10 +937,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<CompetitorMentionRecord>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(TimeseriesSeries)])]),
-        () => MapBuilder<String, BuiltList<TimeseriesSeries>>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaProfile)]),
         () => ListBuilder<OwnedMediaProfile>(),
       )
@@ -813,10 +947,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AgentBot)]),
         () => ListBuilder<AgentBot>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(AiOrdersUpdateRequestDaysInner)]),
-        () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsolePropertiesResponseDataInner)]),
@@ -855,10 +985,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<PromptsCreateResponseDataInner>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
-        () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiOrdersResponseBySourceInner)]),
         () => ListBuilder<AiOrdersResponseBySourceInner>(),
       )
@@ -879,14 +1005,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<GeoAuditFinding>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(TimeseriesPoint)]),
-        () => ListBuilder<TimeseriesPoint>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(JsonObject)]),
-        () => ListBuilder<JsonObject>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ApiKeyInfo)]),
         () => ListBuilder<ApiKeyInfo>(),
       )
@@ -897,14 +1015,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaPlatformRollupWeeklyInner)]),
         () => ListBuilder<OwnedMediaPlatformRollupWeeklyInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
-        () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsoleTimeseriesResponseDataInner)]),
-        () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponseOverTimeInner)]),
@@ -919,37 +1029,14 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<int>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType.nullable(GeoAuditRun)]),
-        () => ListBuilder<GeoAuditRun>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditIssue)]),
         () => ListBuilder<GeoAuditIssue>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-        () => MapBuilder<String, JsonObject?>(),
+        const FullType(BuiltList, [FullType(AiModelWeightedVisibilityMatrixActor)]),
+        () => ListBuilder<AiModelWeightedVisibilityMatrixActor>(),
       )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(IntelligenceTaskSummary)]),
-        () => ListBuilder<IntelligenceTaskSummary>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(OwnedMediaCountryShare)]),
-        () => ListBuilder<OwnedMediaCountryShare>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(String)]),
-        () => ListBuilder<String>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseSkippedInner)]),
-        () => ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
-        () => ListBuilder<SearchConsoleExcludedProperty>(),
-      )
+      ..add(AiModelInsightsModel.serializer)
       ..add(ApiKeyInfo.serializer)
       ..add(GeoAudit.serializer)
       ..add(GeoAuditIssue.serializer)

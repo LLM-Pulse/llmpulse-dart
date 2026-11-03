@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (Serializers().toBuilder()
+      ..add($AiModelInsightsModel.serializer)
       ..add($ApiKeyInfo.serializer)
       ..add($GeoAudit.serializer)
       ..add($GeoAuditIssue.serializer)
@@ -31,6 +32,33 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AgentTrafficResponse.serializer)
       ..add(AgentTrafficResponseGranularityEnum.serializer)
       ..add(AgentTrafficResponseGroupByEnum.serializer)
+      ..add(AiModelCitationsRow.serializer)
+      ..add(AiModelInsightsFiltersEcho.serializer)
+      ..add(AiModelInsightsSummaryResponse.serializer)
+      ..add(AiModelInsightsSummaryResponseSummary.serializer)
+      ..add(AiModelInsightsSummaryResponseSummaryBrandNetSentimentByModel
+          .serializer)
+      ..add(AiModelInsightsSummaryResponseSummaryCitationsByModel.serializer)
+      ..add(AiModelInsightsSummaryResponseSummaryMentionsByModel.serializer)
+      ..add(
+          AiModelInsightsSummaryResponseSummarySentimentMarketShare.serializer)
+      ..add(AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel
+          .serializer)
+      ..add(AiModelInsightsSummaryResponseSummaryWeightedVisibilityMarketShare
+          .serializer)
+      ..add(AiModelMentionsRow.serializer)
+      ..add(AiModelRateCell.serializer)
+      ..add(AiModelRateMatrix.serializer)
+      ..add(AiModelRateMatrixActor.serializer)
+      ..add(AiModelRateMatrixActorTypeEnum.serializer)
+      ..add(AiModelSentimentCell.serializer)
+      ..add(AiModelSentimentMatrixActor.serializer)
+      ..add(AiModelSentimentMatrixActorTypeEnum.serializer)
+      ..add(AiModelSentimentRow.serializer)
+      ..add(AiModelWeightedVisibilityCell.serializer)
+      ..add(AiModelWeightedVisibilityMatrixActor.serializer)
+      ..add(AiModelWeightedVisibilityMatrixActorTypeEnum.serializer)
+      ..add(AiModelWeightedVisibilityRow.serializer)
       ..add(AiOrdersResponse.serializer)
       ..add(AiOrdersResponseBySourceInner.serializer)
       ..add(AiOrdersResponseSeriesInner.serializer)
@@ -374,6 +402,33 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelCitationsRow)]),
+          () => ListBuilder<AiModelCitationsRow>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelInsightsModel)]),
+          () => ListBuilder<AiModelInsightsModel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AiModelMentionsRow)]),
+          () => ListBuilder<AiModelMentionsRow>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelSentimentMatrixActor)]),
+          () => ListBuilder<AiModelSentimentMatrixActor>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelSentimentRow)]),
+          () => ListBuilder<AiModelSentimentRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(AiModelWeightedVisibilityMatrixActor)]),
+          () => ListBuilder<AiModelWeightedVisibilityMatrixActor>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelWeightedVisibilityRow)]),
+          () => ListBuilder<AiModelWeightedVisibilityRow>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AiOrdersResponseBySourceInner)]),
@@ -1091,6 +1146,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TagRef)]),
           () => ListBuilder<TagRef>())
       ..addBuilderFactory(
@@ -1133,6 +1191,22 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType.nullable(GeoAuditRun)]),
           () => ListBuilder<GeoAuditRun?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(AiModelRateCell)]),
+          () => MapBuilder<String, AiModelRateCell>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(AiModelSentimentCell)
+          ]),
+          () => MapBuilder<String, AiModelSentimentCell>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(AiModelWeightedVisibilityCell)
+          ]),
+          () => MapBuilder<String, AiModelWeightedVisibilityCell>())
       ..addBuilderFactory(
           const FullType(BuiltMap, const [
             const FullType(String),
@@ -1184,6 +1258,14 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),
           () => MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(int)]),
+          () => MapBuilder<String, int>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AiModelRateMatrixActor)]),
+          () => ListBuilder<AiModelRateMatrixActor>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(int)]),
