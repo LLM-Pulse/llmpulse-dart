@@ -30,7 +30,7 @@ abstract class ListWebhooks200ResponseDataInner implements Built<ListWebhooks200
 
   @BuiltValueField(wireName: r'event_type')
   ListWebhooks200ResponseDataInnerEventTypeEnum? get eventType;
-  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  };
+  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  tracking_run.completed,  };
 
   /// The URL deliveries are sent to. A read-only API key receives only its scheme, host and any non-default port followed by `/…` (for example `https://hook.eu1.make.com/…`); a `read_write` scope key receives the full URL.
   @BuiltValueField(wireName: r'target_url')
@@ -266,6 +266,8 @@ class ListWebhooks200ResponseDataInnerEventTypeEnum extends EnumClass {
   static const ListWebhooks200ResponseDataInnerEventTypeEnum geoAuditRunPeriodCompleted = _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditRunPeriodCompleted;
   @BuiltValueEnumConst(wireName: r'geo_audit_alert.triggered')
   static const ListWebhooks200ResponseDataInnerEventTypeEnum geoAuditAlertPeriodTriggered = _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditAlertPeriodTriggered;
+  @BuiltValueEnumConst(wireName: r'tracking_run.completed')
+  static const ListWebhooks200ResponseDataInnerEventTypeEnum trackingRunPeriodCompleted = _$listWebhooks200ResponseDataInnerEventTypeEnum_trackingRunPeriodCompleted;
 
   static Serializer<ListWebhooks200ResponseDataInnerEventTypeEnum> get serializer => _$listWebhooks200ResponseDataInnerEventTypeEnumSerializer;
 

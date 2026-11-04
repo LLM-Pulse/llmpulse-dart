@@ -43,6 +43,9 @@ const CreateWebhook201ResponseEventTypeEnum
     _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered =
     const CreateWebhook201ResponseEventTypeEnum._(
         'geoAuditAlertPeriodTriggered');
+const CreateWebhook201ResponseEventTypeEnum
+    _$createWebhook201ResponseEventTypeEnum_trackingRunPeriodCompleted =
+    const CreateWebhook201ResponseEventTypeEnum._('trackingRunPeriodCompleted');
 
 CreateWebhook201ResponseEventTypeEnum
     _$createWebhook201ResponseEventTypeEnumValueOf(String name) {
@@ -67,6 +70,8 @@ CreateWebhook201ResponseEventTypeEnum
       return _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted;
     case 'geoAuditAlertPeriodTriggered':
       return _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered;
+    case 'trackingRunPeriodCompleted':
+      return _$createWebhook201ResponseEventTypeEnum_trackingRunPeriodCompleted;
     default:
       throw ArgumentError(name);
   }
@@ -85,6 +90,7 @@ final BuiltSet<CreateWebhook201ResponseEventTypeEnum>
   _$createWebhook201ResponseEventTypeEnum_intelligenceTaskPeriodUpdated,
   _$createWebhook201ResponseEventTypeEnum_geoAuditRunPeriodCompleted,
   _$createWebhook201ResponseEventTypeEnum_geoAuditAlertPeriodTriggered,
+  _$createWebhook201ResponseEventTypeEnum_trackingRunPeriodCompleted,
 ]);
 
 Serializer<CreateWebhook201ResponseEventTypeEnum>
@@ -104,6 +110,7 @@ class _$CreateWebhook201ResponseEventTypeEnumSerializer
     'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
     'geoAuditRunPeriodCompleted': 'geo_audit_run.completed',
     'geoAuditAlertPeriodTriggered': 'geo_audit_alert.triggered',
+    'trackingRunPeriodCompleted': 'tracking_run.completed',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -116,6 +123,7 @@ class _$CreateWebhook201ResponseEventTypeEnumSerializer
     'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
     'geo_audit_run.completed': 'geoAuditRunPeriodCompleted',
     'geo_audit_alert.triggered': 'geoAuditAlertPeriodTriggered',
+    'tracking_run.completed': 'trackingRunPeriodCompleted',
   };
 
   @override

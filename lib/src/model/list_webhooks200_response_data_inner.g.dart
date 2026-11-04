@@ -46,6 +46,10 @@ const ListWebhooks200ResponseDataInnerEventTypeEnum
     _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditAlertPeriodTriggered =
     const ListWebhooks200ResponseDataInnerEventTypeEnum._(
         'geoAuditAlertPeriodTriggered');
+const ListWebhooks200ResponseDataInnerEventTypeEnum
+    _$listWebhooks200ResponseDataInnerEventTypeEnum_trackingRunPeriodCompleted =
+    const ListWebhooks200ResponseDataInnerEventTypeEnum._(
+        'trackingRunPeriodCompleted');
 
 ListWebhooks200ResponseDataInnerEventTypeEnum
     _$listWebhooks200ResponseDataInnerEventTypeEnumValueOf(String name) {
@@ -70,6 +74,8 @@ ListWebhooks200ResponseDataInnerEventTypeEnum
       return _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditRunPeriodCompleted;
     case 'geoAuditAlertPeriodTriggered':
       return _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditAlertPeriodTriggered;
+    case 'trackingRunPeriodCompleted':
+      return _$listWebhooks200ResponseDataInnerEventTypeEnum_trackingRunPeriodCompleted;
     default:
       throw ArgumentError(name);
   }
@@ -88,6 +94,7 @@ final BuiltSet<ListWebhooks200ResponseDataInnerEventTypeEnum>
   _$listWebhooks200ResponseDataInnerEventTypeEnum_intelligenceTaskPeriodUpdated,
   _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditRunPeriodCompleted,
   _$listWebhooks200ResponseDataInnerEventTypeEnum_geoAuditAlertPeriodTriggered,
+  _$listWebhooks200ResponseDataInnerEventTypeEnum_trackingRunPeriodCompleted,
 ]);
 
 Serializer<ListWebhooks200ResponseDataInnerEventTypeEnum>
@@ -108,6 +115,7 @@ class _$ListWebhooks200ResponseDataInnerEventTypeEnumSerializer
     'intelligenceTaskPeriodUpdated': 'intelligence_task.updated',
     'geoAuditRunPeriodCompleted': 'geo_audit_run.completed',
     'geoAuditAlertPeriodTriggered': 'geo_audit_alert.triggered',
+    'trackingRunPeriodCompleted': 'tracking_run.completed',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'mention.created': 'mentionPeriodCreated',
@@ -120,6 +128,7 @@ class _$ListWebhooks200ResponseDataInnerEventTypeEnumSerializer
     'intelligence_task.updated': 'intelligenceTaskPeriodUpdated',
     'geo_audit_run.completed': 'geoAuditRunPeriodCompleted',
     'geo_audit_alert.triggered': 'geoAuditAlertPeriodTriggered',
+    'tracking_run.completed': 'trackingRunPeriodCompleted',
   };
 
   @override

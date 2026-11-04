@@ -22,7 +22,7 @@ abstract class CreateWebhookRequest implements Built<CreateWebhookRequest, Creat
 
   @BuiltValueField(wireName: r'event_type')
   CreateWebhookRequestEventTypeEnum get eventType;
-  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  };
+  // enum eventTypeEnum {  mention.created,  competitor_mention.created,  citation.created,  prompt_execution.completed,  sentiment.negative_detected,  recommendation.completed,  intelligence_task.completed,  intelligence_task.updated,  geo_audit_run.completed,  geo_audit_alert.triggered,  tracking_run.completed,  };
 
   /// Public HTTPS URL that will receive signed event payloads
   @BuiltValueField(wireName: r'target_url')
@@ -161,6 +161,8 @@ class CreateWebhookRequestEventTypeEnum extends EnumClass {
   static const CreateWebhookRequestEventTypeEnum geoAuditRunPeriodCompleted = _$createWebhookRequestEventTypeEnum_geoAuditRunPeriodCompleted;
   @BuiltValueEnumConst(wireName: r'geo_audit_alert.triggered')
   static const CreateWebhookRequestEventTypeEnum geoAuditAlertPeriodTriggered = _$createWebhookRequestEventTypeEnum_geoAuditAlertPeriodTriggered;
+  @BuiltValueEnumConst(wireName: r'tracking_run.completed')
+  static const CreateWebhookRequestEventTypeEnum trackingRunPeriodCompleted = _$createWebhookRequestEventTypeEnum_trackingRunPeriodCompleted;
 
   static Serializer<CreateWebhookRequestEventTypeEnum> get serializer => _$createWebhookRequestEventTypeEnumSerializer;
 
