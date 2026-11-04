@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:llmpulse/src/model/owned_media_platform_activity_period.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/owned_media_platform_rollup_weekly_inner.dart';
 import 'package:built_value/built_value.dart';
@@ -19,6 +20,7 @@ part 'owned_media_platform_rollup.g.dart';
 /// * [yours] 
 /// * [sharePct] 
 /// * [weekly] 
+/// * [activity] - One date/citation row per actual project tracking period with runs
 @BuiltValue()
 abstract class OwnedMediaPlatformRollup implements Built<OwnedMediaPlatformRollup, OwnedMediaPlatformRollupBuilder> {
   @BuiltValueField(wireName: r'provider')
@@ -39,6 +41,10 @@ abstract class OwnedMediaPlatformRollup implements Built<OwnedMediaPlatformRollu
 
   @BuiltValueField(wireName: r'weekly')
   BuiltList<OwnedMediaPlatformRollupWeeklyInner>? get weekly;
+
+  /// One date/citation row per actual project tracking period with runs
+  @BuiltValueField(wireName: r'activity')
+  BuiltList<OwnedMediaPlatformActivityPeriod>? get activity;
 
   OwnedMediaPlatformRollup._();
 
@@ -103,6 +109,13 @@ class _$OwnedMediaPlatformRollupSerializer implements PrimitiveSerializer<OwnedM
       yield serializers.serialize(
         object.weekly,
         specifiedType: const FullType(BuiltList, [FullType(OwnedMediaPlatformRollupWeeklyInner)]),
+      );
+    }
+    if (object.activity != null) {
+      yield r'activity';
+      yield serializers.serialize(
+        object.activity,
+        specifiedType: const FullType(BuiltList, [FullType(OwnedMediaPlatformActivityPeriod)]),
       );
     }
   }
@@ -175,6 +188,14 @@ class _$OwnedMediaPlatformRollupSerializer implements PrimitiveSerializer<OwnedM
           ) as BuiltList<OwnedMediaPlatformRollupWeeklyInner>?;
           if (valueDes == null) continue;
           result.weekly.replace(valueDes);
+          break;
+        case r'activity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OwnedMediaPlatformActivityPeriod)]),
+          ) as BuiltList<OwnedMediaPlatformActivityPeriod>?;
+          if (valueDes == null) continue;
+          result.activity.replace(valueDes);
           break;
         default:
           unhandled.add(key);

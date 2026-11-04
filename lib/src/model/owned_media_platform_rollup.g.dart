@@ -121,6 +121,8 @@ class _$OwnedMediaPlatformRollup extends OwnedMediaPlatformRollup {
   final num? sharePct;
   @override
   final BuiltList<OwnedMediaPlatformRollupWeeklyInner>? weekly;
+  @override
+  final BuiltList<OwnedMediaPlatformActivityPeriod>? activity;
 
   factory _$OwnedMediaPlatformRollup(
           [void Function(OwnedMediaPlatformRollupBuilder)? updates]) =>
@@ -132,7 +134,8 @@ class _$OwnedMediaPlatformRollup extends OwnedMediaPlatformRollup {
       this.total,
       this.yours,
       this.sharePct,
-      this.weekly})
+      this.weekly,
+      this.activity})
       : super._();
   @override
   OwnedMediaPlatformRollup rebuild(
@@ -152,7 +155,8 @@ class _$OwnedMediaPlatformRollup extends OwnedMediaPlatformRollup {
         total == other.total &&
         yours == other.yours &&
         sharePct == other.sharePct &&
-        weekly == other.weekly;
+        weekly == other.weekly &&
+        activity == other.activity;
   }
 
   @override
@@ -164,6 +168,7 @@ class _$OwnedMediaPlatformRollup extends OwnedMediaPlatformRollup {
     _$hash = $jc(_$hash, yours.hashCode);
     _$hash = $jc(_$hash, sharePct.hashCode);
     _$hash = $jc(_$hash, weekly.hashCode);
+    _$hash = $jc(_$hash, activity.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -176,7 +181,8 @@ class _$OwnedMediaPlatformRollup extends OwnedMediaPlatformRollup {
           ..add('total', total)
           ..add('yours', yours)
           ..add('sharePct', sharePct)
-          ..add('weekly', weekly))
+          ..add('weekly', weekly)
+          ..add('activity', activity))
         .toString();
   }
 }
@@ -213,6 +219,12 @@ class OwnedMediaPlatformRollupBuilder
   set weekly(ListBuilder<OwnedMediaPlatformRollupWeeklyInner>? weekly) =>
       _$this._weekly = weekly;
 
+  ListBuilder<OwnedMediaPlatformActivityPeriod>? _activity;
+  ListBuilder<OwnedMediaPlatformActivityPeriod> get activity =>
+      _$this._activity ??= ListBuilder<OwnedMediaPlatformActivityPeriod>();
+  set activity(ListBuilder<OwnedMediaPlatformActivityPeriod>? activity) =>
+      _$this._activity = activity;
+
   OwnedMediaPlatformRollupBuilder() {
     OwnedMediaPlatformRollup._defaults(this);
   }
@@ -226,6 +238,7 @@ class OwnedMediaPlatformRollupBuilder
       _yours = $v.yours;
       _sharePct = $v.sharePct;
       _weekly = $v.weekly?.toBuilder();
+      _activity = $v.activity?.toBuilder();
       _$v = null;
     }
     return this;
@@ -255,12 +268,15 @@ class OwnedMediaPlatformRollupBuilder
             yours: yours,
             sharePct: sharePct,
             weekly: _weekly?.build(),
+            activity: _activity?.build(),
           );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'weekly';
         _weekly?.build();
+        _$failedField = 'activity';
+        _activity?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'OwnedMediaPlatformRollup', _$failedField, e.toString());

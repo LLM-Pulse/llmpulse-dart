@@ -16,6 +16,9 @@ part 'owned_media_kpis.g.dart';
 /// * [yourProfile] - Citations of your profile or channel pages. Null for mobile_apps and overview
 /// * [yourContent] - Citations of your posts or videos. Null for mobile_apps and overview
 /// * [sharePct] - yours as a percentage of total (0-100)
+/// * [uniqueSubreddits] - Number of cited subreddits (provider=reddit; null or omitted for other providers)
+/// * [uniqueAuthors] - Number of cited Reddit authors (provider=reddit; null or omitted for other providers)
+/// * [positivePct] - Positive sentiment among rated Reddit citations, as a percentage (provider=reddit; null or omitted for other providers)
 @BuiltValue()
 abstract class OwnedMediaKpis implements Built<OwnedMediaKpis, OwnedMediaKpisBuilder> {
   /// Citations of the platform in the window, yours and everyone else's
@@ -37,6 +40,18 @@ abstract class OwnedMediaKpis implements Built<OwnedMediaKpis, OwnedMediaKpisBui
   /// yours as a percentage of total (0-100)
   @BuiltValueField(wireName: r'share_pct')
   num? get sharePct;
+
+  /// Number of cited subreddits (provider=reddit; null or omitted for other providers)
+  @BuiltValueField(wireName: r'unique_subreddits')
+  int? get uniqueSubreddits;
+
+  /// Number of cited Reddit authors (provider=reddit; null or omitted for other providers)
+  @BuiltValueField(wireName: r'unique_authors')
+  int? get uniqueAuthors;
+
+  /// Positive sentiment among rated Reddit citations, as a percentage (provider=reddit; null or omitted for other providers)
+  @BuiltValueField(wireName: r'positive_pct')
+  num? get positivePct;
 
   OwnedMediaKpis._();
 
@@ -94,6 +109,27 @@ class _$OwnedMediaKpisSerializer implements PrimitiveSerializer<OwnedMediaKpis> 
       yield serializers.serialize(
         object.sharePct,
         specifiedType: const FullType(num),
+      );
+    }
+    if (object.uniqueSubreddits != null) {
+      yield r'unique_subreddits';
+      yield serializers.serialize(
+        object.uniqueSubreddits,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.uniqueAuthors != null) {
+      yield r'unique_authors';
+      yield serializers.serialize(
+        object.uniqueAuthors,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.positivePct != null) {
+      yield r'positive_pct';
+      yield serializers.serialize(
+        object.positivePct,
+        specifiedType: const FullType.nullable(num),
       );
     }
   }
@@ -158,6 +194,30 @@ class _$OwnedMediaKpisSerializer implements PrimitiveSerializer<OwnedMediaKpis> 
           ) as num?;
           if (valueDes == null) continue;
           result.sharePct = valueDes;
+          break;
+        case r'unique_subreddits':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.uniqueSubreddits = valueDes;
+          break;
+        case r'unique_authors':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.uniqueAuthors = valueDes;
+          break;
+        case r'positive_pct':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.positivePct = valueDes;
           break;
         default:
           unhandled.add(key);

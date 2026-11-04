@@ -181,6 +181,7 @@ doc/OwnedMediaKpiChanges.md
 doc/OwnedMediaKpis.md
 doc/OwnedMediaListResponse.md
 doc/OwnedMediaModelShare.md
+doc/OwnedMediaPlatformActivityPeriod.md
 doc/OwnedMediaPlatformProfiles.md
 doc/OwnedMediaPlatformRollup.md
 doc/OwnedMediaPlatformRollupWeeklyInner.md
@@ -190,6 +191,7 @@ doc/OwnedMediaProfilesResponse.md
 doc/OwnedMediaProfilesUpdateResponse.md
 doc/OwnedMediaRow.md
 doc/OwnedMediaStoreTotals.md
+doc/OwnedMediaSummaryActivityPeriod.md
 doc/OwnedMediaSummaryResponse.md
 doc/OwnedMediaSummaryResponsePrevious.md
 doc/OwnedMediaWeek.md
@@ -248,6 +250,9 @@ doc/RecommendationSummary.md
 doc/RecommendationSummarySummary.md
 doc/RecommendationsApi.md
 doc/RecommendationsResponse.md
+doc/RedditBrandShare.md
+doc/RedditPositionShare.md
+doc/RedditSubredditActivityPeriod.md
 doc/RemovePromptTagsRequest.md
 doc/RemoveTeamMember200Response.md
 doc/ReputationStudiesApi.md
@@ -545,6 +550,7 @@ lib/src/model/owned_media_kpi_changes.dart
 lib/src/model/owned_media_kpis.dart
 lib/src/model/owned_media_list_response.dart
 lib/src/model/owned_media_model_share.dart
+lib/src/model/owned_media_platform_activity_period.dart
 lib/src/model/owned_media_platform_profiles.dart
 lib/src/model/owned_media_platform_rollup.dart
 lib/src/model/owned_media_platform_rollup_weekly_inner.dart
@@ -554,6 +560,7 @@ lib/src/model/owned_media_profiles_response.dart
 lib/src/model/owned_media_profiles_update_response.dart
 lib/src/model/owned_media_row.dart
 lib/src/model/owned_media_store_totals.dart
+lib/src/model/owned_media_summary_activity_period.dart
 lib/src/model/owned_media_summary_response.dart
 lib/src/model/owned_media_summary_response_previous.dart
 lib/src/model/owned_media_week.dart
@@ -609,6 +616,9 @@ lib/src/model/recommendation_item_update_response.dart
 lib/src/model/recommendation_summary.dart
 lib/src/model/recommendation_summary_summary.dart
 lib/src/model/recommendations_response.dart
+lib/src/model/reddit_brand_share.dart
+lib/src/model/reddit_position_share.dart
+lib/src/model/reddit_subreddit_activity_period.dart
 lib/src/model/remove_prompt_tags_request.dart
 lib/src/model/remove_team_member200_response.dart
 lib/src/model/revoke_api_key200_response.dart

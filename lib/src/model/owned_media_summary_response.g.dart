@@ -38,6 +38,14 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
   @override
   final BuiltList<OwnedMediaPlatformRollup>? platforms;
   @override
+  final BuiltList<OwnedMediaSummaryActivityPeriod>? activity;
+  @override
+  final BuiltList<RedditSubredditActivityPeriod>? subredditActivity;
+  @override
+  final BuiltList<RedditPositionShare>? positions;
+  @override
+  final BuiltList<RedditBrandShare>? brandShare;
+  @override
   final String? requestId;
 
   factory _$OwnedMediaSummaryResponse(
@@ -60,6 +68,10 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
       this.ageBuckets,
       this.stores,
       this.platforms,
+      this.activity,
+      this.subredditActivity,
+      this.positions,
+      this.brandShare,
       this.requestId})
       : super._();
   @override
@@ -90,6 +102,10 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
         ageBuckets == other.ageBuckets &&
         stores == other.stores &&
         platforms == other.platforms &&
+        activity == other.activity &&
+        subredditActivity == other.subredditActivity &&
+        positions == other.positions &&
+        brandShare == other.brandShare &&
         requestId == other.requestId;
   }
 
@@ -111,6 +127,10 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
     _$hash = $jc(_$hash, ageBuckets.hashCode);
     _$hash = $jc(_$hash, stores.hashCode);
     _$hash = $jc(_$hash, platforms.hashCode);
+    _$hash = $jc(_$hash, activity.hashCode);
+    _$hash = $jc(_$hash, subredditActivity.hashCode);
+    _$hash = $jc(_$hash, positions.hashCode);
+    _$hash = $jc(_$hash, brandShare.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -134,6 +154,10 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
           ..add('ageBuckets', ageBuckets)
           ..add('stores', stores)
           ..add('platforms', platforms)
+          ..add('activity', activity)
+          ..add('subredditActivity', subredditActivity)
+          ..add('positions', positions)
+          ..add('brandShare', brandShare)
           ..add('requestId', requestId))
         .toString();
   }
@@ -221,6 +245,32 @@ class OwnedMediaSummaryResponseBuilder
   set platforms(ListBuilder<OwnedMediaPlatformRollup>? platforms) =>
       _$this._platforms = platforms;
 
+  ListBuilder<OwnedMediaSummaryActivityPeriod>? _activity;
+  ListBuilder<OwnedMediaSummaryActivityPeriod> get activity =>
+      _$this._activity ??= ListBuilder<OwnedMediaSummaryActivityPeriod>();
+  set activity(ListBuilder<OwnedMediaSummaryActivityPeriod>? activity) =>
+      _$this._activity = activity;
+
+  ListBuilder<RedditSubredditActivityPeriod>? _subredditActivity;
+  ListBuilder<RedditSubredditActivityPeriod> get subredditActivity =>
+      _$this._subredditActivity ??=
+          ListBuilder<RedditSubredditActivityPeriod>();
+  set subredditActivity(
+          ListBuilder<RedditSubredditActivityPeriod>? subredditActivity) =>
+      _$this._subredditActivity = subredditActivity;
+
+  ListBuilder<RedditPositionShare>? _positions;
+  ListBuilder<RedditPositionShare> get positions =>
+      _$this._positions ??= ListBuilder<RedditPositionShare>();
+  set positions(ListBuilder<RedditPositionShare>? positions) =>
+      _$this._positions = positions;
+
+  ListBuilder<RedditBrandShare>? _brandShare;
+  ListBuilder<RedditBrandShare> get brandShare =>
+      _$this._brandShare ??= ListBuilder<RedditBrandShare>();
+  set brandShare(ListBuilder<RedditBrandShare>? brandShare) =>
+      _$this._brandShare = brandShare;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -247,6 +297,10 @@ class OwnedMediaSummaryResponseBuilder
       _ageBuckets = $v.ageBuckets?.toBuilder();
       _stores = $v.stores?.toBuilder();
       _platforms = $v.platforms?.toBuilder();
+      _activity = $v.activity?.toBuilder();
+      _subredditActivity = $v.subredditActivity?.toBuilder();
+      _positions = $v.positions?.toBuilder();
+      _brandShare = $v.brandShare?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -286,6 +340,10 @@ class OwnedMediaSummaryResponseBuilder
             ageBuckets: _ageBuckets?.build(),
             stores: _stores?.build(),
             platforms: _platforms?.build(),
+            activity: _activity?.build(),
+            subredditActivity: _subredditActivity?.build(),
+            positions: _positions?.build(),
+            brandShare: _brandShare?.build(),
             requestId: requestId,
           );
     } catch (_) {
@@ -311,6 +369,14 @@ class OwnedMediaSummaryResponseBuilder
         _stores?.build();
         _$failedField = 'platforms';
         _platforms?.build();
+        _$failedField = 'activity';
+        _activity?.build();
+        _$failedField = 'subredditActivity';
+        _subredditActivity?.build();
+        _$failedField = 'positions';
+        _positions?.build();
+        _$failedField = 'brandShare';
+        _brandShare?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'OwnedMediaSummaryResponse', _$failedField, e.toString());

@@ -6,7 +6,72 @@ part of 'owned_media_row.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const OwnedMediaRowStoreEnum _$ownedMediaRowStoreEnum_googlePlay =
+    const OwnedMediaRowStoreEnum._('googlePlay');
+const OwnedMediaRowStoreEnum _$ownedMediaRowStoreEnum_appStore =
+    const OwnedMediaRowStoreEnum._('appStore');
+
+OwnedMediaRowStoreEnum _$ownedMediaRowStoreEnumValueOf(String name) {
+  switch (name) {
+    case 'googlePlay':
+      return _$ownedMediaRowStoreEnum_googlePlay;
+    case 'appStore':
+      return _$ownedMediaRowStoreEnum_appStore;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<OwnedMediaRowStoreEnum> _$ownedMediaRowStoreEnumValues =
+    BuiltSet<OwnedMediaRowStoreEnum>(const <OwnedMediaRowStoreEnum>[
+  _$ownedMediaRowStoreEnum_googlePlay,
+  _$ownedMediaRowStoreEnum_appStore,
+]);
+
+Serializer<OwnedMediaRowStoreEnum> _$ownedMediaRowStoreEnumSerializer =
+    _$OwnedMediaRowStoreEnumSerializer();
+
+class _$OwnedMediaRowStoreEnumSerializer
+    implements PrimitiveSerializer<OwnedMediaRowStoreEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'googlePlay': 'google_play',
+    'appStore': 'app_store',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'google_play': 'googlePlay',
+    'app_store': 'appStore',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[OwnedMediaRowStoreEnum];
+  @override
+  final String wireName = 'OwnedMediaRowStoreEnum';
+
+  @override
+  Object serialize(Serializers serializers, OwnedMediaRowStoreEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  OwnedMediaRowStoreEnum deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      OwnedMediaRowStoreEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$OwnedMediaRow extends OwnedMediaRow {
+  @override
+  final Date? date;
+  @override
+  final String? entityId;
+  @override
+  final String? entityName;
+  @override
+  final String? entityUrl;
+  @override
+  final OwnedMediaRowStoreEnum? store;
+  @override
+  final int? competitorId;
   @override
   final String? title;
   @override
@@ -76,7 +141,13 @@ class _$OwnedMediaRow extends OwnedMediaRow {
       (OwnedMediaRowBuilder()..update(updates))._build();
 
   _$OwnedMediaRow._(
-      {this.title,
+      {this.date,
+      this.entityId,
+      this.entityName,
+      this.entityUrl,
+      this.store,
+      this.competitorId,
+      this.title,
       this.url,
       this.channelName,
       this.channelHandle,
@@ -120,6 +191,12 @@ class _$OwnedMediaRow extends OwnedMediaRow {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is OwnedMediaRow &&
+        date == other.date &&
+        entityId == other.entityId &&
+        entityName == other.entityName &&
+        entityUrl == other.entityUrl &&
+        store == other.store &&
+        competitorId == other.competitorId &&
         title == other.title &&
         url == other.url &&
         channelName == other.channelName &&
@@ -157,6 +234,12 @@ class _$OwnedMediaRow extends OwnedMediaRow {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, date.hashCode);
+    _$hash = $jc(_$hash, entityId.hashCode);
+    _$hash = $jc(_$hash, entityName.hashCode);
+    _$hash = $jc(_$hash, entityUrl.hashCode);
+    _$hash = $jc(_$hash, store.hashCode);
+    _$hash = $jc(_$hash, competitorId.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
     _$hash = $jc(_$hash, channelName.hashCode);
@@ -196,6 +279,12 @@ class _$OwnedMediaRow extends OwnedMediaRow {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'OwnedMediaRow')
+          ..add('date', date)
+          ..add('entityId', entityId)
+          ..add('entityName', entityName)
+          ..add('entityUrl', entityUrl)
+          ..add('store', store)
+          ..add('competitorId', competitorId)
           ..add('title', title)
           ..add('url', url)
           ..add('channelName', channelName)
@@ -235,6 +324,30 @@ class _$OwnedMediaRow extends OwnedMediaRow {
 class OwnedMediaRowBuilder
     implements Builder<OwnedMediaRow, OwnedMediaRowBuilder> {
   _$OwnedMediaRow? _$v;
+
+  Date? _date;
+  Date? get date => _$this._date;
+  set date(Date? date) => _$this._date = date;
+
+  String? _entityId;
+  String? get entityId => _$this._entityId;
+  set entityId(String? entityId) => _$this._entityId = entityId;
+
+  String? _entityName;
+  String? get entityName => _$this._entityName;
+  set entityName(String? entityName) => _$this._entityName = entityName;
+
+  String? _entityUrl;
+  String? get entityUrl => _$this._entityUrl;
+  set entityUrl(String? entityUrl) => _$this._entityUrl = entityUrl;
+
+  OwnedMediaRowStoreEnum? _store;
+  OwnedMediaRowStoreEnum? get store => _$this._store;
+  set store(OwnedMediaRowStoreEnum? store) => _$this._store = store;
+
+  int? _competitorId;
+  int? get competitorId => _$this._competitorId;
+  set competitorId(int? competitorId) => _$this._competitorId = competitorId;
 
   String? _title;
   String? get title => _$this._title;
@@ -374,6 +487,12 @@ class OwnedMediaRowBuilder
   OwnedMediaRowBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _date = $v.date;
+      _entityId = $v.entityId;
+      _entityName = $v.entityName;
+      _entityUrl = $v.entityUrl;
+      _store = $v.store;
+      _competitorId = $v.competitorId;
       _title = $v.title;
       _url = $v.url;
       _channelName = $v.channelName;
@@ -427,6 +546,12 @@ class OwnedMediaRowBuilder
   _$OwnedMediaRow _build() {
     final _$result = _$v ??
         _$OwnedMediaRow._(
+          date: date,
+          entityId: entityId,
+          entityName: entityName,
+          entityUrl: entityUrl,
+          store: store,
+          competitorId: competitorId,
           title: title,
           url: url,
           channelName: channelName,

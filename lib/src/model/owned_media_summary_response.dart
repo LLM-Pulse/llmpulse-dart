@@ -3,16 +3,20 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:llmpulse/src/model/owned_media_content_type_share.dart';
 import 'package:llmpulse/src/model/owned_media_platform_rollup.dart';
+import 'package:llmpulse/src/model/owned_media_store_totals.dart';
+import 'package:llmpulse/src/model/owned_media_summary_activity_period.dart';
+import 'package:llmpulse/src/model/owned_media_kpi_changes.dart';
+import 'package:llmpulse/src/model/reddit_position_share.dart';
+import 'package:llmpulse/src/model/owned_media_country_share.dart';
+import 'package:llmpulse/src/model/owned_media_content_type_share.dart';
 import 'package:llmpulse/src/model/owned_media_summary_response_previous.dart';
 import 'package:llmpulse/src/model/owned_media_age_bucket_share.dart';
-import 'package:llmpulse/src/model/owned_media_store_totals.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:llmpulse/src/model/owned_media_kpi_changes.dart';
+import 'package:llmpulse/src/model/reddit_brand_share.dart';
+import 'package:llmpulse/src/model/reddit_subreddit_activity_period.dart';
 import 'package:llmpulse/src/model/owned_media_model_share.dart';
 import 'package:llmpulse/src/model/owned_media_kpis.dart';
-import 'package:llmpulse/src/model/owned_media_country_share.dart';
 import 'package:llmpulse/src/model/owned_media_week.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -37,6 +41,10 @@ part 'owned_media_summary_response.g.dart';
 /// * [ageBuckets] - Social and YouTube providers only. Posts or videos without a known publication date are left out
 /// * [stores] - provider=mobile_apps only
 /// * [platforms] - provider=overview only, one row per platform the caller can read
+/// * [activity] - All providers. One row per actual project reporting period with runs; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the selected date window, and periods with runs but no citation have zero
+/// * [subredditActivity] - provider=reddit only. One row per subreddit and actual reporting period; the top five subreddits are separate and Others has a null subreddit
+/// * [positions] - provider=reddit only. Position distribution over the selected date window
+/// * [brandShare] - provider=reddit only. Citation share among the tracked brand and competitors with cited mentions
 /// * [requestId] 
 @BuiltValue()
 abstract class OwnedMediaSummaryResponse implements Built<OwnedMediaSummaryResponse, OwnedMediaSummaryResponseBuilder> {
@@ -91,6 +99,22 @@ abstract class OwnedMediaSummaryResponse implements Built<OwnedMediaSummaryRespo
   /// provider=overview only, one row per platform the caller can read
   @BuiltValueField(wireName: r'platforms')
   BuiltList<OwnedMediaPlatformRollup>? get platforms;
+
+  /// All providers. One row per actual project reporting period with runs; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the selected date window, and periods with runs but no citation have zero
+  @BuiltValueField(wireName: r'activity')
+  BuiltList<OwnedMediaSummaryActivityPeriod>? get activity;
+
+  /// provider=reddit only. One row per subreddit and actual reporting period; the top five subreddits are separate and Others has a null subreddit
+  @BuiltValueField(wireName: r'subreddit_activity')
+  BuiltList<RedditSubredditActivityPeriod>? get subredditActivity;
+
+  /// provider=reddit only. Position distribution over the selected date window
+  @BuiltValueField(wireName: r'positions')
+  BuiltList<RedditPositionShare>? get positions;
+
+  /// provider=reddit only. Citation share among the tracked brand and competitors with cited mentions
+  @BuiltValueField(wireName: r'brand_share')
+  BuiltList<RedditBrandShare>? get brandShare;
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
@@ -221,6 +245,34 @@ class _$OwnedMediaSummaryResponseSerializer implements PrimitiveSerializer<Owned
       yield serializers.serialize(
         object.platforms,
         specifiedType: const FullType.nullable(BuiltList, [FullType(OwnedMediaPlatformRollup)]),
+      );
+    }
+    if (object.activity != null) {
+      yield r'activity';
+      yield serializers.serialize(
+        object.activity,
+        specifiedType: const FullType(BuiltList, [FullType(OwnedMediaSummaryActivityPeriod)]),
+      );
+    }
+    if (object.subredditActivity != null) {
+      yield r'subreddit_activity';
+      yield serializers.serialize(
+        object.subredditActivity,
+        specifiedType: const FullType(BuiltList, [FullType(RedditSubredditActivityPeriod)]),
+      );
+    }
+    if (object.positions != null) {
+      yield r'positions';
+      yield serializers.serialize(
+        object.positions,
+        specifiedType: const FullType(BuiltList, [FullType(RedditPositionShare)]),
+      );
+    }
+    if (object.brandShare != null) {
+      yield r'brand_share';
+      yield serializers.serialize(
+        object.brandShare,
+        specifiedType: const FullType(BuiltList, [FullType(RedditBrandShare)]),
       );
     }
     if (object.requestId != null) {
@@ -372,6 +424,38 @@ class _$OwnedMediaSummaryResponseSerializer implements PrimitiveSerializer<Owned
           ) as BuiltList<OwnedMediaPlatformRollup>?;
           if (valueDes == null) continue;
           result.platforms.replace(valueDes);
+          break;
+        case r'activity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OwnedMediaSummaryActivityPeriod)]),
+          ) as BuiltList<OwnedMediaSummaryActivityPeriod>?;
+          if (valueDes == null) continue;
+          result.activity.replace(valueDes);
+          break;
+        case r'subreddit_activity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RedditSubredditActivityPeriod)]),
+          ) as BuiltList<RedditSubredditActivityPeriod>?;
+          if (valueDes == null) continue;
+          result.subredditActivity.replace(valueDes);
+          break;
+        case r'positions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RedditPositionShare)]),
+          ) as BuiltList<RedditPositionShare>?;
+          if (valueDes == null) continue;
+          result.positions.replace(valueDes);
+          break;
+        case r'brand_share':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RedditBrandShare)]),
+          ) as BuiltList<RedditBrandShare>?;
+          if (valueDes == null) continue;
+          result.brandShare.replace(valueDes);
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

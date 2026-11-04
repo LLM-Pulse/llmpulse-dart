@@ -17,6 +17,12 @@ class _$OwnedMediaKpiChanges extends OwnedMediaKpiChanges {
   final num? yourContent;
   @override
   final num? sharePct;
+  @override
+  final num? uniqueSubreddits;
+  @override
+  final num? uniqueAuthors;
+  @override
+  final num? positivePct;
 
   factory _$OwnedMediaKpiChanges(
           [void Function(OwnedMediaKpiChangesBuilder)? updates]) =>
@@ -27,7 +33,10 @@ class _$OwnedMediaKpiChanges extends OwnedMediaKpiChanges {
       this.yours,
       this.yourProfile,
       this.yourContent,
-      this.sharePct})
+      this.sharePct,
+      this.uniqueSubreddits,
+      this.uniqueAuthors,
+      this.positivePct})
       : super._();
   @override
   OwnedMediaKpiChanges rebuild(
@@ -46,7 +55,10 @@ class _$OwnedMediaKpiChanges extends OwnedMediaKpiChanges {
         yours == other.yours &&
         yourProfile == other.yourProfile &&
         yourContent == other.yourContent &&
-        sharePct == other.sharePct;
+        sharePct == other.sharePct &&
+        uniqueSubreddits == other.uniqueSubreddits &&
+        uniqueAuthors == other.uniqueAuthors &&
+        positivePct == other.positivePct;
   }
 
   @override
@@ -57,6 +69,9 @@ class _$OwnedMediaKpiChanges extends OwnedMediaKpiChanges {
     _$hash = $jc(_$hash, yourProfile.hashCode);
     _$hash = $jc(_$hash, yourContent.hashCode);
     _$hash = $jc(_$hash, sharePct.hashCode);
+    _$hash = $jc(_$hash, uniqueSubreddits.hashCode);
+    _$hash = $jc(_$hash, uniqueAuthors.hashCode);
+    _$hash = $jc(_$hash, positivePct.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -68,7 +83,10 @@ class _$OwnedMediaKpiChanges extends OwnedMediaKpiChanges {
           ..add('yours', yours)
           ..add('yourProfile', yourProfile)
           ..add('yourContent', yourContent)
-          ..add('sharePct', sharePct))
+          ..add('sharePct', sharePct)
+          ..add('uniqueSubreddits', uniqueSubreddits)
+          ..add('uniqueAuthors', uniqueAuthors)
+          ..add('positivePct', positivePct))
         .toString();
   }
 }
@@ -97,6 +115,20 @@ class OwnedMediaKpiChangesBuilder
   num? get sharePct => _$this._sharePct;
   set sharePct(num? sharePct) => _$this._sharePct = sharePct;
 
+  num? _uniqueSubreddits;
+  num? get uniqueSubreddits => _$this._uniqueSubreddits;
+  set uniqueSubreddits(num? uniqueSubreddits) =>
+      _$this._uniqueSubreddits = uniqueSubreddits;
+
+  num? _uniqueAuthors;
+  num? get uniqueAuthors => _$this._uniqueAuthors;
+  set uniqueAuthors(num? uniqueAuthors) =>
+      _$this._uniqueAuthors = uniqueAuthors;
+
+  num? _positivePct;
+  num? get positivePct => _$this._positivePct;
+  set positivePct(num? positivePct) => _$this._positivePct = positivePct;
+
   OwnedMediaKpiChangesBuilder() {
     OwnedMediaKpiChanges._defaults(this);
   }
@@ -109,6 +141,9 @@ class OwnedMediaKpiChangesBuilder
       _yourProfile = $v.yourProfile;
       _yourContent = $v.yourContent;
       _sharePct = $v.sharePct;
+      _uniqueSubreddits = $v.uniqueSubreddits;
+      _uniqueAuthors = $v.uniqueAuthors;
+      _positivePct = $v.positivePct;
       _$v = null;
     }
     return this;
@@ -135,6 +170,9 @@ class OwnedMediaKpiChangesBuilder
           yourProfile: yourProfile,
           yourContent: yourContent,
           sharePct: sharePct,
+          uniqueSubreddits: uniqueSubreddits,
+          uniqueAuthors: uniqueAuthors,
+          positivePct: positivePct,
         );
     replace(_$result);
     return _$result;

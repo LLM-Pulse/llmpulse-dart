@@ -234,6 +234,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(OwnedMediaKpis.serializer)
       ..add(OwnedMediaListResponse.serializer)
       ..add(OwnedMediaModelShare.serializer)
+      ..add(OwnedMediaPlatformActivityPeriod.serializer)
       ..add(OwnedMediaPlatformProfiles.serializer)
       ..add(OwnedMediaPlatformProfilesPlatformEnum.serializer)
       ..add(OwnedMediaPlatformRollup.serializer)
@@ -244,8 +245,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(OwnedMediaProfileSettings.serializer)
       ..add(OwnedMediaProfilesUpdateResponse.serializer)
       ..add(OwnedMediaRow.serializer)
+      ..add(OwnedMediaRowStoreEnum.serializer)
       ..add(OwnedMediaStoreTotals.serializer)
       ..add(OwnedMediaStoreTotalsStoreEnum.serializer)
+      ..add(OwnedMediaSummaryActivityPeriod.serializer)
       ..add(OwnedMediaSummaryResponse.serializer)
       ..add(OwnedMediaSummaryResponsePrevious.serializer)
       ..add(OwnedMediaWeek.serializer)
@@ -315,6 +318,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(RecommendationSummaryStatusEnum.serializer)
       ..add(RecommendationSummarySummary.serializer)
       ..add(RecommendationsResponse.serializer)
+      ..add(RedditBrandShare.serializer)
+      ..add(RedditPositionShare.serializer)
+      ..add(RedditPositionShareBucketEnum.serializer)
+      ..add(RedditSubredditActivityPeriod.serializer)
       ..add(RemovePromptTagsRequest.serializer)
       ..add(RemoveTeamMember200Response.serializer)
       ..add(RevokeApiKey200Response.serializer)
@@ -585,6 +592,10 @@ Serializers _$serializers = (Serializers().toBuilder()
               const [const FullType(OwnedMediaPlatformRollupWeeklyInner)]),
           () => ListBuilder<OwnedMediaPlatformRollupWeeklyInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(OwnedMediaPlatformActivityPeriod)]),
+          () => ListBuilder<OwnedMediaPlatformActivityPeriod>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(OwnedMediaProfile)]),
           () => ListBuilder<OwnedMediaProfile>())
       ..addBuilderFactory(
@@ -617,6 +628,21 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(OwnedMediaPlatformRollup)]),
           () => ListBuilder<OwnedMediaPlatformRollup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(OwnedMediaSummaryActivityPeriod)]),
+          () => ListBuilder<OwnedMediaSummaryActivityPeriod>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(RedditSubredditActivityPeriod)]),
+          () => ListBuilder<RedditSubredditActivityPeriod>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(RedditPositionShare)]),
+          () => ListBuilder<RedditPositionShare>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(RedditBrandShare)]),
+          () => ListBuilder<RedditBrandShare>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Project)]),
           () => ListBuilder<Project>())

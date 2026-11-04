@@ -8,6 +8,12 @@ import 'package:llmpulse/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**date** | [**Date**](Date.md) | The start date of the actual reporting period (view=activity) | [optional] 
+**entityId** | **String** | Platform entity identifier (view=activity) | [optional] 
+**entityName** | **String** | Current entity name when known (view=activity) | [optional] 
+**entityUrl** | **String** | Current profile, channel or app listing URL when known (view=activity) | [optional] 
+**store** | **String** | Store selected for provider=mobile_apps (view=activity) | [optional] 
+**competitorId** | **int** | Competitor identifier when the activity row represents a competitor app | [optional] 
 **title** | **String** |  | [optional] 
 **url** | **String** |  | [optional] 
 **channelName** | **String** |  | [optional] 
@@ -22,7 +28,7 @@ Name | Type | Description | Notes
 **thumbnailUrl** | **String** | The post or video image. Our cached copy where one exists, so the link does not expire | [optional] 
 **avatarUrl** | **String** | The profile or channel image. Our cached copy where one exists | [optional] 
 **contentType** | **String** | The post format on its platform: reel, post or tv on Instagram, post or pulse on LinkedIn, post elsewhere | [optional] 
-**citations** | **int** |  | [optional] 
+**citations** | **int** | Citations for the row; for view=activity, the count in this reporting period | [optional] 
 **uniqueVideos** | **int** |  | [optional] 
 **uniquePosts** | **int** |  | [optional] 
 **followers** | **int** |  | [optional] 

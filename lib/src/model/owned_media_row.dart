@@ -3,15 +3,23 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/date.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'owned_media_row.g.dart';
 
-/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model) and apps (domain, total_responses, rank, global_rank). Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
+/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank) and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
 ///
 /// Properties:
+/// * [date] - The start date of the actual reporting period (view=activity)
+/// * [entityId] - Platform entity identifier (view=activity)
+/// * [entityName] - Current entity name when known (view=activity)
+/// * [entityUrl] - Current profile, channel or app listing URL when known (view=activity)
+/// * [store] - Store selected for provider=mobile_apps (view=activity)
+/// * [competitorId] - Competitor identifier when the activity row represents a competitor app
 /// * [title] 
 /// * [url] 
 /// * [channelName] 
@@ -26,7 +34,7 @@ part 'owned_media_row.g.dart';
 /// * [thumbnailUrl] - The post or video image. Our cached copy where one exists, so the link does not expire
 /// * [avatarUrl] - The profile or channel image. Our cached copy where one exists
 /// * [contentType] - The post format on its platform: reel, post or tv on Instagram, post or pulse on LinkedIn, post elsewhere
-/// * [citations] 
+/// * [citations] - Citations for the row; for view=activity, the count in this reporting period
 /// * [uniqueVideos] 
 /// * [uniquePosts] 
 /// * [followers] 
@@ -46,6 +54,31 @@ part 'owned_media_row.g.dart';
 /// * [globalRank] 
 @BuiltValue()
 abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilder> {
+  /// The start date of the actual reporting period (view=activity)
+  @BuiltValueField(wireName: r'date')
+  Date? get date;
+
+  /// Platform entity identifier (view=activity)
+  @BuiltValueField(wireName: r'entity_id')
+  String? get entityId;
+
+  /// Current entity name when known (view=activity)
+  @BuiltValueField(wireName: r'entity_name')
+  String? get entityName;
+
+  /// Current profile, channel or app listing URL when known (view=activity)
+  @BuiltValueField(wireName: r'entity_url')
+  String? get entityUrl;
+
+  /// Store selected for provider=mobile_apps (view=activity)
+  @BuiltValueField(wireName: r'store')
+  OwnedMediaRowStoreEnum? get store;
+  // enum storeEnum {  google_play,  app_store,  };
+
+  /// Competitor identifier when the activity row represents a competitor app
+  @BuiltValueField(wireName: r'competitor_id')
+  int? get competitorId;
+
   @BuiltValueField(wireName: r'title')
   String? get title;
 
@@ -93,6 +126,7 @@ abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilde
   @BuiltValueField(wireName: r'content_type')
   String? get contentType;
 
+  /// Citations for the row; for view=activity, the count in this reporting period
   @BuiltValueField(wireName: r'citations')
   int? get citations;
 
@@ -175,6 +209,48 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
     OwnedMediaRow object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.date != null) {
+      yield r'date';
+      yield serializers.serialize(
+        object.date,
+        specifiedType: const FullType(Date),
+      );
+    }
+    if (object.entityId != null) {
+      yield r'entity_id';
+      yield serializers.serialize(
+        object.entityId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.entityName != null) {
+      yield r'entity_name';
+      yield serializers.serialize(
+        object.entityName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.entityUrl != null) {
+      yield r'entity_url';
+      yield serializers.serialize(
+        object.entityUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.store != null) {
+      yield r'store';
+      yield serializers.serialize(
+        object.store,
+        specifiedType: const FullType(OwnedMediaRowStoreEnum),
+      );
+    }
+    if (object.competitorId != null) {
+      yield r'competitor_id';
+      yield serializers.serialize(
+        object.competitorId,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
@@ -422,6 +498,54 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'date':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(Date),
+          ) as Date?;
+          if (valueDes == null) continue;
+          result.date = valueDes;
+          break;
+        case r'entity_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.entityId = valueDes;
+          break;
+        case r'entity_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.entityName = valueDes;
+          break;
+        case r'entity_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.entityUrl = valueDes;
+          break;
+        case r'store':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(OwnedMediaRowStoreEnum),
+          ) as OwnedMediaRowStoreEnum?;
+          if (valueDes == null) continue;
+          result.store = valueDes;
+          break;
+        case r'competitor_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.competitorId = valueDes;
+          break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
@@ -705,5 +829,22 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
     );
     return result.build();
   }
+}
+
+class OwnedMediaRowStoreEnum extends EnumClass {
+
+  /// Store selected for provider=mobile_apps (view=activity)
+  @BuiltValueEnumConst(wireName: r'google_play')
+  static const OwnedMediaRowStoreEnum googlePlay = _$ownedMediaRowStoreEnum_googlePlay;
+  /// Store selected for provider=mobile_apps (view=activity)
+  @BuiltValueEnumConst(wireName: r'app_store')
+  static const OwnedMediaRowStoreEnum appStore = _$ownedMediaRowStoreEnum_appStore;
+
+  static Serializer<OwnedMediaRowStoreEnum> get serializer => _$ownedMediaRowStoreEnumSerializer;
+
+  const OwnedMediaRowStoreEnum._(String name): super(name);
+
+  static BuiltSet<OwnedMediaRowStoreEnum> get values => _$ownedMediaRowStoreEnumValues;
+  static OwnedMediaRowStoreEnum valueOf(String name) => _$ownedMediaRowStoreEnumValueOf(name);
 }
 

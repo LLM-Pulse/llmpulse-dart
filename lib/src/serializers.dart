@@ -178,6 +178,7 @@ import 'package:llmpulse/src/model/owned_media_kpi_changes.dart';
 import 'package:llmpulse/src/model/owned_media_kpis.dart';
 import 'package:llmpulse/src/model/owned_media_list_response.dart';
 import 'package:llmpulse/src/model/owned_media_model_share.dart';
+import 'package:llmpulse/src/model/owned_media_platform_activity_period.dart';
 import 'package:llmpulse/src/model/owned_media_platform_profiles.dart';
 import 'package:llmpulse/src/model/owned_media_platform_rollup.dart';
 import 'package:llmpulse/src/model/owned_media_platform_rollup_weekly_inner.dart';
@@ -187,6 +188,7 @@ import 'package:llmpulse/src/model/owned_media_profiles_response.dart';
 import 'package:llmpulse/src/model/owned_media_profiles_update_response.dart';
 import 'package:llmpulse/src/model/owned_media_row.dart';
 import 'package:llmpulse/src/model/owned_media_store_totals.dart';
+import 'package:llmpulse/src/model/owned_media_summary_activity_period.dart';
 import 'package:llmpulse/src/model/owned_media_summary_response.dart';
 import 'package:llmpulse/src/model/owned_media_summary_response_previous.dart';
 import 'package:llmpulse/src/model/owned_media_week.dart';
@@ -242,6 +244,9 @@ import 'package:llmpulse/src/model/recommendation_item_update_response.dart';
 import 'package:llmpulse/src/model/recommendation_summary.dart';
 import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
+import 'package:llmpulse/src/model/reddit_brand_share.dart';
+import 'package:llmpulse/src/model/reddit_position_share.dart';
+import 'package:llmpulse/src/model/reddit_subreddit_activity_period.dart';
 import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/remove_team_member200_response.dart';
 import 'package:llmpulse/src/model/revoke_api_key200_response.dart';
@@ -497,6 +502,7 @@ part 'serializers.g.dart';
   OwnedMediaKpis,
   OwnedMediaListResponse,
   OwnedMediaModelShare,
+  OwnedMediaPlatformActivityPeriod,
   OwnedMediaPlatformProfiles,
   OwnedMediaPlatformRollup,
   OwnedMediaPlatformRollupWeeklyInner,
@@ -506,6 +512,7 @@ part 'serializers.g.dart';
   OwnedMediaProfilesUpdateResponse,
   OwnedMediaRow,
   OwnedMediaStoreTotals,
+  OwnedMediaSummaryActivityPeriod,
   OwnedMediaSummaryResponse,
   OwnedMediaSummaryResponsePrevious,
   OwnedMediaWeek,
@@ -561,6 +568,9 @@ part 'serializers.g.dart';
   RecommendationSummary,
   RecommendationSummarySummary,
   RecommendationsResponse,
+  RedditBrandShare,
+  RedditPositionShare,
+  RedditSubredditActivityPeriod,
   RemovePromptTagsRequest,
   RemoveTeamMember200Response,
   RevokeApiKey200Response,
@@ -767,6 +777,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RedditSubredditActivityPeriod)]),
+        () => ListBuilder<RedditSubredditActivityPeriod>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(String)]),
         () => MapBuilder<String, String>(),
       )
@@ -829,6 +843,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(JsonObject)]),
         () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RedditBrandShare)]),
+        () => ListBuilder<RedditBrandShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaPlatformActivityPeriod)]),
+        () => ListBuilder<OwnedMediaPlatformActivityPeriod>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
@@ -921,6 +943,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
         () => ListBuilder<SearchConsolePropertyError>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RedditPositionShare)]),
+        () => ListBuilder<RedditPositionShare>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditComparisonChangesInner)]),
@@ -1037,6 +1063,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptRecord)]),
         () => ListBuilder<PromptRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OwnedMediaSummaryActivityPeriod)]),
+        () => ListBuilder<OwnedMediaSummaryActivityPeriod>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ListWebhooks200ResponseDataInner)]),
