@@ -66,6 +66,13 @@ doc/CatalogPromptSuggestionsResponse.md
 doc/CitationMatchMode.md
 doc/CitationRecord.md
 doc/CitationsResponse.md
+doc/CmsContentItem.md
+doc/CmsContentItemResponse.md
+doc/CmsContentListResponse.md
+doc/CmsContentSummary.md
+doc/CmsPublication.md
+doc/CmsSendResponse.md
+doc/CmsSite.md
 doc/CollectionCreateResponse.md
 doc/CollectionCreateResponseCollection.md
 doc/CollectionsResponse.md
@@ -431,6 +438,13 @@ lib/src/model/catalog_prompt_suggestions_response.dart
 lib/src/model/citation_match_mode.dart
 lib/src/model/citation_record.dart
 lib/src/model/citations_response.dart
+lib/src/model/cms_content_item.dart
+lib/src/model/cms_content_item_response.dart
+lib/src/model/cms_content_list_response.dart
+lib/src/model/cms_content_summary.dart
+lib/src/model/cms_publication.dart
+lib/src/model/cms_send_response.dart
+lib/src/model/cms_site.dart
 lib/src/model/collection_create_response.dart
 lib/src/model/collection_create_response_collection.dart
 lib/src/model/collections_response.dart

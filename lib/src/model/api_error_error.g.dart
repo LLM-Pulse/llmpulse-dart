@@ -45,6 +45,14 @@ const ApiErrorErrorCodeEnum
 const ApiErrorErrorCodeEnum
     _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_UPSTREAM =
     const ApiErrorErrorCodeEnum._('ERR_SEARCH_CONSOLE_UPSTREAM');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_CMS_NOT_CONNECTED =
+    const ApiErrorErrorCodeEnum._('ERR_CMS_NOT_CONNECTED');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_CMS_ACCESS_REVOKED =
+    const ApiErrorErrorCodeEnum._('ERR_CMS_ACCESS_REVOKED');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_CMS_REJECTED =
+    const ApiErrorErrorCodeEnum._('ERR_CMS_REJECTED');
+const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_CMS_UPSTREAM =
+    const ApiErrorErrorCodeEnum._('ERR_CMS_UPSTREAM');
 const ApiErrorErrorCodeEnum
     _$apiErrorErrorCodeEnum_ERR_AI_TRAFFIC_NOT_CONNECTED =
     const ApiErrorErrorCodeEnum._('ERR_AI_TRAFFIC_NOT_CONNECTED');
@@ -111,6 +119,14 @@ ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnumValueOf(String name) {
       return _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_ACCESS_REVOKED;
     case 'ERR_SEARCH_CONSOLE_UPSTREAM':
       return _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_UPSTREAM;
+    case 'ERR_CMS_NOT_CONNECTED':
+      return _$apiErrorErrorCodeEnum_ERR_CMS_NOT_CONNECTED;
+    case 'ERR_CMS_ACCESS_REVOKED':
+      return _$apiErrorErrorCodeEnum_ERR_CMS_ACCESS_REVOKED;
+    case 'ERR_CMS_REJECTED':
+      return _$apiErrorErrorCodeEnum_ERR_CMS_REJECTED;
+    case 'ERR_CMS_UPSTREAM':
+      return _$apiErrorErrorCodeEnum_ERR_CMS_UPSTREAM;
     case 'ERR_AI_TRAFFIC_NOT_CONNECTED':
       return _$apiErrorErrorCodeEnum_ERR_AI_TRAFFIC_NOT_CONNECTED;
     case 'ERR_WEB_ANALYTICS_NOT_CONNECTED':
@@ -159,6 +175,10 @@ final BuiltSet<ApiErrorErrorCodeEnum> _$apiErrorErrorCodeEnumValues =
   _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_NOT_CONNECTED,
   _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_ACCESS_REVOKED,
   _$apiErrorErrorCodeEnum_ERR_SEARCH_CONSOLE_UPSTREAM,
+  _$apiErrorErrorCodeEnum_ERR_CMS_NOT_CONNECTED,
+  _$apiErrorErrorCodeEnum_ERR_CMS_ACCESS_REVOKED,
+  _$apiErrorErrorCodeEnum_ERR_CMS_REJECTED,
+  _$apiErrorErrorCodeEnum_ERR_CMS_UPSTREAM,
   _$apiErrorErrorCodeEnum_ERR_AI_TRAFFIC_NOT_CONNECTED,
   _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_NOT_CONNECTED,
   _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_INVALID_QUERY,
@@ -196,6 +216,10 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_SEARCH_CONSOLE_NOT_CONNECTED': 'ERR_SEARCH_CONSOLE_NOT_CONNECTED',
     'ERR_SEARCH_CONSOLE_ACCESS_REVOKED': 'ERR_SEARCH_CONSOLE_ACCESS_REVOKED',
     'ERR_SEARCH_CONSOLE_UPSTREAM': 'ERR_SEARCH_CONSOLE_UPSTREAM',
+    'ERR_CMS_NOT_CONNECTED': 'ERR_CMS_NOT_CONNECTED',
+    'ERR_CMS_ACCESS_REVOKED': 'ERR_CMS_ACCESS_REVOKED',
+    'ERR_CMS_REJECTED': 'ERR_CMS_REJECTED',
+    'ERR_CMS_UPSTREAM': 'ERR_CMS_UPSTREAM',
     'ERR_AI_TRAFFIC_NOT_CONNECTED': 'ERR_AI_TRAFFIC_NOT_CONNECTED',
     'ERR_WEB_ANALYTICS_NOT_CONNECTED': 'ERR_WEB_ANALYTICS_NOT_CONNECTED',
     'ERR_WEB_ANALYTICS_INVALID_QUERY': 'ERR_WEB_ANALYTICS_INVALID_QUERY',
@@ -227,6 +251,10 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_SEARCH_CONSOLE_NOT_CONNECTED': 'ERR_SEARCH_CONSOLE_NOT_CONNECTED',
     'ERR_SEARCH_CONSOLE_ACCESS_REVOKED': 'ERR_SEARCH_CONSOLE_ACCESS_REVOKED',
     'ERR_SEARCH_CONSOLE_UPSTREAM': 'ERR_SEARCH_CONSOLE_UPSTREAM',
+    'ERR_CMS_NOT_CONNECTED': 'ERR_CMS_NOT_CONNECTED',
+    'ERR_CMS_ACCESS_REVOKED': 'ERR_CMS_ACCESS_REVOKED',
+    'ERR_CMS_REJECTED': 'ERR_CMS_REJECTED',
+    'ERR_CMS_UPSTREAM': 'ERR_CMS_UPSTREAM',
     'ERR_AI_TRAFFIC_NOT_CONNECTED': 'ERR_AI_TRAFFIC_NOT_CONNECTED',
     'ERR_WEB_ANALYTICS_NOT_CONNECTED': 'ERR_WEB_ANALYTICS_NOT_CONNECTED',
     'ERR_WEB_ANALYTICS_INVALID_QUERY': 'ERR_WEB_ANALYTICS_INVALID_QUERY',

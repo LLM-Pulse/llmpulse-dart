@@ -72,6 +72,9 @@ abstract class IntelligenceTaskBuilder {
   String? get resultVersion;
   set resultVersion(String? resultVersion);
 
+  ListBuilder<CmsPublication> get cmsDrafts;
+  set cmsDrafts(ListBuilder<CmsPublication>? cmsDrafts);
+
   String? get requestId;
   set requestId(String? requestId);
 }
@@ -120,6 +123,8 @@ class _$$IntelligenceTask extends $IntelligenceTask {
   @override
   final String? resultVersion;
   @override
+  final BuiltList<CmsPublication>? cmsDrafts;
+  @override
   final String? requestId;
 
   factory _$$IntelligenceTask(
@@ -148,6 +153,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
       this.manuallyEditedAt,
       this.editedByUserId,
       this.resultVersion,
+      this.cmsDrafts,
       this.requestId})
       : super._();
   @override
@@ -183,6 +189,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
         manuallyEditedAt == other.manuallyEditedAt &&
         editedByUserId == other.editedByUserId &&
         resultVersion == other.resultVersion &&
+        cmsDrafts == other.cmsDrafts &&
         requestId == other.requestId;
   }
 
@@ -210,6 +217,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
     _$hash = $jc(_$hash, manuallyEditedAt.hashCode);
     _$hash = $jc(_$hash, editedByUserId.hashCode);
     _$hash = $jc(_$hash, resultVersion.hashCode);
+    _$hash = $jc(_$hash, cmsDrafts.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -239,6 +247,7 @@ class _$$IntelligenceTask extends $IntelligenceTask {
           ..add('manuallyEditedAt', manuallyEditedAt)
           ..add('editedByUserId', editedByUserId)
           ..add('resultVersion', resultVersion)
+          ..add('cmsDrafts', cmsDrafts)
           ..add('requestId', requestId))
         .toString();
   }
@@ -346,6 +355,12 @@ class $IntelligenceTaskBuilder
   set resultVersion(covariant String? resultVersion) =>
       _$this._resultVersion = resultVersion;
 
+  ListBuilder<CmsPublication>? _cmsDrafts;
+  ListBuilder<CmsPublication> get cmsDrafts =>
+      _$this._cmsDrafts ??= ListBuilder<CmsPublication>();
+  set cmsDrafts(covariant ListBuilder<CmsPublication>? cmsDrafts) =>
+      _$this._cmsDrafts = cmsDrafts;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(covariant String? requestId) => _$this._requestId = requestId;
@@ -378,6 +393,7 @@ class $IntelligenceTaskBuilder
       _manuallyEditedAt = $v.manuallyEditedAt;
       _editedByUserId = $v.editedByUserId;
       _resultVersion = $v.resultVersion;
+      _cmsDrafts = $v.cmsDrafts?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -398,31 +414,45 @@ class $IntelligenceTaskBuilder
   $IntelligenceTask build() => _build();
 
   _$$IntelligenceTask _build() {
-    final _$result = _$v ??
-        _$$IntelligenceTask._(
-          id: id,
-          publicId: publicId,
-          projectId: projectId,
-          taskType: taskType,
-          title: title,
-          status: status,
-          promptId: promptId,
-          promptText: promptText,
-          agenticMode: agenticMode,
-          customTopic: customTopic,
-          userInstructions: userInstructions,
-          outputLanguageCode: outputLanguageCode,
-          wordCount: wordCount,
-          resultData: resultData,
-          errorMessage: errorMessage,
-          estimatedTime: estimatedTime,
-          createdAt: createdAt,
-          processedAt: processedAt,
-          manuallyEditedAt: manuallyEditedAt,
-          editedByUserId: editedByUserId,
-          resultVersion: resultVersion,
-          requestId: requestId,
-        );
+    _$$IntelligenceTask _$result;
+    try {
+      _$result = _$v ??
+          _$$IntelligenceTask._(
+            id: id,
+            publicId: publicId,
+            projectId: projectId,
+            taskType: taskType,
+            title: title,
+            status: status,
+            promptId: promptId,
+            promptText: promptText,
+            agenticMode: agenticMode,
+            customTopic: customTopic,
+            userInstructions: userInstructions,
+            outputLanguageCode: outputLanguageCode,
+            wordCount: wordCount,
+            resultData: resultData,
+            errorMessage: errorMessage,
+            estimatedTime: estimatedTime,
+            createdAt: createdAt,
+            processedAt: processedAt,
+            manuallyEditedAt: manuallyEditedAt,
+            editedByUserId: editedByUserId,
+            resultVersion: resultVersion,
+            cmsDrafts: _cmsDrafts?.build(),
+            requestId: requestId,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'cmsDrafts';
+        _cmsDrafts?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'$IntelligenceTask', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

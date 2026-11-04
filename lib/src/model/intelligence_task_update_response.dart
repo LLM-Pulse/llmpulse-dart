@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/intelligence_task.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/cms_publication.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -35,6 +36,7 @@ part 'intelligence_task_update_response.g.dart';
 /// * [manuallyEditedAt] - When the content was last edited by hand; null while the output is as generated
 /// * [editedByUserId] - User behind the last manual edit; null for an unedited task or an edit made from an embedded portal
 /// * [resultVersion] - Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
+/// * [cmsDrafts] - Drafts sent from this task to the connected WordPress site, newest first (up to 10). Only GET /intelligence_tasks/{id} returns it, and never on a white-label portal host
 /// * [requestId] 
 /// * [changedPaths] - Paths whose text actually changed; empty when every value matched the stored text
 @BuiltValue()
@@ -190,6 +192,13 @@ class _$IntelligenceTaskUpdateResponseSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.processedAt,
         specifiedType: const FullType.nullable(DateTime),
+      );
+    }
+    if (object.cmsDrafts != null) {
+      yield r'cms_drafts';
+      yield serializers.serialize(
+        object.cmsDrafts,
+        specifiedType: const FullType(BuiltList, [FullType(CmsPublication)]),
       );
     }
     if (object.id != null) {
@@ -393,6 +402,14 @@ class _$IntelligenceTaskUpdateResponseSerializer implements PrimitiveSerializer<
           ) as DateTime?;
           if (valueDes == null) continue;
           result.processedAt = valueDes;
+          break;
+        case r'cms_drafts':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CmsPublication)]),
+          ) as BuiltList<CmsPublication>?;
+          if (valueDes == null) continue;
+          result.cmsDrafts.replace(valueDes);
           break;
         case r'id':
           final valueDes = serializers.deserialize(

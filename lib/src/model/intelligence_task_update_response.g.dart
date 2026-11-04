@@ -52,6 +52,8 @@ class _$IntelligenceTaskUpdateResponse extends IntelligenceTaskUpdateResponse {
   @override
   final String? resultVersion;
   @override
+  final BuiltList<CmsPublication>? cmsDrafts;
+  @override
   final String? requestId;
 
   factory _$IntelligenceTaskUpdateResponse(
@@ -81,6 +83,7 @@ class _$IntelligenceTaskUpdateResponse extends IntelligenceTaskUpdateResponse {
       this.manuallyEditedAt,
       this.editedByUserId,
       this.resultVersion,
+      this.cmsDrafts,
       this.requestId})
       : super._();
   @override
@@ -118,6 +121,7 @@ class _$IntelligenceTaskUpdateResponse extends IntelligenceTaskUpdateResponse {
         manuallyEditedAt == other.manuallyEditedAt &&
         editedByUserId == other.editedByUserId &&
         resultVersion == other.resultVersion &&
+        cmsDrafts == other.cmsDrafts &&
         requestId == other.requestId;
   }
 
@@ -146,6 +150,7 @@ class _$IntelligenceTaskUpdateResponse extends IntelligenceTaskUpdateResponse {
     _$hash = $jc(_$hash, manuallyEditedAt.hashCode);
     _$hash = $jc(_$hash, editedByUserId.hashCode);
     _$hash = $jc(_$hash, resultVersion.hashCode);
+    _$hash = $jc(_$hash, cmsDrafts.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -176,6 +181,7 @@ class _$IntelligenceTaskUpdateResponse extends IntelligenceTaskUpdateResponse {
           ..add('manuallyEditedAt', manuallyEditedAt)
           ..add('editedByUserId', editedByUserId)
           ..add('resultVersion', resultVersion)
+          ..add('cmsDrafts', cmsDrafts)
           ..add('requestId', requestId))
         .toString();
   }
@@ -290,6 +296,12 @@ class IntelligenceTaskUpdateResponseBuilder
   set resultVersion(covariant String? resultVersion) =>
       _$this._resultVersion = resultVersion;
 
+  ListBuilder<CmsPublication>? _cmsDrafts;
+  ListBuilder<CmsPublication> get cmsDrafts =>
+      _$this._cmsDrafts ??= ListBuilder<CmsPublication>();
+  set cmsDrafts(covariant ListBuilder<CmsPublication>? cmsDrafts) =>
+      _$this._cmsDrafts = cmsDrafts;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(covariant String? requestId) => _$this._requestId = requestId;
@@ -323,6 +335,7 @@ class IntelligenceTaskUpdateResponseBuilder
       _manuallyEditedAt = $v.manuallyEditedAt;
       _editedByUserId = $v.editedByUserId;
       _resultVersion = $v.resultVersion;
+      _cmsDrafts = $v.cmsDrafts?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -369,6 +382,7 @@ class IntelligenceTaskUpdateResponseBuilder
             manuallyEditedAt: manuallyEditedAt,
             editedByUserId: editedByUserId,
             resultVersion: resultVersion,
+            cmsDrafts: _cmsDrafts?.build(),
             requestId: requestId,
           );
     } catch (_) {
@@ -376,6 +390,9 @@ class IntelligenceTaskUpdateResponseBuilder
       try {
         _$failedField = 'changedPaths';
         _changedPaths?.build();
+
+        _$failedField = 'cmsDrafts';
+        _cmsDrafts?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'IntelligenceTaskUpdateResponse', _$failedField, e.toString());

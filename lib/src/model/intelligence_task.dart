@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:llmpulse/src/model/cms_publication.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -33,6 +35,7 @@ part 'intelligence_task.g.dart';
 /// * [manuallyEditedAt] - When the content was last edited by hand; null while the output is as generated
 /// * [editedByUserId] - User behind the last manual edit; null for an unedited task or an edit made from an embedded portal
 /// * [resultVersion] - Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
+/// * [cmsDrafts] - Drafts sent from this task to the connected WordPress site, newest first (up to 10). Only GET /intelligence_tasks/{id} returns it, and never on a white-label portal host
 /// * [requestId] 
 @BuiltValue(instantiable: false)
 abstract class IntelligenceTask  {
@@ -102,6 +105,10 @@ abstract class IntelligenceTask  {
   /// Concurrency token for content edits: send it back as result_version on PATCH /intelligence_tasks/{id} so an edit composed before a regeneration is refused with ERR_STALE_CONTENT (409). It is \"0\" until the task first completes, then changes each time a generation or regeneration replaces result_data, never on a manual edit or a revert. Treat it as opaque text
   @BuiltValueField(wireName: r'result_version')
   String? get resultVersion;
+
+  /// Drafts sent from this task to the connected WordPress site, newest first (up to 10). Only GET /intelligence_tasks/{id} returns it, and never on a white-label portal host
+  @BuiltValueField(wireName: r'cms_drafts')
+  BuiltList<CmsPublication>? get cmsDrafts;
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
@@ -267,6 +274,13 @@ class _$IntelligenceTaskSerializer implements PrimitiveSerializer<IntelligenceTa
       yield serializers.serialize(
         object.resultVersion,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.cmsDrafts != null) {
+      yield r'cms_drafts';
+      yield serializers.serialize(
+        object.cmsDrafts,
+        specifiedType: const FullType(BuiltList, [FullType(CmsPublication)]),
       );
     }
     if (object.requestId != null) {
@@ -506,6 +520,14 @@ class _$$IntelligenceTaskSerializer implements PrimitiveSerializer<$Intelligence
           ) as String?;
           if (valueDes == null) continue;
           result.resultVersion = valueDes;
+          break;
+        case r'cms_drafts':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CmsPublication)]),
+          ) as BuiltList<CmsPublication>?;
+          if (valueDes == null) continue;
+          result.cmsDrafts.replace(valueDes);
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

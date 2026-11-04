@@ -9,6 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (Serializers().toBuilder()
       ..add($AiModelInsightsModel.serializer)
       ..add($ApiKeyInfo.serializer)
+      ..add($CmsContentSummary.serializer)
       ..add($GeoAudit.serializer)
       ..add($GeoAuditIssue.serializer)
       ..add($GeoAuditRun.serializer)
@@ -93,6 +94,17 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CitationMatchMode.serializer)
       ..add(CitationRecord.serializer)
       ..add(CitationsResponse.serializer)
+      ..add(CmsContentItem.serializer)
+      ..add(CmsContentItemResponse.serializer)
+      ..add(CmsContentListResponse.serializer)
+      ..add(CmsContentSummaryTypeEnum.serializer)
+      ..add(CmsPublication.serializer)
+      ..add(CmsPublicationPlatformEnum.serializer)
+      ..add(CmsPublicationStatusEnum.serializer)
+      ..add(CmsSendResponse.serializer)
+      ..add(CmsSite.serializer)
+      ..add(CmsSitePlatformEnum.serializer)
+      ..add(CmsSiteStatusEnum.serializer)
       ..add(CollectionCreateResponse.serializer)
       ..add(CollectionCreateResponseCollection.serializer)
       ..add(CollectionsResponse.serializer)
@@ -484,6 +496,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CitationRecord)]),
           () => ListBuilder<CitationRecord>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CmsContentSummary)]),
+          () => ListBuilder<CmsContentSummary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CmsPublication)]),
+          () => ListBuilder<CmsPublication>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Competitor)]),
           () => ListBuilder<Competitor>())
@@ -880,6 +898,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CmsPublication)]),
+          () => ListBuilder<CmsPublication>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())

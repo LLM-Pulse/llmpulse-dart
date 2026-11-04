@@ -30,8 +30,8 @@ class MetricsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
+  /// * [range] - Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window, instead of range (to then defaults to the end of today). Required unless range is given.
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [breakdown] - Add per-(prompt, model) rows to the output
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
@@ -164,8 +164,8 @@ class MetricsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
+  /// * [range] - Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window, instead of range (to then defaults to the end of today). Required unless range is given.
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
@@ -297,8 +297,8 @@ class MetricsApi {
   /// * [projectId] - Project ID
   /// * [metrics] - Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only.
   /// * [granularity] 
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
+  /// * [range] - Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window, instead of range (to then defaults to the end of today). Required unless range is given.
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
@@ -428,8 +428,8 @@ class MetricsApi {
   /// * [projectId] - Project ID
   /// * [metrics] - Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only.
   /// * [granularity] 
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
+  /// * [range] - Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window, instead of range (to then defaults to the end of today). Required unless range is given.
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
@@ -557,8 +557,8 @@ class MetricsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
-  /// * [from] 
+  /// * [range] - Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window, instead of range (to then defaults to the end of today). Required unless range is given.
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.

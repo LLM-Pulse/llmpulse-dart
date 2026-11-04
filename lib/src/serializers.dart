@@ -72,6 +72,13 @@ import 'package:llmpulse/src/model/catalog_prompt_suggestions_response.dart';
 import 'package:llmpulse/src/model/citation_match_mode.dart';
 import 'package:llmpulse/src/model/citation_record.dart';
 import 'package:llmpulse/src/model/citations_response.dart';
+import 'package:llmpulse/src/model/cms_content_item.dart';
+import 'package:llmpulse/src/model/cms_content_item_response.dart';
+import 'package:llmpulse/src/model/cms_content_list_response.dart';
+import 'package:llmpulse/src/model/cms_content_summary.dart';
+import 'package:llmpulse/src/model/cms_publication.dart';
+import 'package:llmpulse/src/model/cms_send_response.dart';
+import 'package:llmpulse/src/model/cms_site.dart';
 import 'package:llmpulse/src/model/collection_create_response.dart';
 import 'package:llmpulse/src/model/collection_create_response_collection.dart';
 import 'package:llmpulse/src/model/collections_response.dart';
@@ -384,6 +391,13 @@ part 'serializers.g.dart';
   CitationMatchMode,
   CitationRecord,
   CitationsResponse,
+  CmsContentItem,
+  CmsContentItemResponse,
+  CmsContentListResponse,
+  CmsContentSummary,$CmsContentSummary,
+  CmsPublication,
+  CmsSendResponse,
+  CmsSite,
   CollectionCreateResponse,
   CollectionCreateResponseCollection,
   CollectionsResponse,
@@ -673,6 +687,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<BuiltMap<String, JsonObject>>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CmsPublication)]),
+        () => ListBuilder<CmsPublication>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CustomReportWidgetRef)]),
         () => ListBuilder<CustomReportWidgetRef>(),
       )
@@ -787,6 +805,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiOrdersUpdateRequestDaysInner)]),
         () => ListBuilder<AiOrdersUpdateRequestDaysInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CmsContentSummary)]),
+        () => ListBuilder<CmsContentSummary>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleAiVisibilityGapsResponseDataInner)]),
@@ -1082,6 +1104,7 @@ Serializers serializers = (_$serializers.toBuilder()
       )
       ..add(AiModelInsightsModel.serializer)
       ..add(ApiKeyInfo.serializer)
+      ..add(CmsContentSummary.serializer)
       ..add(GeoAudit.serializer)
       ..add(GeoAuditIssue.serializer)
       ..add(GeoAuditRun.serializer)
