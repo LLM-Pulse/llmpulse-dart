@@ -6,6 +6,66 @@ part of 'answer_details.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const AnswerDetailsNoResultReasonEnum
+    _$answerDetailsNoResultReasonEnum_declined =
+    const AnswerDetailsNoResultReasonEnum._('declined');
+const AnswerDetailsNoResultReasonEnum
+    _$answerDetailsNoResultReasonEnum_noAnswer =
+    const AnswerDetailsNoResultReasonEnum._('noAnswer');
+
+AnswerDetailsNoResultReasonEnum _$answerDetailsNoResultReasonEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'declined':
+      return _$answerDetailsNoResultReasonEnum_declined;
+    case 'noAnswer':
+      return _$answerDetailsNoResultReasonEnum_noAnswer;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<AnswerDetailsNoResultReasonEnum>
+    _$answerDetailsNoResultReasonEnumValues = BuiltSet<
+        AnswerDetailsNoResultReasonEnum>(const <AnswerDetailsNoResultReasonEnum>[
+  _$answerDetailsNoResultReasonEnum_declined,
+  _$answerDetailsNoResultReasonEnum_noAnswer,
+]);
+
+Serializer<AnswerDetailsNoResultReasonEnum>
+    _$answerDetailsNoResultReasonEnumSerializer =
+    _$AnswerDetailsNoResultReasonEnumSerializer();
+
+class _$AnswerDetailsNoResultReasonEnumSerializer
+    implements PrimitiveSerializer<AnswerDetailsNoResultReasonEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'declined': 'declined',
+    'noAnswer': 'no_answer',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'declined': 'declined',
+    'no_answer': 'noAnswer',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[AnswerDetailsNoResultReasonEnum];
+  @override
+  final String wireName = 'AnswerDetailsNoResultReasonEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, AnswerDetailsNoResultReasonEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  AnswerDetailsNoResultReasonEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      AnswerDetailsNoResultReasonEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$AnswerDetails extends AnswerDetails {
   @override
   final int? id;
@@ -27,6 +87,8 @@ class _$AnswerDetails extends AnswerDetails {
   final bool? success;
   @override
   final bool? noResult;
+  @override
+  final AnswerDetailsNoResultReasonEnum? noResultReason;
   @override
   final BuiltList<String>? fanOutQueries;
   @override
@@ -70,6 +132,7 @@ class _$AnswerDetails extends AnswerDetails {
       this.durationMs,
       this.success,
       this.noResult,
+      this.noResultReason,
       this.fanOutQueries,
       this.mentions,
       this.citations,
@@ -106,6 +169,7 @@ class _$AnswerDetails extends AnswerDetails {
         durationMs == other.durationMs &&
         success == other.success &&
         noResult == other.noResult &&
+        noResultReason == other.noResultReason &&
         fanOutQueries == other.fanOutQueries &&
         mentions == other.mentions &&
         citations == other.citations &&
@@ -135,6 +199,7 @@ class _$AnswerDetails extends AnswerDetails {
     _$hash = $jc(_$hash, durationMs.hashCode);
     _$hash = $jc(_$hash, success.hashCode);
     _$hash = $jc(_$hash, noResult.hashCode);
+    _$hash = $jc(_$hash, noResultReason.hashCode);
     _$hash = $jc(_$hash, fanOutQueries.hashCode);
     _$hash = $jc(_$hash, mentions.hashCode);
     _$hash = $jc(_$hash, citations.hashCode);
@@ -166,6 +231,7 @@ class _$AnswerDetails extends AnswerDetails {
           ..add('durationMs', durationMs)
           ..add('success', success)
           ..add('noResult', noResult)
+          ..add('noResultReason', noResultReason)
           ..add('fanOutQueries', fanOutQueries)
           ..add('mentions', mentions)
           ..add('citations', citations)
@@ -228,6 +294,11 @@ class AnswerDetailsBuilder
   bool? _noResult;
   bool? get noResult => _$this._noResult;
   set noResult(bool? noResult) => _$this._noResult = noResult;
+
+  AnswerDetailsNoResultReasonEnum? _noResultReason;
+  AnswerDetailsNoResultReasonEnum? get noResultReason => _$this._noResultReason;
+  set noResultReason(AnswerDetailsNoResultReasonEnum? noResultReason) =>
+      _$this._noResultReason = noResultReason;
 
   ListBuilder<String>? _fanOutQueries;
   ListBuilder<String> get fanOutQueries =>
@@ -324,6 +395,7 @@ class AnswerDetailsBuilder
       _durationMs = $v.durationMs;
       _success = $v.success;
       _noResult = $v.noResult;
+      _noResultReason = $v.noResultReason;
       _fanOutQueries = $v.fanOutQueries?.toBuilder();
       _mentions = $v.mentions?.toBuilder();
       _citations = $v.citations?.toBuilder();
@@ -371,6 +443,7 @@ class AnswerDetailsBuilder
             durationMs: durationMs,
             success: success,
             noResult: noResult,
+            noResultReason: noResultReason,
             fanOutQueries: _fanOutQueries?.build(),
             mentions: _mentions?.build(),
             citations: _citations?.build(),

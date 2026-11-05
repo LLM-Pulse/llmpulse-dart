@@ -18,12 +18,13 @@ part 'answer_details.g.dart';
 /// * [promptId] 
 /// * [promptText] 
 /// * [model] 
-/// * [response] 
+/// * [response] - The AI answer. For a declined answer (no_result_reason declined) it is the reply the model gave instead; for no_answer it is a placeholder, not an AI response
 /// * [responseTruncated] 
 /// * [executedAt] 
 /// * [durationMs] - Milliseconds, rounded to one decimal place
 /// * [success] - Null while the answer is still pending
 /// * [noResult] - True for a sentinel non-answer (no answer could be collected after all retries, or the model declined to answer, today only Gemini); excluded from platform metrics
+/// * [noResultReason] - Present only when no_result is true. declined = the model declined to answer (today only Gemini, shown as Declined in the app) and response holds its reply; no_answer = no answer could be collected
 /// * [fanOutQueries] 
 /// * [mentions] 
 /// * [citations] 
@@ -52,6 +53,7 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   @BuiltValueField(wireName: r'model')
   String? get model;
 
+  /// The AI answer. For a declined answer (no_result_reason declined) it is the reply the model gave instead; for no_answer it is a placeholder, not an AI response
   @BuiltValueField(wireName: r'response')
   String? get response;
 
@@ -72,6 +74,11 @@ abstract class AnswerDetails implements Built<AnswerDetails, AnswerDetailsBuilde
   /// True for a sentinel non-answer (no answer could be collected after all retries, or the model declined to answer, today only Gemini); excluded from platform metrics
   @BuiltValueField(wireName: r'no_result')
   bool? get noResult;
+
+  /// Present only when no_result is true. declined = the model declined to answer (today only Gemini, shown as Declined in the app) and response holds its reply; no_answer = no answer could be collected
+  @BuiltValueField(wireName: r'no_result_reason')
+  AnswerDetailsNoResultReasonEnum? get noResultReason;
+  // enum noResultReasonEnum {  declined,  no_answer,  };
 
   @BuiltValueField(wireName: r'fan_out_queries')
   BuiltList<String>? get fanOutQueries;
@@ -210,6 +217,13 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
       yield serializers.serialize(
         object.noResult,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.noResultReason != null) {
+      yield r'no_result_reason';
+      yield serializers.serialize(
+        object.noResultReason,
+        specifiedType: const FullType(AnswerDetailsNoResultReasonEnum),
       );
     }
     if (object.fanOutQueries != null) {
@@ -411,6 +425,14 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
           if (valueDes == null) continue;
           result.noResult = valueDes;
           break;
+        case r'no_result_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AnswerDetailsNoResultReasonEnum),
+          ) as AnswerDetailsNoResultReasonEnum?;
+          if (valueDes == null) continue;
+          result.noResultReason = valueDes;
+          break;
         case r'fan_out_queries':
           final valueDes = serializers.deserialize(
             value,
@@ -549,5 +571,22 @@ class _$AnswerDetailsSerializer implements PrimitiveSerializer<AnswerDetails> {
     );
     return result.build();
   }
+}
+
+class AnswerDetailsNoResultReasonEnum extends EnumClass {
+
+  /// Present only when no_result is true. declined = the model declined to answer (today only Gemini, shown as Declined in the app) and response holds its reply; no_answer = no answer could be collected
+  @BuiltValueEnumConst(wireName: r'declined')
+  static const AnswerDetailsNoResultReasonEnum declined = _$answerDetailsNoResultReasonEnum_declined;
+  /// Present only when no_result is true. declined = the model declined to answer (today only Gemini, shown as Declined in the app) and response holds its reply; no_answer = no answer could be collected
+  @BuiltValueEnumConst(wireName: r'no_answer')
+  static const AnswerDetailsNoResultReasonEnum noAnswer = _$answerDetailsNoResultReasonEnum_noAnswer;
+
+  static Serializer<AnswerDetailsNoResultReasonEnum> get serializer => _$answerDetailsNoResultReasonEnumSerializer;
+
+  const AnswerDetailsNoResultReasonEnum._(String name): super(name);
+
+  static BuiltSet<AnswerDetailsNoResultReasonEnum> get values => _$answerDetailsNoResultReasonEnumValues;
+  static AnswerDetailsNoResultReasonEnum valueOf(String name) => _$answerDetailsNoResultReasonEnumValueOf(name);
 }
 
