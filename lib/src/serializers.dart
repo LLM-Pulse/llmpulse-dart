@@ -97,6 +97,7 @@ import 'package:llmpulse/src/model/create_api_key_request.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
 import 'package:llmpulse/src/model/create_project_draft_request.dart';
+import 'package:llmpulse/src/model/create_reputation_report_request.dart';
 import 'package:llmpulse/src/model/create_team_invitation201_response.dart';
 import 'package:llmpulse/src/model/create_team_invitation_request.dart';
 import 'package:llmpulse/src/model/create_technical_geo_reports_request.dart';
@@ -249,6 +250,8 @@ import 'package:llmpulse/src/model/reddit_position_share.dart';
 import 'package:llmpulse/src/model/reddit_subreddit_activity_period.dart';
 import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/remove_team_member200_response.dart';
+import 'package:llmpulse/src/model/reputation_report_create_response.dart';
+import 'package:llmpulse/src/model/reputation_report_summary.dart';
 import 'package:llmpulse/src/model/revoke_api_key200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
@@ -421,6 +424,7 @@ part 'serializers.g.dart';
   CreateCollectionRequest,
   CreateCompetitorRequest,
   CreateProjectDraftRequest,
+  CreateReputationReportRequest,
   CreateTeamInvitation201Response,
   CreateTeamInvitationRequest,
   CreateTechnicalGeoReportsRequest,
@@ -573,6 +577,8 @@ part 'serializers.g.dart';
   RedditSubredditActivityPeriod,
   RemovePromptTagsRequest,
   RemoveTeamMember200Response,
+  ReputationReportCreateResponse,
+  ReputationReportSummary,
   RevokeApiKey200Response,
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,

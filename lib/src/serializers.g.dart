@@ -127,6 +127,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CreateCompetitorRequest.serializer)
       ..add(CreateCompetitorRequestCitationMatchModeEnum.serializer)
       ..add(CreateProjectDraftRequest.serializer)
+      ..add(CreateReputationReportRequest.serializer)
       ..add(CreateTeamInvitation201Response.serializer)
       ..add(CreateTeamInvitationRequest.serializer)
       ..add(CreateTeamInvitationRequestPermissionRoleEnum.serializer)
@@ -324,6 +325,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(RedditSubredditActivityPeriod.serializer)
       ..add(RemovePromptTagsRequest.serializer)
       ..add(RemoveTeamMember200Response.serializer)
+      ..add(ReputationReportCreateResponse.serializer)
+      ..add(ReputationReportSummary.serializer)
+      ..add(ReputationReportSummaryAvailableModelsEnum.serializer)
+      ..add(ReputationReportSummaryMissingModelsEnum.serializer)
+      ..add(ReputationReportSummaryStatusEnum.serializer)
       ..add(RevokeApiKey200Response.serializer)
       ..add(RevokeTeamInvitation200Response.serializer)
       ..add(SampleWebhookPayloads200Response.serializer)
@@ -696,6 +702,15 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(RecommendationSummary)]),
           () => ListBuilder<RecommendationSummary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(ReputationReportSummaryAvailableModelsEnum)
+          ]),
+          () => ListBuilder<ReputationReportSummaryAvailableModelsEnum>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(ReputationReportSummaryMissingModelsEnum)]),
+          () => ListBuilder<ReputationReportSummaryMissingModelsEnum>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(SampleWebhookPayloads200ResponseDataInner)
