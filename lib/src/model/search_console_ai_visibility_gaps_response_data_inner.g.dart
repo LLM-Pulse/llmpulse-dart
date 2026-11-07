@@ -24,6 +24,8 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInner
   final int? responses;
   @override
   final num? brandVisibility;
+  @override
+  final String? matchType;
 
   factory _$SearchConsoleAiVisibilityGapsResponseDataInner(
           [void Function(SearchConsoleAiVisibilityGapsResponseDataInnerBuilder)?
@@ -39,7 +41,8 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInner
       this.position,
       this.promptId,
       this.responses,
-      this.brandVisibility})
+      this.brandVisibility,
+      this.matchType})
       : super._();
   @override
   SearchConsoleAiVisibilityGapsResponseDataInner rebuild(
@@ -62,7 +65,8 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInner
         position == other.position &&
         promptId == other.promptId &&
         responses == other.responses &&
-        brandVisibility == other.brandVisibility;
+        brandVisibility == other.brandVisibility &&
+        matchType == other.matchType;
   }
 
   @override
@@ -76,6 +80,7 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInner
     _$hash = $jc(_$hash, promptId.hashCode);
     _$hash = $jc(_$hash, responses.hashCode);
     _$hash = $jc(_$hash, brandVisibility.hashCode);
+    _$hash = $jc(_$hash, matchType.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -91,7 +96,8 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInner
           ..add('position', position)
           ..add('promptId', promptId)
           ..add('responses', responses)
-          ..add('brandVisibility', brandVisibility))
+          ..add('brandVisibility', brandVisibility)
+          ..add('matchType', matchType))
         .toString();
   }
 }
@@ -135,6 +141,10 @@ class SearchConsoleAiVisibilityGapsResponseDataInnerBuilder
   set brandVisibility(num? brandVisibility) =>
       _$this._brandVisibility = brandVisibility;
 
+  String? _matchType;
+  String? get matchType => _$this._matchType;
+  set matchType(String? matchType) => _$this._matchType = matchType;
+
   SearchConsoleAiVisibilityGapsResponseDataInnerBuilder() {
     SearchConsoleAiVisibilityGapsResponseDataInner._defaults(this);
   }
@@ -150,6 +160,7 @@ class SearchConsoleAiVisibilityGapsResponseDataInnerBuilder
       _promptId = $v.promptId;
       _responses = $v.responses;
       _brandVisibility = $v.brandVisibility;
+      _matchType = $v.matchType;
       _$v = null;
     }
     return this;
@@ -181,6 +192,7 @@ class SearchConsoleAiVisibilityGapsResponseDataInnerBuilder
           promptId: promptId,
           responses: responses,
           brandVisibility: brandVisibility,
+          matchType: matchType,
         );
     replace(_$result);
     return _$result;

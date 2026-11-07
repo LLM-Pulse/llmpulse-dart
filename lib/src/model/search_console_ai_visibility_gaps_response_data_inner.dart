@@ -16,9 +16,10 @@ part 'search_console_ai_visibility_gaps_response_data_inner.g.dart';
 /// * [clicks] 
 /// * [ctr] - 0..1 fraction
 /// * [position] - Impression-weighted average position
-/// * [promptId] - The project's prompt with the same text as the query; null when no prompt matches
+/// * [promptId] - The project's prompt the query matches (see match_type); null when no prompt matches
 /// * [responses] - AI answers the matching prompt got in the window over the account's enabled models; null when no prompt matches
 /// * [brandVisibility] - Brand Visibility of the matching prompt in the window, percent (0-100) of its AI answers that mention the brand, over the account's enabled models; null when no prompt matches or it has no answer
+/// * [matchType] - How the query matched: prompt (the same text as the prompt) or fan_out (the same text as a search the prompt's AI answers ran in the window); null when no prompt matches
 @BuiltValue()
 abstract class SearchConsoleAiVisibilityGapsResponseDataInner implements Built<SearchConsoleAiVisibilityGapsResponseDataInner, SearchConsoleAiVisibilityGapsResponseDataInnerBuilder> {
   @BuiltValueField(wireName: r'query')
@@ -38,7 +39,7 @@ abstract class SearchConsoleAiVisibilityGapsResponseDataInner implements Built<S
   @BuiltValueField(wireName: r'position')
   num? get position;
 
-  /// The project's prompt with the same text as the query; null when no prompt matches
+  /// The project's prompt the query matches (see match_type); null when no prompt matches
   @BuiltValueField(wireName: r'prompt_id')
   int? get promptId;
 
@@ -49,6 +50,10 @@ abstract class SearchConsoleAiVisibilityGapsResponseDataInner implements Built<S
   /// Brand Visibility of the matching prompt in the window, percent (0-100) of its AI answers that mention the brand, over the account's enabled models; null when no prompt matches or it has no answer
   @BuiltValueField(wireName: r'brand_visibility')
   num? get brandVisibility;
+
+  /// How the query matched: prompt (the same text as the prompt) or fan_out (the same text as a search the prompt's AI answers ran in the window); null when no prompt matches
+  @BuiltValueField(wireName: r'match_type')
+  String? get matchType;
 
   SearchConsoleAiVisibilityGapsResponseDataInner._();
 
@@ -127,6 +132,13 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInnerSerializer implements Prim
       yield serializers.serialize(
         object.brandVisibility,
         specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.matchType != null) {
+      yield r'match_type';
+      yield serializers.serialize(
+        object.matchType,
+        specifiedType: const FullType.nullable(String),
       );
     }
   }
@@ -215,6 +227,14 @@ class _$SearchConsoleAiVisibilityGapsResponseDataInnerSerializer implements Prim
           ) as num?;
           if (valueDes == null) continue;
           result.brandVisibility = valueDes;
+          break;
+        case r'match_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.matchType = valueDes;
           break;
         default:
           unhandled.add(key);
