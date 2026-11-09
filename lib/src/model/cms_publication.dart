@@ -23,7 +23,7 @@ part 'cms_publication.g.dart';
 /// * [remoteStatus] - WordPress status of the post when the draft was created (draft)
 /// * [remoteUrl] 
 /// * [editUrl] - The post's edit screen in the WordPress admin
-/// * [errorCode] - Why the send failed, for example reconnect_required, missing_capability, unreachable or rejected
+/// * [errorCode] - Why the send failed, the same token as error.meta.reason, for example reconnect_required, authorization_header_lost, missing_capability, firewall_blocked, timeout, unreachable or rejected
 /// * [createdAt] 
 /// * [sentAt] 
 @BuiltValue()
@@ -68,7 +68,7 @@ abstract class CmsPublication implements Built<CmsPublication, CmsPublicationBui
   @BuiltValueField(wireName: r'edit_url')
   String? get editUrl;
 
-  /// Why the send failed, for example reconnect_required, missing_capability, unreachable or rejected
+  /// Why the send failed, the same token as error.meta.reason, for example reconnect_required, authorization_header_lost, missing_capability, firewall_blocked, timeout, unreachable or rejected
   @BuiltValueField(wireName: r'error_code')
   String? get errorCode;
 

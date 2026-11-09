@@ -11,7 +11,7 @@ import 'package:built_value/serializer.dart';
 
 part 'owned_media_row.g.dart';
 
-/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank) and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
+/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank), the Trustpilot views profiles (key, name, rating, reviews_count, url, competitor_id), brands (name, domain, key, rating, rating_change, reviews_count, status, url, competitor_id) and reviews (id, brand, rating, title, text, author, published_at, replied, url, competitor_id), and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
 ///
 /// Properties:
 /// * [date] - The start date of the actual reporting period (view=activity)
@@ -19,14 +19,23 @@ part 'owned_media_row.g.dart';
 /// * [entityName] - Current entity name when known (view=activity)
 /// * [entityUrl] - Current profile, channel or app listing URL when known (view=activity)
 /// * [store] - Store selected for provider=mobile_apps (view=activity)
-/// * [competitorId] - Competitor identifier when the activity row represents a competitor app
+/// * [competitorId] - Competitor identifier when the row represents a competitor's app or Trustpilot profile
+/// * [id] - The review's identifier (provider=trustpilot, view=reviews)
+/// * [brand] - The brand or competitor whose Trustpilot profile carries the review (provider=trustpilot, view=reviews)
+/// * [rating] - Trustpilot rating out of 5: the profile's at its last monthly read (views profiles and brands) or the review's stars (view=reviews)
+/// * [ratingChange] - Change of the profile's rating since the previous monthly read (provider=trustpilot, view=brands); null before a second read
+/// * [reviewsCount] - The profile's review count on Trustpilot at its last monthly read (provider=trustpilot)
+/// * [status] - Whether the brand's Trustpilot profile has been read (found), Trustpilot has no business for its domain (not_found), or it has not been read yet (pending) (provider=trustpilot, view=brands)
+/// * [text] - The review text (provider=trustpilot, view=reviews)
+/// * [author] - The reviewer's display name (provider=trustpilot, view=reviews)
+/// * [replied] - Whether the business replied to the review (provider=trustpilot, view=reviews)
 /// * [title] 
 /// * [url] 
 /// * [channelName] 
 /// * [channelHandle] - The video's channel handle, without the @
 /// * [channelUrl] 
 /// * [videoId] 
-/// * [key] - The channel key (handle:..., channel:... or name:...), accepted as profile by /dimensions/owned_media/citing_prompts
+/// * [key] - The channel key (handle:..., channel:... or name:...), accepted as profile by /dimensions/owned_media/citing_prompts; on provider=trustpilot, the business domain the profile is filed under, null for a brand without a domain
 /// * [name] 
 /// * [handle] 
 /// * [caption] 
@@ -48,7 +57,7 @@ part 'owned_media_row.g.dart';
 /// * [citationDate] 
 /// * [position] 
 /// * [model] 
-/// * [domain] - The app's store listing URL (provider=mobile_apps)
+/// * [domain] - The app's store listing URL (provider=mobile_apps), or the brand's domain (provider=trustpilot, view=brands)
 /// * [totalResponses] 
 /// * [rank] 
 /// * [globalRank] 
@@ -75,9 +84,46 @@ abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilde
   OwnedMediaRowStoreEnum? get store;
   // enum storeEnum {  google_play,  app_store,  };
 
-  /// Competitor identifier when the activity row represents a competitor app
+  /// Competitor identifier when the row represents a competitor's app or Trustpilot profile
   @BuiltValueField(wireName: r'competitor_id')
   int? get competitorId;
+
+  /// The review's identifier (provider=trustpilot, view=reviews)
+  @BuiltValueField(wireName: r'id')
+  int? get id;
+
+  /// The brand or competitor whose Trustpilot profile carries the review (provider=trustpilot, view=reviews)
+  @BuiltValueField(wireName: r'brand')
+  String? get brand;
+
+  /// Trustpilot rating out of 5: the profile's at its last monthly read (views profiles and brands) or the review's stars (view=reviews)
+  @BuiltValueField(wireName: r'rating')
+  num? get rating;
+
+  /// Change of the profile's rating since the previous monthly read (provider=trustpilot, view=brands); null before a second read
+  @BuiltValueField(wireName: r'rating_change')
+  num? get ratingChange;
+
+  /// The profile's review count on Trustpilot at its last monthly read (provider=trustpilot)
+  @BuiltValueField(wireName: r'reviews_count')
+  int? get reviewsCount;
+
+  /// Whether the brand's Trustpilot profile has been read (found), Trustpilot has no business for its domain (not_found), or it has not been read yet (pending) (provider=trustpilot, view=brands)
+  @BuiltValueField(wireName: r'status')
+  OwnedMediaRowStatusEnum? get status;
+  // enum statusEnum {  found,  not_found,  pending,  };
+
+  /// The review text (provider=trustpilot, view=reviews)
+  @BuiltValueField(wireName: r'text')
+  String? get text;
+
+  /// The reviewer's display name (provider=trustpilot, view=reviews)
+  @BuiltValueField(wireName: r'author')
+  String? get author;
+
+  /// Whether the business replied to the review (provider=trustpilot, view=reviews)
+  @BuiltValueField(wireName: r'replied')
+  bool? get replied;
 
   @BuiltValueField(wireName: r'title')
   String? get title;
@@ -98,7 +144,7 @@ abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilde
   @BuiltValueField(wireName: r'video_id')
   String? get videoId;
 
-  /// The channel key (handle:..., channel:... or name:...), accepted as profile by /dimensions/owned_media/citing_prompts
+  /// The channel key (handle:..., channel:... or name:...), accepted as profile by /dimensions/owned_media/citing_prompts; on provider=trustpilot, the business domain the profile is filed under, null for a brand without a domain
   @BuiltValueField(wireName: r'key')
   String? get key;
 
@@ -173,7 +219,7 @@ abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilde
   @BuiltValueField(wireName: r'model')
   String? get model;
 
-  /// The app's store listing URL (provider=mobile_apps)
+  /// The app's store listing URL (provider=mobile_apps), or the brand's domain (provider=trustpilot, view=brands)
   @BuiltValueField(wireName: r'domain')
   String? get domain;
 
@@ -251,6 +297,69 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
         specifiedType: const FullType.nullable(int),
       );
     }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.brand != null) {
+      yield r'brand';
+      yield serializers.serialize(
+        object.brand,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.rating != null) {
+      yield r'rating';
+      yield serializers.serialize(
+        object.rating,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.ratingChange != null) {
+      yield r'rating_change';
+      yield serializers.serialize(
+        object.ratingChange,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.reviewsCount != null) {
+      yield r'reviews_count';
+      yield serializers.serialize(
+        object.reviewsCount,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.status != null) {
+      yield r'status';
+      yield serializers.serialize(
+        object.status,
+        specifiedType: const FullType(OwnedMediaRowStatusEnum),
+      );
+    }
+    if (object.text != null) {
+      yield r'text';
+      yield serializers.serialize(
+        object.text,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.author != null) {
+      yield r'author';
+      yield serializers.serialize(
+        object.author,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.replied != null) {
+      yield r'replied';
+      yield serializers.serialize(
+        object.replied,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
@@ -297,7 +406,7 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
       yield r'key';
       yield serializers.serialize(
         object.key,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.name != null) {
@@ -545,6 +654,78 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
           ) as int?;
           if (valueDes == null) continue;
           result.competitorId = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.id = valueDes;
+          break;
+        case r'brand':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.brand = valueDes;
+          break;
+        case r'rating':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.rating = valueDes;
+          break;
+        case r'rating_change':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.ratingChange = valueDes;
+          break;
+        case r'reviews_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.reviewsCount = valueDes;
+          break;
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(OwnedMediaRowStatusEnum),
+          ) as OwnedMediaRowStatusEnum?;
+          if (valueDes == null) continue;
+          result.status = valueDes;
+          break;
+        case r'text':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.text = valueDes;
+          break;
+        case r'author':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.author = valueDes;
+          break;
+        case r'replied':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.replied = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(
@@ -846,5 +1027,25 @@ class OwnedMediaRowStoreEnum extends EnumClass {
 
   static BuiltSet<OwnedMediaRowStoreEnum> get values => _$ownedMediaRowStoreEnumValues;
   static OwnedMediaRowStoreEnum valueOf(String name) => _$ownedMediaRowStoreEnumValueOf(name);
+}
+
+class OwnedMediaRowStatusEnum extends EnumClass {
+
+  /// Whether the brand's Trustpilot profile has been read (found), Trustpilot has no business for its domain (not_found), or it has not been read yet (pending) (provider=trustpilot, view=brands)
+  @BuiltValueEnumConst(wireName: r'found')
+  static const OwnedMediaRowStatusEnum found = _$ownedMediaRowStatusEnum_found;
+  /// Whether the brand's Trustpilot profile has been read (found), Trustpilot has no business for its domain (not_found), or it has not been read yet (pending) (provider=trustpilot, view=brands)
+  @BuiltValueEnumConst(wireName: r'not_found')
+  static const OwnedMediaRowStatusEnum notFound = _$ownedMediaRowStatusEnum_notFound;
+  /// Whether the brand's Trustpilot profile has been read (found), Trustpilot has no business for its domain (not_found), or it has not been read yet (pending) (provider=trustpilot, view=brands)
+  @BuiltValueEnumConst(wireName: r'pending')
+  static const OwnedMediaRowStatusEnum pending = _$ownedMediaRowStatusEnum_pending;
+
+  static Serializer<OwnedMediaRowStatusEnum> get serializer => _$ownedMediaRowStatusEnumSerializer;
+
+  const OwnedMediaRowStatusEnum._(String name): super(name);
+
+  static BuiltSet<OwnedMediaRowStatusEnum> get values => _$ownedMediaRowStatusEnumValues;
+  static OwnedMediaRowStatusEnum valueOf(String name) => _$ownedMediaRowStatusEnumValueOf(name);
 }
 

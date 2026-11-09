@@ -28,8 +28,37 @@ final BuiltSet<OwnedMediaRowStoreEnum> _$ownedMediaRowStoreEnumValues =
   _$ownedMediaRowStoreEnum_appStore,
 ]);
 
+const OwnedMediaRowStatusEnum _$ownedMediaRowStatusEnum_found =
+    const OwnedMediaRowStatusEnum._('found');
+const OwnedMediaRowStatusEnum _$ownedMediaRowStatusEnum_notFound =
+    const OwnedMediaRowStatusEnum._('notFound');
+const OwnedMediaRowStatusEnum _$ownedMediaRowStatusEnum_pending =
+    const OwnedMediaRowStatusEnum._('pending');
+
+OwnedMediaRowStatusEnum _$ownedMediaRowStatusEnumValueOf(String name) {
+  switch (name) {
+    case 'found':
+      return _$ownedMediaRowStatusEnum_found;
+    case 'notFound':
+      return _$ownedMediaRowStatusEnum_notFound;
+    case 'pending':
+      return _$ownedMediaRowStatusEnum_pending;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<OwnedMediaRowStatusEnum> _$ownedMediaRowStatusEnumValues =
+    BuiltSet<OwnedMediaRowStatusEnum>(const <OwnedMediaRowStatusEnum>[
+  _$ownedMediaRowStatusEnum_found,
+  _$ownedMediaRowStatusEnum_notFound,
+  _$ownedMediaRowStatusEnum_pending,
+]);
+
 Serializer<OwnedMediaRowStoreEnum> _$ownedMediaRowStoreEnumSerializer =
     _$OwnedMediaRowStoreEnumSerializer();
+Serializer<OwnedMediaRowStatusEnum> _$ownedMediaRowStatusEnumSerializer =
+    _$OwnedMediaRowStatusEnumSerializer();
 
 class _$OwnedMediaRowStoreEnumSerializer
     implements PrimitiveSerializer<OwnedMediaRowStoreEnum> {
@@ -59,6 +88,37 @@ class _$OwnedMediaRowStoreEnumSerializer
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
+class _$OwnedMediaRowStatusEnumSerializer
+    implements PrimitiveSerializer<OwnedMediaRowStatusEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'found': 'found',
+    'notFound': 'not_found',
+    'pending': 'pending',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'found': 'found',
+    'not_found': 'notFound',
+    'pending': 'pending',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[OwnedMediaRowStatusEnum];
+  @override
+  final String wireName = 'OwnedMediaRowStatusEnum';
+
+  @override
+  Object serialize(Serializers serializers, OwnedMediaRowStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  OwnedMediaRowStatusEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      OwnedMediaRowStatusEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$OwnedMediaRow extends OwnedMediaRow {
   @override
   final Date? date;
@@ -72,6 +132,24 @@ class _$OwnedMediaRow extends OwnedMediaRow {
   final OwnedMediaRowStoreEnum? store;
   @override
   final int? competitorId;
+  @override
+  final int? id;
+  @override
+  final String? brand;
+  @override
+  final num? rating;
+  @override
+  final num? ratingChange;
+  @override
+  final int? reviewsCount;
+  @override
+  final OwnedMediaRowStatusEnum? status;
+  @override
+  final String? text;
+  @override
+  final String? author;
+  @override
+  final bool? replied;
   @override
   final String? title;
   @override
@@ -147,6 +225,15 @@ class _$OwnedMediaRow extends OwnedMediaRow {
       this.entityUrl,
       this.store,
       this.competitorId,
+      this.id,
+      this.brand,
+      this.rating,
+      this.ratingChange,
+      this.reviewsCount,
+      this.status,
+      this.text,
+      this.author,
+      this.replied,
       this.title,
       this.url,
       this.channelName,
@@ -197,6 +284,15 @@ class _$OwnedMediaRow extends OwnedMediaRow {
         entityUrl == other.entityUrl &&
         store == other.store &&
         competitorId == other.competitorId &&
+        id == other.id &&
+        brand == other.brand &&
+        rating == other.rating &&
+        ratingChange == other.ratingChange &&
+        reviewsCount == other.reviewsCount &&
+        status == other.status &&
+        text == other.text &&
+        author == other.author &&
+        replied == other.replied &&
         title == other.title &&
         url == other.url &&
         channelName == other.channelName &&
@@ -240,6 +336,15 @@ class _$OwnedMediaRow extends OwnedMediaRow {
     _$hash = $jc(_$hash, entityUrl.hashCode);
     _$hash = $jc(_$hash, store.hashCode);
     _$hash = $jc(_$hash, competitorId.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, brand.hashCode);
+    _$hash = $jc(_$hash, rating.hashCode);
+    _$hash = $jc(_$hash, ratingChange.hashCode);
+    _$hash = $jc(_$hash, reviewsCount.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, author.hashCode);
+    _$hash = $jc(_$hash, replied.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
     _$hash = $jc(_$hash, channelName.hashCode);
@@ -285,6 +390,15 @@ class _$OwnedMediaRow extends OwnedMediaRow {
           ..add('entityUrl', entityUrl)
           ..add('store', store)
           ..add('competitorId', competitorId)
+          ..add('id', id)
+          ..add('brand', brand)
+          ..add('rating', rating)
+          ..add('ratingChange', ratingChange)
+          ..add('reviewsCount', reviewsCount)
+          ..add('status', status)
+          ..add('text', text)
+          ..add('author', author)
+          ..add('replied', replied)
           ..add('title', title)
           ..add('url', url)
           ..add('channelName', channelName)
@@ -348,6 +462,42 @@ class OwnedMediaRowBuilder
   int? _competitorId;
   int? get competitorId => _$this._competitorId;
   set competitorId(int? competitorId) => _$this._competitorId = competitorId;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _brand;
+  String? get brand => _$this._brand;
+  set brand(String? brand) => _$this._brand = brand;
+
+  num? _rating;
+  num? get rating => _$this._rating;
+  set rating(num? rating) => _$this._rating = rating;
+
+  num? _ratingChange;
+  num? get ratingChange => _$this._ratingChange;
+  set ratingChange(num? ratingChange) => _$this._ratingChange = ratingChange;
+
+  int? _reviewsCount;
+  int? get reviewsCount => _$this._reviewsCount;
+  set reviewsCount(int? reviewsCount) => _$this._reviewsCount = reviewsCount;
+
+  OwnedMediaRowStatusEnum? _status;
+  OwnedMediaRowStatusEnum? get status => _$this._status;
+  set status(OwnedMediaRowStatusEnum? status) => _$this._status = status;
+
+  String? _text;
+  String? get text => _$this._text;
+  set text(String? text) => _$this._text = text;
+
+  String? _author;
+  String? get author => _$this._author;
+  set author(String? author) => _$this._author = author;
+
+  bool? _replied;
+  bool? get replied => _$this._replied;
+  set replied(bool? replied) => _$this._replied = replied;
 
   String? _title;
   String? get title => _$this._title;
@@ -493,6 +643,15 @@ class OwnedMediaRowBuilder
       _entityUrl = $v.entityUrl;
       _store = $v.store;
       _competitorId = $v.competitorId;
+      _id = $v.id;
+      _brand = $v.brand;
+      _rating = $v.rating;
+      _ratingChange = $v.ratingChange;
+      _reviewsCount = $v.reviewsCount;
+      _status = $v.status;
+      _text = $v.text;
+      _author = $v.author;
+      _replied = $v.replied;
       _title = $v.title;
       _url = $v.url;
       _channelName = $v.channelName;
@@ -552,6 +711,15 @@ class OwnedMediaRowBuilder
           entityUrl: entityUrl,
           store: store,
           competitorId: competitorId,
+          id: id,
+          brand: brand,
+          rating: rating,
+          ratingChange: ratingChange,
+          reviewsCount: reviewsCount,
+          status: status,
+          text: text,
+          author: author,
+          replied: replied,
           title: title,
           url: url,
           channelName: channelName,

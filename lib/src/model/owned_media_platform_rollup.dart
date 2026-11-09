@@ -25,7 +25,7 @@ part 'owned_media_platform_rollup.g.dart';
 abstract class OwnedMediaPlatformRollup implements Built<OwnedMediaPlatformRollup, OwnedMediaPlatformRollupBuilder> {
   @BuiltValueField(wireName: r'provider')
   OwnedMediaPlatformRollupProviderEnum? get provider;
-  // enum providerEnum {  youtube,  mobile_apps,  instagram,  facebook,  tiktok,  linkedin,  reddit,  };
+  // enum providerEnum {  youtube,  mobile_apps,  instagram,  facebook,  tiktok,  linkedin,  trustpilot,  reddit,  };
 
   @BuiltValueField(wireName: r'connected')
   bool? get connected;
@@ -240,6 +240,8 @@ class OwnedMediaPlatformRollupProviderEnum extends EnumClass {
   static const OwnedMediaPlatformRollupProviderEnum tiktok = _$ownedMediaPlatformRollupProviderEnum_tiktok;
   @BuiltValueEnumConst(wireName: r'linkedin')
   static const OwnedMediaPlatformRollupProviderEnum linkedin = _$ownedMediaPlatformRollupProviderEnum_linkedin;
+  @BuiltValueEnumConst(wireName: r'trustpilot')
+  static const OwnedMediaPlatformRollupProviderEnum trustpilot = _$ownedMediaPlatformRollupProviderEnum_trustpilot;
   @BuiltValueEnumConst(wireName: r'reddit')
   static const OwnedMediaPlatformRollupProviderEnum reddit = _$ownedMediaPlatformRollupProviderEnum_reddit;
 

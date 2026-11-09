@@ -25,6 +25,9 @@ const OwnedMediaPlatformRollupProviderEnum
     _$ownedMediaPlatformRollupProviderEnum_linkedin =
     const OwnedMediaPlatformRollupProviderEnum._('linkedin');
 const OwnedMediaPlatformRollupProviderEnum
+    _$ownedMediaPlatformRollupProviderEnum_trustpilot =
+    const OwnedMediaPlatformRollupProviderEnum._('trustpilot');
+const OwnedMediaPlatformRollupProviderEnum
     _$ownedMediaPlatformRollupProviderEnum_reddit =
     const OwnedMediaPlatformRollupProviderEnum._('reddit');
 
@@ -43,6 +46,8 @@ OwnedMediaPlatformRollupProviderEnum
       return _$ownedMediaPlatformRollupProviderEnum_tiktok;
     case 'linkedin':
       return _$ownedMediaPlatformRollupProviderEnum_linkedin;
+    case 'trustpilot':
+      return _$ownedMediaPlatformRollupProviderEnum_trustpilot;
     case 'reddit':
       return _$ownedMediaPlatformRollupProviderEnum_reddit;
     default:
@@ -59,6 +64,7 @@ final BuiltSet<OwnedMediaPlatformRollupProviderEnum>
   _$ownedMediaPlatformRollupProviderEnum_facebook,
   _$ownedMediaPlatformRollupProviderEnum_tiktok,
   _$ownedMediaPlatformRollupProviderEnum_linkedin,
+  _$ownedMediaPlatformRollupProviderEnum_trustpilot,
   _$ownedMediaPlatformRollupProviderEnum_reddit,
 ]);
 
@@ -75,6 +81,7 @@ class _$OwnedMediaPlatformRollupProviderEnumSerializer
     'facebook': 'facebook',
     'tiktok': 'tiktok',
     'linkedin': 'linkedin',
+    'trustpilot': 'trustpilot',
     'reddit': 'reddit',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
@@ -84,6 +91,7 @@ class _$OwnedMediaPlatformRollupProviderEnumSerializer
     'facebook': 'facebook',
     'tiktok': 'tiktok',
     'linkedin': 'linkedin',
+    'trustpilot': 'trustpilot',
     'reddit': 'reddit',
   };
 
