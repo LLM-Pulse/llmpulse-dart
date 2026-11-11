@@ -14,7 +14,7 @@ part 'project_details_all_of_search_console.g.dart';
 /// Properties:
 /// * [status] 
 /// * [property] - The primary property (e.g. sc-domain:example.com), null when not connected
-/// * [connectUrl] - The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
+/// * [connectUrl] - The in-app page where the property is connected or reconnected (Preferences > Project Settings > Connections)
 /// * [propertiesCount] - Connected properties Google still accepts (reconnect_required ones excluded); GET /search_console/properties lists every property with its status
 @BuiltValue()
 abstract class ProjectDetailsAllOfSearchConsole implements Built<ProjectDetailsAllOfSearchConsole, ProjectDetailsAllOfSearchConsoleBuilder> {
@@ -26,7 +26,7 @@ abstract class ProjectDetailsAllOfSearchConsole implements Built<ProjectDetailsA
   @BuiltValueField(wireName: r'property')
   String? get property;
 
-  /// The in-app page where the property is connected or reconnected (Preferences > Project Settings > Data Connections)
+  /// The in-app page where the property is connected or reconnected (Preferences > Project Settings > Connections)
   @BuiltValueField(wireName: r'connect_url')
   String? get connectUrl;
 

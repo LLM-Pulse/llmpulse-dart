@@ -19,7 +19,7 @@ part 'account_pitch_quota.g.dart';
 /// * [unlimited] 
 /// * [period] - Always month
 /// * [resetsOn] - The first day of next month, when the allowance starts again
-/// * [access] - Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+/// * [access] - Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
 @BuiltValue()
 abstract class AccountPitchQuota implements Built<AccountPitchQuota, AccountPitchQuotaBuilder> {
   @BuiltValueField(wireName: r'limit')
@@ -42,7 +42,7 @@ abstract class AccountPitchQuota implements Built<AccountPitchQuota, AccountPitc
   @BuiltValueField(wireName: r'resets_on')
   Date? get resetsOn;
 
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueField(wireName: r'access')
   AccountPitchQuotaAccessEnum? get access;
   // enum accessEnum {  none,  pending,  approved,  dormant,  rejected,  revoked,  };
@@ -229,22 +229,22 @@ class _$AccountPitchQuotaSerializer implements PrimitiveSerializer<AccountPitchQ
 
 class AccountPitchQuotaAccessEnum extends EnumClass {
 
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'none')
   static const AccountPitchQuotaAccessEnum none = _$accountPitchQuotaAccessEnum_none;
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'pending')
   static const AccountPitchQuotaAccessEnum pending = _$accountPitchQuotaAccessEnum_pending;
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'approved')
   static const AccountPitchQuotaAccessEnum approved = _$accountPitchQuotaAccessEnum_approved;
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'dormant')
   static const AccountPitchQuotaAccessEnum dormant = _$accountPitchQuotaAccessEnum_dormant;
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'rejected')
   static const AccountPitchQuotaAccessEnum rejected = _$accountPitchQuotaAccessEnum_rejected;
-  /// Whether the account may create pitch projects. The account owner or an account admin (co-owner) requests access in Account Settings > Pitch projects and our team reviews it; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0
+  /// Whether the account may create pitch projects, which are for agency and platform accounts (the account type, which the account owner or an account admin changes in Account Settings > Profile). none means the account is not an agency; approved access goes dormant while the account is below the Scale tier, on a trial, has a payment problem, is set to cancel or has an allowance of 0; revoked means our team turned it off. pending and rejected are no longer returned
   @BuiltValueEnumConst(wireName: r'revoked')
   static const AccountPitchQuotaAccessEnum revoked = _$accountPitchQuotaAccessEnum_revoked;
 
