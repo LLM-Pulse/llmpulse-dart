@@ -54,6 +54,9 @@ const ProjectDetailsAllOfDataCoverageModelsEnum
 const ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnum_doubao =
     const ProjectDetailsAllOfDataCoverageModelsEnum._('doubao');
+const ProjectDetailsAllOfDataCoverageModelsEnum
+    _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode =
+    const ProjectDetailsAllOfDataCoverageModelsEnum._('bingAiMode');
 
 ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnumValueOf(String name) {
@@ -90,6 +93,8 @@ ProjectDetailsAllOfDataCoverageModelsEnum
       return _$projectDetailsAllOfDataCoverageModelsEnum_qwen;
     case 'doubao':
       return _$projectDetailsAllOfDataCoverageModelsEnum_doubao;
+    case 'bingAiMode':
+      return _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode;
     default:
       throw ArgumentError(name);
   }
@@ -114,6 +119,7 @@ final BuiltSet<ProjectDetailsAllOfDataCoverageModelsEnum>
   _$projectDetailsAllOfDataCoverageModelsEnum_naverAiTab,
   _$projectDetailsAllOfDataCoverageModelsEnum_qwen,
   _$projectDetailsAllOfDataCoverageModelsEnum_doubao,
+  _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode,
 ]);
 
 Serializer<ProjectDetailsAllOfDataCoverageModelsEnum>
@@ -139,6 +145,7 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'naverAiTab': 'naver_ai_tab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bingAiMode': 'bing_ai_mode',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -157,6 +164,7 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'naver_ai_tab': 'naverAiTab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bing_ai_mode': 'bingAiMode',
   };
 
   @override

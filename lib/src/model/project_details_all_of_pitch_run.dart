@@ -34,7 +34,7 @@ abstract class ProjectDetailsAllOfPitchRun implements Built<ProjectDetailsAllOfP
   /// The AI models the run asks, fixed when it starts
   @BuiltValueField(wireName: r'models')
   BuiltList<ProjectDetailsAllOfPitchRunModelsEnum>? get models;
-  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  };
+  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  bing_ai_mode,  };
 
   @BuiltValueField(wireName: r'answers_expected')
   int? get answersExpected;
@@ -261,6 +261,8 @@ class ProjectDetailsAllOfPitchRunModelsEnum extends EnumClass {
   static const ProjectDetailsAllOfPitchRunModelsEnum qwen = _$projectDetailsAllOfPitchRunModelsEnum_qwen;
   @BuiltValueEnumConst(wireName: r'doubao')
   static const ProjectDetailsAllOfPitchRunModelsEnum doubao = _$projectDetailsAllOfPitchRunModelsEnum_doubao;
+  @BuiltValueEnumConst(wireName: r'bing_ai_mode')
+  static const ProjectDetailsAllOfPitchRunModelsEnum bingAiMode = _$projectDetailsAllOfPitchRunModelsEnum_bingAiMode;
 
   static Serializer<ProjectDetailsAllOfPitchRunModelsEnum> get serializer => _$projectDetailsAllOfPitchRunModelsEnumSerializer;
 

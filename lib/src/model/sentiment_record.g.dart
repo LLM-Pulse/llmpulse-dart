@@ -38,6 +38,8 @@ const SentimentRecordModelEnum _$sentimentRecordModelEnum_qwen =
     const SentimentRecordModelEnum._('qwen');
 const SentimentRecordModelEnum _$sentimentRecordModelEnum_doubao =
     const SentimentRecordModelEnum._('doubao');
+const SentimentRecordModelEnum _$sentimentRecordModelEnum_bingAiMode =
+    const SentimentRecordModelEnum._('bingAiMode');
 
 SentimentRecordModelEnum _$sentimentRecordModelEnumValueOf(String name) {
   switch (name) {
@@ -73,6 +75,8 @@ SentimentRecordModelEnum _$sentimentRecordModelEnumValueOf(String name) {
       return _$sentimentRecordModelEnum_qwen;
     case 'doubao':
       return _$sentimentRecordModelEnum_doubao;
+    case 'bingAiMode':
+      return _$sentimentRecordModelEnum_bingAiMode;
     default:
       throw ArgumentError(name);
   }
@@ -96,6 +100,7 @@ final BuiltSet<SentimentRecordModelEnum> _$sentimentRecordModelEnumValues =
   _$sentimentRecordModelEnum_naverAiTab,
   _$sentimentRecordModelEnum_qwen,
   _$sentimentRecordModelEnum_doubao,
+  _$sentimentRecordModelEnum_bingAiMode,
 ]);
 
 const SentimentRecordAnalysisEnum _$sentimentRecordAnalysisEnum_veryPositive =
@@ -161,6 +166,7 @@ class _$SentimentRecordModelEnumSerializer
     'naverAiTab': 'naver_ai_tab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bingAiMode': 'bing_ai_mode',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -179,6 +185,7 @@ class _$SentimentRecordModelEnumSerializer
     'naver_ai_tab': 'naverAiTab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bing_ai_mode': 'bingAiMode',
   };
 
   @override

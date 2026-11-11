@@ -45,7 +45,7 @@ abstract class PromptExecutionRecord implements Built<PromptExecutionRecord, Pro
 
   @BuiltValueField(wireName: r'model')
   PromptExecutionRecordModelEnum get model;
-  // enum modelEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  };
+  // enum modelEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  bing_ai_mode,  };
 
   /// Sub-queries the model issued while answering; null when the model reports none
   @BuiltValueField(wireName: r'fan_out_queries')
@@ -326,6 +326,8 @@ class PromptExecutionRecordModelEnum extends EnumClass {
   static const PromptExecutionRecordModelEnum qwen = _$promptExecutionRecordModelEnum_qwen;
   @BuiltValueEnumConst(wireName: r'doubao')
   static const PromptExecutionRecordModelEnum doubao = _$promptExecutionRecordModelEnum_doubao;
+  @BuiltValueEnumConst(wireName: r'bing_ai_mode')
+  static const PromptExecutionRecordModelEnum bingAiMode = _$promptExecutionRecordModelEnum_bingAiMode;
 
   static Serializer<PromptExecutionRecordModelEnum> get serializer => _$promptExecutionRecordModelEnumSerializer;
 

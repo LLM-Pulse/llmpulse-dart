@@ -38,6 +38,8 @@ const ModelsResponseModelsEnum _$modelsResponseModelsEnum_qwen =
     const ModelsResponseModelsEnum._('qwen');
 const ModelsResponseModelsEnum _$modelsResponseModelsEnum_doubao =
     const ModelsResponseModelsEnum._('doubao');
+const ModelsResponseModelsEnum _$modelsResponseModelsEnum_bingAiMode =
+    const ModelsResponseModelsEnum._('bingAiMode');
 
 ModelsResponseModelsEnum _$modelsResponseModelsEnumValueOf(String name) {
   switch (name) {
@@ -73,6 +75,8 @@ ModelsResponseModelsEnum _$modelsResponseModelsEnumValueOf(String name) {
       return _$modelsResponseModelsEnum_qwen;
     case 'doubao':
       return _$modelsResponseModelsEnum_doubao;
+    case 'bingAiMode':
+      return _$modelsResponseModelsEnum_bingAiMode;
     default:
       throw ArgumentError(name);
   }
@@ -96,6 +100,7 @@ final BuiltSet<ModelsResponseModelsEnum> _$modelsResponseModelsEnumValues =
   _$modelsResponseModelsEnum_naverAiTab,
   _$modelsResponseModelsEnum_qwen,
   _$modelsResponseModelsEnum_doubao,
+  _$modelsResponseModelsEnum_bingAiMode,
 ]);
 
 Serializer<ModelsResponseModelsEnum> _$modelsResponseModelsEnumSerializer =
@@ -120,6 +125,7 @@ class _$ModelsResponseModelsEnumSerializer
     'naverAiTab': 'naver_ai_tab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bingAiMode': 'bing_ai_mode',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -138,6 +144,7 @@ class _$ModelsResponseModelsEnumSerializer
     'naver_ai_tab': 'naverAiTab',
     'qwen': 'qwen',
     'doubao': 'doubao',
+    'bing_ai_mode': 'bingAiMode',
   };
 
   @override
