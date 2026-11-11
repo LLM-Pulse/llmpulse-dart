@@ -11,7 +11,7 @@ import 'package:built_value/serializer.dart';
 
 part 'owned_media_row.g.dart';
 
-/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank), the Trustpilot views profiles (key, name, rating, reviews_count, url, competitor_id), brands (name, domain, key, rating, rating_change, reviews_count, status, url, competitor_id) and reviews (id, brand, rating, title, text, author, published_at, replied, url, competitor_id), and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
+/// One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank), the Trustpilot views profiles (key, name, rating, reviews_count, url, competitor_id), brands (name, domain, key, rating, rating_change, reviews_count, reviews_held, replied_count, not_replied_count, reply_rate_pct, median_reply_hours, status, url, competitor_id) and reviews (id, brand, rating, title, text, author, published_at, replied, url, competitor_id), and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
 ///
 /// Properties:
 /// * [date] - The start date of the actual reporting period (view=activity)
@@ -29,6 +29,11 @@ part 'owned_media_row.g.dart';
 /// * [text] - The review text (provider=trustpilot, view=reviews)
 /// * [author] - The reviewer's display name (provider=trustpilot, view=reviews)
 /// * [replied] - Whether the business replied to the review (provider=trustpilot, view=reviews)
+/// * [reviewsHeld] - How many of the profile's reviews LLM Pulse holds: the newest ones from each monthly read, not every review on Trustpilot (provider=trustpilot, view=brands). The reply fields count among these, whatever the date window; all of them are null until the profile has been read
+/// * [repliedCount] - Reviews held that the business replied to (provider=trustpilot, view=brands)
+/// * [notRepliedCount] - Reviews held that the business has not replied to (provider=trustpilot, view=brands)
+/// * [replyRatePct] - replied_count over reviews_held, on a 0-100 scale; null when no review is held (provider=trustpilot, view=brands)
+/// * [medianReplyHours] - Median hours from a held review's publication to the business's reply, over the replied reviews held that carry both dates (a reply dated before its review is left out); null when there is none (provider=trustpilot, view=brands)
 /// * [title] 
 /// * [url] 
 /// * [channelName] 
@@ -124,6 +129,26 @@ abstract class OwnedMediaRow implements Built<OwnedMediaRow, OwnedMediaRowBuilde
   /// Whether the business replied to the review (provider=trustpilot, view=reviews)
   @BuiltValueField(wireName: r'replied')
   bool? get replied;
+
+  /// How many of the profile's reviews LLM Pulse holds: the newest ones from each monthly read, not every review on Trustpilot (provider=trustpilot, view=brands). The reply fields count among these, whatever the date window; all of them are null until the profile has been read
+  @BuiltValueField(wireName: r'reviews_held')
+  int? get reviewsHeld;
+
+  /// Reviews held that the business replied to (provider=trustpilot, view=brands)
+  @BuiltValueField(wireName: r'replied_count')
+  int? get repliedCount;
+
+  /// Reviews held that the business has not replied to (provider=trustpilot, view=brands)
+  @BuiltValueField(wireName: r'not_replied_count')
+  int? get notRepliedCount;
+
+  /// replied_count over reviews_held, on a 0-100 scale; null when no review is held (provider=trustpilot, view=brands)
+  @BuiltValueField(wireName: r'reply_rate_pct')
+  num? get replyRatePct;
+
+  /// Median hours from a held review's publication to the business's reply, over the replied reviews held that carry both dates (a reply dated before its review is left out); null when there is none (provider=trustpilot, view=brands)
+  @BuiltValueField(wireName: r'median_reply_hours')
+  num? get medianReplyHours;
 
   @BuiltValueField(wireName: r'title')
   String? get title;
@@ -358,6 +383,41 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
       yield serializers.serialize(
         object.replied,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.reviewsHeld != null) {
+      yield r'reviews_held';
+      yield serializers.serialize(
+        object.reviewsHeld,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.repliedCount != null) {
+      yield r'replied_count';
+      yield serializers.serialize(
+        object.repliedCount,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.notRepliedCount != null) {
+      yield r'not_replied_count';
+      yield serializers.serialize(
+        object.notRepliedCount,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.replyRatePct != null) {
+      yield r'reply_rate_pct';
+      yield serializers.serialize(
+        object.replyRatePct,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.medianReplyHours != null) {
+      yield r'median_reply_hours';
+      yield serializers.serialize(
+        object.medianReplyHours,
+        specifiedType: const FullType.nullable(num),
       );
     }
     if (object.title != null) {
@@ -726,6 +786,46 @@ class _$OwnedMediaRowSerializer implements PrimitiveSerializer<OwnedMediaRow> {
           ) as bool?;
           if (valueDes == null) continue;
           result.replied = valueDes;
+          break;
+        case r'reviews_held':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.reviewsHeld = valueDes;
+          break;
+        case r'replied_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.repliedCount = valueDes;
+          break;
+        case r'not_replied_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.notRepliedCount = valueDes;
+          break;
+        case r'reply_rate_pct':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.replyRatePct = valueDes;
+          break;
+        case r'median_reply_hours':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.medianReplyHours = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(

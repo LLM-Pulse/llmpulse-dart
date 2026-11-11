@@ -151,6 +151,16 @@ class _$OwnedMediaRow extends OwnedMediaRow {
   @override
   final bool? replied;
   @override
+  final int? reviewsHeld;
+  @override
+  final int? repliedCount;
+  @override
+  final int? notRepliedCount;
+  @override
+  final num? replyRatePct;
+  @override
+  final num? medianReplyHours;
+  @override
   final String? title;
   @override
   final String? url;
@@ -234,6 +244,11 @@ class _$OwnedMediaRow extends OwnedMediaRow {
       this.text,
       this.author,
       this.replied,
+      this.reviewsHeld,
+      this.repliedCount,
+      this.notRepliedCount,
+      this.replyRatePct,
+      this.medianReplyHours,
       this.title,
       this.url,
       this.channelName,
@@ -293,6 +308,11 @@ class _$OwnedMediaRow extends OwnedMediaRow {
         text == other.text &&
         author == other.author &&
         replied == other.replied &&
+        reviewsHeld == other.reviewsHeld &&
+        repliedCount == other.repliedCount &&
+        notRepliedCount == other.notRepliedCount &&
+        replyRatePct == other.replyRatePct &&
+        medianReplyHours == other.medianReplyHours &&
         title == other.title &&
         url == other.url &&
         channelName == other.channelName &&
@@ -345,6 +365,11 @@ class _$OwnedMediaRow extends OwnedMediaRow {
     _$hash = $jc(_$hash, text.hashCode);
     _$hash = $jc(_$hash, author.hashCode);
     _$hash = $jc(_$hash, replied.hashCode);
+    _$hash = $jc(_$hash, reviewsHeld.hashCode);
+    _$hash = $jc(_$hash, repliedCount.hashCode);
+    _$hash = $jc(_$hash, notRepliedCount.hashCode);
+    _$hash = $jc(_$hash, replyRatePct.hashCode);
+    _$hash = $jc(_$hash, medianReplyHours.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
     _$hash = $jc(_$hash, channelName.hashCode);
@@ -399,6 +424,11 @@ class _$OwnedMediaRow extends OwnedMediaRow {
           ..add('text', text)
           ..add('author', author)
           ..add('replied', replied)
+          ..add('reviewsHeld', reviewsHeld)
+          ..add('repliedCount', repliedCount)
+          ..add('notRepliedCount', notRepliedCount)
+          ..add('replyRatePct', replyRatePct)
+          ..add('medianReplyHours', medianReplyHours)
           ..add('title', title)
           ..add('url', url)
           ..add('channelName', channelName)
@@ -498,6 +528,28 @@ class OwnedMediaRowBuilder
   bool? _replied;
   bool? get replied => _$this._replied;
   set replied(bool? replied) => _$this._replied = replied;
+
+  int? _reviewsHeld;
+  int? get reviewsHeld => _$this._reviewsHeld;
+  set reviewsHeld(int? reviewsHeld) => _$this._reviewsHeld = reviewsHeld;
+
+  int? _repliedCount;
+  int? get repliedCount => _$this._repliedCount;
+  set repliedCount(int? repliedCount) => _$this._repliedCount = repliedCount;
+
+  int? _notRepliedCount;
+  int? get notRepliedCount => _$this._notRepliedCount;
+  set notRepliedCount(int? notRepliedCount) =>
+      _$this._notRepliedCount = notRepliedCount;
+
+  num? _replyRatePct;
+  num? get replyRatePct => _$this._replyRatePct;
+  set replyRatePct(num? replyRatePct) => _$this._replyRatePct = replyRatePct;
+
+  num? _medianReplyHours;
+  num? get medianReplyHours => _$this._medianReplyHours;
+  set medianReplyHours(num? medianReplyHours) =>
+      _$this._medianReplyHours = medianReplyHours;
 
   String? _title;
   String? get title => _$this._title;
@@ -652,6 +704,11 @@ class OwnedMediaRowBuilder
       _text = $v.text;
       _author = $v.author;
       _replied = $v.replied;
+      _reviewsHeld = $v.reviewsHeld;
+      _repliedCount = $v.repliedCount;
+      _notRepliedCount = $v.notRepliedCount;
+      _replyRatePct = $v.replyRatePct;
+      _medianReplyHours = $v.medianReplyHours;
       _title = $v.title;
       _url = $v.url;
       _channelName = $v.channelName;
@@ -720,6 +777,11 @@ class OwnedMediaRowBuilder
           text: text,
           author: author,
           replied: replied,
+          reviewsHeld: reviewsHeld,
+          repliedCount: repliedCount,
+          notRepliedCount: notRepliedCount,
+          replyRatePct: replyRatePct,
+          medianReplyHours: medianReplyHours,
           title: title,
           url: url,
           channelName: channelName,

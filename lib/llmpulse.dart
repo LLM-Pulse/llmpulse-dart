@@ -350,6 +350,7 @@ export 'package:llmpulse/src/model/timeseries_response.dart';
 export 'package:llmpulse/src/model/timeseries_series.dart';
 export 'package:llmpulse/src/model/top_sources_response.dart';
 export 'package:llmpulse/src/model/top_sources_response_data_inner.dart';
+export 'package:llmpulse/src/model/trustpilot_replies.dart';
 export 'package:llmpulse/src/model/update_annotation_request.dart';
 export 'package:llmpulse/src/model/update_collection_request.dart';
 export 'package:llmpulse/src/model/update_competitor_request.dart';

@@ -6,6 +6,7 @@
 import 'package:llmpulse/src/model/owned_media_platform_rollup.dart';
 import 'package:llmpulse/src/model/owned_media_store_totals.dart';
 import 'package:llmpulse/src/model/owned_media_summary_activity_period.dart';
+import 'package:llmpulse/src/model/trustpilot_replies.dart';
 import 'package:llmpulse/src/model/owned_media_kpi_changes.dart';
 import 'package:llmpulse/src/model/reddit_position_share.dart';
 import 'package:llmpulse/src/model/owned_media_country_share.dart';
@@ -45,6 +46,7 @@ part 'owned_media_summary_response.g.dart';
 /// * [subredditActivity] - provider=reddit only. One row per subreddit and actual reporting period; the top five subreddits are separate and Others has a null subreddit
 /// * [positions] - provider=reddit only. Position distribution over the selected date window
 /// * [brandShare] - provider=reddit only. Citation share among the tracked brand and competitors with cited mentions
+/// * [replies] 
 /// * [requestId] 
 @BuiltValue()
 abstract class OwnedMediaSummaryResponse implements Built<OwnedMediaSummaryResponse, OwnedMediaSummaryResponseBuilder> {
@@ -115,6 +117,9 @@ abstract class OwnedMediaSummaryResponse implements Built<OwnedMediaSummaryRespo
   /// provider=reddit only. Citation share among the tracked brand and competitors with cited mentions
   @BuiltValueField(wireName: r'brand_share')
   BuiltList<RedditBrandShare>? get brandShare;
+
+  @BuiltValueField(wireName: r'replies')
+  TrustpilotReplies? get replies;
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
@@ -273,6 +278,13 @@ class _$OwnedMediaSummaryResponseSerializer implements PrimitiveSerializer<Owned
       yield serializers.serialize(
         object.brandShare,
         specifiedType: const FullType(BuiltList, [FullType(RedditBrandShare)]),
+      );
+    }
+    if (object.replies != null) {
+      yield r'replies';
+      yield serializers.serialize(
+        object.replies,
+        specifiedType: const FullType(TrustpilotReplies),
       );
     }
     if (object.requestId != null) {
@@ -456,6 +468,14 @@ class _$OwnedMediaSummaryResponseSerializer implements PrimitiveSerializer<Owned
           ) as BuiltList<RedditBrandShare>?;
           if (valueDes == null) continue;
           result.brandShare.replace(valueDes);
+          break;
+        case r'replies':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(TrustpilotReplies),
+          ) as TrustpilotReplies?;
+          if (valueDes == null) continue;
+          result.replies.replace(valueDes);
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

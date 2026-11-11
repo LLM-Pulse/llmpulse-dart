@@ -46,6 +46,8 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
   @override
   final BuiltList<RedditBrandShare>? brandShare;
   @override
+  final TrustpilotReplies? replies;
+  @override
   final String? requestId;
 
   factory _$OwnedMediaSummaryResponse(
@@ -72,6 +74,7 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
       this.subredditActivity,
       this.positions,
       this.brandShare,
+      this.replies,
       this.requestId})
       : super._();
   @override
@@ -106,6 +109,7 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
         subredditActivity == other.subredditActivity &&
         positions == other.positions &&
         brandShare == other.brandShare &&
+        replies == other.replies &&
         requestId == other.requestId;
   }
 
@@ -131,6 +135,7 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
     _$hash = $jc(_$hash, subredditActivity.hashCode);
     _$hash = $jc(_$hash, positions.hashCode);
     _$hash = $jc(_$hash, brandShare.hashCode);
+    _$hash = $jc(_$hash, replies.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -158,6 +163,7 @@ class _$OwnedMediaSummaryResponse extends OwnedMediaSummaryResponse {
           ..add('subredditActivity', subredditActivity)
           ..add('positions', positions)
           ..add('brandShare', brandShare)
+          ..add('replies', replies)
           ..add('requestId', requestId))
         .toString();
   }
@@ -271,6 +277,11 @@ class OwnedMediaSummaryResponseBuilder
   set brandShare(ListBuilder<RedditBrandShare>? brandShare) =>
       _$this._brandShare = brandShare;
 
+  TrustpilotRepliesBuilder? _replies;
+  TrustpilotRepliesBuilder get replies =>
+      _$this._replies ??= TrustpilotRepliesBuilder();
+  set replies(TrustpilotRepliesBuilder? replies) => _$this._replies = replies;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -301,6 +312,7 @@ class OwnedMediaSummaryResponseBuilder
       _subredditActivity = $v.subredditActivity?.toBuilder();
       _positions = $v.positions?.toBuilder();
       _brandShare = $v.brandShare?.toBuilder();
+      _replies = $v.replies?.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -344,6 +356,7 @@ class OwnedMediaSummaryResponseBuilder
             subredditActivity: _subredditActivity?.build(),
             positions: _positions?.build(),
             brandShare: _brandShare?.build(),
+            replies: _replies?.build(),
             requestId: requestId,
           );
     } catch (_) {
@@ -377,6 +390,8 @@ class OwnedMediaSummaryResponseBuilder
         _positions?.build();
         _$failedField = 'brandShare';
         _brandShare?.build();
+        _$failedField = 'replies';
+        _replies?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'OwnedMediaSummaryResponse', _$failedField, e.toString());

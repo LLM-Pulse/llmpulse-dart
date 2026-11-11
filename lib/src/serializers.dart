@@ -326,6 +326,7 @@ import 'package:llmpulse/src/model/timeseries_response.dart';
 import 'package:llmpulse/src/model/timeseries_series.dart';
 import 'package:llmpulse/src/model/top_sources_response.dart';
 import 'package:llmpulse/src/model/top_sources_response_data_inner.dart';
+import 'package:llmpulse/src/model/trustpilot_replies.dart';
 import 'package:llmpulse/src/model/update_annotation_request.dart';
 import 'package:llmpulse/src/model/update_collection_request.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
@@ -653,6 +654,7 @@ part 'serializers.g.dart';
   TimeseriesSeries,
   TopSourcesResponse,
   TopSourcesResponseDataInner,
+  TrustpilotReplies,
   UpdateAnnotationRequest,
   UpdateCollectionRequest,
   UpdateCompetitorRequest,

@@ -340,6 +340,7 @@ doc/TimeseriesResponse.md
 doc/TimeseriesSeries.md
 doc/TopSourcesResponse.md
 doc/TopSourcesResponseDataInner.md
+doc/TrustpilotReplies.md
 doc/UpdateAnnotationRequest.md
 doc/UpdateCollectionRequest.md
 doc/UpdateCompetitorRequest.md
@@ -701,6 +702,7 @@ lib/src/model/timeseries_response.dart
 lib/src/model/timeseries_series.dart
 lib/src/model/top_sources_response.dart
 lib/src/model/top_sources_response_data_inner.dart
+lib/src/model/trustpilot_replies.dart
 lib/src/model/update_annotation_request.dart
 lib/src/model/update_collection_request.dart
 lib/src/model/update_competitor_request.dart
