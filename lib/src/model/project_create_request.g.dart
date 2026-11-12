@@ -53,6 +53,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
   final bool? executePromptsImmediately;
   @override
   final bool? pitch;
+  @override
+  final String? projectType;
 
   factory _$ProjectCreateRequest(
           [void Function(ProjectCreateRequestBuilder)? updates]) =>
@@ -81,7 +83,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
       this.weeklyEmailSubscribed,
       this.externalIdentifier,
       this.executePromptsImmediately,
-      this.pitch})
+      this.pitch,
+      this.projectType})
       : super._();
   @override
   ProjectCreateRequest rebuild(
@@ -118,7 +121,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
         weeklyEmailSubscribed == other.weeklyEmailSubscribed &&
         externalIdentifier == other.externalIdentifier &&
         executePromptsImmediately == other.executePromptsImmediately &&
-        pitch == other.pitch;
+        pitch == other.pitch &&
+        projectType == other.projectType;
   }
 
   @override
@@ -147,6 +151,7 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
     _$hash = $jc(_$hash, externalIdentifier.hashCode);
     _$hash = $jc(_$hash, executePromptsImmediately.hashCode);
     _$hash = $jc(_$hash, pitch.hashCode);
+    _$hash = $jc(_$hash, projectType.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -176,7 +181,8 @@ class _$ProjectCreateRequest extends ProjectCreateRequest {
           ..add('weeklyEmailSubscribed', weeklyEmailSubscribed)
           ..add('externalIdentifier', externalIdentifier)
           ..add('executePromptsImmediately', executePromptsImmediately)
-          ..add('pitch', pitch))
+          ..add('pitch', pitch)
+          ..add('projectType', projectType))
         .toString();
   }
 }
@@ -298,6 +304,10 @@ class ProjectCreateRequestBuilder
   bool? get pitch => _$this._pitch;
   set pitch(bool? pitch) => _$this._pitch = pitch;
 
+  String? _projectType;
+  String? get projectType => _$this._projectType;
+  set projectType(String? projectType) => _$this._projectType = projectType;
+
   ProjectCreateRequestBuilder() {
     ProjectCreateRequest._defaults(this);
   }
@@ -328,6 +338,7 @@ class ProjectCreateRequestBuilder
       _externalIdentifier = $v.externalIdentifier;
       _executePromptsImmediately = $v.executePromptsImmediately;
       _pitch = $v.pitch;
+      _projectType = $v.projectType;
       _$v = null;
     }
     return this;
@@ -378,6 +389,7 @@ class ProjectCreateRequestBuilder
             externalIdentifier: externalIdentifier,
             executePromptsImmediately: executePromptsImmediately,
             pitch: pitch,
+            projectType: projectType,
           );
     } catch (_) {
       late String _$failedField;

@@ -14,6 +14,8 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? businessModel;
   @override
+  final String? projectType;
+  @override
   final String? description;
   @override
   final JsonObject? industry;
@@ -79,6 +81,7 @@ class _$ProjectDetails extends ProjectDetails {
       {this.brandVoice,
       this.paused,
       this.businessModel,
+      this.projectType,
       this.description,
       this.industry,
       this.appStoreId,
@@ -123,6 +126,7 @@ class _$ProjectDetails extends ProjectDetails {
         brandVoice == other.brandVoice &&
         paused == other.paused &&
         businessModel == other.businessModel &&
+        projectType == other.projectType &&
         description == other.description &&
         industry == other.industry &&
         appStoreId == other.appStoreId &&
@@ -160,6 +164,7 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, brandVoice.hashCode);
     _$hash = $jc(_$hash, paused.hashCode);
     _$hash = $jc(_$hash, businessModel.hashCode);
+    _$hash = $jc(_$hash, projectType.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, industry.hashCode);
     _$hash = $jc(_$hash, appStoreId.hashCode);
@@ -199,6 +204,7 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('brandVoice', brandVoice)
           ..add('paused', paused)
           ..add('businessModel', businessModel)
+          ..add('projectType', projectType)
           ..add('description', description)
           ..add('industry', industry)
           ..add('appStoreId', appStoreId)
@@ -249,6 +255,11 @@ class ProjectDetailsBuilder
   String? get businessModel => _$this._businessModel;
   set businessModel(covariant String? businessModel) =>
       _$this._businessModel = businessModel;
+
+  String? _projectType;
+  String? get projectType => _$this._projectType;
+  set projectType(covariant String? projectType) =>
+      _$this._projectType = projectType;
 
   String? _description;
   String? get description => _$this._description;
@@ -408,6 +419,7 @@ class ProjectDetailsBuilder
       _brandVoice = $v.brandVoice;
       _paused = $v.paused;
       _businessModel = $v.businessModel;
+      _projectType = $v.projectType;
       _description = $v.description;
       _industry = $v.industry;
       _appStoreId = $v.appStoreId;
@@ -463,6 +475,7 @@ class ProjectDetailsBuilder
             brandVoice: brandVoice,
             paused: paused,
             businessModel: businessModel,
+            projectType: projectType,
             description: description,
             industry: industry,
             appStoreId: appStoreId,

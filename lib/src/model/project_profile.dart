@@ -27,6 +27,7 @@ part 'project_profile.g.dart';
 /// * [matchingNames] 
 /// * [additionalOwnedDomains] - Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none
 /// * [promptLimit] - The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
+/// * [projectType] - The project type it is billed as under the account's pricing agreement, such as core or lean. Null for accounts without per-project types and for pitch projects
 @BuiltValue()
 abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -74,6 +75,10 @@ abstract class ProjectProfile implements Built<ProjectProfile, ProjectProfileBui
   /// The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
   @BuiltValueField(wireName: r'prompt_limit')
   int? get promptLimit;
+
+  /// The project type it is billed as under the account's pricing agreement, such as core or lean. Null for accounts without per-project types and for pitch projects
+  @BuiltValueField(wireName: r'project_type')
+  String? get projectType;
 
   ProjectProfile._();
 
@@ -185,6 +190,11 @@ class _$ProjectProfileSerializer implements PrimitiveSerializer<ProjectProfile> 
     yield object.promptLimit == null ? null : serializers.serialize(
       object.promptLimit,
       specifiedType: const FullType.nullable(int),
+    );
+    yield r'project_type';
+    yield object.projectType == null ? null : serializers.serialize(
+      object.projectType,
+      specifiedType: const FullType.nullable(String),
     );
   }
 
@@ -316,6 +326,14 @@ class _$ProjectProfileSerializer implements PrimitiveSerializer<ProjectProfile> 
           ) as int?;
           if (valueDes == null) continue;
           result.promptLimit = valueDes;
+          break;
+        case r'project_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.projectType = valueDes;
           break;
         default:
           unhandled.add(key);

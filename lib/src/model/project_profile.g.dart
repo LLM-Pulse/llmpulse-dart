@@ -35,6 +35,8 @@ class _$ProjectProfile extends ProjectProfile {
   final BuiltList<String> additionalOwnedDomains;
   @override
   final int? promptLimit;
+  @override
+  final String? projectType;
 
   factory _$ProjectProfile([void Function(ProjectProfileBuilder)? updates]) =>
       (ProjectProfileBuilder()..update(updates))._build();
@@ -53,7 +55,8 @@ class _$ProjectProfile extends ProjectProfile {
       this.goals,
       required this.matchingNames,
       required this.additionalOwnedDomains,
-      this.promptLimit})
+      this.promptLimit,
+      this.projectType})
       : super._();
   @override
   ProjectProfile rebuild(void Function(ProjectProfileBuilder) updates) =>
@@ -79,7 +82,8 @@ class _$ProjectProfile extends ProjectProfile {
         goals == other.goals &&
         matchingNames == other.matchingNames &&
         additionalOwnedDomains == other.additionalOwnedDomains &&
-        promptLimit == other.promptLimit;
+        promptLimit == other.promptLimit &&
+        projectType == other.projectType;
   }
 
   @override
@@ -99,6 +103,7 @@ class _$ProjectProfile extends ProjectProfile {
     _$hash = $jc(_$hash, matchingNames.hashCode);
     _$hash = $jc(_$hash, additionalOwnedDomains.hashCode);
     _$hash = $jc(_$hash, promptLimit.hashCode);
+    _$hash = $jc(_$hash, projectType.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -119,7 +124,8 @@ class _$ProjectProfile extends ProjectProfile {
           ..add('goals', goals)
           ..add('matchingNames', matchingNames)
           ..add('additionalOwnedDomains', additionalOwnedDomains)
-          ..add('promptLimit', promptLimit))
+          ..add('promptLimit', promptLimit)
+          ..add('projectType', projectType))
         .toString();
   }
 }
@@ -193,6 +199,10 @@ class ProjectProfileBuilder
   int? get promptLimit => _$this._promptLimit;
   set promptLimit(int? promptLimit) => _$this._promptLimit = promptLimit;
 
+  String? _projectType;
+  String? get projectType => _$this._projectType;
+  set projectType(String? projectType) => _$this._projectType = projectType;
+
   ProjectProfileBuilder() {
     ProjectProfile._defaults(this);
   }
@@ -214,6 +224,7 @@ class ProjectProfileBuilder
       _matchingNames = $v.matchingNames.toBuilder();
       _additionalOwnedDomains = $v.additionalOwnedDomains.toBuilder();
       _promptLimit = $v.promptLimit;
+      _projectType = $v.projectType;
       _$v = null;
     }
     return this;
@@ -253,6 +264,7 @@ class ProjectProfileBuilder
             matchingNames: matchingNames.build(),
             additionalOwnedDomains: additionalOwnedDomains.build(),
             promptLimit: promptLimit,
+            projectType: projectType,
           );
     } catch (_) {
       late String _$failedField;

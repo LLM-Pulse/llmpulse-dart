@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **matchingNames** | **BuiltList&lt;String&gt;** |  | 
 **additionalOwnedDomains** | **BuiltList&lt;String&gt;** | Other domains the brand owns (at most 10, each a website's own domain covering its subdomains), whose citations count as owned like the project website. Empty when none | 
 **promptLimit** | **int** | The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way | 
+**projectType** | **String** | The project type it is billed as under the account's pricing agreement, such as core or lean. Null for accounts without per-project types and for pitch projects | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

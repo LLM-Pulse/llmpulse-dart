@@ -25,6 +25,7 @@ part 'update_project_request.g.dart';
 /// * [matchingNames] - FULL replacement list of the brand-name variants used to detect mentions; send every variant to keep. At most 50 names of up to 100 characters each; a longer list or name is refused with ERR_INVALID_PARAM (422) and nothing in the request is applied
 /// * [additionalOwnedDomains] - FULL replacement list (at most 10) of other domains the brand owns, such as a blog or a country site; [] clears it. Citations from them count as owned, like the project website. Each entry is a website's own domain and covers its subdomains; a pasted URL is stored as its domain (https://www.acme.co.uk/x becomes acme.co.uk). A list the domain editor would refuse (a subdomain such as blog.acme.com, a platform many companies share such as youtube.com, amazon.com or wordpress.com, the project website, a tracked competitor domain, a duplicate or an entry that is not a domain) is rejected with ERR_INVALID_PARAM and the reason. Order does not matter, and an unchanged list starts nothing. Account owner only, on every plan
 /// * [promptLimit] - The most prompts this project can hold, a JSON integer from 1 to 2147483647; null removes the project's limit. A string, a decimal, 0 or a negative number is rejected with ERR_INVALID_PARAM. The account's plan allowance still applies, so the lower of the two wins (GET /dimensions/projects/{id} returns prompt_limit and stats.prompts_available). A limit below the current count keeps every prompt and refuses new ones until the project is under it; note says what the project can now hold. Account owner or a co-owner with Projects update permission only; a key limited to some projects answers ERR_KEY_PROJECT_SCOPED. The Swift, Kotlin, Dart and R clients leave a null field out of the request body, so they can set a limit but not remove one: remove it with a plain HTTP request that sends prompt_limit as null
+/// * [projectType] - Only for accounts billed per project type under a pricing agreement; any other account gets ERR_INVALID_PARAM. The key of one of the account's project types, such as core or lean. The new type's prompt cap applies at once and its price from the next renewal. Send it on its own: with other fields it answers ERR_INVALID_PARAM. Moving to a type whose cap is below the prompts the project holds answers ERR_INVALID_PARAM, and so do a pitch project and a project the team set up by hand (included at no cost, paused or with a raised prompt limit), which keeps its type; sending the type the project already has changes nothing. Account owner or a co-owner with Projects update permission only; a key limited to some projects answers ERR_KEY_PROJECT_SCOPED. It is applied even while a rematch runs
 /// * [pitch] - false converts a pitch project into a tracked project. Send it on its own, without other fields; true is rejected
 @BuiltValue()
 abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, UpdateProjectRequestBuilder> {
@@ -79,6 +80,10 @@ abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, Updat
   /// The most prompts this project can hold, a JSON integer from 1 to 2147483647; null removes the project's limit. A string, a decimal, 0 or a negative number is rejected with ERR_INVALID_PARAM. The account's plan allowance still applies, so the lower of the two wins (GET /dimensions/projects/{id} returns prompt_limit and stats.prompts_available). A limit below the current count keeps every prompt and refuses new ones until the project is under it; note says what the project can now hold. Account owner or a co-owner with Projects update permission only; a key limited to some projects answers ERR_KEY_PROJECT_SCOPED. The Swift, Kotlin, Dart and R clients leave a null field out of the request body, so they can set a limit but not remove one: remove it with a plain HTTP request that sends prompt_limit as null
   @BuiltValueField(wireName: r'prompt_limit')
   int? get promptLimit;
+
+  /// Only for accounts billed per project type under a pricing agreement; any other account gets ERR_INVALID_PARAM. The key of one of the account's project types, such as core or lean. The new type's prompt cap applies at once and its price from the next renewal. Send it on its own: with other fields it answers ERR_INVALID_PARAM. Moving to a type whose cap is below the prompts the project holds answers ERR_INVALID_PARAM, and so do a pitch project and a project the team set up by hand (included at no cost, paused or with a raised prompt limit), which keeps its type; sending the type the project already has changes nothing. Account owner or a co-owner with Projects update permission only; a key limited to some projects answers ERR_KEY_PROJECT_SCOPED. It is applied even while a rematch runs
+  @BuiltValueField(wireName: r'project_type')
+  String? get projectType;
 
   /// false converts a pitch project into a tracked project. Send it on its own, without other fields; true is rejected
   @BuiltValueField(wireName: r'pitch')
@@ -196,6 +201,13 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
       yield serializers.serialize(
         object.promptLimit,
         specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.projectType != null) {
+      yield r'project_type';
+      yield serializers.serialize(
+        object.projectType,
+        specifiedType: const FullType(String),
       );
     }
     if (object.pitch != null) {
@@ -331,6 +343,14 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
           ) as int?;
           if (valueDes == null) continue;
           result.promptLimit = valueDes;
+          break;
+        case r'project_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.projectType = valueDes;
           break;
         case r'pitch':
           final valueDes = serializers.deserialize(

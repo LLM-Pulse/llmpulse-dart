@@ -45,6 +45,7 @@ part 'project_details.g.dart';
 /// * [appStoreId] 
 /// * [createdAt] 
 /// * [promptLimit] - The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
+/// * [projectType] - The project type it is billed as under the account's pricing agreement, such as core or lean (its own, else the account's default type). Null for accounts without per-project types and for pitch projects
 /// * [stats] 
 /// * [pitchRun] 
 /// * [dataCoverage] 
@@ -62,6 +63,10 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
 
   @BuiltValueField(wireName: r'business_model')
   String? get businessModel;
+
+  /// The project type it is billed as under the account's pricing agreement, such as core or lean (its own, else the account's default type). Null for accounts without per-project types and for pitch projects
+  @BuiltValueField(wireName: r'project_type')
+  String? get projectType;
 
   @BuiltValueField(wireName: r'description')
   String? get description;
@@ -181,6 +186,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield r'business_model';
       yield serializers.serialize(
         object.businessModel,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.projectType != null) {
+      yield r'project_type';
+      yield serializers.serialize(
+        object.projectType,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -434,6 +446,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.businessModel = valueDes;
+          break;
+        case r'project_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.projectType = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(

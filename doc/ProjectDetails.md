@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **appStoreId** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **promptLimit** | **int** | The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way | [optional] 
+**projectType** | **String** | The project type it is billed as under the account's pricing agreement, such as core or lean (its own, else the account's default type). Null for accounts without per-project types and for pitch projects | [optional] 
 **stats** | [**ProjectDetailsAllOfStats**](ProjectDetailsAllOfStats.md) |  | [optional] 
 **pitchRun** | [**ProjectDetailsAllOfPitchRun**](ProjectDetailsAllOfPitchRun.md) |  | [optional] 
 **dataCoverage** | [**ProjectDetailsAllOfDataCoverage**](ProjectDetailsAllOfDataCoverage.md) |  | [optional] 
