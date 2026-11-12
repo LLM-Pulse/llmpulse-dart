@@ -18,7 +18,7 @@ part 'custom_report_widget.g.dart';
 /// * [kind] 
 /// * [width] 
 /// * [available] - false when the widget's data source (web analytics, agent analytics, owned media) is not connected
-/// * [data] - Shaped by kind. timeseries: series [{ name, color, points [{ date, value }] }]. donut: slices [{ name, value, color }]. bar: bars [{ label, value, color }]. kpi_grid: values and changes (null unless the report compares with the previous period). table: rows, one object per row. Null when the widget is not available.
+/// * [data] - Shaped by kind. timeseries: series [{ name, color, points [{ date, value }] }]. donut: slices [{ name, value, color }]. bar: bars [{ label, value, color }]. kpi_grid: values and changes (null unless the report compares with the previous period). table: rows, one object per row; the monthly_breakdown widget has one row per calendar month of the window with month, from, to, partial (a month the window cuts), responses, mentions, visibility, weighted_visibility, sov_share, citations and avg_mention_position. Null when the widget is not available.
 @BuiltValue()
 abstract class CustomReportWidget implements Built<CustomReportWidget, CustomReportWidgetBuilder> {
   @BuiltValueField(wireName: r'key')
@@ -39,7 +39,7 @@ abstract class CustomReportWidget implements Built<CustomReportWidget, CustomRep
   @BuiltValueField(wireName: r'available')
   bool get available;
 
-  /// Shaped by kind. timeseries: series [{ name, color, points [{ date, value }] }]. donut: slices [{ name, value, color }]. bar: bars [{ label, value, color }]. kpi_grid: values and changes (null unless the report compares with the previous period). table: rows, one object per row. Null when the widget is not available.
+  /// Shaped by kind. timeseries: series [{ name, color, points [{ date, value }] }]. donut: slices [{ name, value, color }]. bar: bars [{ label, value, color }]. kpi_grid: values and changes (null unless the report compares with the previous period). table: rows, one object per row; the monthly_breakdown widget has one row per calendar month of the window with month, from, to, partial (a month the window cuts), responses, mentions, visibility, weighted_visibility, sov_share, citations and avg_mention_position. Null when the widget is not available.
   @BuiltValueField(wireName: r'data')
   BuiltMap<String, JsonObject?>? get data;
 

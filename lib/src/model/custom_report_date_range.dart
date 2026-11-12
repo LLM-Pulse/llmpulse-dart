@@ -13,27 +13,37 @@ part 'custom_report_date_range.g.dart';
 /// CustomReportDateRange
 ///
 /// Properties:
-/// * [type] - rolling (the last range_days days) or previous_month (the previous calendar month)
-/// * [rangeDays] - Length of a rolling window; null for previous_month
+/// * [type] - rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
+/// * [rangeDays] - Length of a rolling window; null for the other types
+/// * [customFrom] - First day chosen for a custom range; null for the other types
+/// * [customTo] - Last day chosen for a custom range, which can be after today; null for the other types
 /// * [from] - First day of the window as of now (detail only)
-/// * [to] - Last day of the window as of now (detail only)
+/// * [to] - Last day of the window as of now (detail only); a custom range stops at today
 /// * [label] - The window as the report shows it (detail only)
 @BuiltValue()
 abstract class CustomReportDateRange implements Built<CustomReportDateRange, CustomReportDateRangeBuilder> {
-  /// rolling (the last range_days days) or previous_month (the previous calendar month)
+  /// rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
   @BuiltValueField(wireName: r'type')
   CustomReportDateRangeTypeEnum get type;
-  // enum typeEnum {  rolling,  previous_month,  };
+  // enum typeEnum {  rolling,  previous_month,  previous_3_months,  custom,  };
 
-  /// Length of a rolling window; null for previous_month
+  /// Length of a rolling window; null for the other types
   @BuiltValueField(wireName: r'range_days')
   int? get rangeDays;
+
+  /// First day chosen for a custom range; null for the other types
+  @BuiltValueField(wireName: r'custom_from')
+  Date? get customFrom;
+
+  /// Last day chosen for a custom range, which can be after today; null for the other types
+  @BuiltValueField(wireName: r'custom_to')
+  Date? get customTo;
 
   /// First day of the window as of now (detail only)
   @BuiltValueField(wireName: r'from')
   Date? get from;
 
-  /// Last day of the window as of now (detail only)
+  /// Last day of the window as of now (detail only); a custom range stops at today
   @BuiltValueField(wireName: r'to')
   Date? get to;
 
@@ -73,6 +83,16 @@ class _$CustomReportDateRangeSerializer implements PrimitiveSerializer<CustomRep
     yield object.rangeDays == null ? null : serializers.serialize(
       object.rangeDays,
       specifiedType: const FullType.nullable(int),
+    );
+    yield r'custom_from';
+    yield object.customFrom == null ? null : serializers.serialize(
+      object.customFrom,
+      specifiedType: const FullType.nullable(Date),
+    );
+    yield r'custom_to';
+    yield object.customTo == null ? null : serializers.serialize(
+      object.customTo,
+      specifiedType: const FullType.nullable(Date),
     );
     if (object.from != null) {
       yield r'from';
@@ -133,6 +153,22 @@ class _$CustomReportDateRangeSerializer implements PrimitiveSerializer<CustomRep
           if (valueDes == null) continue;
           result.rangeDays = valueDes;
           break;
+        case r'custom_from':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(Date),
+          ) as Date?;
+          if (valueDes == null) continue;
+          result.customFrom = valueDes;
+          break;
+        case r'custom_to':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(Date),
+          ) as Date?;
+          if (valueDes == null) continue;
+          result.customTo = valueDes;
+          break;
         case r'from':
           final valueDes = serializers.deserialize(
             value,
@@ -188,12 +224,18 @@ class _$CustomReportDateRangeSerializer implements PrimitiveSerializer<CustomRep
 
 class CustomReportDateRangeTypeEnum extends EnumClass {
 
-  /// rolling (the last range_days days) or previous_month (the previous calendar month)
+  /// rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
   @BuiltValueEnumConst(wireName: r'rolling')
   static const CustomReportDateRangeTypeEnum rolling = _$customReportDateRangeTypeEnum_rolling;
-  /// rolling (the last range_days days) or previous_month (the previous calendar month)
+  /// rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
   @BuiltValueEnumConst(wireName: r'previous_month')
   static const CustomReportDateRangeTypeEnum previousMonth = _$customReportDateRangeTypeEnum_previousMonth;
+  /// rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
+  @BuiltValueEnumConst(wireName: r'previous_3_months')
+  static const CustomReportDateRangeTypeEnum previous3Months = _$customReportDateRangeTypeEnum_previous3Months;
+  /// rolling (the last range_days days), previous_month (the previous calendar month), previous_3_months (the 3 calendar months before the current one) or custom (fixed dates, custom_from to custom_to)
+  @BuiltValueEnumConst(wireName: r'custom')
+  static const CustomReportDateRangeTypeEnum custom = _$customReportDateRangeTypeEnum_custom;
 
   static Serializer<CustomReportDateRangeTypeEnum> get serializer => _$customReportDateRangeTypeEnumSerializer;
 

@@ -11,6 +11,11 @@ const CustomReportDateRangeTypeEnum _$customReportDateRangeTypeEnum_rolling =
 const CustomReportDateRangeTypeEnum
     _$customReportDateRangeTypeEnum_previousMonth =
     const CustomReportDateRangeTypeEnum._('previousMonth');
+const CustomReportDateRangeTypeEnum
+    _$customReportDateRangeTypeEnum_previous3Months =
+    const CustomReportDateRangeTypeEnum._('previous3Months');
+const CustomReportDateRangeTypeEnum _$customReportDateRangeTypeEnum_custom =
+    const CustomReportDateRangeTypeEnum._('custom');
 
 CustomReportDateRangeTypeEnum _$customReportDateRangeTypeEnumValueOf(
     String name) {
@@ -19,6 +24,10 @@ CustomReportDateRangeTypeEnum _$customReportDateRangeTypeEnumValueOf(
       return _$customReportDateRangeTypeEnum_rolling;
     case 'previousMonth':
       return _$customReportDateRangeTypeEnum_previousMonth;
+    case 'previous3Months':
+      return _$customReportDateRangeTypeEnum_previous3Months;
+    case 'custom':
+      return _$customReportDateRangeTypeEnum_custom;
     default:
       throw ArgumentError(name);
   }
@@ -29,6 +38,8 @@ final BuiltSet<CustomReportDateRangeTypeEnum>
         CustomReportDateRangeTypeEnum>(const <CustomReportDateRangeTypeEnum>[
   _$customReportDateRangeTypeEnum_rolling,
   _$customReportDateRangeTypeEnum_previousMonth,
+  _$customReportDateRangeTypeEnum_previous3Months,
+  _$customReportDateRangeTypeEnum_custom,
 ]);
 
 Serializer<CustomReportDateRangeTypeEnum>
@@ -40,10 +51,14 @@ class _$CustomReportDateRangeTypeEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'rolling': 'rolling',
     'previousMonth': 'previous_month',
+    'previous3Months': 'previous_3_months',
+    'custom': 'custom',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'rolling': 'rolling',
     'previous_month': 'previousMonth',
+    'previous_3_months': 'previous3Months',
+    'custom': 'custom',
   };
 
   @override
@@ -71,6 +86,10 @@ class _$CustomReportDateRange extends CustomReportDateRange {
   @override
   final int? rangeDays;
   @override
+  final Date? customFrom;
+  @override
+  final Date? customTo;
+  @override
   final Date? from;
   @override
   final Date? to;
@@ -82,7 +101,13 @@ class _$CustomReportDateRange extends CustomReportDateRange {
       (CustomReportDateRangeBuilder()..update(updates))._build();
 
   _$CustomReportDateRange._(
-      {required this.type, this.rangeDays, this.from, this.to, this.label})
+      {required this.type,
+      this.rangeDays,
+      this.customFrom,
+      this.customTo,
+      this.from,
+      this.to,
+      this.label})
       : super._();
   @override
   CustomReportDateRange rebuild(
@@ -99,6 +124,8 @@ class _$CustomReportDateRange extends CustomReportDateRange {
     return other is CustomReportDateRange &&
         type == other.type &&
         rangeDays == other.rangeDays &&
+        customFrom == other.customFrom &&
+        customTo == other.customTo &&
         from == other.from &&
         to == other.to &&
         label == other.label;
@@ -109,6 +136,8 @@ class _$CustomReportDateRange extends CustomReportDateRange {
     var _$hash = 0;
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, rangeDays.hashCode);
+    _$hash = $jc(_$hash, customFrom.hashCode);
+    _$hash = $jc(_$hash, customTo.hashCode);
     _$hash = $jc(_$hash, from.hashCode);
     _$hash = $jc(_$hash, to.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
@@ -121,6 +150,8 @@ class _$CustomReportDateRange extends CustomReportDateRange {
     return (newBuiltValueToStringHelper(r'CustomReportDateRange')
           ..add('type', type)
           ..add('rangeDays', rangeDays)
+          ..add('customFrom', customFrom)
+          ..add('customTo', customTo)
           ..add('from', from)
           ..add('to', to)
           ..add('label', label))
@@ -139,6 +170,14 @@ class CustomReportDateRangeBuilder
   int? _rangeDays;
   int? get rangeDays => _$this._rangeDays;
   set rangeDays(int? rangeDays) => _$this._rangeDays = rangeDays;
+
+  Date? _customFrom;
+  Date? get customFrom => _$this._customFrom;
+  set customFrom(Date? customFrom) => _$this._customFrom = customFrom;
+
+  Date? _customTo;
+  Date? get customTo => _$this._customTo;
+  set customTo(Date? customTo) => _$this._customTo = customTo;
 
   Date? _from;
   Date? get from => _$this._from;
@@ -161,6 +200,8 @@ class CustomReportDateRangeBuilder
     if ($v != null) {
       _type = $v.type;
       _rangeDays = $v.rangeDays;
+      _customFrom = $v.customFrom;
+      _customTo = $v.customTo;
       _from = $v.from;
       _to = $v.to;
       _label = $v.label;
@@ -188,6 +229,8 @@ class CustomReportDateRangeBuilder
           type: BuiltValueNullFieldError.checkNotNull(
               type, r'CustomReportDateRange', 'type'),
           rangeDays: rangeDays,
+          customFrom: customFrom,
+          customTo: customTo,
           from: from,
           to: to,
           label: label,
