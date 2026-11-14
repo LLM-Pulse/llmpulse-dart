@@ -15,8 +15,8 @@ part 'summary_response_all_of_summary_value_inner.g.dart';
 /// Properties:
 /// * [actor] 
 /// * [metric] 
-/// * [total] 
-/// * [aggregation] - How total combines the buckets
+/// * [total] - Count metrics sum the buckets; rate, position and sentiment metrics average them. ai_visibility_score (weighted_visibility) is the window's points divided by its data days (the days with responses under the filters), the number the app shows, whatever the granularity.
+/// * [aggregation] - How total combines the buckets (average for ai_visibility_score, a per-data-day score)
 /// * [min] 
 /// * [max] 
 /// * [last] 
@@ -28,10 +28,11 @@ abstract class SummaryResponseAllOfSummaryValueInner implements Built<SummaryRes
   @BuiltValueField(wireName: r'metric')
   String? get metric;
 
+  /// Count metrics sum the buckets; rate, position and sentiment metrics average them. ai_visibility_score (weighted_visibility) is the window's points divided by its data days (the days with responses under the filters), the number the app shows, whatever the granularity.
   @BuiltValueField(wireName: r'total')
   num? get total;
 
-  /// How total combines the buckets
+  /// How total combines the buckets (average for ai_visibility_score, a per-data-day score)
   @BuiltValueField(wireName: r'aggregation')
   SummaryResponseAllOfSummaryValueInnerAggregationEnum? get aggregation;
   // enum aggregationEnum {  sum,  average,  };
@@ -227,10 +228,10 @@ class _$SummaryResponseAllOfSummaryValueInnerSerializer implements PrimitiveSeri
 
 class SummaryResponseAllOfSummaryValueInnerAggregationEnum extends EnumClass {
 
-  /// How total combines the buckets
+  /// How total combines the buckets (average for ai_visibility_score, a per-data-day score)
   @BuiltValueEnumConst(wireName: r'sum')
   static const SummaryResponseAllOfSummaryValueInnerAggregationEnum sum = _$summaryResponseAllOfSummaryValueInnerAggregationEnum_sum;
-  /// How total combines the buckets
+  /// How total combines the buckets (average for ai_visibility_score, a per-data-day score)
   @BuiltValueEnumConst(wireName: r'average')
   static const SummaryResponseAllOfSummaryValueInnerAggregationEnum average = _$summaryResponseAllOfSummaryValueInnerAggregationEnum_average;
 

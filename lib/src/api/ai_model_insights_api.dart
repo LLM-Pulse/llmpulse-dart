@@ -24,7 +24,7 @@ class AIModelInsightsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
@@ -33,7 +33,7 @@ class AIModelInsightsApi {
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+  /// * [competitors] - Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -140,7 +140,7 @@ class AIModelInsightsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 
@@ -234,7 +234,7 @@ class AIModelInsightsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [granularity] 

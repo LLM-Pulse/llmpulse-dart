@@ -18,7 +18,7 @@ part 'ai_model_weighted_visibility_matrix_actor.g.dart';
 /// * [competitorId] - Null for the project, the competitor id otherwise
 /// * [name] 
 /// * [domain] - Bare (scheme-less) domain. Null for the project actor when the project has no URL.
-/// * [totalWeightedVisibilityScore] - The actor's AI Visibility Score points summed over the models
+/// * [totalWeightedVisibilityScore] - The actor's AI Visibility Score across the enabled models, its points there divided by the project's days with answers in them, so actors compare
 /// * [models] - One cell per model, keyed by model
 @BuiltValue()
 abstract class AiModelWeightedVisibilityMatrixActor implements Built<AiModelWeightedVisibilityMatrixActor, AiModelWeightedVisibilityMatrixActorBuilder> {
@@ -41,7 +41,7 @@ abstract class AiModelWeightedVisibilityMatrixActor implements Built<AiModelWeig
   @BuiltValueField(wireName: r'domain')
   String? get domain;
 
-  /// The actor's AI Visibility Score points summed over the models
+  /// The actor's AI Visibility Score across the enabled models, its points there divided by the project's days with answers in them, so actors compare
   @BuiltValueField(wireName: r'total_weighted_visibility_score')
   num? get totalWeightedVisibilityScore;
 

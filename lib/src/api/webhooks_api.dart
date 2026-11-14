@@ -210,7 +210,7 @@ class WebhooksApi {
   /// Lists active webhook subscriptions for the account, optionally filtered by project. A read-only API key receives each &#x60;target_url&#x60; masked to its scheme, host and any non-default port followed by &#x60;/…&#x60;, because the full URL can let anyone post to the receiver; a &#x60;read_write&#x60; scope key receives the full URL. Works on every plan, with an API key created on Scale too. Below Scale the subscriptions are kept but deliver nothing, and they can still be listed and deleted.
   ///
   /// Parameters:
-  /// * [projectId] - Optional project filter
+  /// * [projectId] - Optional project filter. An id that is not a plain number, or that names no project of the account, returns ERR_PROJECT_NOT_FOUND.
   /// * [page] 
   /// * [perPage] - Max 100
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation

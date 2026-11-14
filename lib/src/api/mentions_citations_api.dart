@@ -26,20 +26,20 @@ class MentionsCitationsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+  /// * [competitors] - Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -126,20 +126,20 @@ class MentionsCitationsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+  /// * [competitors] - Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -232,13 +232,13 @@ class MentionsCitationsApi {
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -351,20 +351,20 @@ class MentionsCitationsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+  /// * [competitors] - Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -451,20 +451,20 @@ class MentionsCitationsApi {
   ///
   /// Parameters:
   /// * [projectId] - Project ID
-  /// * [competitors] - Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+  /// * [competitors] - Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
   /// * [page] 
   /// * [perPage] 
   /// * [model] - Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -585,13 +585,13 @@ class MentionsCitationsApi {
   /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
   /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
   /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
-  /// * [prompt] - Filter by prompt ID
-  /// * [from] 
-  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [prompt] - Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+  /// * [from] - Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
   /// * [output] - Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
   /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
   /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-  /// * [range] - Number of days to look back (alternative to from/to)
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request

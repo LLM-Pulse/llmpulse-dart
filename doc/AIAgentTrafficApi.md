@@ -29,7 +29,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIAgentTrafficApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String bot = bot_example; // String | Filter by bot slug (e.g. gptbot, claudebot, perplexitybot)
@@ -50,7 +50,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **bot** | **String**| Filter by bot slug (e.g. gptbot, claudebot, perplexitybot) | [optional] 
@@ -86,7 +86,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIAgentTrafficApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String source_ = source__example; // String | Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude)
@@ -104,7 +104,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **source_** | **String**| Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude) | [optional] 

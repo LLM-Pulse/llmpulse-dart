@@ -117,7 +117,7 @@ final api = Llmpulse().getAnnotationsApi();
 final int projectId = 56; // int | Project ID
 final Date from = 2013-10-20; // Date | 
 final Date to = 2013-10-20; // Date | 
-final int annotationCategoryId = 56; // int | 
+final int annotationCategoryId = 56; // int | Keep the annotations filed under this category, one of the project's or a system category. Any other id returns 422 ERR_INVALID_PARAM.
 final int page = 56; // int | 
 final int perPage = 56; // int | 
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
  **projectId** | **int**| Project ID | 
  **from** | **Date**|  | [optional] 
  **to** | **Date**|  | [optional] 
- **annotationCategoryId** | **int**|  | [optional] 
+ **annotationCategoryId** | **int**| Keep the annotations filed under this category, one of the project's or a system category. Any other id returns 422 ERR_INVALID_PARAM. | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
 

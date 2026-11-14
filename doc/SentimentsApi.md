@@ -28,7 +28,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getSentimentsApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given.
+final int range = 56; // int | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
@@ -59,7 +59,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. | [optional] 
+ **range** | **int**| Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
@@ -105,7 +105,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getSentimentsApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given.
+final int range = 56; // int | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
@@ -136,7 +136,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. | [optional] 
+ **range** | **int**| Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
@@ -226,15 +226,15 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getSentimentsApi();
 final int projectId = 56; // int | Project ID
-final int competitorId = 56; // int | 
-final bool brandOnly = true; // bool | 
+final int competitorId = 56; // int | Keep the sentiments about this competitor. An id that is not a plain positive number, or that names no competitor of the project, returns 422 ERR_INVALID_PARAM.
+final bool brandOnly = true; // bool | true keeps only the sentiments about your own brand.
 final String analysis = analysis_example; // String | One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative
-final String model = model_example; // String | Filter by one AI model. Here an unknown value, or a model the API key's user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted.
+final String model = model_example; // String | Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message.
 final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
 final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
-final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM.
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it.
 final int page = 56; // int | 
 final int perPage = 56; // int | 
 
@@ -251,15 +251,15 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **competitorId** | **int**|  | [optional] 
- **brandOnly** | **bool**|  | [optional] 
+ **competitorId** | **int**| Keep the sentiments about this competitor. An id that is not a plain positive number, or that names no competitor of the project, returns 422 ERR_INVALID_PARAM. | [optional] 
+ **brandOnly** | **bool**| true keeps only the sentiments about your own brand. | [optional] 
  **analysis** | **String**| One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative | [optional] 
- **model** | **String**| Filter by one AI model. Here an unknown value, or a model the API key's user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted. | [optional] 
+ **model** | **String**| Filter by one AI model. It must be a model enabled for the API key's user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [optional] 
  **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
  **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
- **from** | **DateTime**|  | [optional] 
- **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
+ **from** | **DateTime**| Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM. | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it. | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
 

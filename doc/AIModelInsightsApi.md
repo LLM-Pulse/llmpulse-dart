@@ -27,7 +27,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIModelInsightsApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String granularity = granularity_example; // String | 
@@ -36,7 +36,7 @@ final String countryCode = countryCode_example; // String | One ISO country code
 final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
 final String promptType = promptType_example; // String | One prompt type or a comma-separated list: informational, navigational, commercial, transactional
 final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
-final String competitors = competitors_example; // String | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
+final String competitors = competitors_example; // String | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM)
 
 try {
     final response = api.getAiModelInsightsSummary(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, competitors);
@@ -51,7 +51,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **granularity** | **String**|  | [optional] 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
  **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
  **promptType** | **String**| One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [optional] 
  **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
- **competitors** | **String**| Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [optional] 
+ **competitors** | **String**| Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) | [optional] 
 
 ### Return type
 
@@ -88,7 +88,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIModelInsightsApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String granularity = granularity_example; // String | 
@@ -113,7 +113,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **granularity** | **String**|  | [optional] 
@@ -152,7 +152,7 @@ import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getAIModelInsightsApi();
 final int projectId = 56; // int | Project ID
-final int range = 56; // int | Number of days to look back (alternative to from/to)
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String granularity = granularity_example; // String | 
@@ -176,7 +176,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **int**| Project ID | 
- **range** | **int**| Number of days to look back (alternative to from/to) | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **granularity** | **String**|  | [optional] 

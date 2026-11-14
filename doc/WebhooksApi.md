@@ -113,7 +113,7 @@ Lists active webhook subscriptions for the account, optionally filtered by proje
 import 'package:llmpulse/api.dart';
 
 final api = Llmpulse().getWebhooksApi();
-final int projectId = 56; // int | Optional project filter
+final int projectId = 56; // int | Optional project filter. An id that is not a plain number, or that names no project of the account, returns ERR_PROJECT_NOT_FOUND.
 final int page = 56; // int | 
 final int perPage = 56; // int | Max 100
 
@@ -129,7 +129,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **int**| Optional project filter | [optional] 
+ **projectId** | **int**| Optional project filter. An id that is not a plain number, or that names no project of the account, returns ERR_PROJECT_NOT_FOUND. | [optional] 
  **page** | **int**|  | [optional] 
  **perPage** | **int**| Max 100 | [optional] 
 

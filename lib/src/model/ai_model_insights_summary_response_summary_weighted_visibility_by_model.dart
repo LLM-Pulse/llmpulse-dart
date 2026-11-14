@@ -13,11 +13,11 @@ part 'ai_model_insights_summary_response_summary_weighted_visibility_by_model.g.
 /// AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel
 ///
 /// Properties:
-/// * [totalWeightedVisibilityScore] - The brand's AI Visibility Score points across the models; 0 when it has none
+/// * [totalWeightedVisibilityScore] - The brand's AI Visibility Score across the enabled models, its points there divided by the days with answers in any of them (the Overview's number for the same filters; a model that answered while disabled keeps its row but stays out of it); 0 when it has none
 /// * [models] 
 @BuiltValue()
 abstract class AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel implements Built<AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel, AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModelBuilder> {
-  /// The brand's AI Visibility Score points across the models; 0 when it has none
+  /// The brand's AI Visibility Score across the enabled models, its points there divided by the days with answers in any of them (the Overview's number for the same filters; a model that answered while disabled keeps its row but stays out of it); 0 when it has none
   @BuiltValueField(wireName: r'total_weighted_visibility_score')
   num? get totalWeightedVisibilityScore;
 

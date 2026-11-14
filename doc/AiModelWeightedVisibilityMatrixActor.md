@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **competitorId** | **int** | Null for the project, the competitor id otherwise | [optional] 
 **name** | **String** |  | [optional] 
 **domain** | **String** | Bare (scheme-less) domain. Null for the project actor when the project has no URL. | [optional] 
-**totalWeightedVisibilityScore** | **num** | The actor's AI Visibility Score points summed over the models | [optional] 
+**totalWeightedVisibilityScore** | **num** | The actor's AI Visibility Score across the enabled models, its points there divided by the project's days with answers in them, so actors compare | [optional] 
 **models** | [**BuiltMap&lt;String, AiModelWeightedVisibilityCell&gt;**](AiModelWeightedVisibilityCell.md) | One cell per model, keyed by model | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

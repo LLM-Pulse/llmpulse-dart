@@ -191,7 +191,7 @@ class AnnotationsApi {
   /// * [projectId] - Project ID
   /// * [from] 
   /// * [to] 
-  /// * [annotationCategoryId] 
+  /// * [annotationCategoryId] - Keep the annotations filed under this category, one of the project's or a system category. Any other id returns 422 ERR_INVALID_PARAM.
   /// * [page] 
   /// * [perPage] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
