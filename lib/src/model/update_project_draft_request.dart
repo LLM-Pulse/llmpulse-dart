@@ -15,7 +15,7 @@ part 'update_project_draft_request.g.dart';
 /// Properties:
 /// * [step] 
 /// * [name] 
-/// * [brandName] 
+/// * [brandName] - Defaults to name. Up to 100 characters, the name included when it stands in; finalize refuses a longer one with ERR_INVALID_PARAM
 /// * [description] 
 /// * [industry] 
 /// * [matchingNames] - Brand-name variants used to detect mentions (details step). At most 50 names of up to 100 characters each; the step stores the list as sent, and finalize refuses a longer list or name with ERR_INVALID_PARAM (422)
@@ -38,6 +38,7 @@ abstract class UpdateProjectDraftRequest implements Built<UpdateProjectDraftRequ
   @BuiltValueField(wireName: r'name')
   String? get name;
 
+  /// Defaults to name. Up to 100 characters, the name included when it stands in; finalize refuses a longer one with ERR_INVALID_PARAM
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 

@@ -11,10 +11,10 @@ part 'ai_model_weighted_visibility_cell.g.dart';
 /// AiModelWeightedVisibilityCell
 ///
 /// Properties:
-/// * [value] - The actor's AI Visibility Score in the model, its points there divided by the project's days with answers in that model; 0 when it has none
+/// * [value] - The actor's AI Visibility Score in the model, its points there divided by the project's tracking runs with answers in that model; 0 when it has none
 @BuiltValue()
 abstract class AiModelWeightedVisibilityCell implements Built<AiModelWeightedVisibilityCell, AiModelWeightedVisibilityCellBuilder> {
-  /// The actor's AI Visibility Score in the model, its points there divided by the project's days with answers in that model; 0 when it has none
+  /// The actor's AI Visibility Score in the model, its points there divided by the project's tracking runs with answers in that model; 0 when it has none
   @BuiltValueField(wireName: r'value')
   num? get value;
 

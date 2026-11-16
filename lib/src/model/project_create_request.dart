@@ -19,7 +19,7 @@ part 'project_create_request.g.dart';
 /// * [name] - Project name, as plain text. It can be changed later with PATCH /projects/{id}
 /// * [mainCountry] 
 /// * [mainLanguage] 
-/// * [brandName] 
+/// * [brandName] - Defaults to name. Up to 100 characters, the name included when it stands in; a longer one is refused with ERR_INVALID_PARAM
 /// * [description] 
 /// * [industry] - Industry keys, case-insensitive; a single key string is also accepted. An unknown key returns ERR_INVALID_PARAM listing the valid keys (the same list as the in-app industry picker, e.g. TECHNOLOGY, SAAS, ECOMMERCE)
 /// * [businessModel] - Business model key (e.g. B2B_SAAS, MARKETPLACE); unknown keys are rejected
@@ -55,6 +55,7 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   @BuiltValueField(wireName: r'main_language')
   String get mainLanguage;
 
+  /// Defaults to name. Up to 100 characters, the name included when it stands in; a longer one is refused with ERR_INVALID_PARAM
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 

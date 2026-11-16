@@ -13,7 +13,7 @@ part 'update_project_request.g.dart';
 ///
 /// Properties:
 /// * [name] - Project name shown in the app. A label: it does not change mention detection unless brand_name is empty. Cannot be blank
-/// * [brandName] - Brand name used to detect mentions. Applies to future runs; it does not rewrite history
+/// * [brandName] - Brand name used to detect mentions, up to 100 characters (a longer one is refused with ERR_INVALID_PARAM). Applies to future runs; it does not rewrite history
 /// * [description] - What the brand does. Context for Recommendations and GEO Writer (Brand Book)
 /// * [industry] - Single industry key (e.g. SAAS), stored as sent; an array of keys is also accepted and stored as an array, like the in-app multi-select. Unknown keys are rejected with the valid keys listed
 /// * [businessModel] - Business model key (e.g. B2B_SAAS); unknown keys are rejected
@@ -33,7 +33,7 @@ abstract class UpdateProjectRequest implements Built<UpdateProjectRequest, Updat
   @BuiltValueField(wireName: r'name')
   String? get name;
 
-  /// Brand name used to detect mentions. Applies to future runs; it does not rewrite history
+  /// Brand name used to detect mentions, up to 100 characters (a longer one is refused with ERR_INVALID_PARAM). Applies to future runs; it does not rewrite history
   @BuiltValueField(wireName: r'brand_name')
   String? get brandName;
 
