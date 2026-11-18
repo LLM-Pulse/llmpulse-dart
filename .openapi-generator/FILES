@@ -15,6 +15,13 @@ doc/AgentBot.md
 doc/AgentBotsResponse.md
 doc/AgentTrafficResponse.md
 doc/AiModelCitationsRow.md
+doc/AiModelDeclineCounts.md
+doc/AiModelDeclinedAnswersResponse.md
+doc/AiModelDeclinedAnswersResponseByPrompt.md
+doc/AiModelDeclinedAnswersResponseByPromptDataInner.md
+doc/AiModelDeclinedAnswersResponseChartInner.md
+doc/AiModelDeclinedAnswersResponseFilters.md
+doc/AiModelDeclinedAnswersResponseSummary.md
 doc/AiModelInsightsFiltersEcho.md
 doc/AiModelInsightsModel.md
 doc/AiModelInsightsSummaryResponse.md
@@ -418,6 +425,13 @@ lib/src/model/agent_bot.dart
 lib/src/model/agent_bots_response.dart
 lib/src/model/agent_traffic_response.dart
 lib/src/model/ai_model_citations_row.dart
+lib/src/model/ai_model_decline_counts.dart
+lib/src/model/ai_model_declined_answers_response.dart
+lib/src/model/ai_model_declined_answers_response_by_prompt.dart
+lib/src/model/ai_model_declined_answers_response_by_prompt_data_inner.dart
+lib/src/model/ai_model_declined_answers_response_chart_inner.dart
+lib/src/model/ai_model_declined_answers_response_filters.dart
+lib/src/model/ai_model_declined_answers_response_summary.dart
 lib/src/model/ai_model_insights_filters_echo.dart
 lib/src/model/ai_model_insights_model.dart
 lib/src/model/ai_model_insights_summary_response.dart

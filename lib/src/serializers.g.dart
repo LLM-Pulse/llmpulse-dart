@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (Serializers().toBuilder()
+      ..add($AiModelDeclineCounts.serializer)
       ..add($AiModelInsightsModel.serializer)
       ..add($ApiKeyInfo.serializer)
       ..add($CmsContentSummary.serializer)
@@ -37,6 +38,13 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AgentTrafficResponseGranularityEnum.serializer)
       ..add(AgentTrafficResponseGroupByEnum.serializer)
       ..add(AiModelCitationsRow.serializer)
+      ..add(AiModelDeclinedAnswersResponse.serializer)
+      ..add(AiModelDeclinedAnswersResponseByPrompt.serializer)
+      ..add(AiModelDeclinedAnswersResponseByPromptDataInner.serializer)
+      ..add(AiModelDeclinedAnswersResponseChartInner.serializer)
+      ..add(AiModelDeclinedAnswersResponseFilters.serializer)
+      ..add(AiModelDeclinedAnswersResponseModelEnum.serializer)
+      ..add(AiModelDeclinedAnswersResponseSummary.serializer)
       ..add(AiModelInsightsFiltersEcho.serializer)
       ..add(AiModelInsightsSummaryResponse.serializer)
       ..add(AiModelInsightsSummaryResponseSummary.serializer)
@@ -477,6 +485,15 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(AiModelCitationsRow)]),
           () => ListBuilder<AiModelCitationsRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(AiModelDeclinedAnswersResponseByPromptDataInner)
+          ]),
+          () => ListBuilder<AiModelDeclinedAnswersResponseByPromptDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(AiModelDeclinedAnswersResponseChartInner)]),
+          () => ListBuilder<AiModelDeclinedAnswersResponseChartInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AiModelInsightsModel)]),

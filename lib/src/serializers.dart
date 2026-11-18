@@ -23,6 +23,13 @@ import 'package:llmpulse/src/model/agent_bot.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
 import 'package:llmpulse/src/model/agent_traffic_response.dart';
 import 'package:llmpulse/src/model/ai_model_citations_row.dart';
+import 'package:llmpulse/src/model/ai_model_decline_counts.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response_by_prompt.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response_by_prompt_data_inner.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response_chart_inner.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response_filters.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response_summary.dart';
 import 'package:llmpulse/src/model/ai_model_insights_filters_echo.dart';
 import 'package:llmpulse/src/model/ai_model_insights_model.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
@@ -371,6 +378,13 @@ part 'serializers.g.dart';
   AgentBotsResponse,
   AgentTrafficResponse,
   AiModelCitationsRow,
+  AiModelDeclineCounts,$AiModelDeclineCounts,
+  AiModelDeclinedAnswersResponse,
+  AiModelDeclinedAnswersResponseByPrompt,
+  AiModelDeclinedAnswersResponseByPromptDataInner,
+  AiModelDeclinedAnswersResponseChartInner,
+  AiModelDeclinedAnswersResponseFilters,
+  AiModelDeclinedAnswersResponseSummary,
   AiModelInsightsFiltersEcho,
   AiModelInsightsModel,$AiModelInsightsModel,
   AiModelInsightsSummaryResponse,
@@ -881,6 +895,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<CmsContentSummary>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelDeclinedAnswersResponseChartInner)]),
+        () => ListBuilder<AiModelDeclinedAnswersResponseChartInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleAiVisibilityGapsResponseDataInner)]),
         () => ListBuilder<SearchConsoleAiVisibilityGapsResponseDataInner>(),
       )
@@ -1117,6 +1135,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Project>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelDeclinedAnswersResponseByPromptDataInner)]),
+        () => ListBuilder<AiModelDeclinedAnswersResponseByPromptDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(WebAnalyticsQueryResponseColumnsInner)]),
         () => ListBuilder<WebAnalyticsQueryResponseColumnsInner>(),
       )
@@ -1196,6 +1218,7 @@ Serializers serializers = (_$serializers.toBuilder()
         const FullType(BuiltList, [FullType(AiModelWeightedVisibilityMatrixActor)]),
         () => ListBuilder<AiModelWeightedVisibilityMatrixActor>(),
       )
+      ..add(AiModelDeclineCounts.serializer)
       ..add(AiModelInsightsModel.serializer)
       ..add(ApiKeyInfo.serializer)
       ..add(CmsContentSummary.serializer)

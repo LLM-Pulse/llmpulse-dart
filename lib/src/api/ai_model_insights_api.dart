@@ -9,7 +9,9 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
+import 'package:llmpulse/src/model/ai_model_declined_answers_response.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
+import 'package:llmpulse/src/model/api_error.dart';
 
 class AIModelInsightsApi {
 
@@ -318,6 +320,125 @@ class AIModelInsightsApi {
     );
 
     return _response;
+  }
+
+  /// Declined answers (decline rate)
+  /// The Declined answers tab of AI Model Insights. A model declines a prompt for its own safety filters (safety_filter) or because it refuses the topic itself, such as tobacco, gambling or alcohol (topic_refusal); today only Gemini declines. A declined answer counts as no answer and never lowers visibility. The chart has one point per tracking period at the account&#39;s cadence that holds an answer of the model, and the window starts at the tracking period holding its first day.
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID
+  /// * [range] - Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
+  /// * [from] 
+  /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+  /// * [model] - The model whose declines to read, whether or not it is enabled for the API key's user. Default: gemini. Any other model returns 422 ERR_INVALID_PARAM (invalid model).
+  /// * [collectionId] - One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
+  /// * [countryCode] - One ISO country code or a comma-separated list (e.g. US,GB,DE)
+  /// * [languageCode] - One ISO language code or a comma-separated list (e.g. en,es,de)
+  /// * [promptType] - One prompt type or a comma-separated list: informational, navigational, commercial, transactional
+  /// * [brandKind] - Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+  /// * [page] 
+  /// * [perPage] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [AiModelDeclinedAnswersResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<AiModelDeclinedAnswersResponse>> getDeclinedAnswers({ 
+    required int projectId,
+    int? range,
+    DateTime? from,
+    DateTime? to,
+    String? model,
+    String? collectionId,
+    String? countryCode,
+    String? languageCode,
+    String? promptType,
+    String? brandKind,
+    int? page = 1,
+    int? perPage = 20,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/reports/ai_model_insights/declined_answers';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'BearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
+      if (range != null) r'range': encodeQueryParameter(_serializers, range, const FullType(int)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+      if (model != null) r'model': encodeQueryParameter(_serializers, model, const FullType(String)),
+      if (collectionId != null) r'collection_id': encodeQueryParameter(_serializers, collectionId, const FullType(String)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (languageCode != null) r'language_code': encodeQueryParameter(_serializers, languageCode, const FullType(String)),
+      if (promptType != null) r'prompt_type': encodeQueryParameter(_serializers, promptType, const FullType(String)),
+      if (brandKind != null) r'brand_kind': encodeQueryParameter(_serializers, brandKind, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    AiModelDeclinedAnswersResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AiModelDeclinedAnswersResponse),
+      ) as AiModelDeclinedAnswersResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AiModelDeclinedAnswersResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }
