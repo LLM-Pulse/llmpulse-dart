@@ -335,6 +335,26 @@ import 'package:llmpulse/src/model/update_project_draft_request.dart';
 import 'package:llmpulse/src/model/update_project_request.dart';
 import 'package:llmpulse/src/model/update_prompt_request.dart';
 import 'package:llmpulse/src/model/update_recommendation_item_request.dart';
+import 'package:llmpulse/src/model/url_list.dart';
+import 'package:llmpulse/src/model/url_list_create_request.dart';
+import 'package:llmpulse/src/model/url_list_create_response.dart';
+import 'package:llmpulse/src/model/url_list_delete_response.dart';
+import 'package:llmpulse/src/model/url_list_detail_response.dart';
+import 'package:llmpulse/src/model/url_list_entries_add_request.dart';
+import 'package:llmpulse/src/model/url_list_entries_add_response.dart';
+import 'package:llmpulse/src/model/url_list_entries_remove_request.dart';
+import 'package:llmpulse/src/model/url_list_entries_remove_response.dart';
+import 'package:llmpulse/src/model/url_list_entry.dart';
+import 'package:llmpulse/src/model/url_list_entry_input.dart';
+import 'package:llmpulse/src/model/url_list_filters.dart';
+import 'package:llmpulse/src/model/url_list_invalid_entry.dart';
+import 'package:llmpulse/src/model/url_list_status_counts.dart';
+import 'package:llmpulse/src/model/url_list_summary.dart';
+import 'package:llmpulse/src/model/url_list_update_request.dart';
+import 'package:llmpulse/src/model/url_list_update_response.dart';
+import 'package:llmpulse/src/model/url_list_with_counts.dart';
+import 'package:llmpulse/src/model/url_list_with_stats.dart';
+import 'package:llmpulse/src/model/url_lists_response.dart';
 import 'package:llmpulse/src/model/web_analytics_query_response.dart';
 import 'package:llmpulse/src/model/web_analytics_query_response_columns_inner.dart';
 import 'package:llmpulse/src/model/web_analytics_schema_response.dart';
@@ -663,6 +683,26 @@ part 'serializers.g.dart';
   UpdateProjectRequest,
   UpdatePromptRequest,
   UpdateRecommendationItemRequest,
+  UrlList,$UrlList,
+  UrlListCreateRequest,
+  UrlListCreateResponse,
+  UrlListDeleteResponse,
+  UrlListDetailResponse,
+  UrlListEntriesAddRequest,
+  UrlListEntriesAddResponse,
+  UrlListEntriesRemoveRequest,
+  UrlListEntriesRemoveResponse,
+  UrlListEntry,
+  UrlListEntryInput,
+  UrlListFilters,
+  UrlListInvalidEntry,
+  UrlListStatusCounts,
+  UrlListSummary,
+  UrlListUpdateRequest,
+  UrlListUpdateResponse,
+  UrlListWithCounts,
+  UrlListWithStats,
+  UrlListsResponse,
   WebAnalyticsQueryResponse,
   WebAnalyticsQueryResponseColumnsInner,
   WebAnalyticsSchemaResponse,
@@ -715,6 +755,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaAgeBucketShare)]),
         () => ListBuilder<OwnedMediaAgeBucketShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UrlListEntryInput)]),
+        () => ListBuilder<UrlListEntryInput>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleCannibalizationResponseDataInner)]),
@@ -795,6 +839,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCompetitorsInner)]),
         () => ListBuilder<ProjectCreateRequestCompetitorsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UrlListInvalidEntry)]),
+        () => ListBuilder<UrlListInvalidEntry>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IntelligenceTaskProductImagesInner)]),
@@ -973,8 +1021,16 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaPlatformRollup>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UrlListEntry)]),
+        () => ListBuilder<UrlListEntry>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType.nullable(JsonObject)]),
         () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UrlListWithStats)]),
+        () => ListBuilder<UrlListWithStats>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
@@ -1155,6 +1211,7 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(SentimentBreakdownEnvelope.serializer)
       ..add(TeamInvitation.serializer)
       ..add(TimeseriesResponse.serializer)
+      ..add(UrlList.serializer)
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
       ..add(const DateSerializer())

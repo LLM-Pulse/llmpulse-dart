@@ -9,13 +9,153 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addUrlListEntries**](SourcesCitationIntelligenceApi.md#addurllistentries) | **POST** /url_lists/{id}/entries | Add entries to a URL list
+[**createUrlList**](SourcesCitationIntelligenceApi.md#createurllist) | **POST** /url_lists | Create a URL list
+[**deleteUrlList**](SourcesCitationIntelligenceApi.md#deleteurllist) | **DELETE** /url_lists/{id} | Delete a URL list
 [**getCitedUrlContent**](SourcesCitationIntelligenceApi.md#getcitedurlcontent) | **GET** /citation_intelligence/urls/{url_sha256}/content | Cited URL cached content
 [**getCitedUrlDetail**](SourcesCitationIntelligenceApi.md#getcitedurldetail) | **GET** /citation_intelligence/urls/{url_sha256} | Cited URL detail
 [**getMentionsByCitingDomain**](SourcesCitationIntelligenceApi.md#getmentionsbycitingdomain) | **GET** /citation_intelligence/mentions_by_domain | Mention share by citing domain
+[**getUrlList**](SourcesCitationIntelligenceApi.md#geturllist) | **GET** /url_lists/{id} | Get a URL list report
 [**listCitationGroups**](SourcesCitationIntelligenceApi.md#listcitationgroups) | **GET** /citation_intelligence/groups | Grouped citation intelligence
 [**listCitedUrlOccurrences**](SourcesCitationIntelligenceApi.md#listcitedurloccurrences) | **GET** /citation_intelligence/urls/{url_sha256}/occurrences | Cited URL occurrences
 [**listSources**](SourcesCitationIntelligenceApi.md#listsources) | **GET** /dimensions/sources | List source URLs
+[**listUrlLists**](SourcesCitationIntelligenceApi.md#listurllists) | **GET** /url_lists | List URL lists
+[**removeUrlListEntries**](SourcesCitationIntelligenceApi.md#removeurllistentries) | **POST** /url_lists/{id}/entries/remove | Remove entries from a URL list
+[**updateUrlList**](SourcesCitationIntelligenceApi.md#updateurllist) | **PATCH** /url_lists/{id} | Update a URL list
 
+
+# **addUrlListEntries**
+> UrlListEntriesAddResponse addUrlListEntries(id, urlListEntriesAddRequest)
+
+Add entries to a URL list
+
+Adds entries, as POST /url_lists reads them. A rule the list already holds keeps its place and takes only the added_on, cost and channel this request sends for it. Values that do not parse come back in invalid_entries. Requires a `read_write` scope API key and the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int id = 56; // int | 
+final UrlListEntriesAddRequest urlListEntriesAddRequest = ; // UrlListEntriesAddRequest | 
+
+try {
+    final response = api.addUrlListEntries(id, urlListEntriesAddRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->addUrlListEntries: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **urlListEntriesAddRequest** | [**UrlListEntriesAddRequest**](UrlListEntriesAddRequest.md)|  | 
+
+### Return type
+
+[**UrlListEntriesAddResponse**](UrlListEntriesAddResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createUrlList**
+> UrlListCreateResponse createUrlList(urlListCreateRequest)
+
+Create a URL list
+
+Creates a URL list. Each entry is a string or an object with value, match_type, added_on (YYYY-MM-DD, default today), cost (in the list currency) and channel. Without a match_type, \"acme.com/blog/_*\" is a prefix, a value with a path or query an exact URL and a bare host a domain. A list holds at most 1000 entries and a project at most 100 lists; the name is unique per project, case-insensitive. Refusals answer ERR_INVALID_PARAM with a reason token in error.meta.reason. Requires a `read_write` scope API key and the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final UrlListCreateRequest urlListCreateRequest = ; // UrlListCreateRequest | 
+
+try {
+    final response = api.createUrlList(urlListCreateRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->createUrlList: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **urlListCreateRequest** | [**UrlListCreateRequest**](UrlListCreateRequest.md)|  | 
+
+### Return type
+
+[**UrlListCreateResponse**](UrlListCreateResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteUrlList**
+> UrlListDeleteResponse deleteUrlList(projectId, id)
+
+Delete a URL list
+
+Deletes a URL list and its entries. Citation data is not affected. Requires a `read_write` scope API key and the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int projectId = 56; // int | Project ID
+final int id = 56; // int | 
+
+try {
+    final response = api.deleteUrlList(projectId, id);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->deleteUrlList: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **id** | **int**|  | 
+
+### Return type
+
+[**UrlListDeleteResponse**](UrlListDeleteResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCitedUrlContent**
 > getCitedUrlContent(projectId, urlSha256)
@@ -177,6 +317,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUrlList**
+> UrlListDetailResponse getUrlList(id, projectId, status, order, direction, page, perPage, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, range)
+
+Get a URL list report
+
+The list, its summary (entries_count, cited_entries, citations, answers in the window, citation_rate, avg_citation_position, median_days_to_first_citation, total_cost, cost_per_cited_entry) and a page of its entries. An entry's status is cited (an answer cited it in the window), lost (cited before the window, not in it) or not_cited. first_cited_at reads the filtered answers up to the window's end. days_to_first_citation is null before the first citation or when the page was cited before it was added. brand_mentioned is set for exact URLs once their page was read, else null. Without from/to or range the window is all time. Requires the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int id = 56; // int | 
+final int projectId = 56; // int | Project ID
+final String status = status_example; // String | Only entries with this status.
+final String order = order_example; // String | 
+final String direction = direction_example; // String | 
+final int page = 56; // int | 
+final int perPage = 56; // int | 
+final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen, doubao and bing_ai_mode are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those eleven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
+final int prompt = 56; // int | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
+
+try {
+    final response = api.getUrlList(id, projectId, status, order, direction, page, perPage, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, range);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->getUrlList: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **projectId** | **int**| Project ID | 
+ **status** | **String**| Only entries with this status. | [optional] 
+ **order** | **String**|  | [optional] [default to 'citations']
+ **direction** | **String**|  | [optional] [default to 'desc']
+ **page** | **int**|  | [optional] [default to 1]
+ **perPage** | **int**|  | [optional] [default to 20]
+ **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen, doubao and bing_ai_mode are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those eleven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
+ **prompt** | **int**| Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [optional] 
+ **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
+ **from** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
+
+### Return type
+
+[**UrlListDetailResponse**](UrlListDetailResponse.md)
 
 ### Authorization
 
@@ -383,6 +596,157 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listUrlLists**
+> UrlListsResponse listUrlLists(projectId, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, range)
+
+List URL lists
+
+A URL list is a named set of rules, each an exact URL (matched over http and https, with or without www), a URL prefix (every page under host/path) or a domain (the site and its subdomains). Its numbers count the AI answers to the prompts tracked in the project: cited_entries is the entries an answer cited in the window and citations the answers citing any entry, each once. Without from/to or range the window is all time. Requires the Growth plan; lower tiers receive ERR_PLAN_REQUIRED.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int projectId = 56; // int | Project ID
+final String model = model_example; // String | Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen, doubao and bing_ai_mode are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those eleven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message.
+final String collectionId = 12,34; // String | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
+final String countryCode = countryCode_example; // String | One ISO country code or a comma-separated list (e.g. US,GB,DE)
+final String languageCode = languageCode_example; // String | One ISO language code or a comma-separated list (e.g. en,es,de)
+final int prompt = 56; // int | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM.
+final String brandKind = brandKind_example; // String | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
+final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
+
+try {
+    final response = api.listUrlLists(projectId, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, range);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->listUrlLists: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int**| Project ID | 
+ **model** | **String**| Filter by one AI model. Only chatgpt, ai_overview, ai_mode, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen, doubao and bing_ai_mode are accepted: any other value, including another model enabled for the API key's user, returns 422 ERR_INVALID_PARAM (invalid model). One of those eleven that the user has not enabled also returns 422 ERR_INVALID_PARAM, with the valid values in the message. | [optional] 
+ **collectionId** | **String**| One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [optional] 
+ **countryCode** | **String**| One ISO country code or a comma-separated list (e.g. US,GB,DE) | [optional] 
+ **languageCode** | **String**| One ISO language code or a comma-separated list (e.g. en,es,de) | [optional] 
+ **prompt** | **int**| Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [optional] 
+ **brandKind** | **String**| Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [optional] 
+ **from** | **DateTime**|  | [optional] 
+ **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
+ **range** | **int**| Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [optional] 
+
+### Return type
+
+[**UrlListsResponse**](UrlListsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **removeUrlListEntries**
+> UrlListEntriesRemoveResponse removeUrlListEntries(id, urlListEntriesRemoveRequest)
+
+Remove entries from a URL list
+
+Removes entries by id (from GET /url_lists/{id}) or by value as written (\"https://acme.com/a\", \"acme.com/blog/_*\", \"acme.com\"). Sending neither answers ERR_INVALID_PARAM. Requires a `read_write` scope API key and the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int id = 56; // int | 
+final UrlListEntriesRemoveRequest urlListEntriesRemoveRequest = ; // UrlListEntriesRemoveRequest | 
+
+try {
+    final response = api.removeUrlListEntries(id, urlListEntriesRemoveRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->removeUrlListEntries: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **urlListEntriesRemoveRequest** | [**UrlListEntriesRemoveRequest**](UrlListEntriesRemoveRequest.md)|  | 
+
+### Return type
+
+[**UrlListEntriesRemoveResponse**](UrlListEntriesRemoveResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateUrlList**
+> UrlListUpdateResponse updateUrlList(id, urlListUpdateRequest)
+
+Update a URL list
+
+Changes the name, description or currency of a URL list. Entries are added with POST /url_lists/{id}/entries and removed with POST /url_lists/{id}/entries/remove. Requires a `read_write` scope API key and the Growth plan.
+
+### Example
+```dart
+import 'package:llmpulse/api.dart';
+
+final api = Llmpulse().getSourcesCitationIntelligenceApi();
+final int id = 56; // int | 
+final UrlListUpdateRequest urlListUpdateRequest = ; // UrlListUpdateRequest | 
+
+try {
+    final response = api.updateUrlList(id, urlListUpdateRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SourcesCitationIntelligenceApi->updateUrlList: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **urlListUpdateRequest** | [**UrlListUpdateRequest**](UrlListUpdateRequest.md)|  | 
+
+### Return type
+
+[**UrlListUpdateResponse**](UrlListUpdateResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

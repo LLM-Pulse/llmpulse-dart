@@ -22,6 +22,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add($SentimentBreakdownEnvelope.serializer)
       ..add($TeamInvitation.serializer)
       ..add($TimeseriesResponse.serializer)
+      ..add($UrlList.serializer)
       ..add(AccountCapacity.serializer)
       ..add(AccountExecutionQuota.serializer)
       ..add(AccountExecutionQuotaPeriodEnum.serializer)
@@ -433,6 +434,34 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(UpdateRecommendationItemRequest.serializer)
       ..add(UpdateRecommendationItemRequestReasonEnum.serializer)
       ..add(UpdateRecommendationItemRequestStatusEnum.serializer)
+      ..add(UrlListCreateRequest.serializer)
+      ..add(UrlListCreateRequestCurrencyEnum.serializer)
+      ..add(UrlListCreateRequestMatchTypeEnum.serializer)
+      ..add(UrlListCreateResponse.serializer)
+      ..add(UrlListCurrencyEnum.serializer)
+      ..add(UrlListDeleteResponse.serializer)
+      ..add(UrlListDetailResponse.serializer)
+      ..add(UrlListEntriesAddRequest.serializer)
+      ..add(UrlListEntriesAddRequestMatchTypeEnum.serializer)
+      ..add(UrlListEntriesAddResponse.serializer)
+      ..add(UrlListEntriesRemoveRequest.serializer)
+      ..add(UrlListEntriesRemoveResponse.serializer)
+      ..add(UrlListEntry.serializer)
+      ..add(UrlListEntryInput.serializer)
+      ..add(UrlListEntryInputMatchTypeEnum.serializer)
+      ..add(UrlListEntryMatchTypeEnum.serializer)
+      ..add(UrlListEntryStatusEnum.serializer)
+      ..add(UrlListFilters.serializer)
+      ..add(UrlListInvalidEntry.serializer)
+      ..add(UrlListInvalidEntryReasonEnum.serializer)
+      ..add(UrlListStatusCounts.serializer)
+      ..add(UrlListSummary.serializer)
+      ..add(UrlListUpdateRequest.serializer)
+      ..add(UrlListUpdateRequestCurrencyEnum.serializer)
+      ..add(UrlListUpdateResponse.serializer)
+      ..add(UrlListWithCounts.serializer)
+      ..add(UrlListWithStats.serializer)
+      ..add(UrlListsResponse.serializer)
       ..add(WebAnalyticsQueryResponse.serializer)
       ..add(WebAnalyticsQueryResponseColumnsInner.serializer)
       ..add(WebAnalyticsQueryResponseProviderEnum.serializer)
@@ -943,6 +972,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CmsPublication)]),
           () => ListBuilder<CmsPublication>())
       ..addBuilderFactory(
@@ -1253,6 +1285,26 @@ Serializers _$serializers = (Serializers().toBuilder()
               BuiltList, const [const FullType(TopSourcesResponseDataInner)]),
           () => ListBuilder<TopSourcesResponseDataInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(UrlListEntry)]),
+          () => ListBuilder<UrlListEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(UrlListEntryInput)]),
+          () => ListBuilder<UrlListEntryInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(UrlListEntryInput)]),
+          () => ListBuilder<UrlListEntryInput>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(UrlListInvalidEntry)]),
+          () => ListBuilder<UrlListInvalidEntry>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(UrlListInvalidEntry)]),
+          () => ListBuilder<UrlListInvalidEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(UrlListWithStats)]),
+          () => ListBuilder<UrlListWithStats>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(WebAnalyticsQueryResponseColumnsInner)]),
           () => ListBuilder<WebAnalyticsQueryResponseColumnsInner>())
@@ -1313,6 +1365,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
