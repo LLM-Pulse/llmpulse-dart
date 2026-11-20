@@ -10,7 +10,7 @@ import 'package:built_value/serializer.dart';
 
 part 'ai_model_insights_summary_response_summary_brand_net_sentiment_by_model.g.dart';
 
-/// AiModelInsightsSummaryResponseSummaryBrandNetSentimentByModel
+/// Needs the Growth plan or above; left out below it and named in plan_required_fields
 ///
 /// Properties:
 /// * [totalSentiments] - Brand sentiment verdicts across the models

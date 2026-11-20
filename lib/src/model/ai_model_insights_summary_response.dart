@@ -21,6 +21,7 @@ part 'ai_model_insights_summary_response.g.dart';
 /// * [filters] 
 /// * [models] - The AI models the account has enabled or that answered in the window, in the in-app column order
 /// * [summary] 
+/// * [planRequiredFields] - The summary sections left out because they need a higher plan (brand_net_sentiment_by_model and sentiment_market_share below Growth); empty when none is
 /// * [requestId] 
 @BuiltValue()
 abstract class AiModelInsightsSummaryResponse implements Built<AiModelInsightsSummaryResponse, AiModelInsightsSummaryResponseBuilder> {
@@ -42,6 +43,10 @@ abstract class AiModelInsightsSummaryResponse implements Built<AiModelInsightsSu
 
   @BuiltValueField(wireName: r'summary')
   AiModelInsightsSummaryResponseSummary? get summary;
+
+  /// The summary sections left out because they need a higher plan (brand_net_sentiment_by_model and sentiment_market_share below Growth); empty when none is
+  @BuiltValueField(wireName: r'plan_required_fields')
+  BuiltList<String> get planRequiredFields;
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
@@ -111,6 +116,11 @@ class _$AiModelInsightsSummaryResponseSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(AiModelInsightsSummaryResponseSummary),
       );
     }
+    yield r'plan_required_fields';
+    yield serializers.serialize(
+      object.planRequiredFields,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
     if (object.requestId != null) {
       yield r'request_id';
       yield serializers.serialize(
@@ -188,6 +198,13 @@ class _$AiModelInsightsSummaryResponseSerializer implements PrimitiveSerializer<
           ) as AiModelInsightsSummaryResponseSummary?;
           if (valueDes == null) continue;
           result.summary.replace(valueDes);
+          break;
+        case r'plan_required_fields':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.planRequiredFields.replace(valueDes);
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

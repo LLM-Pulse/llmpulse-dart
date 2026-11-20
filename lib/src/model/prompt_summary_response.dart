@@ -25,6 +25,7 @@ part 'prompt_summary_response.g.dart';
 /// * [perPage] 
 /// * [total] 
 /// * [data] 
+/// * [planRequiredFields] - The row fields left out because they need a higher plan (the sentiment fields below Growth); empty when none is
 /// * [requestId] 
 @BuiltValue()
 abstract class PromptSummaryResponse implements Built<PromptSummaryResponse, PromptSummaryResponseBuilder> {
@@ -60,6 +61,10 @@ abstract class PromptSummaryResponse implements Built<PromptSummaryResponse, Pro
 
   @BuiltValueField(wireName: r'data')
   BuiltList<PromptSummaryRow>? get data;
+
+  /// The row fields left out because they need a higher plan (the sentiment fields below Growth); empty when none is
+  @BuiltValueField(wireName: r'plan_required_fields')
+  BuiltList<String> get planRequiredFields;
 
   @BuiltValueField(wireName: r'request_id')
   String? get requestId;
@@ -164,6 +169,11 @@ class _$PromptSummaryResponseSerializer implements PrimitiveSerializer<PromptSum
         specifiedType: const FullType(BuiltList, [FullType(PromptSummaryRow)]),
       );
     }
+    yield r'plan_required_fields';
+    yield serializers.serialize(
+      object.planRequiredFields,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
     if (object.requestId != null) {
       yield r'request_id';
       yield serializers.serialize(
@@ -281,6 +291,13 @@ class _$PromptSummaryResponseSerializer implements PrimitiveSerializer<PromptSum
           ) as BuiltList<PromptSummaryRow>?;
           if (valueDes == null) continue;
           result.data.replace(valueDes);
+          break;
+        case r'plan_required_fields':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.planRequiredFields.replace(valueDes);
           break;
         case r'request_id':
           final valueDes = serializers.deserialize(

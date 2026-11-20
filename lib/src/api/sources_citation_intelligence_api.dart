@@ -398,7 +398,7 @@ class SourcesCitationIntelligenceApi {
   /// * [from] 
   /// * [to] - End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
   /// * [sourceType] 
-  /// * [sentiment] 
+  /// * [sentiment] - Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
   /// * [contentGap] - mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
   /// * [includeSeries] - Adds citation_series. Without it the response is unchanged.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -716,7 +716,7 @@ class SourcesCitationIntelligenceApi {
   /// * [includeSeries] - Requires key, else 422 ERR_INVALID_PARAM. Adds citation_series to the group's row.
   /// * [query] 
   /// * [sourceType] 
-  /// * [sentiment] 
+  /// * [sentiment] - Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
   /// * [contentGap] - mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -817,6 +817,7 @@ class SourcesCitationIntelligenceApi {
   /// * [urlSha256] - 64-character hex SHA-256 of the cited URL
   /// * [page] 
   /// * [perPage] 
+  /// * [sentiment] - Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -831,6 +832,7 @@ class SourcesCitationIntelligenceApi {
     required String urlSha256,
     int? page = 1,
     int? perPage = 20,
+    String? sentiment,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -861,6 +863,7 @@ class SourcesCitationIntelligenceApi {
       r'project_id': encodeQueryParameter(_serializers, projectId, const FullType(int)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (perPage != null) r'per_page': encodeQueryParameter(_serializers, perPage, const FullType(int)),
+      if (sentiment != null) r'sentiment': encodeQueryParameter(_serializers, sentiment, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

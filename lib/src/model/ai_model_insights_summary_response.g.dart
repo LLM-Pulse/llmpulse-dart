@@ -20,6 +20,8 @@ class _$AiModelInsightsSummaryResponse extends AiModelInsightsSummaryResponse {
   @override
   final AiModelInsightsSummaryResponseSummary? summary;
   @override
+  final BuiltList<String> planRequiredFields;
+  @override
   final String? requestId;
 
   factory _$AiModelInsightsSummaryResponse(
@@ -33,6 +35,7 @@ class _$AiModelInsightsSummaryResponse extends AiModelInsightsSummaryResponse {
       this.filters,
       this.models,
       this.summary,
+      required this.planRequiredFields,
       this.requestId})
       : super._();
   @override
@@ -54,6 +57,7 @@ class _$AiModelInsightsSummaryResponse extends AiModelInsightsSummaryResponse {
         filters == other.filters &&
         models == other.models &&
         summary == other.summary &&
+        planRequiredFields == other.planRequiredFields &&
         requestId == other.requestId;
   }
 
@@ -66,6 +70,7 @@ class _$AiModelInsightsSummaryResponse extends AiModelInsightsSummaryResponse {
     _$hash = $jc(_$hash, filters.hashCode);
     _$hash = $jc(_$hash, models.hashCode);
     _$hash = $jc(_$hash, summary.hashCode);
+    _$hash = $jc(_$hash, planRequiredFields.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -80,6 +85,7 @@ class _$AiModelInsightsSummaryResponse extends AiModelInsightsSummaryResponse {
           ..add('filters', filters)
           ..add('models', models)
           ..add('summary', summary)
+          ..add('planRequiredFields', planRequiredFields)
           ..add('requestId', requestId))
         .toString();
   }
@@ -121,6 +127,12 @@ class AiModelInsightsSummaryResponseBuilder
   set summary(AiModelInsightsSummaryResponseSummaryBuilder? summary) =>
       _$this._summary = summary;
 
+  ListBuilder<String>? _planRequiredFields;
+  ListBuilder<String> get planRequiredFields =>
+      _$this._planRequiredFields ??= ListBuilder<String>();
+  set planRequiredFields(ListBuilder<String>? planRequiredFields) =>
+      _$this._planRequiredFields = planRequiredFields;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -138,6 +150,7 @@ class AiModelInsightsSummaryResponseBuilder
       _filters = $v.filters?.toBuilder();
       _models = $v.models?.toBuilder();
       _summary = $v.summary?.toBuilder();
+      _planRequiredFields = $v.planRequiredFields.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -168,6 +181,7 @@ class AiModelInsightsSummaryResponseBuilder
             filters: _filters?.build(),
             models: _models?.build(),
             summary: _summary?.build(),
+            planRequiredFields: planRequiredFields.build(),
             requestId: requestId,
           );
     } catch (_) {
@@ -179,6 +193,8 @@ class AiModelInsightsSummaryResponseBuilder
         _models?.build();
         _$failedField = 'summary';
         _summary?.build();
+        _$failedField = 'planRequiredFields';
+        planRequiredFields.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'AiModelInsightsSummaryResponse', _$failedField, e.toString());

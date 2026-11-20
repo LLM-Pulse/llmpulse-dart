@@ -499,6 +499,9 @@ Serializers _$serializers = (Serializers().toBuilder()
               BuiltList, const [const FullType(AiModelInsightsModel)]),
           () => ListBuilder<AiModelInsightsModel>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AiModelMentionsRow)]),
           () => ListBuilder<AiModelMentionsRow>())
       ..addBuilderFactory(
@@ -735,6 +738,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(PromptSummaryRow)]),
           () => ListBuilder<PromptSummaryRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(PromptsCreateResponseDataInner)]),

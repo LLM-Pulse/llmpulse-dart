@@ -30,7 +30,7 @@ part 'prompt_summary_row.g.dart';
 /// * [promptType] - Search intent: informational, navigational, commercial or transactional. Null until the prompt is classified
 /// * [brandKind] - Brand focus: brand, brand_other or non_brand. Null until the prompt is classified
 /// * [tags] - Every tag the prompt belongs to
-/// * [sentimentResponses] - Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries)
+/// * [sentimentResponses] - Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries). Needs the Growth plan or above, like every sentiment field of the row; below it they are left out and named in plan_required_fields
 /// * [sentimentVeryPositive] - Percentage (0-100) of sentiment_responses whose brand verdict is very positive; null when sentiment_responses is 0
 /// * [sentimentPositive] - Percentage (0-100) of sentiment_responses whose brand verdict is positive; null when sentiment_responses is 0
 /// * [sentimentNeutral] - Percentage (0-100) of sentiment_responses whose brand verdict is neutral; null when sentiment_responses is 0
@@ -97,7 +97,7 @@ abstract class PromptSummaryRow implements Built<PromptSummaryRow, PromptSummary
   @BuiltValueField(wireName: r'tags')
   BuiltList<TagRef>? get tags;
 
-  /// Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries)
+  /// Responses in the window with a sentiment verdict for the brand, the base of the sentiment percentages (deduplicated like the sentiment timeseries). Needs the Growth plan or above, like every sentiment field of the row; below it they are left out and named in plan_required_fields
   @BuiltValueField(wireName: r'sentiment_responses')
   int? get sentimentResponses;
 

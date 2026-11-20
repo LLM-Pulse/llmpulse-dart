@@ -10,7 +10,7 @@ import 'package:built_value/serializer.dart';
 
 part 'ai_model_insights_summary_response_summary_sentiment_market_share.g.dart';
 
-/// AiModelInsightsSummaryResponseSummarySentimentMarketShare
+/// Needs the Growth plan or above; left out below it and named in plan_required_fields
 ///
 /// Properties:
 /// * [actors] - The project and each competitor with a sentiment verdict in the window (only the competitors given in competitors, when it is given), by total_sentiments descending

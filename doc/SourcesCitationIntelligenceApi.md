@@ -224,7 +224,7 @@ final String brandKind = brandKind_example; // String | Filter by brand kind: br
 final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 final String sourceType = sourceType_example; // String | 
-final String sentiment = sentiment_example; // String | 
+final String sentiment = sentiment_example; // String | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
 final String contentGap = contentGap_example; // String | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
 final bool includeSeries = true; // bool | Adds citation_series. Without it the response is unchanged.
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
  **from** | **DateTime**|  | [optional] 
  **to** | **DateTime**| End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [optional] 
  **sourceType** | **String**|  | [optional] 
- **sentiment** | **String**|  | [optional] 
+ **sentiment** | **String**| Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [optional] 
  **contentGap** | **String**| mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. | [optional] 
  **includeSeries** | **bool**| Adds citation_series. Without it the response is unchanged. | [optional] [default to false]
 
@@ -432,7 +432,7 @@ final String key = key_example; // String | Return only this group of the chosen
 final bool includeSeries = true; // bool | Requires key, else 422 ERR_INVALID_PARAM. Adds citation_series to the group's row.
 final String query = query_example; // String | 
 final String sourceType = sourceType_example; // String | 
-final String sentiment = sentiment_example; // String | 
+final String sentiment = sentiment_example; // String | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
 final String contentGap = contentGap_example; // String | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
 
 try {
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
  **includeSeries** | **bool**| Requires key, else 422 ERR_INVALID_PARAM. Adds citation_series to the group's row. | [optional] [default to false]
  **query** | **String**|  | [optional] 
  **sourceType** | **String**|  | [optional] 
- **sentiment** | **String**|  | [optional] 
+ **sentiment** | **String**| Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [optional] 
  **contentGap** | **String**| mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. | [optional] 
 
 ### Return type
@@ -483,7 +483,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCitedUrlOccurrences**
-> listCitedUrlOccurrences(projectId, urlSha256, page, perPage)
+> listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
 
 Cited URL occurrences
 
@@ -496,9 +496,10 @@ final int projectId = 56; // int | Project ID
 final String urlSha256 = urlSha256_example; // String | 64-character hex SHA-256 of the cited URL
 final int page = 56; // int | 
 final int perPage = 56; // int | 
+final String sentiment = sentiment_example; // String | Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
 
 try {
-    api.listCitedUrlOccurrences(projectId, urlSha256, page, perPage);
+    api.listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->listCitedUrlOccurrences: $e\n');
 }
@@ -512,6 +513,7 @@ Name | Type | Description  | Notes
  **urlSha256** | **String**| 64-character hex SHA-256 of the cited URL | 
  **page** | **int**|  | [optional] [default to 1]
  **perPage** | **int**|  | [optional] [default to 20]
+ **sentiment** | **String**| Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [optional] 
 
 ### Return type
 

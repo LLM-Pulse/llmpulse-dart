@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **perPage** | **int** |  | [optional] 
 **total** | **int** |  | [optional] 
 **data** | [**BuiltList&lt;PromptSummaryRow&gt;**](PromptSummaryRow.md) |  | [optional] 
+**planRequiredFields** | **BuiltList&lt;String&gt;** | The row fields left out because they need a higher plan (the sentiment fields below Growth); empty when none is | 
 **requestId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

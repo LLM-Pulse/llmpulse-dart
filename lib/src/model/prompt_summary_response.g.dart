@@ -30,6 +30,8 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
   @override
   final BuiltList<PromptSummaryRow>? data;
   @override
+  final BuiltList<String> planRequiredFields;
+  @override
   final String? requestId;
 
   factory _$PromptSummaryResponse(
@@ -48,6 +50,7 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
       this.perPage,
       this.total,
       this.data,
+      required this.planRequiredFields,
       this.requestId})
       : super._();
   @override
@@ -74,6 +77,7 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
         perPage == other.perPage &&
         total == other.total &&
         data == other.data &&
+        planRequiredFields == other.planRequiredFields &&
         requestId == other.requestId;
   }
 
@@ -91,6 +95,7 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
     _$hash = $jc(_$hash, perPage.hashCode);
     _$hash = $jc(_$hash, total.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jc(_$hash, planRequiredFields.hashCode);
     _$hash = $jc(_$hash, requestId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -110,6 +115,7 @@ class _$PromptSummaryResponse extends PromptSummaryResponse {
           ..add('perPage', perPage)
           ..add('total', total)
           ..add('data', data)
+          ..add('planRequiredFields', planRequiredFields)
           ..add('requestId', requestId))
         .toString();
   }
@@ -165,6 +171,12 @@ class PromptSummaryResponseBuilder
       _$this._data ??= ListBuilder<PromptSummaryRow>();
   set data(ListBuilder<PromptSummaryRow>? data) => _$this._data = data;
 
+  ListBuilder<String>? _planRequiredFields;
+  ListBuilder<String> get planRequiredFields =>
+      _$this._planRequiredFields ??= ListBuilder<String>();
+  set planRequiredFields(ListBuilder<String>? planRequiredFields) =>
+      _$this._planRequiredFields = planRequiredFields;
+
   String? _requestId;
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
@@ -187,6 +199,7 @@ class PromptSummaryResponseBuilder
       _perPage = $v.perPage;
       _total = $v.total;
       _data = $v.data?.toBuilder();
+      _planRequiredFields = $v.planRequiredFields.toBuilder();
       _requestId = $v.requestId;
       _$v = null;
     }
@@ -222,6 +235,7 @@ class PromptSummaryResponseBuilder
             perPage: perPage,
             total: total,
             data: _data?.build(),
+            planRequiredFields: planRequiredFields.build(),
             requestId: requestId,
           );
     } catch (_) {
@@ -232,6 +246,8 @@ class PromptSummaryResponseBuilder
 
         _$failedField = 'data';
         _data?.build();
+        _$failedField = 'planRequiredFields';
+        planRequiredFields.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'PromptSummaryResponse', _$failedField, e.toString());
