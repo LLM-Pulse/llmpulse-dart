@@ -16,6 +16,8 @@ class _$ProjectDetails extends ProjectDetails {
   @override
   final String? projectType;
   @override
+  final ProjectDetailsAllOfBingWebmaster? bingWebmaster;
+  @override
   final String? description;
   @override
   final JsonObject? industry;
@@ -82,6 +84,7 @@ class _$ProjectDetails extends ProjectDetails {
       this.paused,
       this.businessModel,
       this.projectType,
+      this.bingWebmaster,
       this.description,
       this.industry,
       this.appStoreId,
@@ -127,6 +130,7 @@ class _$ProjectDetails extends ProjectDetails {
         paused == other.paused &&
         businessModel == other.businessModel &&
         projectType == other.projectType &&
+        bingWebmaster == other.bingWebmaster &&
         description == other.description &&
         industry == other.industry &&
         appStoreId == other.appStoreId &&
@@ -165,6 +169,7 @@ class _$ProjectDetails extends ProjectDetails {
     _$hash = $jc(_$hash, paused.hashCode);
     _$hash = $jc(_$hash, businessModel.hashCode);
     _$hash = $jc(_$hash, projectType.hashCode);
+    _$hash = $jc(_$hash, bingWebmaster.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, industry.hashCode);
     _$hash = $jc(_$hash, appStoreId.hashCode);
@@ -205,6 +210,7 @@ class _$ProjectDetails extends ProjectDetails {
           ..add('paused', paused)
           ..add('businessModel', businessModel)
           ..add('projectType', projectType)
+          ..add('bingWebmaster', bingWebmaster)
           ..add('description', description)
           ..add('industry', industry)
           ..add('appStoreId', appStoreId)
@@ -260,6 +266,13 @@ class ProjectDetailsBuilder
   String? get projectType => _$this._projectType;
   set projectType(covariant String? projectType) =>
       _$this._projectType = projectType;
+
+  ProjectDetailsAllOfBingWebmasterBuilder? _bingWebmaster;
+  ProjectDetailsAllOfBingWebmasterBuilder get bingWebmaster =>
+      _$this._bingWebmaster ??= ProjectDetailsAllOfBingWebmasterBuilder();
+  set bingWebmaster(
+          covariant ProjectDetailsAllOfBingWebmasterBuilder? bingWebmaster) =>
+      _$this._bingWebmaster = bingWebmaster;
 
   String? _description;
   String? get description => _$this._description;
@@ -420,6 +433,7 @@ class ProjectDetailsBuilder
       _paused = $v.paused;
       _businessModel = $v.businessModel;
       _projectType = $v.projectType;
+      _bingWebmaster = $v.bingWebmaster?.toBuilder();
       _description = $v.description;
       _industry = $v.industry;
       _appStoreId = $v.appStoreId;
@@ -476,6 +490,7 @@ class ProjectDetailsBuilder
             paused: paused,
             businessModel: businessModel,
             projectType: projectType,
+            bingWebmaster: _bingWebmaster?.build(),
             description: description,
             industry: industry,
             appStoreId: appStoreId,
@@ -509,6 +524,9 @@ class ProjectDetailsBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'bingWebmaster';
+        _bingWebmaster?.build();
+
         _$failedField = 'aiTraffic';
         _aiTraffic?.build();
         _$failedField = 'stats';

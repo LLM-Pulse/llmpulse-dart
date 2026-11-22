@@ -89,6 +89,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ApiErrorErrorCodeEnum.serializer)
       ..add(ApiKeyInfoScopeEnum.serializer)
       ..add(AssignPromptTagsRequest.serializer)
+      ..add(BingWebmasterListResponse.serializer)
+      ..add(BingWebmasterListResponseDataInner.serializer)
+      ..add(BingWebmasterMetrics.serializer)
+      ..add(BingWebmasterSummaryResponse.serializer)
+      ..add(BingWebmasterTimeseriesResponse.serializer)
+      ..add(BingWebmasterTimeseriesResponseDataInner.serializer)
       ..add(CatalogProduct.serializer)
       ..add(CatalogPromptSuggestion.serializer)
       ..add(CatalogPromptSuggestionIdsRequest.serializer)
@@ -283,6 +289,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProjectDetailsAllOfAgentTrafficStatusEnum.serializer)
       ..add(ProjectDetailsAllOfAiTraffic.serializer)
       ..add(ProjectDetailsAllOfAiTrafficStatusEnum.serializer)
+      ..add(ProjectDetailsAllOfBingWebmaster.serializer)
+      ..add(ProjectDetailsAllOfBingWebmasterStatusEnum.serializer)
       ..add(ProjectDetailsAllOfDataCoverage.serializer)
       ..add(ProjectDetailsAllOfDataCoverageModelsEnum.serializer)
       ..add(ProjectDetailsAllOfPitchRun.serializer)
@@ -535,6 +543,14 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ApiKeyInfo)]),
           () => ListBuilder<ApiKeyInfo>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(BingWebmasterListResponseDataInner)]),
+          () => ListBuilder<BingWebmasterListResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(BingWebmasterTimeseriesResponseDataInner)]),
+          () => ListBuilder<BingWebmasterTimeseriesResponseDataInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CatalogProduct)]),
           () => ListBuilder<CatalogProduct>())

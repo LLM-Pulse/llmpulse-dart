@@ -10,6 +10,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
+import 'package:llmpulse/src/model/project_details_all_of_bing_webmaster.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -50,6 +51,7 @@ part 'project_details.g.dart';
 /// * [pitchRun] 
 /// * [dataCoverage] 
 /// * [searchConsole] 
+/// * [bingWebmaster] 
 /// * [aiTraffic] 
 /// * [agentTraffic] 
 /// * [requestId] 
@@ -67,6 +69,9 @@ abstract class ProjectDetails implements Project, Built<ProjectDetails, ProjectD
   /// The project type it is billed as under the account's pricing agreement, such as core or lean (its own, else the account's default type). Null for accounts without per-project types and for pitch projects
   @BuiltValueField(wireName: r'project_type')
   String? get projectType;
+
+  @BuiltValueField(wireName: r'bing_webmaster')
+  ProjectDetailsAllOfBingWebmaster? get bingWebmaster;
 
   @BuiltValueField(wireName: r'description')
   String? get description;
@@ -194,6 +199,13 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
       yield serializers.serialize(
         object.projectType,
         specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.bingWebmaster != null) {
+      yield r'bing_webmaster';
+      yield serializers.serialize(
+        object.bingWebmaster,
+        specifiedType: const FullType(ProjectDetailsAllOfBingWebmaster),
       );
     }
     if (object.description != null) {
@@ -454,6 +466,14 @@ class _$ProjectDetailsSerializer implements PrimitiveSerializer<ProjectDetails> 
           ) as String?;
           if (valueDes == null) continue;
           result.projectType = valueDes;
+          break;
+        case r'bing_webmaster':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ProjectDetailsAllOfBingWebmaster),
+          ) as ProjectDetailsAllOfBingWebmaster?;
+          if (valueDes == null) continue;
+          result.bingWebmaster.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(

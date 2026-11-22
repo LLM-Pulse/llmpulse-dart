@@ -70,6 +70,9 @@ const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_UPSTREAM =
 const ApiErrorErrorCodeEnum
     _$apiErrorErrorCodeEnum_ERR_AGENT_TRAFFIC_NOT_CONNECTED =
     const ApiErrorErrorCodeEnum._('ERR_AGENT_TRAFFIC_NOT_CONNECTED');
+const ApiErrorErrorCodeEnum
+    _$apiErrorErrorCodeEnum_ERR_BING_WEBMASTER_NOT_CONNECTED =
+    const ApiErrorErrorCodeEnum._('ERR_BING_WEBMASTER_NOT_CONNECTED');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_INVALID_PARAM =
     const ApiErrorErrorCodeEnum._('ERR_INVALID_PARAM');
 const ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnum_ERR_INVALID_RANGE =
@@ -139,6 +142,8 @@ ApiErrorErrorCodeEnum _$apiErrorErrorCodeEnumValueOf(String name) {
       return _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_UPSTREAM;
     case 'ERR_AGENT_TRAFFIC_NOT_CONNECTED':
       return _$apiErrorErrorCodeEnum_ERR_AGENT_TRAFFIC_NOT_CONNECTED;
+    case 'ERR_BING_WEBMASTER_NOT_CONNECTED':
+      return _$apiErrorErrorCodeEnum_ERR_BING_WEBMASTER_NOT_CONNECTED;
     case 'ERR_INVALID_PARAM':
       return _$apiErrorErrorCodeEnum_ERR_INVALID_PARAM;
     case 'ERR_INVALID_RANGE':
@@ -185,6 +190,7 @@ final BuiltSet<ApiErrorErrorCodeEnum> _$apiErrorErrorCodeEnumValues =
   _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_ACCESS_REVOKED,
   _$apiErrorErrorCodeEnum_ERR_WEB_ANALYTICS_UPSTREAM,
   _$apiErrorErrorCodeEnum_ERR_AGENT_TRAFFIC_NOT_CONNECTED,
+  _$apiErrorErrorCodeEnum_ERR_BING_WEBMASTER_NOT_CONNECTED,
   _$apiErrorErrorCodeEnum_ERR_INVALID_PARAM,
   _$apiErrorErrorCodeEnum_ERR_INVALID_RANGE,
   _$apiErrorErrorCodeEnum_ERR_LIMIT_REACHED,
@@ -226,6 +232,7 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_WEB_ANALYTICS_ACCESS_REVOKED': 'ERR_WEB_ANALYTICS_ACCESS_REVOKED',
     'ERR_WEB_ANALYTICS_UPSTREAM': 'ERR_WEB_ANALYTICS_UPSTREAM',
     'ERR_AGENT_TRAFFIC_NOT_CONNECTED': 'ERR_AGENT_TRAFFIC_NOT_CONNECTED',
+    'ERR_BING_WEBMASTER_NOT_CONNECTED': 'ERR_BING_WEBMASTER_NOT_CONNECTED',
     'ERR_INVALID_PARAM': 'ERR_INVALID_PARAM',
     'ERR_INVALID_RANGE': 'ERR_INVALID_RANGE',
     'ERR_LIMIT_REACHED': 'ERR_LIMIT_REACHED',
@@ -261,6 +268,7 @@ class _$ApiErrorErrorCodeEnumSerializer
     'ERR_WEB_ANALYTICS_ACCESS_REVOKED': 'ERR_WEB_ANALYTICS_ACCESS_REVOKED',
     'ERR_WEB_ANALYTICS_UPSTREAM': 'ERR_WEB_ANALYTICS_UPSTREAM',
     'ERR_AGENT_TRAFFIC_NOT_CONNECTED': 'ERR_AGENT_TRAFFIC_NOT_CONNECTED',
+    'ERR_BING_WEBMASTER_NOT_CONNECTED': 'ERR_BING_WEBMASTER_NOT_CONNECTED',
     'ERR_INVALID_PARAM': 'ERR_INVALID_PARAM',
     'ERR_INVALID_RANGE': 'ERR_INVALID_RANGE',
     'ERR_LIMIT_REACHED': 'ERR_LIMIT_REACHED',

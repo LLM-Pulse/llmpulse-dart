@@ -59,6 +59,13 @@ doc/ApiError.md
 doc/ApiErrorError.md
 doc/ApiKeyInfo.md
 doc/AssignPromptTagsRequest.md
+doc/BingWebmasterListResponse.md
+doc/BingWebmasterListResponseDataInner.md
+doc/BingWebmasterMetrics.md
+doc/BingWebmasterSummaryResponse.md
+doc/BingWebmasterTimeseriesResponse.md
+doc/BingWebmasterTimeseriesResponseDataInner.md
+doc/BingWebmasterToolsApi.md
 doc/CatalogProduct.md
 doc/CatalogPromptSuggestion.md
 doc/CatalogPromptSuggestionIdsRequest.md
@@ -221,6 +228,7 @@ doc/ProjectDeleteResponse.md
 doc/ProjectDetails.md
 doc/ProjectDetailsAllOfAgentTraffic.md
 doc/ProjectDetailsAllOfAiTraffic.md
+doc/ProjectDetailsAllOfBingWebmaster.md
 doc/ProjectDetailsAllOfDataCoverage.md
 doc/ProjectDetailsAllOfPitchRun.md
 doc/ProjectDetailsAllOfSearchConsole.md
@@ -388,6 +396,7 @@ lib/src/api/ai_model_insights_api.dart
 lib/src/api/annotations_api.dart
 lib/src/api/answers_api.dart
 lib/src/api/api_keys_api.dart
+lib/src/api/bing_webmaster_tools_api.dart
 lib/src/api/collections_tags_api.dart
 lib/src/api/competitors_api.dart
 lib/src/api/custom_reports_api.dart
@@ -467,6 +476,12 @@ lib/src/model/api_error.dart
 lib/src/model/api_error_error.dart
 lib/src/model/api_key_info.dart
 lib/src/model/assign_prompt_tags_request.dart
+lib/src/model/bing_webmaster_list_response.dart
+lib/src/model/bing_webmaster_list_response_data_inner.dart
+lib/src/model/bing_webmaster_metrics.dart
+lib/src/model/bing_webmaster_summary_response.dart
+lib/src/model/bing_webmaster_timeseries_response.dart
+lib/src/model/bing_webmaster_timeseries_response_data_inner.dart
 lib/src/model/catalog_product.dart
 lib/src/model/catalog_prompt_suggestion.dart
 lib/src/model/catalog_prompt_suggestion_ids_request.dart
@@ -621,6 +636,7 @@ lib/src/model/project_delete_response.dart
 lib/src/model/project_details.dart
 lib/src/model/project_details_all_of_agent_traffic.dart
 lib/src/model/project_details_all_of_ai_traffic.dart
+lib/src/model/project_details_all_of_bing_webmaster.dart
 lib/src/model/project_details_all_of_data_coverage.dart
 lib/src/model/project_details_all_of_pitch_run.dart
 lib/src/model/project_details_all_of_search_console.dart

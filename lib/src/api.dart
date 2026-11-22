@@ -15,6 +15,7 @@ import 'package:llmpulse/src/api/api_keys_api.dart';
 import 'package:llmpulse/src/api/account_api.dart';
 import 'package:llmpulse/src/api/annotations_api.dart';
 import 'package:llmpulse/src/api/answers_api.dart';
+import 'package:llmpulse/src/api/bing_webmaster_tools_api.dart';
 import 'package:llmpulse/src/api/collections_tags_api.dart';
 import 'package:llmpulse/src/api/competitors_api.dart';
 import 'package:llmpulse/src/api/custom_reports_api.dart';
@@ -165,6 +166,12 @@ class Llmpulse {
   /// by doing that all interceptors will not be executed
   AnswersApi getAnswersApi() {
     return AnswersApi(dio, serializers);
+  }
+
+  /// Get BingWebmasterToolsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BingWebmasterToolsApi getBingWebmasterToolsApi() {
+    return BingWebmasterToolsApi(dio, serializers);
   }
 
   /// Get CollectionsTagsApi instance, base route and serializer can be overridden by a given but be careful,

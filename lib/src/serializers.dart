@@ -65,6 +65,12 @@ import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/api_error_error.dart';
 import 'package:llmpulse/src/model/api_key_info.dart';
 import 'package:llmpulse/src/model/assign_prompt_tags_request.dart';
+import 'package:llmpulse/src/model/bing_webmaster_list_response.dart';
+import 'package:llmpulse/src/model/bing_webmaster_list_response_data_inner.dart';
+import 'package:llmpulse/src/model/bing_webmaster_metrics.dart';
+import 'package:llmpulse/src/model/bing_webmaster_summary_response.dart';
+import 'package:llmpulse/src/model/bing_webmaster_timeseries_response.dart';
+import 'package:llmpulse/src/model/bing_webmaster_timeseries_response_data_inner.dart';
 import 'package:llmpulse/src/model/catalog_product.dart';
 import 'package:llmpulse/src/model/catalog_prompt_suggestion.dart';
 import 'package:llmpulse/src/model/catalog_prompt_suggestion_ids_request.dart';
@@ -218,6 +224,7 @@ import 'package:llmpulse/src/model/project_delete_response.dart';
 import 'package:llmpulse/src/model/project_details.dart';
 import 'package:llmpulse/src/model/project_details_all_of_agent_traffic.dart';
 import 'package:llmpulse/src/model/project_details_all_of_ai_traffic.dart';
+import 'package:llmpulse/src/model/project_details_all_of_bing_webmaster.dart';
 import 'package:llmpulse/src/model/project_details_all_of_data_coverage.dart';
 import 'package:llmpulse/src/model/project_details_all_of_pitch_run.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
@@ -420,6 +427,12 @@ part 'serializers.g.dart';
   ApiErrorError,
   ApiKeyInfo,$ApiKeyInfo,
   AssignPromptTagsRequest,
+  BingWebmasterListResponse,
+  BingWebmasterListResponseDataInner,
+  BingWebmasterMetrics,
+  BingWebmasterSummaryResponse,
+  BingWebmasterTimeseriesResponse,
+  BingWebmasterTimeseriesResponseDataInner,
   CatalogProduct,
   CatalogPromptSuggestion,
   CatalogPromptSuggestionIdsRequest,
@@ -573,6 +586,7 @@ part 'serializers.g.dart';
   ProjectDetails,
   ProjectDetailsAllOfAgentTraffic,
   ProjectDetailsAllOfAiTraffic,
+  ProjectDetailsAllOfBingWebmaster,
   ProjectDetailsAllOfDataCoverage,
   ProjectDetailsAllOfPitchRun,
   ProjectDetailsAllOfSearchConsole,
@@ -935,6 +949,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SearchConsoleTimeseriesResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BingWebmasterTimeseriesResponseDataInner)]),
+        () => ListBuilder<BingWebmasterTimeseriesResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType.nullable(GeoAuditRun)]),
         () => ListBuilder<GeoAuditRun>(),
       )
@@ -961,6 +979,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
         () => ListBuilder<SearchConsoleExcludedProperty>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BingWebmasterListResponseDataInner)]),
+        () => ListBuilder<BingWebmasterListResponseDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(AiModelSentimentCell)]),
