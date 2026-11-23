@@ -22,7 +22,7 @@ abstract class ModelsResponse implements Built<ModelsResponse, ModelsResponseBui
 
   @BuiltValueField(wireName: r'models')
   BuiltList<ModelsResponseModelsEnum> get models;
-  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  bing_ai_mode,  };
+  // enum modelsEnum {  chatgpt,  perplexity,  ai_mode,  ai_overview,  gemini,  copilot,  amazon_rufus,  claude,  grok,  deepseek,  naver_ai,  baidu_ai,  meta_ai,  naver_ai_tab,  qwen,  doubao,  bing_ai_mode,  bing_ai_overview,  };
 
   @BuiltValueField(wireName: r'request_id')
   String get requestId;
@@ -174,6 +174,8 @@ class ModelsResponseModelsEnum extends EnumClass {
   static const ModelsResponseModelsEnum doubao = _$modelsResponseModelsEnum_doubao;
   @BuiltValueEnumConst(wireName: r'bing_ai_mode')
   static const ModelsResponseModelsEnum bingAiMode = _$modelsResponseModelsEnum_bingAiMode;
+  @BuiltValueEnumConst(wireName: r'bing_ai_overview')
+  static const ModelsResponseModelsEnum bingAiOverview = _$modelsResponseModelsEnum_bingAiOverview;
 
   static Serializer<ModelsResponseModelsEnum> get serializer => _$modelsResponseModelsEnumSerializer;
 

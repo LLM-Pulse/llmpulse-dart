@@ -45,6 +45,9 @@ const PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnum_doubao =
 const PromptExecutionRecordModelEnum
     _$promptExecutionRecordModelEnum_bingAiMode =
     const PromptExecutionRecordModelEnum._('bingAiMode');
+const PromptExecutionRecordModelEnum
+    _$promptExecutionRecordModelEnum_bingAiOverview =
+    const PromptExecutionRecordModelEnum._('bingAiOverview');
 
 PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnumValueOf(
     String name) {
@@ -83,6 +86,8 @@ PromptExecutionRecordModelEnum _$promptExecutionRecordModelEnumValueOf(
       return _$promptExecutionRecordModelEnum_doubao;
     case 'bingAiMode':
       return _$promptExecutionRecordModelEnum_bingAiMode;
+    case 'bingAiOverview':
+      return _$promptExecutionRecordModelEnum_bingAiOverview;
     default:
       throw ArgumentError(name);
   }
@@ -108,6 +113,7 @@ final BuiltSet<PromptExecutionRecordModelEnum>
   _$promptExecutionRecordModelEnum_qwen,
   _$promptExecutionRecordModelEnum_doubao,
   _$promptExecutionRecordModelEnum_bingAiMode,
+  _$promptExecutionRecordModelEnum_bingAiOverview,
 ]);
 
 Serializer<PromptExecutionRecordModelEnum>
@@ -134,6 +140,7 @@ class _$PromptExecutionRecordModelEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bingAiMode': 'bing_ai_mode',
+    'bingAiOverview': 'bing_ai_overview',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -153,6 +160,7 @@ class _$PromptExecutionRecordModelEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bing_ai_mode': 'bingAiMode',
+    'bing_ai_overview': 'bingAiOverview',
   };
 
   @override

@@ -89,6 +89,9 @@ const ProjectDetailsAllOfPitchRunModelsEnum
 const ProjectDetailsAllOfPitchRunModelsEnum
     _$projectDetailsAllOfPitchRunModelsEnum_bingAiMode =
     const ProjectDetailsAllOfPitchRunModelsEnum._('bingAiMode');
+const ProjectDetailsAllOfPitchRunModelsEnum
+    _$projectDetailsAllOfPitchRunModelsEnum_bingAiOverview =
+    const ProjectDetailsAllOfPitchRunModelsEnum._('bingAiOverview');
 
 ProjectDetailsAllOfPitchRunModelsEnum
     _$projectDetailsAllOfPitchRunModelsEnumValueOf(String name) {
@@ -127,6 +130,8 @@ ProjectDetailsAllOfPitchRunModelsEnum
       return _$projectDetailsAllOfPitchRunModelsEnum_doubao;
     case 'bingAiMode':
       return _$projectDetailsAllOfPitchRunModelsEnum_bingAiMode;
+    case 'bingAiOverview':
+      return _$projectDetailsAllOfPitchRunModelsEnum_bingAiOverview;
     default:
       throw ArgumentError(name);
   }
@@ -152,6 +157,7 @@ final BuiltSet<ProjectDetailsAllOfPitchRunModelsEnum>
   _$projectDetailsAllOfPitchRunModelsEnum_qwen,
   _$projectDetailsAllOfPitchRunModelsEnum_doubao,
   _$projectDetailsAllOfPitchRunModelsEnum_bingAiMode,
+  _$projectDetailsAllOfPitchRunModelsEnum_bingAiOverview,
 ]);
 
 Serializer<ProjectDetailsAllOfPitchRunStatusEnum>
@@ -215,6 +221,7 @@ class _$ProjectDetailsAllOfPitchRunModelsEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bingAiMode': 'bing_ai_mode',
+    'bingAiOverview': 'bing_ai_overview',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -234,6 +241,7 @@ class _$ProjectDetailsAllOfPitchRunModelsEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bing_ai_mode': 'bingAiMode',
+    'bing_ai_overview': 'bingAiOverview',
   };
 
   @override

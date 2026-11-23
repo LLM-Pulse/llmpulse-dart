@@ -57,6 +57,9 @@ const ProjectDetailsAllOfDataCoverageModelsEnum
 const ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode =
     const ProjectDetailsAllOfDataCoverageModelsEnum._('bingAiMode');
+const ProjectDetailsAllOfDataCoverageModelsEnum
+    _$projectDetailsAllOfDataCoverageModelsEnum_bingAiOverview =
+    const ProjectDetailsAllOfDataCoverageModelsEnum._('bingAiOverview');
 
 ProjectDetailsAllOfDataCoverageModelsEnum
     _$projectDetailsAllOfDataCoverageModelsEnumValueOf(String name) {
@@ -95,6 +98,8 @@ ProjectDetailsAllOfDataCoverageModelsEnum
       return _$projectDetailsAllOfDataCoverageModelsEnum_doubao;
     case 'bingAiMode':
       return _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode;
+    case 'bingAiOverview':
+      return _$projectDetailsAllOfDataCoverageModelsEnum_bingAiOverview;
     default:
       throw ArgumentError(name);
   }
@@ -120,6 +125,7 @@ final BuiltSet<ProjectDetailsAllOfDataCoverageModelsEnum>
   _$projectDetailsAllOfDataCoverageModelsEnum_qwen,
   _$projectDetailsAllOfDataCoverageModelsEnum_doubao,
   _$projectDetailsAllOfDataCoverageModelsEnum_bingAiMode,
+  _$projectDetailsAllOfDataCoverageModelsEnum_bingAiOverview,
 ]);
 
 Serializer<ProjectDetailsAllOfDataCoverageModelsEnum>
@@ -146,6 +152,7 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bingAiMode': 'bing_ai_mode',
+    'bingAiOverview': 'bing_ai_overview',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'chatgpt': 'chatgpt',
@@ -165,6 +172,7 @@ class _$ProjectDetailsAllOfDataCoverageModelsEnumSerializer
     'qwen': 'qwen',
     'doubao': 'doubao',
     'bing_ai_mode': 'bingAiMode',
+    'bing_ai_overview': 'bingAiOverview',
   };
 
   @override
