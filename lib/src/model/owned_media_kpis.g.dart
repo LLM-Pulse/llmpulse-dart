@@ -23,6 +23,8 @@ class _$OwnedMediaKpis extends OwnedMediaKpis {
   final int? uniqueAuthors;
   @override
   final num? positivePct;
+  @override
+  final int? connectedCount;
 
   factory _$OwnedMediaKpis([void Function(OwnedMediaKpisBuilder)? updates]) =>
       (OwnedMediaKpisBuilder()..update(updates))._build();
@@ -35,7 +37,8 @@ class _$OwnedMediaKpis extends OwnedMediaKpis {
       this.sharePct,
       this.uniqueSubreddits,
       this.uniqueAuthors,
-      this.positivePct})
+      this.positivePct,
+      this.connectedCount})
       : super._();
   @override
   OwnedMediaKpis rebuild(void Function(OwnedMediaKpisBuilder) updates) =>
@@ -55,7 +58,8 @@ class _$OwnedMediaKpis extends OwnedMediaKpis {
         sharePct == other.sharePct &&
         uniqueSubreddits == other.uniqueSubreddits &&
         uniqueAuthors == other.uniqueAuthors &&
-        positivePct == other.positivePct;
+        positivePct == other.positivePct &&
+        connectedCount == other.connectedCount;
   }
 
   @override
@@ -69,6 +73,7 @@ class _$OwnedMediaKpis extends OwnedMediaKpis {
     _$hash = $jc(_$hash, uniqueSubreddits.hashCode);
     _$hash = $jc(_$hash, uniqueAuthors.hashCode);
     _$hash = $jc(_$hash, positivePct.hashCode);
+    _$hash = $jc(_$hash, connectedCount.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -83,7 +88,8 @@ class _$OwnedMediaKpis extends OwnedMediaKpis {
           ..add('sharePct', sharePct)
           ..add('uniqueSubreddits', uniqueSubreddits)
           ..add('uniqueAuthors', uniqueAuthors)
-          ..add('positivePct', positivePct))
+          ..add('positivePct', positivePct)
+          ..add('connectedCount', connectedCount))
         .toString();
   }
 }
@@ -126,6 +132,11 @@ class OwnedMediaKpisBuilder
   num? get positivePct => _$this._positivePct;
   set positivePct(num? positivePct) => _$this._positivePct = positivePct;
 
+  int? _connectedCount;
+  int? get connectedCount => _$this._connectedCount;
+  set connectedCount(int? connectedCount) =>
+      _$this._connectedCount = connectedCount;
+
   OwnedMediaKpisBuilder() {
     OwnedMediaKpis._defaults(this);
   }
@@ -141,6 +152,7 @@ class OwnedMediaKpisBuilder
       _uniqueSubreddits = $v.uniqueSubreddits;
       _uniqueAuthors = $v.uniqueAuthors;
       _positivePct = $v.positivePct;
+      _connectedCount = $v.connectedCount;
       _$v = null;
     }
     return this;
@@ -170,6 +182,7 @@ class OwnedMediaKpisBuilder
           uniqueSubreddits: uniqueSubreddits,
           uniqueAuthors: uniqueAuthors,
           positivePct: positivePct,
+          connectedCount: connectedCount,
         );
     replace(_$result);
     return _$result;

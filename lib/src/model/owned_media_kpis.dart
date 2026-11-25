@@ -19,6 +19,7 @@ part 'owned_media_kpis.g.dart';
 /// * [uniqueSubreddits] - Number of cited subreddits (provider=reddit; null or omitted for other providers)
 /// * [uniqueAuthors] - Number of cited Reddit authors (provider=reddit; null or omitted for other providers)
 /// * [positivePct] - Positive sentiment among rated Reddit citations, as a percentage (provider=reddit; null or omitted for other providers)
+/// * [connectedCount] - provider=overview only. The platforms with a connected profile, channel or app, out of the rows in platforms (the Connected sources card). It describes the current setup, so previous.kpis and changes leave it out
 @BuiltValue()
 abstract class OwnedMediaKpis implements Built<OwnedMediaKpis, OwnedMediaKpisBuilder> {
   /// Citations of the platform in the window, yours and everyone else's
@@ -52,6 +53,10 @@ abstract class OwnedMediaKpis implements Built<OwnedMediaKpis, OwnedMediaKpisBui
   /// Positive sentiment among rated Reddit citations, as a percentage (provider=reddit; null or omitted for other providers)
   @BuiltValueField(wireName: r'positive_pct')
   num? get positivePct;
+
+  /// provider=overview only. The platforms with a connected profile, channel or app, out of the rows in platforms (the Connected sources card). It describes the current setup, so previous.kpis and changes leave it out
+  @BuiltValueField(wireName: r'connected_count')
+  int? get connectedCount;
 
   OwnedMediaKpis._();
 
@@ -130,6 +135,13 @@ class _$OwnedMediaKpisSerializer implements PrimitiveSerializer<OwnedMediaKpis> 
       yield serializers.serialize(
         object.positivePct,
         specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.connectedCount != null) {
+      yield r'connected_count';
+      yield serializers.serialize(
+        object.connectedCount,
+        specifiedType: const FullType(int),
       );
     }
   }
@@ -218,6 +230,14 @@ class _$OwnedMediaKpisSerializer implements PrimitiveSerializer<OwnedMediaKpis> 
           ) as num?;
           if (valueDes == null) continue;
           result.positivePct = valueDes;
+          break;
+        case r'connected_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.connectedCount = valueDes;
           break;
         default:
           unhandled.add(key);

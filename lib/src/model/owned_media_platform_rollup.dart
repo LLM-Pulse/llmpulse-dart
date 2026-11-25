@@ -20,7 +20,7 @@ part 'owned_media_platform_rollup.g.dart';
 /// * [yours] 
 /// * [sharePct] 
 /// * [weekly] 
-/// * [activity] - One date/citation row per actual project tracking period with runs
+/// * [activity] - One date/citation row per project tracking period that holds a run inside the window; a period whose runs all fell before from is left out
 @BuiltValue()
 abstract class OwnedMediaPlatformRollup implements Built<OwnedMediaPlatformRollup, OwnedMediaPlatformRollupBuilder> {
   @BuiltValueField(wireName: r'provider')
@@ -42,7 +42,7 @@ abstract class OwnedMediaPlatformRollup implements Built<OwnedMediaPlatformRollu
   @BuiltValueField(wireName: r'weekly')
   BuiltList<OwnedMediaPlatformRollupWeeklyInner>? get weekly;
 
-  /// One date/citation row per actual project tracking period with runs
+  /// One date/citation row per project tracking period that holds a run inside the window; a period whose runs all fell before from is left out
   @BuiltValueField(wireName: r'activity')
   BuiltList<OwnedMediaPlatformActivityPeriod>? get activity;
 

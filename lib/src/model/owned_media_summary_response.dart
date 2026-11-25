@@ -42,8 +42,8 @@ part 'owned_media_summary_response.g.dart';
 /// * [ageBuckets] - Social and YouTube providers only. Posts or videos without a known publication date are left out
 /// * [stores] - provider=mobile_apps only
 /// * [platforms] - provider=overview only, one row per platform the caller can read
-/// * [activity] - All providers. One row per actual project reporting period with runs; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the selected date window, and periods with runs but no citation have zero
-/// * [subredditActivity] - provider=reddit only. One row per subreddit and actual reporting period; the top five subreddits are separate and Others has a null subreddit
+/// * [activity] - All providers. One row per project tracking period that holds a run inside the window; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the days of the selected date window only, so when the window starts mid-period the first period counts fewer days than the app chart, which reads it whole. A period whose runs all fell before from is left out, and a period with runs but no citation has zero
+/// * [subredditActivity] - provider=reddit only. One row per subreddit and tracking period that holds a run inside the window; the top five subreddits are separate and Others has a null subreddit
 /// * [positions] - provider=reddit only. Position distribution over the selected date window
 /// * [brandShare] - provider=reddit only. Citation share among the tracked brand and competitors with cited mentions
 /// * [replies] 
@@ -102,11 +102,11 @@ abstract class OwnedMediaSummaryResponse implements Built<OwnedMediaSummaryRespo
   @BuiltValueField(wireName: r'platforms')
   BuiltList<OwnedMediaPlatformRollup>? get platforms;
 
-  /// All providers. One row per actual project reporting period with runs; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the selected date window, and periods with runs but no citation have zero
+  /// All providers. One row per project tracking period that holds a run inside the window; provider=overview has null yours and other, and provider=reddit also returns positive, neutral and negative sentiment counts. Citation counts use the days of the selected date window only, so when the window starts mid-period the first period counts fewer days than the app chart, which reads it whole. A period whose runs all fell before from is left out, and a period with runs but no citation has zero
   @BuiltValueField(wireName: r'activity')
   BuiltList<OwnedMediaSummaryActivityPeriod>? get activity;
 
-  /// provider=reddit only. One row per subreddit and actual reporting period; the top five subreddits are separate and Others has a null subreddit
+  /// provider=reddit only. One row per subreddit and tracking period that holds a run inside the window; the top five subreddits are separate and Others has a null subreddit
   @BuiltValueField(wireName: r'subreddit_activity')
   BuiltList<RedditSubredditActivityPeriod>? get subredditActivity;
 
