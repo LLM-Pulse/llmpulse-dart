@@ -338,6 +338,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(OwnedMediaSummaryResponse.serializer)
       ..add(OwnedMediaSummaryResponsePrevious.serializer)
       ..add(OwnedMediaWeek.serializer)
+      ..add(PeecExportImportResponse.serializer)
+      ..add(PeecExportImportResponseStatusEnum.serializer)
       ..add(Ping200Response.serializer)
       ..add(ProjectCreateRequest.serializer)
       ..add(ProjectCreateRequestCollectionsInner.serializer)
@@ -400,6 +402,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(PromptsCreateResponse.serializer)
       ..add(PromptsCreateResponseDataInner.serializer)
       ..add(PromptsCreateResponseDataInnerStatusEnum.serializer)
+      ..add(PromptsImportFileResponse.serializer)
       ..add(PromptsImportRequest.serializer)
       ..add(PromptsImportRequestRowsInner.serializer)
       ..add(PromptsImportResponse.serializer)
@@ -1250,6 +1253,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CmsPublication)]),
           () => ListBuilder<CmsPublication>())
       ..addBuilderFactory(
@@ -1854,6 +1860,16 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),
           () => MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(int)]),

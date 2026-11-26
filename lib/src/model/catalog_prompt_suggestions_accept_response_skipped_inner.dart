@@ -12,13 +12,13 @@ part 'catalog_prompt_suggestions_accept_response_skipped_inner.g.dart';
 ///
 /// Properties:
 /// * [suggestionId] 
-/// * [reason] - accepted or rejected (the suggestion was no longer pending), or pending_deletion
+/// * [reason] - accepted or rejected (the suggestion was no longer pending), pending_deletion, or prompt_too_long (it would be a new prompt over the 2,000-byte limit; the suggestion stays pending)
 @BuiltValue()
 abstract class CatalogPromptSuggestionsAcceptResponseSkippedInner implements Built<CatalogPromptSuggestionsAcceptResponseSkippedInner, CatalogPromptSuggestionsAcceptResponseSkippedInnerBuilder> {
   @BuiltValueField(wireName: r'suggestion_id')
   int get suggestionId;
 
-  /// accepted or rejected (the suggestion was no longer pending), or pending_deletion
+  /// accepted or rejected (the suggestion was no longer pending), pending_deletion, or prompt_too_long (it would be a new prompt over the 2,000-byte limit; the suggestion stays pending)
   @BuiltValueField(wireName: r'reason')
   String get reason;
 
