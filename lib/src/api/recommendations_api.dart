@@ -11,7 +11,9 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/launch_recommendations_request.dart';
+import 'package:llmpulse/src/model/recommendation_detail_response.dart';
 import 'package:llmpulse/src/model/recommendation_item_update_response.dart';
+import 'package:llmpulse/src/model/recommendation_launch_response.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
 import 'package:llmpulse/src/model/update_recommendation_item_request.dart';
 
@@ -38,9 +40,9 @@ class RecommendationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [RecommendationDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getRecommendation({ 
+  Future<Response<RecommendationDetailResponse>> getRecommendation({ 
     required int projectId,
     required int id,
     String? itemStatus,
@@ -86,7 +88,35 @@ class RecommendationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    RecommendationDetailResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecommendationDetailResponse),
+      ) as RecommendationDetailResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<RecommendationDetailResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Launch a recommendations generation
@@ -101,9 +131,9 @@ class RecommendationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [RecommendationLaunchResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> launchRecommendations({ 
+  Future<Response<RecommendationLaunchResponse>> launchRecommendations({ 
     required LaunchRecommendationsRequest launchRecommendationsRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -159,7 +189,35 @@ class RecommendationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    RecommendationLaunchResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecommendationLaunchResponse),
+      ) as RecommendationLaunchResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<RecommendationLaunchResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List recommendation runs

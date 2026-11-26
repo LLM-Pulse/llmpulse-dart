@@ -15,6 +15,9 @@ import 'package:llmpulse/src/model/llms_txt_technical_geo_report.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_revert_request.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_request.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_response.dart';
+import 'package:llmpulse/src/model/technical_geo_report_response.dart';
+import 'package:llmpulse/src/model/technical_geo_reports_create_response.dart';
+import 'package:llmpulse/src/model/technical_geo_reports_response.dart';
 
 class TechnicalGEOReportsApi {
 
@@ -36,9 +39,9 @@ class TechnicalGEOReportsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [TechnicalGeoReportsCreateResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> createTechnicalGeoReports({ 
+  Future<Response<TechnicalGeoReportsCreateResponse>> createTechnicalGeoReports({ 
     required CreateTechnicalGeoReportsRequest createTechnicalGeoReportsRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -94,7 +97,35 @@ class TechnicalGEOReportsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    TechnicalGeoReportsCreateResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TechnicalGeoReportsCreateResponse),
+      ) as TechnicalGeoReportsCreateResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<TechnicalGeoReportsCreateResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Get a technical GEO report
@@ -111,9 +142,9 @@ class TechnicalGEOReportsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [TechnicalGeoReportResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getTechnicalGeoReport({ 
+  Future<Response<TechnicalGeoReportResponse>> getTechnicalGeoReport({ 
     required int projectId,
     required String reportType,
     required int id,
@@ -157,7 +188,35 @@ class TechnicalGEOReportsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    TechnicalGeoReportResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TechnicalGeoReportResponse),
+      ) as TechnicalGeoReportResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<TechnicalGeoReportResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List technical GEO reports
@@ -177,9 +236,9 @@ class TechnicalGEOReportsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [TechnicalGeoReportsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listTechnicalGeoReports({ 
+  Future<Response<TechnicalGeoReportsResponse>> listTechnicalGeoReports({ 
     required int projectId,
     required String reportType,
     String? status,
@@ -230,7 +289,35 @@ class TechnicalGEOReportsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    TechnicalGeoReportsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TechnicalGeoReportsResponse),
+      ) as TechnicalGeoReportsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<TechnicalGeoReportsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Revert llms.txt report content

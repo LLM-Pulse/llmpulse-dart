@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **getRecommendation**
-> getRecommendation(projectId, id, itemStatus, resolveSourceRefs)
+> RecommendationDetailResponse getRecommendation(projectId, id, itemStatus, resolveSourceRefs)
 
 Get recommendation run with items
 
@@ -31,7 +31,8 @@ final String itemStatus = itemStatus_example; // String |
 final bool resolveSourceRefs = true; // bool | 
 
 try {
-    api.getRecommendation(projectId, id, itemStatus, resolveSourceRefs);
+    final response = api.getRecommendation(projectId, id, itemStatus, resolveSourceRefs);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling RecommendationsApi->getRecommendation: $e\n');
 }
@@ -48,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**RecommendationDetailResponse**](RecommendationDetailResponse.md)
 
 ### Authorization
 
@@ -62,7 +63,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **launchRecommendations**
-> launchRecommendations(launchRecommendationsRequest)
+> RecommendationLaunchResponse launchRecommendations(launchRecommendationsRequest)
 
 Launch a recommendations generation
 
@@ -76,7 +77,8 @@ final api = Llmpulse().getRecommendationsApi();
 final LaunchRecommendationsRequest launchRecommendationsRequest = ; // LaunchRecommendationsRequest | 
 
 try {
-    api.launchRecommendations(launchRecommendationsRequest);
+    final response = api.launchRecommendations(launchRecommendationsRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling RecommendationsApi->launchRecommendations: $e\n');
 }
@@ -90,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**RecommendationLaunchResponse**](RecommendationLaunchResponse.md)
 
 ### Authorization
 

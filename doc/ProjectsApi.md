@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createProjectDraft**
-> createProjectDraft(createProjectDraftRequest)
+> ProjectDraftResponse createProjectDraft(createProjectDraftRequest)
 
 Start a project draft (wizard step 1)
 
@@ -80,7 +80,8 @@ final api = Llmpulse().getProjectsApi();
 final CreateProjectDraftRequest createProjectDraftRequest = ; // CreateProjectDraftRequest | 
 
 try {
-    api.createProjectDraft(createProjectDraftRequest);
+    final response = api.createProjectDraft(createProjectDraftRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ProjectsApi->createProjectDraft: $e\n');
 }
@@ -94,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 
@@ -238,7 +239,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProjectDraft**
-> getProjectDraft(id, includeSuggestions)
+> ProjectDraftResponse getProjectDraft(id, includeSuggestions)
 
 Read a project draft
 
@@ -251,7 +252,8 @@ final String id = id_example; // String | Draft id (draft_...)
 final bool includeSuggestions = true; // bool | Cache-only: returns suggestions for the current step if already generated, never triggers AI
 
 try {
-    api.getProjectDraft(id, includeSuggestions);
+    final response = api.getProjectDraft(id, includeSuggestions);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ProjectsApi->getProjectDraft: $e\n');
 }
@@ -266,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 
@@ -452,7 +454,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateProjectDraft**
-> updateProjectDraft(id, updateProjectDraftRequest)
+> ProjectDraftResponse updateProjectDraft(id, updateProjectDraftRequest)
 
 Submit a wizard step
 
@@ -467,7 +469,8 @@ final String id = id_example; // String |
 final UpdateProjectDraftRequest updateProjectDraftRequest = ; // UpdateProjectDraftRequest | 
 
 try {
-    api.updateProjectDraft(id, updateProjectDraftRequest);
+    final response = api.updateProjectDraft(id, updateProjectDraftRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ProjectsApi->updateProjectDraft: $e\n');
 }
@@ -482,7 +485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 

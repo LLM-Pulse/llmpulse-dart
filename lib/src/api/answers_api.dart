@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/answer_details.dart';
+import 'package:llmpulse/src/model/answers_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 
 class AnswersApi {
@@ -139,9 +140,9 @@ class AnswersApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AnswersResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listAnswers({ 
+  Future<Response<AnswersResponse>> listAnswers({ 
     required int projectId,
     String? model,
     String? collectionId,
@@ -214,7 +215,35 @@ class AnswersApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AnswersResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AnswersResponse),
+      ) as AnswersResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AnswersResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

@@ -11,6 +11,8 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/ai_model_declined_answers_response.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
+import 'package:llmpulse/src/model/ai_model_position_distribution_response.dart';
+import 'package:llmpulse/src/model/ai_overview_results_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 
 class AIModelInsightsApi {
@@ -161,9 +163,9 @@ class AIModelInsightsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AiModelPositionDistributionResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getAiModelPositionDistribution({ 
+  Future<Response<AiModelPositionDistributionResponse>> getAiModelPositionDistribution({ 
     required int projectId,
     int? range,
     DateTime? from,
@@ -228,7 +230,35 @@ class AIModelInsightsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AiModelPositionDistributionResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AiModelPositionDistributionResponse),
+      ) as AiModelPositionDistributionResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AiModelPositionDistributionResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Google AI Overview result availability
@@ -254,9 +284,9 @@ class AIModelInsightsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AiOverviewResultsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getAiOverviewResults({ 
+  Future<Response<AiOverviewResultsResponse>> getAiOverviewResults({ 
     required int projectId,
     int? range,
     DateTime? from,
@@ -319,7 +349,35 @@ class AIModelInsightsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AiOverviewResultsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AiOverviewResultsResponse),
+      ) as AiOverviewResultsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AiOverviewResultsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Declined answers (decline rate)

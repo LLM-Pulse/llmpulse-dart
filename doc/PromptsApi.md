@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deletePrompt**
-> deletePrompt(projectId, id)
+> PromptDeleteResponse deletePrompt(projectId, id)
 
 Delete a prompt
 
@@ -168,7 +168,8 @@ final int projectId = 56; // int | Project ID
 final int id = 56; // int | 
 
 try {
-    api.deletePrompt(projectId, id);
+    final response = api.deletePrompt(projectId, id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling PromptsApi->deletePrompt: $e\n');
 }
@@ -183,7 +184,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PromptDeleteResponse**](PromptDeleteResponse.md)
 
 ### Authorization
 
@@ -421,7 +422,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listQueryFanOuts**
-> listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> QueryFanOutsResponse listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List query fan-out
 
@@ -452,7 +453,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    final response = api.listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling PromptsApi->listQueryFanOuts: $e\n');
 }
@@ -483,7 +485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**QueryFanOutsResponse**](QueryFanOutsResponse.md)
 
 ### Authorization
 

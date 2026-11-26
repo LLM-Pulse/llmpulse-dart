@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteCompetitor**
-> deleteCompetitor(projectId, id)
+> CompetitorDeleteResponse deleteCompetitor(projectId, id)
 
 Delete a competitor
 
@@ -76,7 +76,8 @@ final int projectId = 56; // int | Project ID
 final int id = 56; // int | 
 
 try {
-    api.deleteCompetitor(projectId, id);
+    final response = api.deleteCompetitor(projectId, id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CompetitorsApi->deleteCompetitor: $e\n');
 }
@@ -91,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CompetitorDeleteResponse**](CompetitorDeleteResponse.md)
 
 ### Authorization
 
@@ -246,7 +247,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCompetitor**
-> updateCompetitor(id, updateCompetitorRequest)
+> CompetitorUpdateResponse updateCompetitor(id, updateCompetitorRequest)
 
 Update a competitor
 
@@ -261,7 +262,8 @@ final int id = 56; // int |
 final UpdateCompetitorRequest updateCompetitorRequest = ; // UpdateCompetitorRequest | 
 
 try {
-    api.updateCompetitor(id, updateCompetitorRequest);
+    final response = api.updateCompetitor(id, updateCompetitorRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CompetitorsApi->updateCompetitor: $e\n');
 }
@@ -276,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CompetitorUpdateResponse**](CompetitorUpdateResponse.md)
 
 ### Authorization
 

@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAnswers**
-> listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult)
+> AnswersResponse listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult)
 
 List AI responses
 
@@ -91,7 +91,8 @@ final String query = query_example; // String | Case-insensitive full-text searc
 final bool noResult = true; // bool | Filter sentinel non-answers (no answer could be collected after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag, and a sentinel also carries no_result_reason (declined or no_answer).
 
 try {
-    api.listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult);
+    final response = api.listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AnswersApi->listAnswers: $e\n');
 }
@@ -121,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AnswersResponse**](AnswersResponse.md)
 
 ### Authorization
 

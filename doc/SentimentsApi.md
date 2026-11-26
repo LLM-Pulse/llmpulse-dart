@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSentimentCategories**
-> listSentimentCategories(projectId, output)
+> SentimentCategoriesResponse listSentimentCategories(projectId, output)
 
 List sentiment categories (Growth plan or above)
 
@@ -185,7 +185,8 @@ final int projectId = 56; // int | Project ID
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listSentimentCategories(projectId, output);
+    final response = api.listSentimentCategories(projectId, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SentimentsApi->listSentimentCategories: $e\n');
 }
@@ -200,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**SentimentCategoriesResponse**](SentimentCategoriesResponse.md)
 
 ### Authorization
 

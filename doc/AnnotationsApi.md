@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteAnnotation**
-> deleteAnnotation(projectId, id)
+> AnnotationDeleteResponse deleteAnnotation(projectId, id)
 
 Delete a timeline annotation
 
@@ -74,7 +74,8 @@ final int projectId = 56; // int | Project ID
 final int id = 56; // int | 
 
 try {
-    api.deleteAnnotation(projectId, id);
+    final response = api.deleteAnnotation(projectId, id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AnnotationsApi->deleteAnnotation: $e\n');
 }
@@ -89,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AnnotationDeleteResponse**](AnnotationDeleteResponse.md)
 
 ### Authorization
 
@@ -103,7 +104,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAnnotations**
-> listAnnotations(projectId, from, to, annotationCategoryId, page, perPage)
+> AnnotationsResponse listAnnotations(projectId, from, to, annotationCategoryId, page, perPage)
 
 List timeline annotations
 
@@ -122,7 +123,8 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 
 try {
-    api.listAnnotations(projectId, from, to, annotationCategoryId, page, perPage);
+    final response = api.listAnnotations(projectId, from, to, annotationCategoryId, page, perPage);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AnnotationsApi->listAnnotations: $e\n');
 }
@@ -141,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AnnotationsResponse**](AnnotationsResponse.md)
 
 ### Authorization
 
@@ -155,7 +157,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateAnnotation**
-> updateAnnotation(id, updateAnnotationRequest)
+> AnnotationUpdateResponse updateAnnotation(id, updateAnnotationRequest)
 
 Update a timeline annotation
 
@@ -170,7 +172,8 @@ final int id = 56; // int |
 final UpdateAnnotationRequest updateAnnotationRequest = ; // UpdateAnnotationRequest | 
 
 try {
-    api.updateAnnotation(id, updateAnnotationRequest);
+    final response = api.updateAnnotation(id, updateAnnotationRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AnnotationsApi->updateAnnotation: $e\n');
 }
@@ -185,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AnnotationUpdateResponse**](AnnotationUpdateResponse.md)
 
 ### Authorization
 

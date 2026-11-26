@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **listAllCitations**
-> listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> AllCitationsResponse listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List all citations (brand + competitor)
 
@@ -46,7 +46,8 @@ final String brandKind = brandKind_example; // String | Filter by brand kind: br
 final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 
 try {
-    api.listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    final response = api.listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listAllCitations: $e\n');
 }
@@ -74,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AllCitationsResponse**](AllCitationsResponse.md)
 
 ### Authorization
 
@@ -83,12 +84,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAllMentions**
-> listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> AllMentionsResponse listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List all mentions (brand + competitor)
 
@@ -116,7 +117,8 @@ final String brandKind = brandKind_example; // String | Filter by brand kind: br
 final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 
 try {
-    api.listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    final response = api.listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listAllMentions: $e\n');
 }
@@ -144,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AllMentionsResponse**](AllMentionsResponse.md)
 
 ### Authorization
 
@@ -153,7 +155,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -227,7 +229,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCompetitorCitations**
-> listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> CompetitorCitationsResponse listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List competitor citations
 
@@ -255,7 +257,8 @@ final String brandKind = brandKind_example; // String | Filter by brand kind: br
 final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 
 try {
-    api.listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    final response = api.listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MentionsCitationsApi->listCompetitorCitations: $e\n');
 }
@@ -283,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CompetitorCitationsResponse**](CompetitorCitationsResponse.md)
 
 ### Authorization
 
@@ -292,7 +295,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

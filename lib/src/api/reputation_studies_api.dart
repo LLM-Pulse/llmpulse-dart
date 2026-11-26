@@ -12,6 +12,11 @@ import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/create_reputation_report_request.dart';
 import 'package:llmpulse/src/model/reputation_report_create_response.dart';
+import 'package:llmpulse/src/model/reputation_report_scores_response.dart';
+import 'package:llmpulse/src/model/reputation_reports_response.dart';
+import 'package:llmpulse/src/model/studies_response.dart';
+import 'package:llmpulse/src/model/study_report_scores_response.dart';
+import 'package:llmpulse/src/model/study_response.dart';
 
 class ReputationStudiesApi {
 
@@ -141,9 +146,9 @@ class ReputationStudiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ReputationReportScoresResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getReputationReport({ 
+  Future<Response<ReputationReportScoresResponse>> getReputationReport({ 
     required String id,
     required int projectId,
     int? page = 1,
@@ -197,7 +202,35 @@ class ReputationStudiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ReputationReportScoresResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReputationReportScoresResponse),
+      ) as ReputationReportScoresResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ReputationReportScoresResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Get a custom AI study
@@ -212,9 +245,9 @@ class ReputationStudiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [StudyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getStudy({ 
+  Future<Response<StudyResponse>> getStudy({ 
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -250,7 +283,35 @@ class ReputationStudiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    StudyResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(StudyResponse),
+      ) as StudyResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<StudyResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Get custom study report scores
@@ -272,9 +333,9 @@ class ReputationStudiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [StudyReportScoresResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getStudyReport({ 
+  Future<Response<StudyReportScoresResponse>> getStudyReport({ 
     required int id,
     required String reportId,
     int? page = 1,
@@ -327,7 +388,35 @@ class ReputationStudiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    StudyReportScoresResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(StudyReportScoresResponse),
+      ) as StudyReportScoresResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<StudyReportScoresResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List reputation reports
@@ -345,9 +434,9 @@ class ReputationStudiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ReputationReportsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listReputationReports({ 
+  Future<Response<ReputationReportsResponse>> listReputationReports({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -394,7 +483,35 @@ class ReputationStudiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ReputationReportsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReputationReportsResponse),
+      ) as ReputationReportsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ReputationReportsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List custom AI studies
@@ -413,9 +530,9 @@ class ReputationStudiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [StudiesResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listStudies({ 
+  Future<Response<StudiesResponse>> listStudies({ 
     int? projectId,
     String? status,
     int? page = 1,
@@ -464,7 +581,35 @@ class ReputationStudiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    StudiesResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(StudiesResponse),
+      ) as StudiesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<StudiesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

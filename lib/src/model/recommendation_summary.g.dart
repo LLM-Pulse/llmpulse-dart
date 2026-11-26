@@ -181,7 +181,7 @@ class _$RecommendationSummary extends RecommendationSummary {
   @override
   final int highPriorityCount;
   @override
-  final RecommendationSummarySummary summary;
+  final RecommendationDetailResponseSummary summary;
   @override
   final JsonObject context;
 
@@ -318,10 +318,10 @@ class RecommendationSummaryBuilder
   set highPriorityCount(int? highPriorityCount) =>
       _$this._highPriorityCount = highPriorityCount;
 
-  RecommendationSummarySummaryBuilder? _summary;
-  RecommendationSummarySummaryBuilder get summary =>
-      _$this._summary ??= RecommendationSummarySummaryBuilder();
-  set summary(RecommendationSummarySummaryBuilder? summary) =>
+  RecommendationDetailResponseSummaryBuilder? _summary;
+  RecommendationDetailResponseSummaryBuilder get summary =>
+      _$this._summary ??= RecommendationDetailResponseSummaryBuilder();
+  set summary(RecommendationDetailResponseSummaryBuilder? summary) =>
       _$this._summary = summary;
 
   JsonObject? _context;

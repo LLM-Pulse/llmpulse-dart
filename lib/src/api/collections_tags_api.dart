@@ -12,6 +12,8 @@ import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/assign_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/collection_create_response.dart';
+import 'package:llmpulse/src/model/collection_delete_response.dart';
+import 'package:llmpulse/src/model/collection_update_response.dart';
 import 'package:llmpulse/src/model/collections_response.dart';
 import 'package:llmpulse/src/model/create_collection_request.dart';
 import 'package:llmpulse/src/model/prompt_tags_assign_response.dart';
@@ -242,9 +244,9 @@ class CollectionsTagsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CollectionDeleteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteCollection({ 
+  Future<Response<CollectionDeleteResponse>> deleteCollection({ 
     required int projectId,
     required int id,
     CancelToken? cancelToken,
@@ -286,7 +288,35 @@ class CollectionsTagsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CollectionDeleteResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CollectionDeleteResponse),
+      ) as CollectionDeleteResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CollectionDeleteResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List tags/collections
@@ -581,9 +611,9 @@ class CollectionsTagsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CollectionUpdateResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> updateCollection({ 
+  Future<Response<CollectionUpdateResponse>> updateCollection({ 
     required int id,
     required UpdateCollectionRequest updateCollectionRequest,
     CancelToken? cancelToken,
@@ -640,7 +670,35 @@ class CollectionsTagsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CollectionUpdateResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CollectionUpdateResponse),
+      ) as CollectionUpdateResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CollectionUpdateResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

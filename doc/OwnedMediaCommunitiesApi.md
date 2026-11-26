@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listRedditCitations**
-> listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output)
+> RedditResponse listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output)
 
 List cited Reddit content
 
@@ -299,7 +299,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output);
+    final response = api.listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling OwnedMediaCommunitiesApi->listRedditCitations: $e\n');
 }
@@ -332,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**RedditResponse**](RedditResponse.md)
 
 ### Authorization
 

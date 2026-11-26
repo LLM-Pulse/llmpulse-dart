@@ -1,0 +1,19 @@
+# llmpulse.model.CitingDomainMentionShareResponseDataInnerActorsInner
+
+## Load the model package
+```dart
+import 'package:llmpulse/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **String** | brand or competitor | 
+**id** | **int** | Null for the brand, the competitor id otherwise | 
+**name** | **String** |  | 
+**mentions** | **int** |  | 
+**share** | **num** | mentions as a percentage (0-100) of total_mentions | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

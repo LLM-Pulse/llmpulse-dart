@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAiModelPositionDistribution**
-> getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2)
+> AiModelPositionDistributionResponse getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2)
 
 Position distribution comparison
 
@@ -103,7 +103,8 @@ final int brand1 = 56; // int | Competitor ID for the first comparison brand (om
 final int brand2 = 56; // int | 
 
 try {
-    api.getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2);
+    final response = api.getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AIModelInsightsApi->getAiModelPositionDistribution: $e\n');
 }
@@ -129,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AiModelPositionDistributionResponse**](AiModelPositionDistributionResponse.md)
 
 ### Authorization
 
@@ -138,12 +139,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAiOverviewResults**
-> getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage)
+> AiOverviewResultsResponse getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage)
 
 Google AI Overview result availability
 
@@ -166,7 +167,8 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 
 try {
-    api.getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage);
+    final response = api.getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AIModelInsightsApi->getAiOverviewResults: $e\n');
 }
@@ -191,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AiOverviewResultsResponse**](AiOverviewResultsResponse.md)
 
 ### Authorization
 
@@ -200,7 +202,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

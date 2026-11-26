@@ -9,10 +9,10 @@ import 'package:built_value/serializer.dart';
 
 part 'reputation_report_summary.g.dart';
 
-/// One reputation report's status and analyst model coverage
+/// One reputation or custom-study report's status and analyst model coverage
 ///
 /// Properties:
-/// * [id] - Report id for GET /reputation/reports/{id}
+/// * [id] - Report id for GET /reputation/reports/{id}, or GET /studies/{id}/reports/{report_id} for a study report
 /// * [status] 
 /// * [createdAt] 
 /// * [processedAt] 
@@ -21,7 +21,7 @@ part 'reputation_report_summary.g.dart';
 /// * [errorMessage] - Why the report failed; null unless status is failed
 @BuiltValue()
 abstract class ReputationReportSummary implements Built<ReputationReportSummary, ReputationReportSummaryBuilder> {
-  /// Report id for GET /reputation/reports/{id}
+  /// Report id for GET /reputation/reports/{id}, or GET /studies/{id}/reports/{report_id} for a study report
   @BuiltValueField(wireName: r'id')
   String get id;
 

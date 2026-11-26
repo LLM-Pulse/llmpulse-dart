@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
 **totalRecommendations** | **int** |  | 
 **highPriorityCount** | **int** |  | 
-**summary** | [**RecommendationSummarySummary**](RecommendationSummarySummary.md) |  | 
+**summary** | [**RecommendationDetailResponseSummary**](RecommendationDetailResponseSummary.md) |  | 
 **context** | [**JsonObject**](.md) | Generation context and run diagnostics as stored; empty until the generation completes. Its keys are not a stable contract | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -9,8 +9,10 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
+import 'package:llmpulse/src/model/ads_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/local_businesses_response.dart';
+import 'package:llmpulse/src/model/shopping_response.dart';
 
 class ShoppingAdsApi {
 
@@ -50,9 +52,9 @@ class ShoppingAdsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AdsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listAds({ 
+  Future<Response<AdsResponse>> listAds({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -129,7 +131,35 @@ class ShoppingAdsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AdsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AdsResponse),
+      ) as AdsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AdsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List local businesses
@@ -299,9 +329,9 @@ class ShoppingAdsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ShoppingResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listShopping({ 
+  Future<Response<ShoppingResponse>> listShopping({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -378,7 +408,35 @@ class ShoppingAdsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ShoppingResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ShoppingResponse),
+      ) as ShoppingResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ShoppingResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

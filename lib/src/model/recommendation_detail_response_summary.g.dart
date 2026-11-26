@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recommendation_summary_summary.dart';
+part of 'recommendation_detail_response_summary.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$RecommendationSummarySummary extends RecommendationSummarySummary {
+class _$RecommendationDetailResponseSummary
+    extends RecommendationDetailResponseSummary {
   @override
   final int? totalRecommendations;
   @override
@@ -14,26 +15,27 @@ class _$RecommendationSummarySummary extends RecommendationSummarySummary {
   @override
   final BuiltList<String>? categories;
 
-  factory _$RecommendationSummarySummary(
-          [void Function(RecommendationSummarySummaryBuilder)? updates]) =>
-      (RecommendationSummarySummaryBuilder()..update(updates))._build();
+  factory _$RecommendationDetailResponseSummary(
+          [void Function(RecommendationDetailResponseSummaryBuilder)?
+              updates]) =>
+      (RecommendationDetailResponseSummaryBuilder()..update(updates))._build();
 
-  _$RecommendationSummarySummary._(
+  _$RecommendationDetailResponseSummary._(
       {this.totalRecommendations, this.highPriorityCount, this.categories})
       : super._();
   @override
-  RecommendationSummarySummary rebuild(
-          void Function(RecommendationSummarySummaryBuilder) updates) =>
+  RecommendationDetailResponseSummary rebuild(
+          void Function(RecommendationDetailResponseSummaryBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RecommendationSummarySummaryBuilder toBuilder() =>
-      RecommendationSummarySummaryBuilder()..replace(this);
+  RecommendationDetailResponseSummaryBuilder toBuilder() =>
+      RecommendationDetailResponseSummaryBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is RecommendationSummarySummary &&
+    return other is RecommendationDetailResponseSummary &&
         totalRecommendations == other.totalRecommendations &&
         highPriorityCount == other.highPriorityCount &&
         categories == other.categories;
@@ -51,7 +53,7 @@ class _$RecommendationSummarySummary extends RecommendationSummarySummary {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'RecommendationSummarySummary')
+    return (newBuiltValueToStringHelper(r'RecommendationDetailResponseSummary')
           ..add('totalRecommendations', totalRecommendations)
           ..add('highPriorityCount', highPriorityCount)
           ..add('categories', categories))
@@ -59,11 +61,11 @@ class _$RecommendationSummarySummary extends RecommendationSummarySummary {
   }
 }
 
-class RecommendationSummarySummaryBuilder
+class RecommendationDetailResponseSummaryBuilder
     implements
-        Builder<RecommendationSummarySummary,
-            RecommendationSummarySummaryBuilder> {
-  _$RecommendationSummarySummary? _$v;
+        Builder<RecommendationDetailResponseSummary,
+            RecommendationDetailResponseSummaryBuilder> {
+  _$RecommendationDetailResponseSummary? _$v;
 
   int? _totalRecommendations;
   int? get totalRecommendations => _$this._totalRecommendations;
@@ -81,11 +83,11 @@ class RecommendationSummarySummaryBuilder
   set categories(ListBuilder<String>? categories) =>
       _$this._categories = categories;
 
-  RecommendationSummarySummaryBuilder() {
-    RecommendationSummarySummary._defaults(this);
+  RecommendationDetailResponseSummaryBuilder() {
+    RecommendationDetailResponseSummary._defaults(this);
   }
 
-  RecommendationSummarySummaryBuilder get _$this {
+  RecommendationDetailResponseSummaryBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _totalRecommendations = $v.totalRecommendations;
@@ -97,23 +99,24 @@ class RecommendationSummarySummaryBuilder
   }
 
   @override
-  void replace(RecommendationSummarySummary other) {
-    _$v = other as _$RecommendationSummarySummary;
+  void replace(RecommendationDetailResponseSummary other) {
+    _$v = other as _$RecommendationDetailResponseSummary;
   }
 
   @override
-  void update(void Function(RecommendationSummarySummaryBuilder)? updates) {
+  void update(
+      void Function(RecommendationDetailResponseSummaryBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  RecommendationSummarySummary build() => _build();
+  RecommendationDetailResponseSummary build() => _build();
 
-  _$RecommendationSummarySummary _build() {
-    _$RecommendationSummarySummary _$result;
+  _$RecommendationDetailResponseSummary _build() {
+    _$RecommendationDetailResponseSummary _$result;
     try {
       _$result = _$v ??
-          _$RecommendationSummarySummary._(
+          _$RecommendationDetailResponseSummary._(
             totalRecommendations: totalRecommendations,
             highPriorityCount: highPriorityCount,
             categories: _categories?.build(),
@@ -124,8 +127,8 @@ class RecommendationSummarySummaryBuilder
         _$failedField = 'categories';
         _categories?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
-            r'RecommendationSummarySummary', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(r'RecommendationDetailResponseSummary',
+            _$failedField, e.toString());
       }
       rethrow;
     }

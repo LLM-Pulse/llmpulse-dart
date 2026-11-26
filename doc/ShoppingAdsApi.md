@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **listAds**
-> listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> AdsResponse listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List AI ad placements
 
@@ -47,7 +47,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    final response = api.listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ShoppingAdsApi->listAds: $e\n');
 }
@@ -79,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AdsResponse**](AdsResponse.md)
 
 ### Authorization
 
@@ -170,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listShopping**
-> listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> ShoppingResponse listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List shopping results
 
@@ -202,7 +203,8 @@ final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. 
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    final response = api.listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ShoppingAdsApi->listShopping: $e\n');
 }
@@ -234,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ShoppingResponse**](ShoppingResponse.md)
 
 ### Authorization
 

@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **createTechnicalGeoReports**
-> createTechnicalGeoReports(createTechnicalGeoReportsRequest)
+> TechnicalGeoReportsCreateResponse createTechnicalGeoReports(createTechnicalGeoReportsRequest)
 
 Run technical GEO analysis
 
@@ -31,7 +31,8 @@ final api = Llmpulse().getTechnicalGEOReportsApi();
 final CreateTechnicalGeoReportsRequest createTechnicalGeoReportsRequest = ; // CreateTechnicalGeoReportsRequest | 
 
 try {
-    api.createTechnicalGeoReports(createTechnicalGeoReportsRequest);
+    final response = api.createTechnicalGeoReports(createTechnicalGeoReportsRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling TechnicalGEOReportsApi->createTechnicalGeoReports: $e\n');
 }
@@ -45,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TechnicalGeoReportsCreateResponse**](TechnicalGeoReportsCreateResponse.md)
 
 ### Authorization
 
@@ -59,7 +60,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTechnicalGeoReport**
-> getTechnicalGeoReport(projectId, reportType, id)
+> TechnicalGeoReportResponse getTechnicalGeoReport(projectId, reportType, id)
 
 Get a technical GEO report
 
@@ -75,7 +76,8 @@ final String reportType = reportType_example; // String |
 final int id = 56; // int | Report id returned by POST /technical_geo_reports or GET /technical_geo_reports
 
 try {
-    api.getTechnicalGeoReport(projectId, reportType, id);
+    final response = api.getTechnicalGeoReport(projectId, reportType, id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling TechnicalGEOReportsApi->getTechnicalGeoReport: $e\n');
 }
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TechnicalGeoReportResponse**](TechnicalGeoReportResponse.md)
 
 ### Authorization
 
@@ -105,7 +107,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listTechnicalGeoReports**
-> listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage)
+> TechnicalGeoReportsResponse listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage)
 
 List technical GEO reports
 
@@ -124,7 +126,8 @@ final int page = 56; // int |
 final int perPage = 56; // int | 
 
 try {
-    api.listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage);
+    final response = api.listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling TechnicalGEOReportsApi->listTechnicalGeoReports: $e\n');
 }
@@ -143,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TechnicalGeoReportsResponse**](TechnicalGeoReportsResponse.md)
 
 ### Authorization
 

@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/prompt_categorization_response.dart';
+import 'package:llmpulse/src/model/prompt_delete_response.dart';
 import 'package:llmpulse/src/model/prompt_executions_response.dart';
 import 'package:llmpulse/src/model/prompt_generation_request.dart';
 import 'package:llmpulse/src/model/prompt_generation_response.dart';
@@ -19,6 +20,7 @@ import 'package:llmpulse/src/model/prompts_create_response.dart';
 import 'package:llmpulse/src/model/prompts_import_request.dart';
 import 'package:llmpulse/src/model/prompts_import_response.dart';
 import 'package:llmpulse/src/model/prompts_response.dart';
+import 'package:llmpulse/src/model/query_fan_outs_response.dart';
 import 'package:llmpulse/src/model/suggested_prompt_ids_request.dart';
 import 'package:llmpulse/src/model/suggested_prompts_accept_request.dart';
 import 'package:llmpulse/src/model/suggested_prompts_accept_response.dart';
@@ -350,9 +352,9 @@ class PromptsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PromptDeleteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deletePrompt({ 
+  Future<Response<PromptDeleteResponse>> deletePrompt({ 
     required int projectId,
     required int id,
     CancelToken? cancelToken,
@@ -394,7 +396,35 @@ class PromptsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PromptDeleteResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PromptDeleteResponse),
+      ) as PromptDeleteResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PromptDeleteResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Get a prompt generation run
@@ -868,9 +898,9 @@ class PromptsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [QueryFanOutsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listQueryFanOuts({ 
+  Future<Response<QueryFanOutsResponse>> listQueryFanOuts({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -945,7 +975,35 @@ class PromptsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    QueryFanOutsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(QueryFanOutsResponse),
+      ) as QueryFanOutsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<QueryFanOutsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List suggested prompts

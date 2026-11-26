@@ -11,6 +11,12 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
+import 'package:llmpulse/src/model/citation_groups_response.dart';
+import 'package:llmpulse/src/model/cited_url_content_response.dart';
+import 'package:llmpulse/src/model/cited_url_details_response.dart';
+import 'package:llmpulse/src/model/cited_url_occurrences_response.dart';
+import 'package:llmpulse/src/model/citing_domain_mention_share_response.dart';
+import 'package:llmpulse/src/model/sources_response.dart';
 import 'package:llmpulse/src/model/url_list_create_request.dart';
 import 'package:llmpulse/src/model/url_list_create_response.dart';
 import 'package:llmpulse/src/model/url_list_delete_response.dart';
@@ -336,9 +342,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CitedUrlContentResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getCitedUrlContent({ 
+  Future<Response<CitedUrlContentResponse>> getCitedUrlContent({ 
     required int projectId,
     required String urlSha256,
     CancelToken? cancelToken,
@@ -380,7 +386,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CitedUrlContentResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CitedUrlContentResponse),
+      ) as CitedUrlContentResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CitedUrlContentResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Cited URL detail
@@ -408,9 +442,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CitedUrlDetailsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getCitedUrlDetail({ 
+  Future<Response<CitedUrlDetailsResponse>> getCitedUrlDetail({ 
     required int projectId,
     required String urlSha256,
     String? model,
@@ -476,7 +510,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CitedUrlDetailsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CitedUrlDetailsResponse),
+      ) as CitedUrlDetailsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CitedUrlDetailsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Mention share by citing domain
@@ -500,9 +562,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CitingDomainMentionShareResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getMentionsByCitingDomain({ 
+  Future<Response<CitingDomainMentionShareResponse>> getMentionsByCitingDomain({ 
     required int projectId,
     required BuiltList<String> domains,
     String? model,
@@ -561,7 +623,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CitingDomainMentionShareResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CitingDomainMentionShareResponse),
+      ) as CitingDomainMentionShareResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CitingDomainMentionShareResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Get a URL list report
@@ -725,9 +815,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CitationGroupsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listCitationGroups({ 
+  Future<Response<CitationGroupsResponse>> listCitationGroups({ 
     required int projectId,
     String? view = 'url',
     int? page = 1,
@@ -806,7 +896,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CitationGroupsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CitationGroupsResponse),
+      ) as CitationGroupsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CitationGroupsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Cited URL occurrences
@@ -825,9 +943,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CitedUrlOccurrencesResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listCitedUrlOccurrences({ 
+  Future<Response<CitedUrlOccurrencesResponse>> listCitedUrlOccurrences({ 
     required int projectId,
     required String urlSha256,
     int? page = 1,
@@ -875,7 +993,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CitedUrlOccurrencesResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CitedUrlOccurrencesResponse),
+      ) as CitedUrlOccurrencesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CitedUrlOccurrencesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List source URLs
@@ -906,9 +1052,9 @@ class SourcesCitationIntelligenceApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [SourcesResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listSources({ 
+  Future<Response<SourcesResponse>> listSources({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -981,7 +1127,35 @@ class SourcesCitationIntelligenceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    SourcesResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SourcesResponse),
+      ) as SourcesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SourcesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List URL lists

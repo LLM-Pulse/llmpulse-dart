@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteCollection**
-> deleteCollection(projectId, id)
+> CollectionDeleteResponse deleteCollection(projectId, id)
 
 Delete a tag
 
@@ -120,7 +120,8 @@ final int projectId = 56; // int | Project ID
 final int id = 56; // int | 
 
 try {
-    api.deleteCollection(projectId, id);
+    final response = api.deleteCollection(projectId, id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->deleteCollection: $e\n');
 }
@@ -135,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CollectionDeleteResponse**](CollectionDeleteResponse.md)
 
 ### Authorization
 
@@ -278,7 +279,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCollection**
-> updateCollection(id, updateCollectionRequest)
+> CollectionUpdateResponse updateCollection(id, updateCollectionRequest)
 
 Update a tag
 
@@ -293,7 +294,8 @@ final int id = 56; // int |
 final UpdateCollectionRequest updateCollectionRequest = ; // UpdateCollectionRequest | 
 
 try {
-    api.updateCollection(id, updateCollectionRequest);
+    final response = api.updateCollection(id, updateCollectionRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling CollectionsTagsApi->updateCollection: $e\n');
 }
@@ -308,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CollectionUpdateResponse**](CollectionUpdateResponse.md)
 
 ### Authorization
 

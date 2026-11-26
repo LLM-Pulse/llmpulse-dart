@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAiTraffic**
-> getAiTraffic(projectId, range, from, to, source_, granularity)
+> AiTrafficResponse getAiTraffic(projectId, range, from, to, source_, granularity)
 
 AI referral traffic (Scale plan or above)
 
@@ -93,7 +93,8 @@ final String source_ = source__example; // String | Filter by a single AI source
 final String granularity = granularity_example; // String | 
 
 try {
-    api.getAiTraffic(projectId, range, from, to, source_, granularity);
+    final response = api.getAiTraffic(projectId, range, from, to, source_, granularity);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling AIAgentTrafficApi->getAiTraffic: $e\n');
 }
@@ -112,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AiTrafficResponse**](AiTrafficResponse.md)
 
 ### Authorization
 

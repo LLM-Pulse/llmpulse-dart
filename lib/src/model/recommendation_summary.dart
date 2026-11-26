@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
+import 'package:llmpulse/src/model/recommendation_detail_response_summary.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -63,7 +63,7 @@ abstract class RecommendationSummary implements Built<RecommendationSummary, Rec
   int get highPriorityCount;
 
   @BuiltValueField(wireName: r'summary')
-  RecommendationSummarySummary get summary;
+  RecommendationDetailResponseSummary get summary;
 
   /// Generation context and run diagnostics as stored; empty until the generation completes. Its keys are not a stable contract
   @BuiltValueField(wireName: r'context')
@@ -145,7 +145,7 @@ class _$RecommendationSummarySerializer implements PrimitiveSerializer<Recommend
     yield r'summary';
     yield serializers.serialize(
       object.summary,
-      specifiedType: const FullType(RecommendationSummarySummary),
+      specifiedType: const FullType(RecommendationDetailResponseSummary),
     );
     yield r'context';
     yield serializers.serialize(
@@ -250,8 +250,8 @@ class _$RecommendationSummarySerializer implements PrimitiveSerializer<Recommend
         case r'summary':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RecommendationSummarySummary),
-          ) as RecommendationSummarySummary;
+            specifiedType: const FullType(RecommendationDetailResponseSummary),
+          ) as RecommendationDetailResponseSummary;
           result.summary.replace(valueDes);
           break;
         case r'context':

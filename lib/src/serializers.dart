@@ -20,6 +20,9 @@ import 'package:llmpulse/src/model/account_execution_quota.dart';
 import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:llmpulse/src/model/actor.dart';
+import 'package:llmpulse/src/model/ad_row.dart';
+import 'package:llmpulse/src/model/ads_response.dart';
+import 'package:llmpulse/src/model/ads_totals.dart';
 import 'package:llmpulse/src/model/agent_bot.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
 import 'package:llmpulse/src/model/agent_traffic_response.dart';
@@ -33,6 +36,7 @@ import 'package:llmpulse/src/model/ai_model_declined_answers_response_filters.da
 import 'package:llmpulse/src/model/ai_model_declined_answers_response_summary.dart';
 import 'package:llmpulse/src/model/ai_model_insights_filters_echo.dart';
 import 'package:llmpulse/src/model/ai_model_insights_model.dart';
+import 'package:llmpulse/src/model/ai_model_insights_report_filters_echo.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_brand_net_sentiment_by_model.dart';
@@ -42,6 +46,10 @@ import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_se
 import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_weighted_visibility_by_model.dart';
 import 'package:llmpulse/src/model/ai_model_insights_summary_response_summary_weighted_visibility_market_share.dart';
 import 'package:llmpulse/src/model/ai_model_mentions_row.dart';
+import 'package:llmpulse/src/model/ai_model_position_distribution_brand.dart';
+import 'package:llmpulse/src/model/ai_model_position_distribution_brand_buckets_inner.dart';
+import 'package:llmpulse/src/model/ai_model_position_distribution_brand_buckets_inner_data_inner.dart';
+import 'package:llmpulse/src/model/ai_model_position_distribution_response.dart';
 import 'package:llmpulse/src/model/ai_model_rate_cell.dart';
 import 'package:llmpulse/src/model/ai_model_rate_matrix.dart';
 import 'package:llmpulse/src/model/ai_model_rate_matrix_actor.dart';
@@ -58,10 +66,30 @@ import 'package:llmpulse/src/model/ai_orders_response_totals.dart';
 import 'package:llmpulse/src/model/ai_orders_update_request.dart';
 import 'package:llmpulse/src/model/ai_orders_update_request_days_inner.dart';
 import 'package:llmpulse/src/model/ai_orders_update_response.dart';
+import 'package:llmpulse/src/model/ai_overview_result_counts.dart';
+import 'package:llmpulse/src/model/ai_overview_results_response.dart';
+import 'package:llmpulse/src/model/ai_overview_results_response_by_prompt.dart';
+import 'package:llmpulse/src/model/ai_overview_results_response_by_prompt_data_inner.dart';
+import 'package:llmpulse/src/model/ai_overview_results_response_chart_inner.dart';
+import 'package:llmpulse/src/model/ai_traffic_response.dart';
+import 'package:llmpulse/src/model/ai_traffic_response_by_source_inner.dart';
+import 'package:llmpulse/src/model/ai_traffic_response_totals.dart';
+import 'package:llmpulse/src/model/all_citation_record.dart';
+import 'package:llmpulse/src/model/all_citations_response.dart';
+import 'package:llmpulse/src/model/all_mention_record.dart';
+import 'package:llmpulse/src/model/all_mentions_response.dart';
+import 'package:llmpulse/src/model/analyst_score_row.dart';
 import 'package:llmpulse/src/model/annotation_create_response.dart';
 import 'package:llmpulse/src/model/annotation_create_response_annotation.dart';
+import 'package:llmpulse/src/model/annotation_delete_response.dart';
+import 'package:llmpulse/src/model/annotation_record.dart';
+import 'package:llmpulse/src/model/annotation_record_annotation_category.dart';
+import 'package:llmpulse/src/model/annotation_update_response.dart';
+import 'package:llmpulse/src/model/annotations_response.dart';
 import 'package:llmpulse/src/model/answer_details.dart';
 import 'package:llmpulse/src/model/answer_details_locale.dart';
+import 'package:llmpulse/src/model/answer_record.dart';
+import 'package:llmpulse/src/model/answers_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/api_error_error.dart';
 import 'package:llmpulse/src/model/api_key_info.dart';
@@ -83,9 +111,29 @@ import 'package:llmpulse/src/model/catalog_prompt_suggestions_create_request.dar
 import 'package:llmpulse/src/model/catalog_prompt_suggestions_create_response.dart';
 import 'package:llmpulse/src/model/catalog_prompt_suggestions_reject_response.dart';
 import 'package:llmpulse/src/model/catalog_prompt_suggestions_response.dart';
+import 'package:llmpulse/src/model/citation_group_row.dart';
+import 'package:llmpulse/src/model/citation_group_row_aggregate_details.dart';
+import 'package:llmpulse/src/model/citation_groups_response.dart';
+import 'package:llmpulse/src/model/citation_intelligence_filters_echo.dart';
 import 'package:llmpulse/src/model/citation_match_mode.dart';
+import 'package:llmpulse/src/model/citation_page_cache.dart';
+import 'package:llmpulse/src/model/citation_page_details.dart';
+import 'package:llmpulse/src/model/citation_page_details_content.dart';
+import 'package:llmpulse/src/model/citation_page_mentions.dart';
+import 'package:llmpulse/src/model/citation_page_mentions_brands_inner.dart';
+import 'package:llmpulse/src/model/citation_page_mentions_mentions_inner.dart';
 import 'package:llmpulse/src/model/citation_record.dart';
+import 'package:llmpulse/src/model/citation_series.dart';
 import 'package:llmpulse/src/model/citations_response.dart';
+import 'package:llmpulse/src/model/cited_url_content_response.dart';
+import 'package:llmpulse/src/model/cited_url_details_response.dart';
+import 'package:llmpulse/src/model/cited_url_details_response_stats.dart';
+import 'package:llmpulse/src/model/cited_url_details_response_stats_source_types.dart';
+import 'package:llmpulse/src/model/cited_url_occurrences_response.dart';
+import 'package:llmpulse/src/model/cited_url_occurrences_response_all_of_data.dart';
+import 'package:llmpulse/src/model/citing_domain_mention_share_response.dart';
+import 'package:llmpulse/src/model/citing_domain_mention_share_response_data_inner.dart';
+import 'package:llmpulse/src/model/citing_domain_mention_share_response_data_inner_actors_inner.dart';
 import 'package:llmpulse/src/model/cms_content_item.dart';
 import 'package:llmpulse/src/model/cms_content_item_response.dart';
 import 'package:llmpulse/src/model/cms_content_list_response.dart';
@@ -95,16 +143,24 @@ import 'package:llmpulse/src/model/cms_send_response.dart';
 import 'package:llmpulse/src/model/cms_site.dart';
 import 'package:llmpulse/src/model/collection_create_response.dart';
 import 'package:llmpulse/src/model/collection_create_response_collection.dart';
+import 'package:llmpulse/src/model/collection_delete_response.dart';
+import 'package:llmpulse/src/model/collection_update_response.dart';
+import 'package:llmpulse/src/model/collection_update_response_collection.dart';
 import 'package:llmpulse/src/model/collections_response.dart';
 import 'package:llmpulse/src/model/competitor.dart';
+import 'package:llmpulse/src/model/competitor_citation_record.dart';
+import 'package:llmpulse/src/model/competitor_citations_response.dart';
 import 'package:llmpulse/src/model/competitor_create_response.dart';
 import 'package:llmpulse/src/model/competitor_create_response_competitor.dart';
+import 'package:llmpulse/src/model/competitor_delete_response.dart';
 import 'package:llmpulse/src/model/competitor_details.dart';
 import 'package:llmpulse/src/model/competitor_discovery_state.dart';
 import 'package:llmpulse/src/model/competitor_mention_record.dart';
 import 'package:llmpulse/src/model/competitor_mentions_response.dart';
 import 'package:llmpulse/src/model/competitor_suggestion.dart';
 import 'package:llmpulse/src/model/competitor_suggestions_response.dart';
+import 'package:llmpulse/src/model/competitor_update_response.dart';
+import 'package:llmpulse/src/model/competitor_update_response_competitor.dart';
 import 'package:llmpulse/src/model/create_annotation_request.dart';
 import 'package:llmpulse/src/model/create_api_key201_response.dart';
 import 'package:llmpulse/src/model/create_api_key_request.dart';
@@ -231,10 +287,19 @@ import 'package:llmpulse/src/model/project_details_all_of_pitch_run.dart';
 import 'package:llmpulse/src/model/project_details_all_of_search_console.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats.dart';
 import 'package:llmpulse/src/model/project_details_all_of_stats_prompts_by_brand_kind.dart';
+import 'package:llmpulse/src/model/project_draft_record.dart';
+import 'package:llmpulse/src/model/project_draft_record_competitors_inner.dart';
+import 'package:llmpulse/src/model/project_draft_record_owned_media.dart';
+import 'package:llmpulse/src/model/project_draft_response.dart';
+import 'package:llmpulse/src/model/project_draft_response_limits.dart';
+import 'package:llmpulse/src/model/project_draft_suggestions.dart';
+import 'package:llmpulse/src/model/project_draft_suggestions_competitors_inner.dart';
+import 'package:llmpulse/src/model/project_draft_suggestions_details.dart';
 import 'package:llmpulse/src/model/project_profile.dart';
 import 'package:llmpulse/src/model/project_update_response.dart';
 import 'package:llmpulse/src/model/prompt_categorization.dart';
 import 'package:llmpulse/src/model/prompt_categorization_response.dart';
+import 'package:llmpulse/src/model/prompt_delete_response.dart';
 import 'package:llmpulse/src/model/prompt_execution_record.dart';
 import 'package:llmpulse/src/model/prompt_executions_response.dart';
 import 'package:llmpulse/src/model/prompt_generation_request.dart';
@@ -254,19 +319,30 @@ import 'package:llmpulse/src/model/prompts_import_request_rows_inner.dart';
 import 'package:llmpulse/src/model/prompts_import_response.dart';
 import 'package:llmpulse/src/model/prompts_import_response_row_errors_inner.dart';
 import 'package:llmpulse/src/model/prompts_response.dart';
+import 'package:llmpulse/src/model/query_fan_out_row.dart';
+import 'package:llmpulse/src/model/query_fan_outs_response.dart';
 import 'package:llmpulse/src/model/query_web_analytics_request.dart';
+import 'package:llmpulse/src/model/recommendation_detail_response.dart';
+import 'package:llmpulse/src/model/recommendation_detail_response_item_counts.dart';
+import 'package:llmpulse/src/model/recommendation_detail_response_summary.dart';
 import 'package:llmpulse/src/model/recommendation_item.dart';
 import 'package:llmpulse/src/model/recommendation_item_update_response.dart';
+import 'package:llmpulse/src/model/recommendation_launch_response.dart';
+import 'package:llmpulse/src/model/recommendation_launch_response_recommendation.dart';
 import 'package:llmpulse/src/model/recommendation_summary.dart';
-import 'package:llmpulse/src/model/recommendation_summary_summary.dart';
 import 'package:llmpulse/src/model/recommendations_response.dart';
+import 'package:llmpulse/src/model/reddit_author_brand.dart';
 import 'package:llmpulse/src/model/reddit_brand_share.dart';
 import 'package:llmpulse/src/model/reddit_position_share.dart';
+import 'package:llmpulse/src/model/reddit_response.dart';
+import 'package:llmpulse/src/model/reddit_row.dart';
 import 'package:llmpulse/src/model/reddit_subreddit_activity_period.dart';
 import 'package:llmpulse/src/model/remove_prompt_tags_request.dart';
 import 'package:llmpulse/src/model/remove_team_member200_response.dart';
 import 'package:llmpulse/src/model/reputation_report_create_response.dart';
+import 'package:llmpulse/src/model/reputation_report_scores_response.dart';
 import 'package:llmpulse/src/model/reputation_report_summary.dart';
+import 'package:llmpulse/src/model/reputation_reports_response.dart';
 import 'package:llmpulse/src/model/revoke_api_key200_response.dart';
 import 'package:llmpulse/src/model/revoke_team_invitation200_response.dart';
 import 'package:llmpulse/src/model/sample_webhook_payloads200_response.dart';
@@ -301,12 +377,19 @@ import 'package:llmpulse/src/model/send_custom_report_request.dart';
 import 'package:llmpulse/src/model/sentiment_breakdown_brand.dart';
 import 'package:llmpulse/src/model/sentiment_breakdown_counts.dart';
 import 'package:llmpulse/src/model/sentiment_breakdown_envelope.dart';
+import 'package:llmpulse/src/model/sentiment_categories_response.dart';
+import 'package:llmpulse/src/model/sentiment_category.dart';
 import 'package:llmpulse/src/model/sentiment_record.dart';
 import 'package:llmpulse/src/model/sentiment_tag_row.dart';
 import 'package:llmpulse/src/model/sentiment_tags_response.dart';
 import 'package:llmpulse/src/model/sentiment_topic_row.dart';
 import 'package:llmpulse/src/model/sentiment_topics_response.dart';
 import 'package:llmpulse/src/model/sentiments_response.dart';
+import 'package:llmpulse/src/model/shopping_response.dart';
+import 'package:llmpulse/src/model/shopping_row.dart';
+import 'package:llmpulse/src/model/shopping_totals.dart';
+import 'package:llmpulse/src/model/source_record.dart';
+import 'package:llmpulse/src/model/sources_response.dart';
 import 'package:llmpulse/src/model/sov_response.dart';
 import 'package:llmpulse/src/model/sov_response_breakdown_inner.dart';
 import 'package:llmpulse/src/model/sov_response_current_inner.dart';
@@ -318,6 +401,10 @@ import 'package:llmpulse/src/model/store_connection_response.dart';
 import 'package:llmpulse/src/model/store_connection_response_account.dart';
 import 'package:llmpulse/src/model/store_connection_response_candidates_inner.dart';
 import 'package:llmpulse/src/model/store_connection_response_project.dart';
+import 'package:llmpulse/src/model/studies_response.dart';
+import 'package:llmpulse/src/model/study_report_scores_response.dart';
+import 'package:llmpulse/src/model/study_response.dart';
+import 'package:llmpulse/src/model/study_summary.dart';
 import 'package:llmpulse/src/model/suggested_prompt.dart';
 import 'package:llmpulse/src/model/suggested_prompt_ids_request.dart';
 import 'package:llmpulse/src/model/suggested_prompts_accept_request.dart';
@@ -336,6 +423,11 @@ import 'package:llmpulse/src/model/technical_geo_report_content_revert_request.d
 import 'package:llmpulse/src/model/technical_geo_report_content_update_request.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_request_edits.dart';
 import 'package:llmpulse/src/model/technical_geo_report_content_update_response.dart';
+import 'package:llmpulse/src/model/technical_geo_report_response.dart';
+import 'package:llmpulse/src/model/technical_geo_report_summary.dart';
+import 'package:llmpulse/src/model/technical_geo_reports_create_response.dart';
+import 'package:llmpulse/src/model/technical_geo_reports_create_response_failed_reports_inner.dart';
+import 'package:llmpulse/src/model/technical_geo_reports_response.dart';
 import 'package:llmpulse/src/model/timeseries_point.dart';
 import 'package:llmpulse/src/model/timeseries_response.dart';
 import 'package:llmpulse/src/model/timeseries_series.dart';
@@ -383,6 +475,9 @@ part 'serializers.g.dart';
   AccountPitchQuota,
   AccountQuota,
   Actor,
+  AdRow,
+  AdsResponse,
+  AdsTotals,
   AgentBot,
   AgentBotsResponse,
   AgentTrafficResponse,
@@ -396,6 +491,7 @@ part 'serializers.g.dart';
   AiModelDeclinedAnswersResponseSummary,
   AiModelInsightsFiltersEcho,
   AiModelInsightsModel,$AiModelInsightsModel,
+  AiModelInsightsReportFiltersEcho,
   AiModelInsightsSummaryResponse,
   AiModelInsightsSummaryResponseSummary,
   AiModelInsightsSummaryResponseSummaryBrandNetSentimentByModel,
@@ -405,6 +501,10 @@ part 'serializers.g.dart';
   AiModelInsightsSummaryResponseSummaryWeightedVisibilityByModel,
   AiModelInsightsSummaryResponseSummaryWeightedVisibilityMarketShare,
   AiModelMentionsRow,
+  AiModelPositionDistributionBrand,
+  AiModelPositionDistributionBrandBucketsInner,
+  AiModelPositionDistributionBrandBucketsInnerDataInner,
+  AiModelPositionDistributionResponse,
   AiModelRateCell,
   AiModelRateMatrix,
   AiModelRateMatrixActor,
@@ -421,10 +521,30 @@ part 'serializers.g.dart';
   AiOrdersUpdateRequest,
   AiOrdersUpdateRequestDaysInner,
   AiOrdersUpdateResponse,
+  AiOverviewResultCounts,
+  AiOverviewResultsResponse,
+  AiOverviewResultsResponseByPrompt,
+  AiOverviewResultsResponseByPromptDataInner,
+  AiOverviewResultsResponseChartInner,
+  AiTrafficResponse,
+  AiTrafficResponseBySourceInner,
+  AiTrafficResponseTotals,
+  AllCitationRecord,
+  AllCitationsResponse,
+  AllMentionRecord,
+  AllMentionsResponse,
+  AnalystScoreRow,
   AnnotationCreateResponse,
   AnnotationCreateResponseAnnotation,
+  AnnotationDeleteResponse,
+  AnnotationRecord,
+  AnnotationRecordAnnotationCategory,
+  AnnotationUpdateResponse,
+  AnnotationsResponse,
   AnswerDetails,
   AnswerDetailsLocale,
+  AnswerRecord,
+  AnswersResponse,
   ApiError,
   ApiErrorError,
   ApiKeyInfo,$ApiKeyInfo,
@@ -446,9 +566,29 @@ part 'serializers.g.dart';
   CatalogPromptSuggestionsCreateResponse,
   CatalogPromptSuggestionsRejectResponse,
   CatalogPromptSuggestionsResponse,
+  CitationGroupRow,
+  CitationGroupRowAggregateDetails,
+  CitationGroupsResponse,
+  CitationIntelligenceFiltersEcho,
   CitationMatchMode,
+  CitationPageCache,
+  CitationPageDetails,
+  CitationPageDetailsContent,
+  CitationPageMentions,
+  CitationPageMentionsBrandsInner,
+  CitationPageMentionsMentionsInner,
   CitationRecord,
+  CitationSeries,
   CitationsResponse,
+  CitedUrlContentResponse,
+  CitedUrlDetailsResponse,
+  CitedUrlDetailsResponseStats,
+  CitedUrlDetailsResponseStatsSourceTypes,
+  CitedUrlOccurrencesResponse,
+  CitedUrlOccurrencesResponseAllOfData,
+  CitingDomainMentionShareResponse,
+  CitingDomainMentionShareResponseDataInner,
+  CitingDomainMentionShareResponseDataInnerActorsInner,
   CmsContentItem,
   CmsContentItemResponse,
   CmsContentListResponse,
@@ -458,16 +598,24 @@ part 'serializers.g.dart';
   CmsSite,
   CollectionCreateResponse,
   CollectionCreateResponseCollection,
+  CollectionDeleteResponse,
+  CollectionUpdateResponse,
+  CollectionUpdateResponseCollection,
   CollectionsResponse,
   Competitor,
+  CompetitorCitationRecord,
+  CompetitorCitationsResponse,
   CompetitorCreateResponse,
   CompetitorCreateResponseCompetitor,
+  CompetitorDeleteResponse,
   CompetitorDetails,
   CompetitorDiscoveryState,
   CompetitorMentionRecord,
   CompetitorMentionsResponse,
   CompetitorSuggestion,
   CompetitorSuggestionsResponse,
+  CompetitorUpdateResponse,
+  CompetitorUpdateResponseCompetitor,
   CreateAnnotationRequest,
   CreateApiKey201Response,
   CreateApiKeyRequest,
@@ -594,10 +742,19 @@ part 'serializers.g.dart';
   ProjectDetailsAllOfSearchConsole,
   ProjectDetailsAllOfStats,
   ProjectDetailsAllOfStatsPromptsByBrandKind,
+  ProjectDraftRecord,
+  ProjectDraftRecordCompetitorsInner,
+  ProjectDraftRecordOwnedMedia,
+  ProjectDraftResponse,
+  ProjectDraftResponseLimits,
+  ProjectDraftSuggestions,
+  ProjectDraftSuggestionsCompetitorsInner,
+  ProjectDraftSuggestionsDetails,
   ProjectProfile,
   ProjectUpdateResponse,
   PromptCategorization,
   PromptCategorizationResponse,
+  PromptDeleteResponse,
   PromptExecutionRecord,
   PromptExecutionsResponse,
   PromptGenerationRequest,
@@ -617,19 +774,30 @@ part 'serializers.g.dart';
   PromptsImportResponse,
   PromptsImportResponseRowErrorsInner,
   PromptsResponse,
+  QueryFanOutRow,
+  QueryFanOutsResponse,
   QueryWebAnalyticsRequest,
+  RecommendationDetailResponse,
+  RecommendationDetailResponseItemCounts,
+  RecommendationDetailResponseSummary,
   RecommendationItem,
   RecommendationItemUpdateResponse,
+  RecommendationLaunchResponse,
+  RecommendationLaunchResponseRecommendation,
   RecommendationSummary,
-  RecommendationSummarySummary,
   RecommendationsResponse,
+  RedditAuthorBrand,
   RedditBrandShare,
   RedditPositionShare,
+  RedditResponse,
+  RedditRow,
   RedditSubredditActivityPeriod,
   RemovePromptTagsRequest,
   RemoveTeamMember200Response,
   ReputationReportCreateResponse,
+  ReputationReportScoresResponse,
   ReputationReportSummary,
+  ReputationReportsResponse,
   RevokeApiKey200Response,
   RevokeTeamInvitation200Response,
   SampleWebhookPayloads200Response,
@@ -664,12 +832,19 @@ part 'serializers.g.dart';
   SentimentBreakdownBrand,
   SentimentBreakdownCounts,$SentimentBreakdownCounts,
   SentimentBreakdownEnvelope,$SentimentBreakdownEnvelope,
+  SentimentCategoriesResponse,
+  SentimentCategory,
   SentimentRecord,
   SentimentTagRow,
   SentimentTagsResponse,
   SentimentTopicRow,
   SentimentTopicsResponse,
   SentimentsResponse,
+  ShoppingResponse,
+  ShoppingRow,
+  ShoppingTotals,
+  SourceRecord,
+  SourcesResponse,
   SovResponse,
   SovResponseBreakdownInner,
   SovResponseCurrentInner,
@@ -681,6 +856,10 @@ part 'serializers.g.dart';
   StoreConnectionResponseAccount,
   StoreConnectionResponseCandidatesInner,
   StoreConnectionResponseProject,
+  StudiesResponse,
+  StudyReportScoresResponse,
+  StudyResponse,
+  StudySummary,
   SuggestedPrompt,
   SuggestedPromptIdsRequest,
   SuggestedPromptsAcceptRequest,
@@ -699,6 +878,11 @@ part 'serializers.g.dart';
   TechnicalGeoReportContentUpdateRequest,
   TechnicalGeoReportContentUpdateRequestEdits,
   TechnicalGeoReportContentUpdateResponse,
+  TechnicalGeoReportResponse,
+  TechnicalGeoReportSummary,
+  TechnicalGeoReportsCreateResponse,
+  TechnicalGeoReportsCreateResponseFailedReportsInner,
+  TechnicalGeoReportsResponse,
   TimeseriesPoint,
   TimeseriesResponse,$TimeseriesResponse,
   TimeseriesSeries,
@@ -779,12 +963,24 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<CmsPublication>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelPositionDistributionBrandBucketsInnerDataInner)]),
+        () => ListBuilder<AiModelPositionDistributionBrandBucketsInnerDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CustomReportWidgetRef)]),
         () => ListBuilder<CustomReportWidgetRef>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitingDomainMentionShareResponseDataInner)]),
+        () => ListBuilder<CitingDomainMentionShareResponseDataInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaAgeBucketShare)]),
         () => ListBuilder<OwnedMediaAgeBucketShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOverviewResultsResponseByPromptDataInner)]),
+        () => ListBuilder<AiOverviewResultsResponseByPromptDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(UrlListEntryInput)]),
@@ -793,6 +989,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleCannibalizationResponseDataInner)]),
         () => ListBuilder<SearchConsoleCannibalizationResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectDraftSuggestionsCompetitorsInner)]),
+        () => ListBuilder<ProjectDraftSuggestionsCompetitorsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelMentionsRow)]),
@@ -819,16 +1019,40 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AiModelRateMatrixActor>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(StudySummary)]),
+        () => ListBuilder<StudySummary>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(String)]),
+        () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SentimentTopicRow)]),
         () => ListBuilder<SentimentTopicRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CompetitorCitationRecord)]),
+        () => ListBuilder<CompetitorCitationRecord>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelSentimentMatrixActor)]),
         () => ListBuilder<AiModelSentimentMatrixActor>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SentimentCategory)]),
+        () => ListBuilder<SentimentCategory>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseAcceptedInner)]),
         () => ListBuilder<CatalogPromptSuggestionsAcceptResponseAcceptedInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AllCitationRecord)]),
+        () => ListBuilder<AllCitationRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RedditAuthorBrand)]),
+        () => ListBuilder<RedditAuthorBrand>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(String)])]),
@@ -859,6 +1083,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<SampleWebhookPayloads200ResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AnnotationRecord)]),
+        () => ListBuilder<AnnotationRecord>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(RedditSubredditActivityPeriod)]),
         () => ListBuilder<RedditSubredditActivityPeriod>(),
       )
@@ -873,6 +1101,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(UrlListInvalidEntry)]),
         () => ListBuilder<UrlListInvalidEntry>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelPositionDistributionBrand)]),
+        () => ListBuilder<AiModelPositionDistributionBrand>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(IntelligenceTaskProductImagesInner)]),
@@ -915,12 +1147,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AiModelDeclinedAnswersResponseChartInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TechnicalGeoReportsCreateResponseFailedReportsInner)]),
+        () => ListBuilder<TechnicalGeoReportsCreateResponseFailedReportsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleAiVisibilityGapsResponseDataInner)]),
         () => ListBuilder<SearchConsoleAiVisibilityGapsResponseDataInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(BuiltList, [FullType(SummaryResponseAllOfSummaryValueInner)])]),
         () => MapBuilder<String, BuiltList<SummaryResponseAllOfSummaryValueInner>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitationPageMentionsMentionsInner)]),
+        () => ListBuilder<CitationPageMentionsMentionsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelSentimentRow)]),
@@ -943,6 +1183,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaPlatformActivityPeriod>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitedUrlOccurrencesResponseAllOfData)]),
+        () => ListBuilder<CitedUrlOccurrencesResponseAllOfData>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateResponseSameDomainProjectsInner)]),
         () => ListBuilder<ProjectCreateResponseSameDomainProjectsInner>(),
       )
@@ -953,6 +1197,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(BingWebmasterTimeseriesResponseDataInner)]),
         () => ListBuilder<BingWebmasterTimeseriesResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AllMentionRecord)]),
+        () => ListBuilder<AllMentionRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitationPageMentionsBrandsInner)]),
+        () => ListBuilder<CitationPageMentionsBrandsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType.nullable(GeoAuditRun)]),
@@ -967,6 +1219,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<IntelligenceTaskSummary>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiModelPositionDistributionBrandBucketsInner)]),
+        () => ListBuilder<AiModelPositionDistributionBrandBucketsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaCountryShare)]),
         () => ListBuilder<OwnedMediaCountryShare>(),
       )
@@ -977,6 +1233,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(CatalogPromptSuggestionsAcceptResponseSkippedInner)]),
         () => ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TechnicalGeoReportSummary)]),
+        () => ListBuilder<TechnicalGeoReportSummary>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleExcludedProperty)]),
@@ -995,6 +1255,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<OwnedMediaCitingAnswer>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ShoppingRow)]),
+        () => ListBuilder<ShoppingRow>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(TeamMember)]),
         () => ListBuilder<TeamMember>(),
       )
@@ -1009,6 +1273,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(OwnedMediaContentTypeShare)]),
         () => ListBuilder<OwnedMediaContentTypeShare>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AdRow)]),
+        () => ListBuilder<AdRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ProjectCreateRequestCollectionsInner)]),
@@ -1037,6 +1305,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SentimentTagRow)]),
         () => ListBuilder<SentimentTagRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AnalystScoreRow)]),
+        () => ListBuilder<AnalystScoreRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsolePropertyError)]),
@@ -1075,6 +1347,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<UrlListWithStats>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RecommendationItem)]),
+        () => ListBuilder<RecommendationItem>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SearchConsoleListResponseDataInner)]),
         () => ListBuilder<SearchConsoleListResponseDataInner>(),
       )
@@ -1103,12 +1379,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<TeamInvitation>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RedditRow)]),
+        () => ListBuilder<RedditRow>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelCitationsRow)]),
         () => ListBuilder<AiModelCitationsRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(LocalBusiness)]),
         () => ListBuilder<LocalBusiness>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitingDomainMentionShareResponseDataInnerActorsInner)]),
+        () => ListBuilder<CitingDomainMentionShareResponseDataInnerActorsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelInsightsModel)]),
@@ -1171,6 +1455,14 @@ Serializers serializers = (_$serializers.toBuilder()
         () => MapBuilder<String, int>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AnswerRecord)]),
+        () => ListBuilder<AnswerRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SourceRecord)]),
+        () => ListBuilder<SourceRecord>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptRecord)]),
         () => ListBuilder<PromptRecord>(),
       )
@@ -1187,12 +1479,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<PromptsCreateResponseDataInner>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiOverviewResultsResponseChartInner)]),
+        () => ListBuilder<AiOverviewResultsResponseChartInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiOrdersResponseBySourceInner)]),
         () => ListBuilder<AiOrdersResponseBySourceInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PromptsImportResponseRowErrorsInner)]),
         () => ListBuilder<PromptsImportResponseRowErrorsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ReputationReportSummary)]),
+        () => ListBuilder<ReputationReportSummary>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(SovResponsePeriodsInner)]),
@@ -1205,6 +1505,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditFinding)]),
         () => ListBuilder<GeoAuditFinding>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AiTrafficResponseBySourceInner)]),
+        () => ListBuilder<AiTrafficResponseBySourceInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(QueryFanOutRow)]),
+        () => ListBuilder<QueryFanOutRow>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ApiKeyInfo)]),
@@ -1237,6 +1545,14 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GeoAuditIssue)]),
         () => ListBuilder<GeoAuditIssue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CitationGroupRow)]),
+        () => ListBuilder<CitationGroupRow>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectDraftRecordCompetitorsInner)]),
+        () => ListBuilder<ProjectDraftRecordCompetitorsInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AiModelWeightedVisibilityMatrixActor)]),

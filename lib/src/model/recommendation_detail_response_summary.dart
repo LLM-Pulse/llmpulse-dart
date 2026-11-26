@@ -7,7 +7,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'recommendation_summary_summary.g.dart';
+part 'recommendation_detail_response_summary.g.dart';
 
 /// Empty until the generation completes
 ///
@@ -16,7 +16,7 @@ part 'recommendation_summary_summary.g.dart';
 /// * [highPriorityCount] 
 /// * [categories] 
 @BuiltValue()
-abstract class RecommendationSummarySummary implements Built<RecommendationSummarySummary, RecommendationSummarySummaryBuilder> {
+abstract class RecommendationDetailResponseSummary implements Built<RecommendationDetailResponseSummary, RecommendationDetailResponseSummaryBuilder> {
   @BuiltValueField(wireName: r'total_recommendations')
   int? get totalRecommendations;
 
@@ -26,27 +26,27 @@ abstract class RecommendationSummarySummary implements Built<RecommendationSumma
   @BuiltValueField(wireName: r'categories')
   BuiltList<String>? get categories;
 
-  RecommendationSummarySummary._();
+  RecommendationDetailResponseSummary._();
 
-  factory RecommendationSummarySummary([void updates(RecommendationSummarySummaryBuilder b)]) = _$RecommendationSummarySummary;
+  factory RecommendationDetailResponseSummary([void updates(RecommendationDetailResponseSummaryBuilder b)]) = _$RecommendationDetailResponseSummary;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(RecommendationSummarySummaryBuilder b) => b;
+  static void _defaults(RecommendationDetailResponseSummaryBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<RecommendationSummarySummary> get serializer => _$RecommendationSummarySummarySerializer();
+  static Serializer<RecommendationDetailResponseSummary> get serializer => _$RecommendationDetailResponseSummarySerializer();
 }
 
-class _$RecommendationSummarySummarySerializer implements PrimitiveSerializer<RecommendationSummarySummary> {
+class _$RecommendationDetailResponseSummarySerializer implements PrimitiveSerializer<RecommendationDetailResponseSummary> {
   @override
-  final Iterable<Type> types = const [RecommendationSummarySummary, _$RecommendationSummarySummary];
+  final Iterable<Type> types = const [RecommendationDetailResponseSummary, _$RecommendationDetailResponseSummary];
 
   @override
-  final String wireName = r'RecommendationSummarySummary';
+  final String wireName = r'RecommendationDetailResponseSummary';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    RecommendationSummarySummary object, {
+    RecommendationDetailResponseSummary object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.totalRecommendations != null) {
@@ -75,7 +75,7 @@ class _$RecommendationSummarySummarySerializer implements PrimitiveSerializer<Re
   @override
   Object serialize(
     Serializers serializers,
-    RecommendationSummarySummary object, {
+    RecommendationDetailResponseSummary object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -86,7 +86,7 @@ class _$RecommendationSummarySummarySerializer implements PrimitiveSerializer<Re
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required RecommendationSummarySummaryBuilder result,
+    required RecommendationDetailResponseSummaryBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -126,12 +126,12 @@ class _$RecommendationSummarySummarySerializer implements PrimitiveSerializer<Re
   }
 
   @override
-  RecommendationSummarySummary deserialize(
+  RecommendationDetailResponseSummary deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = RecommendationSummarySummaryBuilder();
+    final result = RecommendationDetailResponseSummaryBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

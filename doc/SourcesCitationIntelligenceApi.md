@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCitedUrlContent**
-> getCitedUrlContent(projectId, urlSha256)
+> CitedUrlContentResponse getCitedUrlContent(projectId, urlSha256)
 
 Cited URL cached content
 
@@ -173,7 +173,8 @@ final int projectId = 56; // int | Project ID
 final String urlSha256 = urlSha256_example; // String | 64-character hex SHA-256 of the cited URL
 
 try {
-    api.getCitedUrlContent(projectId, urlSha256);
+    final response = api.getCitedUrlContent(projectId, urlSha256);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->getCitedUrlContent: $e\n');
 }
@@ -188,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitedUrlContentResponse**](CitedUrlContentResponse.md)
 
 ### Authorization
 
@@ -202,7 +203,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCitedUrlDetail**
-> getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries)
+> CitedUrlDetailsResponse getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries)
 
 Cited URL detail
 
@@ -229,7 +230,8 @@ final String contentGap = contentGap_example; // String | mentioned: the cited p
 final bool includeSeries = true; // bool | Adds citation_series. Without it the response is unchanged.
 
 try {
-    api.getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries);
+    final response = api.getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->getCitedUrlDetail: $e\n');
 }
@@ -256,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitedUrlDetailsResponse**](CitedUrlDetailsResponse.md)
 
 ### Authorization
 
@@ -270,7 +272,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMentionsByCitingDomain**
-> getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to)
+> CitingDomainMentionShareResponse getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to)
 
 Mention share by citing domain
 
@@ -293,7 +295,8 @@ final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime |
 final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
 
 try {
-    api.getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to);
+    final response = api.getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->getMentionsByCitingDomain: $e\n');
 }
@@ -316,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitingDomainMentionShareResponse**](CitingDomainMentionShareResponse.md)
 
 ### Authorization
 
@@ -403,7 +406,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCitationGroups**
-> listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap)
+> CitationGroupsResponse listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap)
 
 Grouped citation intelligence
 
@@ -436,7 +439,8 @@ final String sentiment = sentiment_example; // String | Keeps the citations of a
 final String contentGap = contentGap_example; // String | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match.
 
 try {
-    api.listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap);
+    final response = api.listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->listCitationGroups: $e\n');
 }
@@ -469,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitationGroupsResponse**](CitationGroupsResponse.md)
 
 ### Authorization
 
@@ -483,7 +487,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listCitedUrlOccurrences**
-> listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
+> CitedUrlOccurrencesResponse listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
 
 Cited URL occurrences
 
@@ -499,7 +503,8 @@ final int perPage = 56; // int |
 final String sentiment = sentiment_example; // String | Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED.
 
 try {
-    api.listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment);
+    final response = api.listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->listCitedUrlOccurrences: $e\n');
 }
@@ -517,7 +522,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CitedUrlOccurrencesResponse**](CitedUrlOccurrencesResponse.md)
 
 ### Authorization
 
@@ -531,7 +536,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listSources**
-> listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range)
+> SourcesResponse listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range)
 
 List source URLs
 
@@ -559,7 +564,8 @@ final String brandKind = brandKind_example; // String | Filter by brand kind: br
 final int range = 56; // int | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to.
 
 try {
-    api.listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range);
+    final response = api.listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SourcesCitationIntelligenceApi->listSources: $e\n');
 }
@@ -589,7 +595,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**SourcesResponse**](SourcesResponse.md)
 
 ### Authorization
 

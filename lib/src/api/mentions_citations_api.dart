@@ -9,7 +9,10 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
+import 'package:llmpulse/src/model/all_citations_response.dart';
+import 'package:llmpulse/src/model/all_mentions_response.dart';
 import 'package:llmpulse/src/model/citations_response.dart';
+import 'package:llmpulse/src/model/competitor_citations_response.dart';
 import 'package:llmpulse/src/model/competitor_mentions_response.dart';
 import 'package:llmpulse/src/model/mentions_response.dart';
 
@@ -47,9 +50,9 @@ class MentionsCitationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AllCitationsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listAllCitations({ 
+  Future<Response<AllCitationsResponse>> listAllCitations({ 
     required int projectId,
     String? competitors,
     int? page = 1,
@@ -118,7 +121,35 @@ class MentionsCitationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AllCitationsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AllCitationsResponse),
+      ) as AllCitationsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AllCitationsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List all mentions (brand + competitor)
@@ -147,9 +178,9 @@ class MentionsCitationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AllMentionsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listAllMentions({ 
+  Future<Response<AllMentionsResponse>> listAllMentions({ 
     required int projectId,
     String? competitors,
     int? page = 1,
@@ -218,7 +249,35 @@ class MentionsCitationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AllMentionsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AllMentionsResponse),
+      ) as AllMentionsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AllMentionsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List brand citations
@@ -372,9 +431,9 @@ class MentionsCitationsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CompetitorCitationsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listCompetitorCitations({ 
+  Future<Response<CompetitorCitationsResponse>> listCompetitorCitations({ 
     required int projectId,
     String? competitors,
     int? page = 1,
@@ -443,7 +502,35 @@ class MentionsCitationsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CompetitorCitationsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CompetitorCitationsResponse),
+      ) as CompetitorCitationsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CompetitorCitationsResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// List competitor mentions

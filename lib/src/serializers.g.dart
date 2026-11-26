@@ -33,6 +33,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AccountQuota.serializer)
       ..add(Actor.serializer)
       ..add(ActorTypeEnum.serializer)
+      ..add(AdRow.serializer)
+      ..add(AdRowModelEnum.serializer)
+      ..add(AdsResponse.serializer)
+      ..add(AdsTotals.serializer)
       ..add(AgentBot.serializer)
       ..add(AgentBotsResponse.serializer)
       ..add(AgentTrafficResponse.serializer)
@@ -47,6 +51,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AiModelDeclinedAnswersResponseModelEnum.serializer)
       ..add(AiModelDeclinedAnswersResponseSummary.serializer)
       ..add(AiModelInsightsFiltersEcho.serializer)
+      ..add(AiModelInsightsReportFiltersEcho.serializer)
+      ..add(AiModelInsightsReportFiltersEchoGranularityEnum.serializer)
+      ..add(AiModelInsightsReportFiltersEchoModelEnum.serializer)
       ..add(AiModelInsightsSummaryResponse.serializer)
       ..add(AiModelInsightsSummaryResponseSummary.serializer)
       ..add(AiModelInsightsSummaryResponseSummaryBrandNetSentimentByModel
@@ -60,6 +67,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AiModelInsightsSummaryResponseSummaryWeightedVisibilityMarketShare
           .serializer)
       ..add(AiModelMentionsRow.serializer)
+      ..add(AiModelPositionDistributionBrand.serializer)
+      ..add(AiModelPositionDistributionBrandBucketsInner.serializer)
+      ..add(AiModelPositionDistributionBrandBucketsInnerDataInner.serializer)
+      ..add(AiModelPositionDistributionResponse.serializer)
+      ..add(AiModelPositionDistributionResponseGranularityEnum.serializer)
       ..add(AiModelRateCell.serializer)
       ..add(AiModelRateMatrix.serializer)
       ..add(AiModelRateMatrixActor.serializer)
@@ -80,11 +92,36 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AiOrdersUpdateRequestDaysInner.serializer)
       ..add(AiOrdersUpdateRequestPlatformEnum.serializer)
       ..add(AiOrdersUpdateResponse.serializer)
+      ..add(AiOverviewResultCounts.serializer)
+      ..add(AiOverviewResultsResponse.serializer)
+      ..add(AiOverviewResultsResponseByPrompt.serializer)
+      ..add(AiOverviewResultsResponseByPromptDataInner.serializer)
+      ..add(AiOverviewResultsResponseChartInner.serializer)
+      ..add(AiOverviewResultsResponseGranularityEnum.serializer)
+      ..add(AiTrafficResponse.serializer)
+      ..add(AiTrafficResponseBySourceInner.serializer)
+      ..add(AiTrafficResponseGranularityEnum.serializer)
+      ..add(AiTrafficResponseTotals.serializer)
+      ..add(AllCitationRecord.serializer)
+      ..add(AllCitationsResponse.serializer)
+      ..add(AllMentionRecord.serializer)
+      ..add(AllMentionsResponse.serializer)
+      ..add(AnalystScoreRow.serializer)
+      ..add(AnalystScoreRowModelEnum.serializer)
       ..add(AnnotationCreateResponse.serializer)
       ..add(AnnotationCreateResponseAnnotation.serializer)
+      ..add(AnnotationDeleteResponse.serializer)
+      ..add(AnnotationRecord.serializer)
+      ..add(AnnotationRecordAnnotationCategory.serializer)
+      ..add(AnnotationUpdateResponse.serializer)
+      ..add(AnnotationsResponse.serializer)
       ..add(AnswerDetails.serializer)
       ..add(AnswerDetailsLocale.serializer)
       ..add(AnswerDetailsNoResultReasonEnum.serializer)
+      ..add(AnswerRecord.serializer)
+      ..add(AnswerRecordModelEnum.serializer)
+      ..add(AnswerRecordNoResultReasonEnum.serializer)
+      ..add(AnswersResponse.serializer)
       ..add(ApiError.serializer)
       ..add(ApiErrorError.serializer)
       ..add(ApiErrorErrorCodeEnum.serializer)
@@ -108,9 +145,31 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CatalogPromptSuggestionsCreateResponse.serializer)
       ..add(CatalogPromptSuggestionsRejectResponse.serializer)
       ..add(CatalogPromptSuggestionsResponse.serializer)
+      ..add(CitationGroupRow.serializer)
+      ..add(CitationGroupRowAggregateDetails.serializer)
+      ..add(CitationGroupsResponse.serializer)
+      ..add(CitationIntelligenceFiltersEcho.serializer)
       ..add(CitationMatchMode.serializer)
+      ..add(CitationPageCache.serializer)
+      ..add(CitationPageDetails.serializer)
+      ..add(CitationPageDetailsContent.serializer)
+      ..add(CitationPageMentions.serializer)
+      ..add(CitationPageMentionsBrandsInner.serializer)
+      ..add(CitationPageMentionsMentionsInner.serializer)
       ..add(CitationRecord.serializer)
+      ..add(CitationSeries.serializer)
+      ..add(CitationSeriesGranularityEnum.serializer)
       ..add(CitationsResponse.serializer)
+      ..add(CitedUrlContentResponse.serializer)
+      ..add(CitedUrlDetailsResponse.serializer)
+      ..add(CitedUrlDetailsResponseStats.serializer)
+      ..add(CitedUrlDetailsResponseStatsSourceTypes.serializer)
+      ..add(CitedUrlOccurrencesResponse.serializer)
+      ..add(CitedUrlOccurrencesResponseAllOfData.serializer)
+      ..add(CitedUrlOccurrencesResponseAllOfDataModelEnum.serializer)
+      ..add(CitingDomainMentionShareResponse.serializer)
+      ..add(CitingDomainMentionShareResponseDataInner.serializer)
+      ..add(CitingDomainMentionShareResponseDataInnerActorsInner.serializer)
       ..add(CmsContentItem.serializer)
       ..add(CmsContentItemResponse.serializer)
       ..add(CmsContentListResponse.serializer)
@@ -124,11 +183,17 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CmsSiteStatusEnum.serializer)
       ..add(CollectionCreateResponse.serializer)
       ..add(CollectionCreateResponseCollection.serializer)
+      ..add(CollectionDeleteResponse.serializer)
+      ..add(CollectionUpdateResponse.serializer)
+      ..add(CollectionUpdateResponseCollection.serializer)
       ..add(CollectionsResponse.serializer)
       ..add(Competitor.serializer)
       ..add(CompetitorActorTypeEnum.serializer)
+      ..add(CompetitorCitationRecord.serializer)
+      ..add(CompetitorCitationsResponse.serializer)
       ..add(CompetitorCreateResponse.serializer)
       ..add(CompetitorCreateResponseCompetitor.serializer)
+      ..add(CompetitorDeleteResponse.serializer)
       ..add(CompetitorDetails.serializer)
       ..add(CompetitorDiscoveryState.serializer)
       ..add(CompetitorMentionRecord.serializer)
@@ -136,6 +201,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CompetitorSuggestion.serializer)
       ..add(CompetitorSuggestionsResponse.serializer)
       ..add(CompetitorSuggestionsResponseBasisEnum.serializer)
+      ..add(CompetitorUpdateResponse.serializer)
+      ..add(CompetitorUpdateResponseCompetitor.serializer)
       ..add(CreateAnnotationRequest.serializer)
       ..add(CreateApiKey201Response.serializer)
       ..add(CreateApiKeyRequest.serializer)
@@ -301,10 +368,19 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProjectDetailsAllOfSearchConsoleStatusEnum.serializer)
       ..add(ProjectDetailsAllOfStats.serializer)
       ..add(ProjectDetailsAllOfStatsPromptsByBrandKind.serializer)
+      ..add(ProjectDraftRecord.serializer)
+      ..add(ProjectDraftRecordCompetitorsInner.serializer)
+      ..add(ProjectDraftRecordOwnedMedia.serializer)
+      ..add(ProjectDraftResponse.serializer)
+      ..add(ProjectDraftResponseLimits.serializer)
+      ..add(ProjectDraftSuggestions.serializer)
+      ..add(ProjectDraftSuggestionsCompetitorsInner.serializer)
+      ..add(ProjectDraftSuggestionsDetails.serializer)
       ..add(ProjectProfile.serializer)
       ..add(ProjectUpdateResponse.serializer)
       ..add(PromptCategorization.serializer)
       ..add(PromptCategorizationResponse.serializer)
+      ..add(PromptDeleteResponse.serializer)
       ..add(PromptExecutionRecord.serializer)
       ..add(PromptExecutionRecordModelEnum.serializer)
       ..add(PromptExecutionsResponse.serializer)
@@ -329,27 +405,42 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(PromptsImportResponse.serializer)
       ..add(PromptsImportResponseRowErrorsInner.serializer)
       ..add(PromptsResponse.serializer)
+      ..add(QueryFanOutRow.serializer)
+      ..add(QueryFanOutsResponse.serializer)
       ..add(QueryWebAnalyticsRequest.serializer)
+      ..add(RecommendationDetailResponse.serializer)
+      ..add(RecommendationDetailResponseItemCounts.serializer)
+      ..add(RecommendationDetailResponseRecommendationTypeEnum.serializer)
+      ..add(RecommendationDetailResponseStatusEnum.serializer)
+      ..add(RecommendationDetailResponseSummary.serializer)
       ..add(RecommendationItem.serializer)
       ..add(RecommendationItemPriorityEnum.serializer)
       ..add(RecommendationItemStatusEnum.serializer)
       ..add(RecommendationItemUpdateResponse.serializer)
+      ..add(RecommendationLaunchResponse.serializer)
+      ..add(RecommendationLaunchResponseRecommendation.serializer)
+      ..add(RecommendationLaunchResponseRecommendationRecommendationTypeEnum
+          .serializer)
       ..add(RecommendationSummary.serializer)
       ..add(RecommendationSummaryRecommendationTypeEnum.serializer)
       ..add(RecommendationSummaryStatusEnum.serializer)
-      ..add(RecommendationSummarySummary.serializer)
       ..add(RecommendationsResponse.serializer)
+      ..add(RedditAuthorBrand.serializer)
       ..add(RedditBrandShare.serializer)
       ..add(RedditPositionShare.serializer)
       ..add(RedditPositionShareBucketEnum.serializer)
+      ..add(RedditResponse.serializer)
+      ..add(RedditRow.serializer)
       ..add(RedditSubredditActivityPeriod.serializer)
       ..add(RemovePromptTagsRequest.serializer)
       ..add(RemoveTeamMember200Response.serializer)
       ..add(ReputationReportCreateResponse.serializer)
+      ..add(ReputationReportScoresResponse.serializer)
       ..add(ReputationReportSummary.serializer)
       ..add(ReputationReportSummaryAvailableModelsEnum.serializer)
       ..add(ReputationReportSummaryMissingModelsEnum.serializer)
       ..add(ReputationReportSummaryStatusEnum.serializer)
+      ..add(ReputationReportsResponse.serializer)
       ..add(RevokeApiKey200Response.serializer)
       ..add(RevokeTeamInvitation200Response.serializer)
       ..add(SampleWebhookPayloads200Response.serializer)
@@ -389,6 +480,8 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(SendCustomReportRequest.serializer)
       ..add(SentimentBreakdownBrand.serializer)
       ..add(SentimentBreakdownBrandTypeEnum.serializer)
+      ..add(SentimentCategoriesResponse.serializer)
+      ..add(SentimentCategory.serializer)
       ..add(SentimentRecord.serializer)
       ..add(SentimentRecordAnalysisEnum.serializer)
       ..add(SentimentRecordModelEnum.serializer)
@@ -397,6 +490,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(SentimentTopicRow.serializer)
       ..add(SentimentTopicsResponse.serializer)
       ..add(SentimentsResponse.serializer)
+      ..add(ShoppingResponse.serializer)
+      ..add(ShoppingRow.serializer)
+      ..add(ShoppingRowModelsEnum.serializer)
+      ..add(ShoppingTotals.serializer)
+      ..add(SourceRecord.serializer)
+      ..add(SourcesResponse.serializer)
       ..add(SovResponse.serializer)
       ..add(SovResponseBreakdownInner.serializer)
       ..add(SovResponseCurrentInner.serializer)
@@ -408,6 +507,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(StoreConnectionResponseAccount.serializer)
       ..add(StoreConnectionResponseCandidatesInner.serializer)
       ..add(StoreConnectionResponseProject.serializer)
+      ..add(StudiesResponse.serializer)
+      ..add(StudyReportScoresResponse.serializer)
+      ..add(StudyResponse.serializer)
+      ..add(StudyResponseAiModelsEnum.serializer)
+      ..add(StudySummary.serializer)
+      ..add(StudySummaryAiModelsEnum.serializer)
       ..add(SuggestedPrompt.serializer)
       ..add(SuggestedPromptIdsRequest.serializer)
       ..add(SuggestedPromptsAcceptRequest.serializer)
@@ -432,6 +537,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(TechnicalGeoReportContentUpdateRequestReportTypeEnum.serializer)
       ..add(TechnicalGeoReportContentUpdateResponse.serializer)
       ..add(TechnicalGeoReportContentUpdateResponseChangedFilesEnum.serializer)
+      ..add(TechnicalGeoReportResponse.serializer)
+      ..add(TechnicalGeoReportSummary.serializer)
+      ..add(TechnicalGeoReportsCreateResponse.serializer)
+      ..add(TechnicalGeoReportsCreateResponseFailedReportsInner.serializer)
+      ..add(TechnicalGeoReportsResponse.serializer)
       ..add(TimeseriesPoint.serializer)
       ..add(TimeseriesSeries.serializer)
       ..add(TopSourcesResponse.serializer)
@@ -485,6 +595,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(WebAnalyticsSchemaResponse.serializer)
       ..add(WebAnalyticsSchemaResponseProviderEnum.serializer)
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AdRow)]),
+          () => ListBuilder<AdRow>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AgentBot)]),
           () => ListBuilder<AgentBot>())
       ..addBuilderFactory(
@@ -514,6 +627,22 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(AiModelMentionsRow)]),
           () => ListBuilder<AiModelMentionsRow>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(AiModelPositionDistributionBrand)]),
+          () => ListBuilder<AiModelPositionDistributionBrand>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(AiModelPositionDistributionBrandBucketsInner)
+          ]),
+          () => ListBuilder<AiModelPositionDistributionBrandBucketsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                AiModelPositionDistributionBrandBucketsInnerDataInner)
+          ]),
+          () => ListBuilder<
+              AiModelPositionDistributionBrandBucketsInnerDataInner>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AiModelSentimentMatrixActor)]),
           () => ListBuilder<AiModelSentimentMatrixActor>())
@@ -541,6 +670,44 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(AiOrdersUpdateRequestDaysInner)]),
           () => ListBuilder<AiOrdersUpdateRequestDaysInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(AiOverviewResultsResponseByPromptDataInner)
+          ]),
+          () => ListBuilder<AiOverviewResultsResponseByPromptDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(AiOverviewResultsResponseChartInner)]),
+          () => ListBuilder<AiOverviewResultsResponseChartInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(AiTrafficResponseBySourceInner)]),
+          () => ListBuilder<AiTrafficResponseBySourceInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType(
+                BuiltMap, const [const FullType(String), const FullType(int)])
+          ]),
+          () => MapBuilder<String, BuiltMap<String, int>>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AllCitationRecord)]),
+          () => ListBuilder<AllCitationRecord>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AllMentionRecord)]),
+          () => ListBuilder<AllMentionRecord>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AnalystScoreRow)]),
+          () => ListBuilder<AnalystScoreRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AnalystScoreRow)]),
+          () => ListBuilder<AnalystScoreRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AnnotationRecord)]),
+          () => ListBuilder<AnnotationRecord>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(AnswerRecord)]),
+          () => ListBuilder<AnswerRecord>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ApiKeyInfo)]),
           () => ListBuilder<ApiKeyInfo>())
@@ -576,8 +743,34 @@ Serializers _$serializers = (Serializers().toBuilder()
           () =>
               ListBuilder<CatalogPromptSuggestionsAcceptResponseSkippedInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CitationGroupRow)]),
+          () => ListBuilder<CitationGroupRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(CitationPageMentionsBrandsInner)]),
+          () => ListBuilder<CitationPageMentionsBrandsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(CitationPageMentionsMentionsInner)]),
+          () => ListBuilder<CitationPageMentionsMentionsInner>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CitationRecord)]),
           () => ListBuilder<CitationRecord>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(CitedUrlOccurrencesResponseAllOfData)]),
+          () => ListBuilder<CitedUrlOccurrencesResponseAllOfData>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(CitingDomainMentionShareResponseDataInner)
+          ]),
+          () => ListBuilder<CitingDomainMentionShareResponseDataInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(CitingDomainMentionShareResponseDataInnerActorsInner)
+          ]),
+          () => ListBuilder<
+              CitingDomainMentionShareResponseDataInnerActorsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CmsContentSummary)]),
           () => ListBuilder<CmsContentSummary>())
@@ -587,6 +780,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Competitor)]),
           () => ListBuilder<Competitor>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(CompetitorCitationRecord)]),
+          () => ListBuilder<CompetitorCitationRecord>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(CompetitorMentionRecord)]),
@@ -771,9 +968,19 @@ Serializers _$serializers = (Serializers().toBuilder()
               const [const FullType(PromptsImportResponseRowErrorsInner)]),
           () => ListBuilder<PromptsImportResponseRowErrorsInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(QueryFanOutRow)]),
+          () => ListBuilder<QueryFanOutRow>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(RecommendationSummary)]),
           () => ListBuilder<RecommendationSummary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(RedditRow)]),
+          () => ListBuilder<RedditRow>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ReputationReportSummary)]),
+          () => ListBuilder<ReputationReportSummary>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(ReputationReportSummaryAvailableModelsEnum)
@@ -931,6 +1138,9 @@ Serializers _$serializers = (Serializers().toBuilder()
               BuiltList, const [const FullType(SearchConsolePropertyError)]),
           () => ListBuilder<SearchConsolePropertyError>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(SentimentCategory)]),
+          () => ListBuilder<SentimentCategory>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SentimentRecord)]),
           () => ListBuilder<SentimentRecord>())
       ..addBuilderFactory(
@@ -939,6 +1149,16 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SentimentTopicRow)]),
           () => ListBuilder<SentimentTopicRow>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ShoppingRow)]),
+          () => ListBuilder<ShoppingRow>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ShoppingRowModelsEnum)]),
+          () => ListBuilder<ShoppingRowModelsEnum>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(SourceRecord)]),
+          () => ListBuilder<SourceRecord>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SovResponsePeriodsInner)]),
@@ -963,6 +1183,21 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(StoreConnectionResponseCandidatesInner)]),
           () => ListBuilder<StoreConnectionResponseCandidatesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
@@ -1055,6 +1290,19 @@ Serializers _$serializers = (Serializers().toBuilder()
           () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList,
+              const [const FullType(ProjectDraftSuggestionsCompetitorsInner)]),
+          () => ListBuilder<ProjectDraftSuggestionsCompetitorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(RedditAuthorBrand)]),
+          () => ListBuilder<RedditAuthorBrand>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
               const [const FullType(SearchConsoleRowsResponseDataInner)]),
           () => ListBuilder<SearchConsoleRowsResponseDataInner>())
       ..addBuilderFactory(
@@ -1069,6 +1317,12 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(SearchConsolePropertyError)]),
           () => ListBuilder<SearchConsolePropertyError>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
@@ -1150,6 +1404,28 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(ProjectCreateRequestCompetitorsInner)]),
           () => ListBuilder<ProjectCreateRequestCompetitorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(ProjectDraftRecordCompetitorsInner)]),
+          () => ListBuilder<ProjectDraftRecordCompetitorsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
@@ -1261,6 +1537,44 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(int)]),
+          () => MapBuilder<String, int>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(TechnicalGeoReportsCreateResponseFailedReportsInner)
+          ]),
+          () => ListBuilder<
+              TechnicalGeoReportsCreateResponseFailedReportsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(StudyResponseAiModelsEnum)]),
+          () => ListBuilder<StudyResponseAiModelsEnum>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ReputationReportSummary)]),
+          () => ListBuilder<ReputationReportSummary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(StudySummary)]),
+          () => ListBuilder<StudySummary>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(StudySummaryAiModelsEnum)]),
+          () => ListBuilder<StudySummaryAiModelsEnum>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SuggestedPrompt)]),
           () => ListBuilder<SuggestedPrompt>())
       ..addBuilderFactory(
@@ -1314,6 +1628,10 @@ Serializers _$serializers = (Serializers().toBuilder()
           ]),
           () => ListBuilder<
               TechnicalGeoReportContentUpdateResponseChangedFilesEnum>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(TechnicalGeoReportSummary)]),
+          () => ListBuilder<TechnicalGeoReportSummary>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TimeseriesPoint)]),
           () => ListBuilder<TimeseriesPoint>())
@@ -1409,6 +1727,15 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(int)]),
           () => ListBuilder<int>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => ListBuilder<int>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => ListBuilder<String>())
       ..addBuilderFactory(
@@ -1457,6 +1784,9 @@ Serializers _$serializers = (Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType.nullable(GeoAuditRun)]),
           () => ListBuilder<GeoAuditRun?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType.nullable(String)]),
+          () => ListBuilder<String?>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
               const [const FullType(String), const FullType(AiModelRateCell)]),
@@ -1530,6 +1860,25 @@ Serializers _$serializers = (Serializers().toBuilder()
           () => MapBuilder<String, int>())
       ..addBuilderFactory(
           const FullType(
+              BuiltMap, const [const FullType(String), const FullType(int)]),
+          () => MapBuilder<String, int>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(int)]),
+          () => MapBuilder<String, int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                AiModelPositionDistributionBrandBucketsInnerDataInner)
+          ]),
+          () => ListBuilder<
+              AiModelPositionDistributionBrandBucketsInnerDataInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(int)]),
+          () => MapBuilder<String, int>())
+      ..addBuilderFactory(
+          const FullType(
               BuiltList, const [const FullType(AiModelRateMatrixActor)]),
           () => ListBuilder<AiModelRateMatrixActor>())
       ..addBuilderFactory(
@@ -1564,7 +1913,22 @@ Serializers _$serializers = (Serializers().toBuilder()
             const FullType(String),
             const FullType.nullable(JsonObject)
           ]),
-          () => MapBuilder<String, JsonObject?>()))
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [
+            const FullType(String),
+            const FullType.nullable(JsonObject)
+          ]),
+          () => MapBuilder<String, JsonObject?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(RecommendationItem)]),
+          () => ListBuilder<RecommendationItem>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

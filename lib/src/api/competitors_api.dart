@@ -11,8 +11,10 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/competitor_create_response.dart';
+import 'package:llmpulse/src/model/competitor_delete_response.dart';
 import 'package:llmpulse/src/model/competitor_details.dart';
 import 'package:llmpulse/src/model/competitor_suggestions_response.dart';
+import 'package:llmpulse/src/model/competitor_update_response.dart';
 import 'package:llmpulse/src/model/create_competitor_request.dart';
 import 'package:llmpulse/src/model/list_competitors200_response.dart';
 import 'package:llmpulse/src/model/update_competitor_request.dart';
@@ -139,9 +141,9 @@ class CompetitorsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CompetitorDeleteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteCompetitor({ 
+  Future<Response<CompetitorDeleteResponse>> deleteCompetitor({ 
     required int projectId,
     required int id,
     CancelToken? cancelToken,
@@ -183,7 +185,35 @@ class CompetitorsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CompetitorDeleteResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CompetitorDeleteResponse),
+      ) as CompetitorDeleteResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CompetitorDeleteResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Competitor details
@@ -480,9 +510,9 @@ class CompetitorsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CompetitorUpdateResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> updateCompetitor({ 
+  Future<Response<CompetitorUpdateResponse>> updateCompetitor({ 
     required int id,
     required UpdateCompetitorRequest updateCompetitorRequest,
     CancelToken? cancelToken,
@@ -539,7 +569,35 @@ class CompetitorsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CompetitorUpdateResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CompetitorUpdateResponse),
+      ) as CompetitorUpdateResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<CompetitorUpdateResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

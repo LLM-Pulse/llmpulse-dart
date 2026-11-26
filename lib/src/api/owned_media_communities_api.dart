@@ -15,6 +15,7 @@ import 'package:llmpulse/src/model/owned_media_list_response.dart';
 import 'package:llmpulse/src/model/owned_media_profiles_response.dart';
 import 'package:llmpulse/src/model/owned_media_profiles_update_response.dart';
 import 'package:llmpulse/src/model/owned_media_summary_response.dart';
+import 'package:llmpulse/src/model/reddit_response.dart';
 import 'package:llmpulse/src/model/update_owned_media_profiles_request.dart';
 
 class OwnedMediaCommunitiesApi {
@@ -509,9 +510,9 @@ class OwnedMediaCommunitiesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [RedditResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> listRedditCitations({ 
+  Future<Response<RedditResponse>> listRedditCitations({ 
     required int projectId,
     int? page = 1,
     int? perPage = 20,
@@ -590,7 +591,35 @@ class OwnedMediaCommunitiesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    RedditResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RedditResponse),
+      ) as RedditResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<RedditResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Update a project&#39;s owned-media profiles

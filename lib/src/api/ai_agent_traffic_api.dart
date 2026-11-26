@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/agent_bots_response.dart';
 import 'package:llmpulse/src/model/agent_traffic_response.dart';
+import 'package:llmpulse/src/model/ai_traffic_response.dart';
 import 'package:llmpulse/src/model/api_error.dart';
 import 'package:llmpulse/src/model/query_web_analytics_request.dart';
 import 'package:llmpulse/src/model/web_analytics_query_response.dart';
@@ -148,9 +149,9 @@ class AIAgentTrafficApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [AiTrafficResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> getAiTraffic({ 
+  Future<Response<AiTrafficResponse>> getAiTraffic({ 
     required int projectId,
     int? range,
     DateTime? from,
@@ -201,7 +202,35 @@ class AIAgentTrafficApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    AiTrafficResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AiTrafficResponse),
+      ) as AiTrafficResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<AiTrafficResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Web analytics query format (Growth+)

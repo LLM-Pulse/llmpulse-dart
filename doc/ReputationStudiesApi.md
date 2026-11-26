@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getReputationReport**
-> getReputationReport(id, projectId, page, perPage, model, brand, dimension, output)
+> ReputationReportScoresResponse getReputationReport(id, projectId, page, perPage, model, brand, dimension, output)
 
 Get reputation report scores
 
@@ -82,7 +82,8 @@ final String dimension = dimension_example; // String | Restrict to one reputati
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.getReputationReport(id, projectId, page, perPage, model, brand, dimension, output);
+    final response = api.getReputationReport(id, projectId, page, perPage, model, brand, dimension, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ReputationStudiesApi->getReputationReport: $e\n');
 }
@@ -103,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ReputationReportScoresResponse**](ReputationReportScoresResponse.md)
 
 ### Authorization
 
@@ -117,7 +118,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getStudy**
-> getStudy(id)
+> StudyResponse getStudy(id)
 
 Get a custom AI study
 
@@ -131,7 +132,8 @@ final api = Llmpulse().getReputationStudiesApi();
 final int id = 56; // int | 
 
 try {
-    api.getStudy(id);
+    final response = api.getStudy(id);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ReputationStudiesApi->getStudy: $e\n');
 }
@@ -145,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**StudyResponse**](StudyResponse.md)
 
 ### Authorization
 
@@ -159,7 +161,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getStudyReport**
-> getStudyReport(id, reportId, page, perPage, model, subject, dimension, output)
+> StudyReportScoresResponse getStudyReport(id, reportId, page, perPage, model, subject, dimension, output)
 
 Get custom study report scores
 
@@ -180,7 +182,8 @@ final String dimension = dimension_example; // String | Restrict to one dimensio
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.getStudyReport(id, reportId, page, perPage, model, subject, dimension, output);
+    final response = api.getStudyReport(id, reportId, page, perPage, model, subject, dimension, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ReputationStudiesApi->getStudyReport: $e\n');
 }
@@ -201,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**StudyReportScoresResponse**](StudyReportScoresResponse.md)
 
 ### Authorization
 
@@ -215,7 +218,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listReputationReports**
-> listReputationReports(projectId, page, perPage, output)
+> ReputationReportsResponse listReputationReports(projectId, page, perPage, output)
 
 List reputation reports
 
@@ -232,7 +235,8 @@ final int perPage = 56; // int |
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listReputationReports(projectId, page, perPage, output);
+    final response = api.listReputationReports(projectId, page, perPage, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ReputationStudiesApi->listReputationReports: $e\n');
 }
@@ -249,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ReputationReportsResponse**](ReputationReportsResponse.md)
 
 ### Authorization
 
@@ -258,12 +262,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listStudies**
-> listStudies(projectId, status, page, perPage, output)
+> StudiesResponse listStudies(projectId, status, page, perPage, output)
 
 List custom AI studies
 
@@ -281,7 +285,8 @@ final int perPage = 56; // int |
 final String output = output_example; // String | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. 'flat' returns the same metadata plus 'columns' and 'rows'; 'csv' returns those rows as text/csv. Errors are always returned as JSON.
 
 try {
-    api.listStudies(projectId, status, page, perPage, output);
+    final response = api.listStudies(projectId, status, page, perPage, output);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling ReputationStudiesApi->listStudies: $e\n');
 }
@@ -299,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**StudiesResponse**](StudiesResponse.md)
 
 ### Authorization
 
@@ -308,7 +313,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
