@@ -25,6 +25,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
   final AccountExecutionQuota? promptExecutions;
   @override
   final AccountPitchQuota? pitchProjects;
+  @override
+  final AccountAgentUsage? agentUsage;
 
   factory _$GetAccount200ResponseLimits(
           [void Function(GetAccount200ResponseLimitsBuilder)? updates]) =>
@@ -39,7 +41,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
       this.recurringGeoAudits,
       this.geoAuditManualRuns,
       this.promptExecutions,
-      this.pitchProjects})
+      this.pitchProjects,
+      this.agentUsage})
       : super._();
   @override
   GetAccount200ResponseLimits rebuild(
@@ -62,7 +65,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
         recurringGeoAudits == other.recurringGeoAudits &&
         geoAuditManualRuns == other.geoAuditManualRuns &&
         promptExecutions == other.promptExecutions &&
-        pitchProjects == other.pitchProjects;
+        pitchProjects == other.pitchProjects &&
+        agentUsage == other.agentUsage;
   }
 
   @override
@@ -77,6 +81,7 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
     _$hash = $jc(_$hash, geoAuditManualRuns.hashCode);
     _$hash = $jc(_$hash, promptExecutions.hashCode);
     _$hash = $jc(_$hash, pitchProjects.hashCode);
+    _$hash = $jc(_$hash, agentUsage.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -92,7 +97,8 @@ class _$GetAccount200ResponseLimits extends GetAccount200ResponseLimits {
           ..add('recurringGeoAudits', recurringGeoAudits)
           ..add('geoAuditManualRuns', geoAuditManualRuns)
           ..add('promptExecutions', promptExecutions)
-          ..add('pitchProjects', pitchProjects))
+          ..add('pitchProjects', pitchProjects)
+          ..add('agentUsage', agentUsage))
         .toString();
   }
 }
@@ -154,6 +160,12 @@ class GetAccount200ResponseLimitsBuilder
   set pitchProjects(AccountPitchQuotaBuilder? pitchProjects) =>
       _$this._pitchProjects = pitchProjects;
 
+  AccountAgentUsageBuilder? _agentUsage;
+  AccountAgentUsageBuilder get agentUsage =>
+      _$this._agentUsage ??= AccountAgentUsageBuilder();
+  set agentUsage(AccountAgentUsageBuilder? agentUsage) =>
+      _$this._agentUsage = agentUsage;
+
   GetAccount200ResponseLimitsBuilder() {
     GetAccount200ResponseLimits._defaults(this);
   }
@@ -170,6 +182,7 @@ class GetAccount200ResponseLimitsBuilder
       _geoAuditManualRuns = $v.geoAuditManualRuns?.toBuilder();
       _promptExecutions = $v.promptExecutions?.toBuilder();
       _pitchProjects = $v.pitchProjects?.toBuilder();
+      _agentUsage = $v.agentUsage?.toBuilder();
       _$v = null;
     }
     return this;
@@ -202,6 +215,7 @@ class GetAccount200ResponseLimitsBuilder
             geoAuditManualRuns: _geoAuditManualRuns?.build(),
             promptExecutions: _promptExecutions?.build(),
             pitchProjects: _pitchProjects?.build(),
+            agentUsage: _agentUsage?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -224,6 +238,8 @@ class GetAccount200ResponseLimitsBuilder
         _promptExecutions?.build();
         _$failedField = 'pitchProjects';
         _pitchProjects?.build();
+        _$failedField = 'agentUsage';
+        _agentUsage?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
             r'GetAccount200ResponseLimits', _$failedField, e.toString());

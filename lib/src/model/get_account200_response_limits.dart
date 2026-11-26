@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:llmpulse/src/model/account_capacity.dart';
 import 'package:llmpulse/src/model/account_execution_quota.dart';
+import 'package:llmpulse/src/model/account_agent_usage.dart';
 import 'package:llmpulse/src/model/account_pitch_quota.dart';
 import 'package:llmpulse/src/model/account_quota.dart';
 import 'package:built_value/built_value.dart';
@@ -24,6 +25,7 @@ part 'get_account200_response_limits.g.dart';
 /// * [geoAuditManualRuns] 
 /// * [promptExecutions] 
 /// * [pitchProjects] 
+/// * [agentUsage] 
 @BuiltValue()
 abstract class GetAccount200ResponseLimits implements Built<GetAccount200ResponseLimits, GetAccount200ResponseLimitsBuilder> {
   @BuiltValueField(wireName: r'prompts')
@@ -52,6 +54,9 @@ abstract class GetAccount200ResponseLimits implements Built<GetAccount200Respons
 
   @BuiltValueField(wireName: r'pitch_projects')
   AccountPitchQuota? get pitchProjects;
+
+  @BuiltValueField(wireName: r'agent_usage')
+  AccountAgentUsage? get agentUsage;
 
   GetAccount200ResponseLimits._();
 
@@ -137,6 +142,13 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
       yield serializers.serialize(
         object.pitchProjects,
         specifiedType: const FullType(AccountPitchQuota),
+      );
+    }
+    if (object.agentUsage != null) {
+      yield r'agent_usage';
+      yield serializers.serialize(
+        object.agentUsage,
+        specifiedType: const FullType(AccountAgentUsage),
       );
     }
   }
@@ -233,6 +245,14 @@ class _$GetAccount200ResponseLimitsSerializer implements PrimitiveSerializer<Get
           ) as AccountPitchQuota?;
           if (valueDes == null) continue;
           result.pitchProjects.replace(valueDes);
+          break;
+        case r'agent_usage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(AccountAgentUsage),
+          ) as AccountAgentUsage?;
+          if (valueDes == null) continue;
+          result.agentUsage.replace(valueDes);
           break;
         default:
           unhandled.add(key);

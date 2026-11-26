@@ -14,6 +14,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:llmpulse/src/date_serializer.dart';
 import 'package:llmpulse/src/model/date.dart';
 
+import 'package:llmpulse/src/model/account_agent_usage.dart';
 import 'package:llmpulse/src/model/account_capacity.dart';
 import 'package:llmpulse/src/model/account_execution_quota.dart';
 import 'package:llmpulse/src/model/account_pitch_quota.dart';
@@ -376,6 +377,7 @@ import 'package:llmpulse/src/model/web_analytics_schema_response.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  AccountAgentUsage,
   AccountCapacity,
   AccountExecutionQuota,
   AccountPitchQuota,
