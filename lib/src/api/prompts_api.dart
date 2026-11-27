@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 
 import 'package:llmpulse/src/api_util.dart';
 import 'package:llmpulse/src/model/api_error.dart';
-import 'package:llmpulse/src/model/peec_export_import_response.dart';
 import 'package:llmpulse/src/model/prompt_categorization_response.dart';
 import 'package:llmpulse/src/model/prompt_delete_response.dart';
 import 'package:llmpulse/src/model/prompt_executions_response.dart';
@@ -506,111 +505,6 @@ class PromptsApi {
     }
 
     return Response<PromptGenerationResponse>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Import a Peec AI export
-  /// Not available yet: until file imports are enabled, the call returns ERR_INTEGRATION_UNAVAILABLE (403). Imports the answers export of Peec AI, sent as a multipart/form-data body with project_id and the file as a part named file: a CSV of up to 8 MB and 20,000 answers with Peec AI&#39;s column names (user, assistant, model, created, and optionally country and mentions). Every prompt of the file becomes a tracked prompt of the project, and each answer from an AI model the account tracks is filed as that week&#39;s answer for its model and analysed for mentions, sources and sentiment like a tracked one; answers from other models are skipped and listed in skipped_models. Competitors are not created: detected_brands lists the names the export mentions, to add with POST /competitors. The file is checked whole before anything is written: a file that cannot be read returns ERR_INVALID_PARAM with error.meta.reason file_missing, file_empty, file_too_large, columns_missing, models_not_tracked, nothing_to_import or too_large (more than 20,000 weekly answers: prompts x AI models x weeks), dates_out_of_range (an answer dated before 2022-11-30 or after today), answer_too_long (an answer over 50,000 characters) or prompt_too_long (a prompt over 2,000 bytes), or a message naming the problem. The prompt limits count only the prompts the project does not hold yet, together with those of the account&#39;s imports still finishing: when they would exceed the project or the plan, the call returns ERR_LIMIT_REACHED and imports nothing, so a full account can still add answers to the prompts it holds. The analysis is paid on-demand work, so an account that is not active gets ERR_ACCOUNT_INACTIVE. The import is planned in the request and finishes in the background, usually within minutes: 202 means it started, and app_url opens the project&#39;s prompts. The MCP tool import_peec_export takes the same file through the MCP files extension. Requires a &#x60;read_write&#x60; scope API key and, for team members, create access to Prompts.
-  ///
-  /// Parameters:
-  /// * [projectId] 
-  /// * [file] - The answers export of Peec AI, a CSV of up to 8 MB and 20,000 answers
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [PeecExportImportResponse] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<PeecExportImportResponse>> importPeecExport({ 
-    required int projectId,
-    required MultipartFile file,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/prompts/import_peec_export';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'BearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      contentType: 'multipart/form-data',
-      validateStatus: validateStatus,
-    );
-
-    dynamic _bodyData;
-
-    try {
-      _bodyData = FormData.fromMap(<String, dynamic>{
-        r'project_id': encodeFormParameter(_serializers, projectId, const FullType(int)),
-        r'file': file,
-      });
-
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    PeecExportImportResponse? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(PeecExportImportResponse),
-      ) as PeecExportImportResponse;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<PeecExportImportResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

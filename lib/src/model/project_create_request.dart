@@ -35,7 +35,7 @@ part 'project_create_request.g.dart';
 /// * [ownedMedia] 
 /// * [useSubdomain] 
 /// * [weeklyEmailSubscribed] 
-/// * [externalIdentifier] - Embed-enabled (Enterprise) accounts only; other accounts receive ERR_PLAN_REQUIRED. Idempotency key and embed-session join key, unique per account
+/// * [externalIdentifier] - Accounts with Enterprise Embed enabled only; other accounts receive ERR_PLAN_REQUIRED. Idempotency key and embed-session join key, unique per account
 /// * [executePromptsImmediately] 
 /// * [pitch] - Create a pitch project, a one-off snapshot for a prospect. It runs its prompts once across the account's AI models right away, takes no project slot and its prompts do not count against the prompt quota, and it is deleted 90 days later unless converted by sending pitch false to PATCH /projects/{id}. It uses one of the month's pitch projects (GET /account, limits.pitch_projects), needs an agency or platform account (GET /account, limits.pitch_projects.access) and a paid subscription on the Scale tier or higher, takes 1 to 100 prompts, and cannot use a domain the account already tracks or pitched in the last 90 days. execute_prompts_immediately must not be false
 /// * [projectType] - Only for accounts billed per project type under a pricing agreement; any other account gets ERR_INVALID_PARAM. The key of one of the account's project types, such as core or lean, which sets the most prompts the project can hold and the price it is billed at. Omitted, the project takes the account's default type. A type other than the default needs the account owner or a co-owner (ERR_INSUFFICIENT_PERMISSION). An unknown key answers ERR_INVALID_PARAM with the valid keys; a pitch project has no type
@@ -114,7 +114,7 @@ abstract class ProjectCreateRequest implements Built<ProjectCreateRequest, Proje
   @BuiltValueField(wireName: r'weekly_email_subscribed')
   bool? get weeklyEmailSubscribed;
 
-  /// Embed-enabled (Enterprise) accounts only; other accounts receive ERR_PLAN_REQUIRED. Idempotency key and embed-session join key, unique per account
+  /// Accounts with Enterprise Embed enabled only; other accounts receive ERR_PLAN_REQUIRED. Idempotency key and embed-session join key, unique per account
   @BuiltValueField(wireName: r'external_identifier')
   String? get externalIdentifier;
 
